@@ -1,0 +1,53 @@
+---
+title: "hox-gpa.csv"
+output: 
+  rmdformats::html_docco:
+    css: 'codebooks.css'
+    df_print: paged
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+library(fontawesome)
+
+## Global options
+options(max.print = "75")
+
+# knitr options
+opts_chunk$set(
+  prompt = FALSE,
+  tidy = TRUE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE
+  )
+```
+
+
+The data in [hox-gpa.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/hox-gpa.csv) were simulated by Hox et al. (2018) to represent longitudinal data for $n=200$ college students. Data were "collected" for these students over six consecutive semesters. The attributes include:
+
+- `student`: Student ID number
+- `gpa`: Student's GPA for the semester.
+- `semester`: Semester the data were "collected" (i.e., measurement occasion). These values have been centered on the initial measurement occasion.
+- `hours_worked`: A job status variable indicating the average number of hours the student worked each week for the semester.
+- `female`: A dummy-coded indicator of the student's gender (1 = Female, 0 = Not female)
+- `hs_gpa`: Student's high school GPA
+
+
+### Preview
+
+```{r}
+# Import data
+hox = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/hox-gpa.csv")
+
+# View data
+hox
+```
+
+
+### References
+
+Hox, J. J., Moerbeek, M., &amp; van de Schoot, R. (2018). [Multilevel analysis: Techniques and applications (3rd ed.).](https://multilevel-analysis.sites.uu.nl/) Routledge.
+

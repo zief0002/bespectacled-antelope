@@ -1,0 +1,634 @@
+---
+title: "Regression Recap"
+author: "Andrew Zieffler"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: 
+  html_document:
+    highlight: zenburn
+    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
+    df_print: paged
+    code_folding: show
+bibliography: ['epsy8251.bib', 'epsy8252.bib']
+csl: 'style/apa-single-spaced.csl'
+---
+
+<!-- This adds mathjax for internet hosting. Not needed if you are only serving locally -->
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
+</script>
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
+library(knitr)
+library(kableExtra)
+library(rmdformats)
+
+## Global options
+options(
+  max.print = "75",
+  scipen = 5
+  )
+
+## knitr document chunk options
+opts_chunk$set(
+  prompt = FALSE, 
+  comment = NA, 
+  message = FALSE, 
+  warning = FALSE, 
+  tidy = FALSE, 
+  fig.width = 6, 
+  fig.height = 6,
+  fig.align = 'center', 
+  out.width='40%'
+  )
+
+## Set output width for printing
+opts_knit$set(width = 85)
+```
+
+## Preparation
+
+In this set of notes, we will review ideas from regression learned in EPsy 8251. To do this, we will use the data in *broadband.csv* to examine variation in the over-/under-estimates of the true percentage of the population in the United States with access to high-speed broadband.  
+
+- [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/broadband.csv)
+- [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/broadband.html)
+
+In particular, we will evaluate whether this variability is explainable by differences in the percentage of people living in poverty. In this analysis, we will also control for region of the country and whether or not the county is a metropolitan area (two variables that are related to education, which impacts poverty). Although not supported by any prior research, we will also evaluate potential interactions of these two control covariates with poverty level based on an exploration of the data.
+
+<br />
+
+### Packages
+
+You will need to make sure all of these packages are installed. You can install most of the packages from CRAN. Use `Packages > Install` in RStudio to do this.
+
+Recall that the you will need to install the `{educate}` package from GitHub. To do this, see the *Installing Packages from GitHub" section of the resource [Computational Toolkit for Educational Scientists](https://zief0002.github.io/toolkit/getting-started-with-r.html#getting-started-with-r)
+
+```{r preparation, warning=FALSE, message=FALSE}
+# Load libraries
+library(tidyverse)    #Plotting, wrangling, basically everything
+library(broom)        #Fitted regression results, creating residuals
+library(corrr)        #Correlations
+library(educate)      #Normal confidence envelope
+library(patchwork)    #For layout with more than one plot
+library(modelsummary) #Summary of variables
+library(texreg)       #Creating table of regression results
+```
+
+<br />
+
+### Data Import
+
+First we will import the broadband data.
+
+```{r data-import}
+broadband = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/broadband.csv")
+
+# View data
+broadband
+```
+
+
+
+Finally, we will summarize the variables in the data set using the `datasummary_skim()` function from the `{modelsummary()}` package.
+
+```{r eda}
+datasummary_skim(broadband)
+```
+
+From these results we see that there is no missing data. We also see from the FIPS variable that we have a sample size of 3103 counties (since the FIPS value is unique to each county). The outcome (`fcc_diff`) is slightly left skewed with a potential outlier. Our focal predictor (`pct_poverty`) is right-skewed. 
+
+The mean for each of the dummy variables, recall, gives the proportion of 1s. Thus, since we coded metropolitan counties as 1, 40% of the counties in our sample are metropolitan. Note that there are some counties in the New England and Mid-Atlantic regions, so the means of 0 are due to rounding.^[You could use the `mean()` function to compute the actual proportion of counties if you desire.]
+
+
+<br />
+
+## Plotting Relationships
+
+To further the analysis, we next explore the relationship between the outcome versus various predictors. Initially, we will plot the outcome versus our focal predictor (`pct_poverty`).
+
+```{r plot-01, fig.cap="Over-/under-estimate of highspeed broadband access (in percentage points) as a function of the percentage of people in poverty in the county."}
+ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_light() +
+  xlab("Perecntage in Poverty") +
+  ylab("Over/Under Estimate of High Speed Broadband Access")
+```
+
+From this plot, we can see that most of the counties access is being over-estimated, regardless of the degree of poverty (i.e., most `fcc_diff` values are above 0). We also see that there is a positive relationship between these variables. In general, counties with a higher percentage of residents living in poverty tend to have their access to highspeed broadband over-estimated. Finally, although there is one county that seems to be a potential outlier, Loving County in Texas ($7.1,~-0.81$), the overall relationship, nontheless, seems linear. 
+
+Next we will look at the same relationship, except this time we will condition on whether the county is considered a metropolitan area.
+
+```{r plot-02, fig.cap="Over-/under-estimate of highspeed broadband access (in percentage points) as a function of the percentage of people in poverty in the county conditioned on whether or not the county is a metropolitan area.", fig.width=10, fig.height=5, out.width="80%"}
+ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_light() +
+  xlab("Percentage in Poverty") +
+  ylab("Over/Under Estimate of High Speed Broadband Access") +
+  facet_wrap(~county_type, nrow = 1)
+```
+
+From this plot, we see that the positive relationship persists for both metropolitan and non-metropolitan counties. Although, the magnitude seems much larger for metropolitan counties than for non-metropolitan counties, the latter of which seems quite close to 0. That is, for metropolitan counties, higher degrees of poverty are associated with bigger over-estimates of access to highspeed broadband. For non-metropolitan counties, while the access to highspeed broadband is being over-estimated, this does not seem to grow nearly as much for counties with higher percentages of people living in poverty. This suggests that we might want to fit a model that includes an interaction between `pct_poverty` and `metro`.
+
+
+Next we will look at the same relationship by region of the country.
+
+```{r plot-03, fig.cap="Over/under-estimate of highspeed broadband access (in percentage points) as a function of the percentage of people in poverty in the county conditioned on region.", fig.width=15, fig.height=15, out.width="80%"}
+ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_light() +
+  xlab("Percentage in Poverty") +
+  ylab("Over/Under Estimate of High Speed Broadband Access") +
+  facet_wrap(~region)
+```
+
+From this plot, we see that there is variability in both the direction and magnitude of the relationship across regions. For many regions (e.g., East North Central, Pacific, West South Central), the slope is close to 0, indicating again that while the access to highspeed broadband is generally being over-estimated, this does not seem to change much for counties with higher percentages of people living in poverty. Other regions (e.g., New England, Mid-Atlantic) show the earlier positive relationship we observed. The Mountain region, in contrast, shows a negative relationship between degree of poverty and the amount of estimation error. This suggests that we might want to fit a model that includes an interaction between `pct_poverty` and `region`.
+
+Finally, for completeness, we will look at the same relationship by both metropolitan area and region of the country.
+
+```{r plot-04, fig.cap="Over-/under-estimate of highspeed broadband access (in percentage points) as a function of the percentage of people in poverty in the county conditioned on whether or not the county is a metropolitan area and region.", fig.width=12, fig.height=10, out.width="80%"}
+ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff, color = county_type)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_light() +
+  scale_color_manual(
+    name = "",
+    values = c("#2C6DAC", "#C60F7B")
+    ) +
+  xlab("Percentage in Poverty") +
+  ylab("Over/Under Estimate of High Speed Broadband Access") +
+  facet_wrap(~region)
+```
+
+From this plot, we see that there is variability in both the direction and magnitude of the relationship between metropolitan and non-metroplitan counties with each region. Moreover, these are different across regions. This might suggest that we might want to fit a model that includes a second-order interaction between `pct_poverty`, `metro`, and `region`.
+
+<br />
+
+
+## Preparing for the Regression Analyses
+
+From the plots we have several models that we might be interested in fitting to explain variation in our outcome:
+
+- **Model A:** A simple regression model that uses our focal predictor (always a good model to start with);
+- **Model B:** A main-effects model that includes our focal predictor and the two covariates (a pre-cursor to the interaction models);
+- **Model C:** An interaction model that includes the interaction between `metro` and our focal predictor, and also controls for `region`;
+- **Model D:** An interaction model that includes the interaction between `region` and our focal predictor, and also controls for `metro`;
+- **Model E:** An interaction model that includes the second-order interaction between `metro`, `region`, and our focal predictor.;
+
+Because both `region` and `metro` are categorical predictors, we need to create dummy variables to use them in the analyses. Here, we create the `metro` dummy variable to encode metropolitan area and nine region dummy variables to encode region of the country.
+
+```{r create-vars}
+broadband = broadband %>%
+  mutate(
+    # Create metro dummy
+    metro = if_else(county_type == "Metro", 1, 0),
+    # Create region dummies
+    ne = if_else(region == "New England", 1, 0),
+    ma = if_else(region == "Mid-Atlantic", 1, 0),
+    enc = if_else(region == "East North Central", 1, 0),
+    wnc = if_else(region == "West North Central", 1, 0),
+    mtn = if_else(region == "Mountain", 1, 0),
+    pac = if_else(region == "Pacific", 1, 0),
+    sa = if_else(region == "South Atlantic", 1, 0),
+    esc = if_else(region == "East South Central", 1, 0),
+    wsc = if_else(region == "West South Central", 1, 0)
+  )
+
+# View data
+broadband
+```
+
+<br />
+
+## Model A
+
+Model A will only include our focal predictor (`pct_poverty`). The model equation is:
+
+
+$$
+\mathrm{Estimate~Difference}_i = \beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \epsilon_i
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$. Note that the model equation describes both the relationships and the assumptions. Next we will fit the model using the `lm()` function and then use the `glance()` and `tidy()` functions from the `{broom}` package to peruse the model-level and coefficient-level output, respectively.
+
+
+```{r model-a}
+# Fit model
+model_a = lm(fcc_diff ~ 1 + pct_poverty, data = broadband)
+
+# Model-level output
+glance(model_a)
+
+# Coefficient-level output
+tidy(model_a)
+```
+
+Interpreting this output:
+
+> Difference in poverty explain 1.39% of the variation in the over-/under-estimates of high speed broadband access; $F(1,~3101)=43.8,~p<.001$. Each one-percentage point difference in poverty is associated with a 0.004 percentage-point change in the over-/under-estimates of high speed broadband access, on average; $t(3101)=6.62,~p<.001$. This suggests that counties with higher levels of poverty are more likely to have their estimate of high speed broadband access over estimated.
+
+<br />
+
+
+## Model B
+
+Model B includes our focal predictor (`pct_poverty`) and the covariates (`metro` and eight of the nine region dummies). The model equation is:
+
+
+$$
+\begin{split}
+\mathrm{Estimate~Difference}_i = &\beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \beta_2(\mathrm{Metro}_i) + \beta_3(\mathrm{ENC}_i) + \beta_4(\mathrm{ESC}_i) + \beta_5(\mathrm{MA}_i) + \\
+&\beta_6(\mathrm{Mtn}_i) + \beta_7(\mathrm{NE}_i) + \beta_8(\mathrm{Pac}_i) + \beta_9(\mathrm{SA}_i) + \beta_{10}(\mathrm{WNC}_i) + \epsilon_i
+\end{split}
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$. In this model, the reference group is non-metropolitan counties in the West South Central region of the country.
+
+
+```{r model-b}
+# Fit model
+model_b = lm(fcc_diff ~ 1 + pct_poverty + metro + enc + esc + 
+               ma + mtn + ne + pac + sa + wnc, data = broadband)
+
+# Model-level output
+glance(model_b)
+
+# Coefficient-level output
+tidy(model_b)
+```
+
+Interpreting this output:
+
+> Difference in poverty, whether a county is a metropolitan area, and region of the country explain 5.19% of the variation in the over-/under-estimates of high speed broadband access; $F(10,~3092)=16.9,~p<.001$. Each one-percentage point difference in poverty is associated with a 0.004 percentage-point change in the over-/under-estimates of high speed broadband access, on average---$t(3092)=6.62,~p<.001$---controlling for differences in whether a county is a metropolitan area and region of the country. This suggests that, even after controlling for important covariates, counties with higher levels of poverty are more likely to have their estimate of high speed broadband access over estimated.
+
+While we focus on the focal varaible of poverty in the interpretation, we could also interpret the covariates:
+
+- The over-/under-estimates of high speed broadband access for metropolitan counties is 0.008 percentage points lower, on average, than that for non-metropolitan counties controlling for differences in the degree of poverty in the county and region of the country. This is *not* more than we expect because of sampling error---$t(3092)=-1.08,~p=.280$---indicating that there may not be a difference between metropolitan and non-metropolitan counties degree of estimation error once we account for region and poverty level.
+
+Each of the region effects should is a comparison to the reference region of West South Central. For example, to interpret the `enc` effect:
+
+- The over-/under-estimates of high speed broadband access for counties in the East North Central region is 0.034 percentage points higher, on average, than that for counties in the West South Central region, controlling for differences in the degree of poverty in the county and whether the county is a metropolitan area. This is more than we expect because of sampling error---$t(3092)=2.69,~p=.007$.
+
+<br />
+
+
+### Mathematical and Computational Convenience
+
+Let us return to the equation we wrote for Model B. Note that we can use mathematical notation to re-write the set of effects for the dummy variables encoding region:
+
+$$
+\begin{split}
+\sum_{j=3}^{10}\beta_j(\mathrm{Region}_{ij}) = &\beta_3(\mathrm{ENC}_i) + \beta_4(\mathrm{ESC}_i) + \beta_5(\mathrm{MA}_i) + \beta_6(\mathrm{Mtn}_i) + \beta_7(\mathrm{NE}_i) +\\
+& \beta_8(\mathrm{Pac}_i) + \beta_9(\mathrm{SA}_i) + \beta_{10}(\mathrm{WNC}_i)
+\end{split}
+$$
+
+Here the *j* subscript denotes Region *j*, that is, we can have a different beta-value and region variable depending on the region. Using this, we can re-write the model for Model B more succinctly as:
+
+$$
+\mathrm{Estimate~Difference}_i = \beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \beta_2(\mathrm{Metro}_i) + \sum_{j=3}^{10}\beta_j(\mathrm{Region}_{ij}) + \epsilon_i
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$.
+
+We can also use the categorical variable directly in the `lm()` syntax rather than creating the dummy variables.
+
+```{r model-b-take-2}
+model_b = lm(fcc_diff ~ 1 + pct_poverty + metro + region, data = broadband)
+```
+
+When we do this, R will choose the reference category for us (it is chosen alphabetically). In our case, this is the East North Central region. We can verify this by examining the `tidy()` output to see which region was omitted.
+
+```{r model-b-tidy-take-2}
+tidy(model_b)
+```
+
+In general, if the categorical variable is a covariate, it is fine to just use it in the `lm()` without creating the dummy variables. This controls for that covariate. If, however, you are interested in comparisons between different levels of the categorical variable, you will need to create the dummy variables because not all of the comparisons are shown in the output. 
+
+<br />
+
+
+### Model C
+
+Model C includes the interaction between `pct_poverty` and `metro` and `region` as a set of covariates. The model equation is:
+
+
+$$
+\begin{split}
+\mathrm{Estimate~Difference}_i = &\beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \beta_2(\mathrm{Metro}_i) + \sum_{j=3}^{10}\beta_j(\mathrm{Region}_{ij}) + \\ 
+&\beta_{11}(\mathrm{Poverty~Percentage}_i)(\mathrm{Metro}_i) + \epsilon_i
+\end{split}
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$.
+
+```{r model-c}
+# Fit model
+model_c = lm(fcc_diff ~ 1 + pct_poverty + metro + region + 
+               pct_poverty:metro, data = broadband)
+
+# Model-level output
+glance(model_c)
+
+# Coefficient-level output
+tidy(model_c)
+```
+
+Interpreting this output:
+
+> Model C explains 6.57% of the variation in the over-/under-estimates of high speed broadband access; $F(11,~3091)=19.8,~p<.001$. The interaction effect between poverty level and metropolitan area is more than we expect because of chance, $t(3091)=6.78,~p<.001$. This implies that, after controlling for regional differences, the effect of poverty level on the amount of error in the estimates of high speed broadband access depends on whether the county is a metropolitan area.
+
+We can compute the effect of poverty as:
+
+- **Non-Metropolitan Counties (reference group):** $\beta_{\mathrm{Poverty}} = 0.0009$
+- **Metropolitan Counties:** $\beta_{\mathrm{Poverty}} = 0.0009 + .00934 = 0.010$
+
+For counties considered metropolitan areas, each one-percentage point difference in poverty is associated with a 0.010 percentage-point change in the over-/under-estimates of high speed broadband access, on average. While for non-metropolitan counties, each one-percentage point difference in poverty is only associated with a 0.0009 percentage-point change in the over-/under-estimates of high speed broadband access, on average.
+
+<br />
+
+
+## Model D
+
+Model D includes the interaction between `pct_poverty` and `region`, and `metro` as a covariate. The model equation is:
+
+
+$$
+\begin{split}
+\mathrm{Estimate~Difference}_i = &\beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \beta_2(\mathrm{Metro}_i) + \sum_{j=3}^{10}\beta_j(\mathrm{Region}_{ij}) + \\ 
+&\sum_{j=11}^{18}\beta_j(\mathrm{Region}_{ij})(\mathrm{Poverty~Percentage}_i) + \epsilon_i
+\end{split}
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$.
+
+
+```{r model-d}
+# Fit model
+model_d = lm(fcc_diff ~ 1 + pct_poverty + metro + region + 
+               pct_poverty:region, data = broadband)
+
+# Model-level output
+glance(model_d)
+
+# Coefficient-level output
+tidy(model_d)
+```
+
+Interpreting this output:
+
+> Model D explains 6.28% of the variation in the over-/under-estimates of high speed broadband access; $F(18,~3084)=11.5,~p<.001$. At least one interaction effects between poverty level and region is more than we expect because of chance, indicating that after controlling for whether the county is a metropolitan area, the effect of poverty level on the amount of error in the estimates of high speed broadband access depends on region.
+
+There are many interaction effects in this model, and not all of them are displayed in the `tidy()` output. The interactions outputted are slope comparisons to the reference group. For example, the `pct_poverty:regionEast South Central` effect is a comparison of the poverty level effect between the East South Central region and the reference group of East North Central. It suggests that the effect of level of poverty in the East South Central region is 0.002 percentage points higher than it is in the East North Central region. If you wanted to know whether, say, the effect of level of poverty in the Pacific region was different from that in the Mid-Atlantic region you would need to use a different reference group.
+
+<br />
+
+
+## Model E
+
+Model E includes the second-order interaction between `pct_poverty`, `region`, and `metro`. The model equation is:
+
+
+$$
+\begin{split}
+\mathrm{Estimate~Difference}_i = &\beta_0 + \beta_1(\mathrm{Poverty~Percentage}_i) + \beta_2(\mathrm{Metro}_i) + \sum_{j=3}^{10}\beta_j(\mathrm{Region}_{ij}) + \\ 
+&\beta_{11}(\mathrm{Metro}_i)(\mathrm{Poverty~Percentage}_i) + \\ &\sum_{j=12}^{19}\beta_j(\mathrm{Region}_{ij})(\mathrm{Poverty~Percentage}_i) +\\
+&\sum_{j=20}^{27}\beta_j(\mathrm{Region}_{ij})(\mathrm{Metro}_i) + \\
+&\sum_{j=28}^{35}\beta_j(\mathrm{Region}_{ij})(\mathrm{Metro}_i)(\mathrm{Poverty~Percentage}_i) + \epsilon_i
+\end{split}
+$$
+
+where, $\epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})$.
+
+
+```{r model-e}
+# Fit model
+model_e = lm(fcc_diff ~ 1 + pct_poverty + metro + region + 
+               pct_poverty:metro + pct_poverty:region + metro:region +
+               region:metro:pct_poverty, data = broadband)
+
+# Model-level output
+glance(model_e)
+
+# Coefficient-level output
+tidy(model_d)
+```
+
+Interpreting this output:
+
+> Model E explains 8.05% of the variation in the over-/under-estimates of high speed broadband access; $F(35,~3067)=7.67,~p<.001$. At least one of the second-order interaction effects between poverty level, metropolitan area, and region is more than we expect because of chance, indicating that the effect of poverty level on the amount of error in the estimates of high speed broadband access depends on region and whether or not the county is considered a metropolitan area.
+
+<br />
+
+
+## Adopting a Model
+
+From a statistical inference (*p*-value) point-of-view, we would adopt Model E. Some of the second-order interactions are statistically relevant. However, this model was not under consideration until AFTER we looked at the data. Similarly Models C and D were also proposed after looking at the data. This makes them suspect. *A priori*, before looking at the data, we only considered Models A and B. 
+
+We can safely put aside Model A---it was really just a starting point to include the focal predictor, but wasn't really under consideration since the RQ suggested we had to control for other covariates. To decide between Models B, C, D, and E, we will examine the residuals to see which of these models best meets the assumptions.
+
+
+```{r residual-plots-1, fig.cap="Marginal density plots of the standardized residuals for each of four candidate models. A confidence envelope for the normal distribution (blue shaded area) is also displayed in each plot.", out.width="80%"}
+# Get the residuals
+out_b = augment(model_b)
+out_c = augment(model_c)
+out_d = augment(model_d)
+out_e = augment(model_e)
+
+# Plots
+plot_b = ggplot(data = out_b, aes(x = .std.resid)) +
+  stat_density_confidence(model = "normal") +
+  geom_density() +
+  theme_light() +
+  xlab("Standardized residuals") +
+  ylab("Density") +
+  ggtitle("Model B")
+
+plot_c = ggplot(data = out_c, aes(x = .std.resid)) +
+  stat_density_confidence(model = "normal") +
+  geom_density() +
+  theme_light() +
+  xlab("Standardized residuals") +
+  ylab("Density") +
+  ggtitle("Model C")
+
+plot_d = ggplot(data = out_d, aes(x = .std.resid)) +
+  stat_density_confidence(model = "normal") +
+  geom_density() +
+  theme_light() +
+  xlab("Standardized residuals") +
+  ylab("Density") +
+  ggtitle("Model D")
+
+plot_e = ggplot(data = out_e, aes(x = .std.resid)) +
+  stat_density_confidence(model = "normal") +
+  geom_density() +
+  theme_light() +
+  xlab("Standardized residuals") +
+  ylab("Density") +
+  ggtitle("Model E")
+
+# Layout the plots using patchwork
+(plot_b | plot_c) / (plot_d | plot_e)
+```
+
+The density plots indicate that the normality assumption may be violated for all four candidate models. The density curve deviates from what is expected if the population of standardized residuals was normal (i.e., the curve falls outside the shaded area).
+
+```{r residual-plots-2, fig.cap="Scatterplots of the standardized residuals versus the fitted values for each of four candidate models. A horizontal line at $Y=0$ has been added to the plot to aid interpretation. A loess smoother (blue line) with 95% confidence bands has also been included on each plot.", out.width="80%"}
+# Plots
+plot_b = ggplot(data = out_b, aes(x = .fitted, y = .std.resid)) +
+  geom_point(alpha = 0.3) +
+  geom_hline(yintercept = 0) +
+  geom_smooth() +
+  theme_light() +
+  xlab("Fitted values") +
+  ylab("Standardized residuals") +
+  ggtitle("Model B")
+
+plot_c = ggplot(data = out_c, aes(x = .fitted, y = .std.resid)) +
+  geom_point(alpha = 0.3) +
+  geom_hline(yintercept = 0) +
+  geom_smooth() +
+  theme_light() +
+  xlab("Fitted values") +
+  ylab("Standardized residuals") +
+  ggtitle("Model C")
+
+plot_d = ggplot(data = out_d, aes(x = .fitted, y = .std.resid)) +
+  geom_point(alpha = 0.3) +
+  geom_hline(yintercept = 0) +
+  geom_smooth() +
+  theme_light() +
+  xlab("Fitted values") +
+  ylab("Standardized residuals") +
+  ggtitle("Model D")
+
+plot_e = ggplot(data = out_e, aes(x = .fitted, y = .std.resid)) +
+  geom_point(alpha = 0.3) +
+  geom_hline(yintercept = 0) +
+  geom_smooth() +
+  theme_light() +
+  xlab("Fitted values") +
+  ylab("Standardized residuals") +
+  ggtitle("Model E")
+
+# Layout the plots
+(plot_b | plot_c) / (plot_d | plot_e)
+```
+
+Models D and E show some deviation from the assumption that the mean residuals is 0 for all fitted values. All models suggest compatibility with the homoskedasticity assumption. Based on these findings I would adopt both Model B and Model C. 
+
+
+<br />
+
+
+## Presenting the Regression Results
+
+In a presentation of the results, I would create a regression table reporting the results of Model A, B, and C. I would write about the effect of level of poverty based on these models' results, and also probably show these effects for Model B and C in a picture. Finally, I would emphasize that Model C is exploratory since it was suggested by the data.
+
+<br />
+
+### Table of Regression Results
+
+In a table of regression results, we want to show the estimated parameters for each of the models we are presenting. These parameters include the estimated coefficients and the estimate of the residual standard error; a.k.a., the residual mean square error (RMSE). We should also present measures of uncertainty for the estimated coefficients (e.g., standard errors, confidence intervals). Finally, it is also common to present the R-squared values.
+
+```{r tab-reg, results='asis', echo=FALSE}
+htmlreg(
+  l = list(model_a, model_b, model_c),
+  stars = numeric(0),    #No p-value stars
+  digits = 3,
+  padding = 20,          #Add space around columns (you may need to adjust this via trial-and-error)
+  include.adjrs = FALSE, #Omit Adjusted R^2
+  include.nobs = FALSE,  #Omit sample size
+  include.rmse = TRUE,   #Include RMSE
+  custom.model.names = c("Model A", "Model B", "Model C"), 
+  custom.coef.names = c("Intercept", "Percentage in poverty", "Metropolitan county$^\\dagger$",
+                        "East South Central", "Mid-Atlantic", "Mountain", "New England",
+                        "Pacific", "South Atlantic", "West North Central", "West South Central",
+                        "Percentage in poverty x Metropolitan county"),
+  reorder.coef = c(2:12, 1), #Put intercept at bottom of table
+  caption = "Coefficients (standard errors) for the predictors from a taxonomy of regression models fitted to explain variation in the error in highspeed broadband estimates. Each model was fitted with 3103 cases.",
+  caption.above = TRUE, #Move caption above table
+  custom.note = "$^\\dagger$Metropolitan county is a dummy-coded indicator (0 = Non-metroplitan; 1 = Metropolitan county). $^\\dagger\\dagger$Region is a set of eight dummy-coded indicators (reference group = East North Central).",
+  groups = list("Region$^\\dagger\\dagger$" = 3:10),
+  inner.rules = 1, #Include line rule before model-level output
+  outer.rules = 1  #Include line rules around table
+  )
+```
+
+
+
+<br />
+
+
+### Plot of the Fitted Lines
+
+We will create a plot of the fitted lines for Models B and C. In both models, region is a covariate, so we can control for it by just picking a single region. Any region will work, but it is easiest if we choose the reference group, that way all the region coefficients drop out of the fitted equation. Because Model C includes an interaction between metropolitan area and percentage in poverty, we should show the metropolitan effect for both fitted models. 
+
+First we write the fitted equation for Model B (assuming the reference region):
+
+$$
+\widehat{\mathrm{Estimate~Difference}_i} = 0.441 + 0.004(\mathrm{Poverty~Percentage}_i) - 0.008(\mathrm{Metro}_i)
+$$
+
+Then we substitute 0 (non-metro) and 1 (metro) in for metropolitan area to get the two fitted equations we will use in the plot.
+
+$$
+\begin{split}
+\mathbf{Non\mbox{-}Metro:~} \widehat{\mathrm{Estimate~Difference}_i} &= 0.441 + 0.004(\mathrm{Poverty~Percentage}_i) - 0.008(0) \\
+&= 0.441 + 0.004(\mathrm{Poverty~Percentage}_i) \\[2ex]
+\mathbf{Metro:~} \widehat{\mathrm{Estimate~Difference}_i} &= 0.441 + 0.004(\mathrm{Poverty~Percentage}_i) - 0.008(1) \\
+&= 0.433 + 0.004(\mathrm{Poverty~Percentage}_i)
+\end{split}
+$$
+
+We carry out a similar process for Model C.
+
+$$
+\widehat{\mathrm{Estimate~Difference}_i} = 0.482 + 0.001(\mathrm{Poverty~Percentage}_i) - 0.134(\mathrm{Metro}_i) + 0.009(\mathrm{Poverty~Percentage}_i)(\mathrm{Metro}_i)
+$$
+
+$$
+\begin{split}
+\mathbf{Non\mbox{-}Metro:~} \widehat{\mathrm{Estimate~Difference}_i} &= 0.482 + 0.001(\mathrm{Poverty~Percentage}_i) - 0.134(0) + 0.009(\mathrm{Poverty~Percentage}_i)(0) \\
+&= 0.482 + 0.001(\mathrm{Poverty~Percentage}_i) \\[2ex]
+\mathbf{Metro:~} \widehat{\mathrm{Estimate~Difference}_i} &= 0.482 + 0.001(\mathrm{Poverty~Percentage}_i) - 0.134(1) + 0.009(\mathrm{Poverty~Percentage}_i)(1) \\
+&= 0.348 + 0.002(\mathrm{Poverty~Percentage}_i)
+\end{split}
+$$
+
+
+
+
+```{r fitted-final, fig.cap="Fitted lines showing the Over/under-estimate of highspeed broadband access (in percentage points) as a function of percentage of county residents living in poverty for metropolitan (solid) and non-metropolitan (dashed) areas based on Model B (LEFT) and Model C (RIGHT). In both plots, the fitted equations are based on using the East North Central region.", fig.width=8, fig.height=4, out.width="80%"}
+# Plots
+plot_b = ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff)) +
+  geom_point(alpha = 0) +
+  geom_abline(intercept = 0.441, slope = 0.00358, linetype = "dashed") +  #Non-metro
+  geom_abline(intercept = 0.441 - 0.00838, slope = 0.00358, linetype = "solid") +  #Metro
+  theme_light() +
+  xlab("Percentage in poverty") +
+  ylab("Over/under-estimate of highspeed broadband access") +
+  ggtitle("Model B")
+
+plot_c = ggplot(data = broadband, aes(x = pct_poverty, y = fcc_diff)) +
+  geom_point(alpha = 0) +
+  geom_abline(intercept = 0.482, slope = 0.000863, linetype = "dashed") +  #Non-metro
+  geom_abline(intercept = 0.482 - 0.134, slope = 0.000863 + 0.00934, linetype = "solid") +  #Metro
+  theme_light() +
+  xlab("Percentage in poverty") +
+  ylab("Over/under-estimate of highspeed broadband access") +
+  ggtitle("Model C")
+
+
+# Layout the plots
+plot_b | plot_c
+```
+
+These plots show the fitted lines for Models B and C. The interaction effect seen in Model C's fitted lines was discovered during the exploratory phase of the analysis. While it suggests that the effect of poverty level is more pronounced for metropolitan counties, this needs to be established further in future work.
+
+
+
+

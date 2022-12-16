@@ -1,0 +1,78 @@
+---
+title: "netherlands-schools.csv and netherlands-students.csv"
+output: 
+  rmdformats::html_docco:
+    css: 'codebooks.css'
+    df_print: paged
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+library(fontawesome)
+
+## Global options
+options(max.print = "75")
+
+# knitr options
+opts_chunk$set(
+  prompt = FALSE,
+  tidy = TRUE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE
+  )
+```
+
+
+The data in [netherlands-students.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/netherlands-students.csv) and [netherlands-schools.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/netherlands-schools.csv) include student- and school-level attributes, respectively, for $n_i=2287$ 8th-grade students from $n_j = 131$ schools in the Netherlands provided by Snijder and Bosker (2012).
+
+The student-level attributes in [netherlands-students.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/netherlands-students.csv) include:
+
+- `school_id`: The school ID number for each student
+- `language_pre`: Language pre-test score
+- `language_post`: Language post-test score
+- `ses`: Measure of the socio-economic status
+- `verbal_iq`: Student's score on a verbal IQ test. The variable is centered to have a mean of 0. 
+- `female`: Student's sex (0 = male; 1 = female)
+- `minority`: Student's minority status (0 = white; 1 = minority)
+
+The school-level attributes in [netherlands-schools.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/netherlands-schools.csv) include:
+
+- `school_id`: The school ID number
+- `school_type`: Indicates whether the school is a public school, a Protestant private school, a Catholic private school, or a non-denominational private school
+- `public`: Indicates whether the school is a public school (1) or a private school (0)
+- `school_ses`: School's average socio-economic status
+- `school_verbal_iq`: School's average verbal IQ score
+- `school_minority`: Percentage of students at the school who are minority students
+
+
+
+### Preview
+
+**Student data**
+
+```{r}
+# Import student-level data
+student_data = readr::read_csv(file = "~/Documents/github/epsy-8252/data/netherlands-students.csv")
+# View data
+student_data
+```
+
+**School data**
+
+```{r}
+# Import school-level data
+school_data = readr::read_csv(file = "~/Documents/github/epsy-8252/data/netherlands-schools.csv")
+
+#View data
+school_data
+```
+
+
+
+### References
+
+Snijders, T. A. B., &amp; Bosker, R. J. (2012). *Multilevel analysis: An introduction to basic and advanced multilevel modeling.* Sage.
+

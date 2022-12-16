@@ -1,0 +1,55 @@
+---
+title: "graduation.csv"
+output: 
+  rmdformats::html_docco:
+    css: 'codebooks.css'
+    df_print: paged
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+library(fontawesome)
+
+## Global options
+options(max.print = "75")
+
+# knitr options
+opts_chunk$set(
+  prompt = FALSE,
+  tidy = TRUE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE
+  )
+```
+
+
+The data in [graduation.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv) include student-level attributes for $n=2,344$ randomly sampled students who were first-year, full-time students from the 2002 cohort at a large, midwestern research university. Any students who transferred to another institution were removed from the data. The source of these data is Jones-White, Radcliffe, Lorenz, L. M., and Soria (2014). The attributes, collected for these students are:
+
+- `student`: Student ID number in the dataset
+- `degree`: Did the student obtain a degree (i.e., graduate) from the institution? (No; Yes)
+- `act`: Student's ACT score (If the student reported a SAT score, a concordance table was used to transform the score to a comparable ACT score.)
+- `scholarship`: Amount of scholarship offered to student (in thousands of dollars)
+- `ap_courses`: Number of Advanced Placement credits at time of enrollment
+- `first_gen`: Is the student a first generation college student? (No; Yes)
+- `non_traditional`: Is the student a non-traditional student (older than 19 years old at the time of enrollment)? (No; Yes)
+
+
+
+### Preview
+
+```{r}
+# Import data
+grad = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv")
+
+# View data
+grad
+```
+
+
+### References
+
+Jones-White, D. R., Radcliffe, P. M., Lorenz, L. M., &amp; Soria, K. M. (2014). Priced out?: The influence of financial aid on the educational trajectories of first-year students starting college at a large research university. *Research in Higher Education, 55*(4), 329--350. http://www.jstor.org/stable/24571776
+
