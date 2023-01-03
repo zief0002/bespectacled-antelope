@@ -1,0 +1,61 @@
+---
+title: "woods.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+The data in [woods.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv) were collected from several sources to assesses the effect of political corruption on state environmental policy [@woods:2008].
+
+> Environmental regulation often imposes concentrated costs on regulated organizations that would benefit from the reduction in regulatory burdens. As with several other areas of regulatory policy, industry has the incentive to mobilize for political action in order to reduce regulatory burdens, but citizens face a collective action problem in attempting to mobilize to preserve social amenities. This is a perennial issue in environmental politics, one that several observers have suggested leads environmental policy making to have an intrinsic pro-industry bias...The question that motivates this study, then, is whether the presence of corrupt political officials serves to exacerbate this bias.
+
+
+
+<br />
+
+
+## Attributes
+
+- `state`: Two-letter state postal code
+- `env_prog_str`: Environmental program strength is measured via Hall and Kerr’s (1991) Green Policy Index, a composite score that represents 67 state policy initiatives in a variety of environmental arenas, including air, water, and hazardous waste. The index includes indicators such as the sanctions available to the appropriate agencies in each state, the size of the state’s pollution monitoring program, and the size of the state’s program budget, as well as a variety of specific policy indicators.
+- `corrupt`: Aggregate number of convictions (per 100 officials) during the Reagan Administration (between 1981 and 1987). Aggregating across several years helps eliminate spikes that occur because a single investigation may result in multiple convictions. The average state had 1.42 convictions per 100 officials over that period.
+- `wealth`: Gross state product per capita, in thousands of dollars. This is an indicator of a state's financial resources.
+- `toxic_waste`: Natural logarithm of the total tons of toxic waste emitted in air, water based on the U.S. EPA’s Toxic Release Inventory. Higher values indicate a more severe problem.
+- `dem_party_control`: Represents the average amount of Democratic Party control of state political institutions in the 1980s measured as a proportion. 
+- `interparty_comp`: Holbrook and Van Dunk’s (1993) district-level measure is included as an indicator of interparty competition. 
+- `public_env`: Indication of public attitudes toward environmental protection in the state. It is calculated from the 1988--1992 NES Senate Election Study, which asked the following question: "Should federal spending on the environment be increased, decreased, or stay the same?" Individual responses are coded 1 (decrease), 2 (same), and 3 (increase) and then averaged.
+- `manuf_groups`: The number of manufacturing groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies.
+- `env_groups`: The number of environmental groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies. 
+
+
+<br />
+
+
+## Preview
+
+```{r}
+# Import data
+woods = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv")
+
+# View data
+woods |>
+  print(width = Inf)
+```
+
+
+## References
+
+
+
