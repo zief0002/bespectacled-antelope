@@ -1,0 +1,61 @@
+---
+title: "Project Organization"
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
+---
+
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
+```
+
+In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management.
+
+<br />
+
+
+# Projects
+
+In any project, whether it is work for an RA-ship, an assignment in EPsy 8252, a milestone for your degree (e.g., thesis) or a paper you are working on, it is important to have an organized set of files and good documentation. Both of these help foster rigor and reproducibility of research, and are even more important in collaborative work. 
+
+Electronically, a project consists of a set of directories (i.e., folders) and files. Organizationally, you will want to think about, among other things:
+
+- What directories you will have;
+- Which files will be located in which directories;
+- The naming rules for files and directories;
+
+While there are any of a number of alternative organizational structures that may work in different situations, here I will recommend a general strategy of creating projects for EPsy 8252. (This will also work for other types of projects.) For each project, we will have, at a minimum, the following directories: 
+
+- `assets`
+- `data`
+- `figs`
+- `scripts`
+
+The screenshot below shows a project with these directories.
+
+```{r}
+#| echo: false
+knitr::include_graphics("figs/02-project-organization.png")
+```
+
+<br />
+
+
+# References
+
+
+
+
+
+
+
+
+

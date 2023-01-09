@@ -3,11 +3,12 @@
 .RData
 .Ruserdata
 .DS_Store
+/.quarto/
 
 
 # Ignore the following folders
 /answer-keys
-/administrative
+/admin
 /docs/notes/00-rmarkdown
 
 # Ignore keynote files
@@ -15,3 +16,6 @@
 
 # Ignore pages files
 *.pages
+
+
+

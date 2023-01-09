@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "data/"
+    - "files/"
+    - "handouts/"
+    - "scripts/"
+
+website:
+  title: "EPsy 8252"
+  navbar:
+    background: "#ADCAD6"
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Schedule"
+        file: schedule.qmd
+      - sidebar:assignments
+      - text: "Data"
+        file: data.qmd
+      - text: "Instructor & TA"
+        file: about.qmd
+        
+  sidebar:
+    - id: assignments
+      title: "Assignments"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents: 
+        - assignments.qmd
+        - assignments/assignment-01.qmd
+        - assignments/assignment-02.qmd
+        - assignments/assignment-03.qmd
+        - assignments/assignment-04.qmd
+        - assignments/assignment-05.qmd
+        - assignments/assignment-06.qmd
+        - assignments/assignment-07.qmd
+        - assignments/assignment-08.qmd
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - "assets/theme.scss"
+    linkcolor: "#BC69AA"
+    css: ["assets/sticky-notes.css"]
+    toc: true
+    header-includes: |
+      <script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+    sidebar: false
+
+
+  

@@ -1,0 +1,392 @@
+---
+title: "Data"
+---
+
+
+<br />
+
+
+<table class="table">
+
+<thead>
+<tr>
+<th style="width:50%;">Name</th>
+<th style="width:25%;text-align:center;">Data</th>
+<th style="width:25%;text-align:center;">Codebook</th>
+</tr>
+</thead>
+
+
+<tbody>
+
+
+<tr>
+<td>evaluations.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/evaluations.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/evaluations.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<!-- <tr>
+<td>fci-2019.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/fci-2019.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/fci-2019.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr> -->
+
+
+<tr>
+<td>fertility.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/fertility.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/fertility.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>graduation.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/graduation.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/graduation.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>hox-gpa.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/hox-gpa.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/hox-gpa.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>mammal.csv</td>
+<td align="center" style="vertical-align:middle;">
+  [<span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mammal.csv)
+</td>
+<td align="center" style="vertical-align:middle;">
+  <!--[<span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/mlb-2019.html)-->
+</td>
+</tr>
+
+<tr>
+<td>minneapolis.csv</td>
+<td align="center" style="vertical-align:middle;">
+  [<span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/minneapolis.csv)
+</td>
+<td align="center" style="vertical-align:middle;">
+  [<span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/minneapolis.html)
+</td>
+</tr>
+
+<tr>
+<td>mlb-2019.csv</td>
+<td align="center" style="vertical-align:middle;">
+  [<span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mlb-2019.csv)
+</td>
+<td align="center" style="vertical-align:middle;">
+  [<span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/mlb-2019.html)
+</td>
+</tr>
+
+<tr>
+<td>mn-schools.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mn-schools.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>movies.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/movies.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/movies.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>nba-player-data.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nba-player-data.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/nba.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>nba-team-data.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nba-team-data.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/nba.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>nels.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nels.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/nels.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>netherlands-schools.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/netherlands-schools.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/netherlands.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>netherlands-students.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/netherlands-students.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/netherlands.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>nhl.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nhl.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>popular-classroom.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/popular-classroom.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/popular.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>popular-student.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/popular-student.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/popular.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<!-- <tr> -->
+<!-- <td>risky-behavior.csv</td> -->
+<!-- <td align="center" style="vertical-align:middle;"> -->
+<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/risky-behavior.csv"> -->
+<!--     <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span> -->
+<!--   </a> -->
+<!-- </td> -->
+<!-- <td align="center" style="vertical-align:middle;"> -->
+<!--   <span class="fas fa-book-open" style="color: #f1f1f1; font-size: 20px;"></span> -->
+<!-- </td> -->
+<!-- </tr> -->
+
+
+<tr>
+<td>riverview.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/riverview.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/riverview.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>same-sex-marriage.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/same-sex-marriage.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/same-sex-marriage.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<!-- <tr> -->
+<!-- <td>stop-and-frisk.csv</td> -->
+<!-- <td align="center" style="vertical-align:middle;"> -->
+<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/stop-and-frisk.csv"> -->
+<!--     <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span> -->
+<!--   </a> -->
+<!-- </td> -->
+<!-- <td align="center" style="vertical-align:middle;"> -->
+<!--   <span class="fas fa-book-open" style="color: #f1f1f1; font-size: 20px;"></span> -->
+<!-- </td> -->
+<!-- </tr> -->
+
+
+<tr>
+<td>usnews.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/usnews.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/usnews.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>vocabulary.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/vocabulary.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/vocabulary.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+<tr>
+<td>wine.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/wine.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/wine.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+<tr>
+<td>woods.csv</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv">
+    <span class="fas fa-file-csv" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+<td align="center" style="vertical-align:middle;">
+  <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/woods.html">
+    <span class="fas fa-book-open" style="color: #ff2600; font-size: 20px;"></span>
+  </a>
+</td>
+</tr>
+
+
+
+
+
+
+
+</tbody>
+</table>
+
+
+
+

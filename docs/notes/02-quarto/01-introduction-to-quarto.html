@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Andrew Zieffler">
+<meta name="dcterms.date" content="2023-01-04">
 
-<title>EPsy 8252</title>
+<title>EPsy 8252 - Introduction to Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -58,8 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet">
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
 
 
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">EPsy 8252</span>
     </a>
   </div>
@@ -83,11 +83,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html">
+    <a class="nav-link" href="../../schedule.html">
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -96,17 +96,17 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
         <li>
-    <a class="dropdown-item" href="./assignments.html">
+    <a class="dropdown-item" href="../../assignments.html">
  <span class="dropdown-text">Assignment Due Dates</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./data.html">
+    <a class="nav-link" href="../../data.html">
  <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="../../about.html">
  <span class="menu-text">Instructor &amp; TA</span></a>
   </li>  
 </ul>
@@ -124,13 +124,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
-  <ul class="collapse">
-  <li><a href="#classroom" id="toc-classroom" class="nav-link" data-scroll-target="#classroom">Classroom</a></li>
-  <li><a href="#syllabus" id="toc-syllabus" class="nav-link" data-scroll-target="#syllabus">Syllabus</a></li>
-  <li><a href="#textbooks" id="toc-textbooks" class="nav-link" data-scroll-target="#textbooks">Textbooks</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a></li>
-  </ul></li>
+  <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link active" data-scroll-target="#what-is-quarto">What is Quarto?</a></li>
+  <li><a href="#similar-to-rmarkdownbut-better" id="toc-similar-to-rmarkdownbut-better" class="nav-link" data-scroll-target="#similar-to-rmarkdownbut-better">Similar to RMarkdown…But Better</a></li>
+  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
+  <li><a href="#help-and-tutorials" id="toc-help-and-tutorials" class="nav-link" data-scroll-target="#help-and-tutorials">Help and Tutorials</a></li>
+  <li><a href="#create-your-first-quarto-document" id="toc-create-your-first-quarto-document" class="nav-link" data-scroll-target="#create-your-first-quarto-document">Create Your First Quarto Document</a></li>
+  <li><a href="#learning-how-to-integrate-r-code" id="toc-learning-how-to-integrate-r-code" class="nav-link" data-scroll-target="#learning-how-to-integrate-r-code">Learning How to Integrate R Code</a></li>
+  <li><a href="#install-a-citation-manager" id="toc-install-a-citation-manager" class="nav-link" data-scroll-target="#install-a-citation-manager">Install a Citation Manager</a></li>
+  <li><a href="#project-and-file-management" id="toc-project-and-file-management" class="nav-link" data-scroll-target="#project-and-file-management">Project and File Management</a></li>
   </ul>
 </nav>
     </div>
@@ -139,15 +140,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EPsy 8252</h1>
-<p class="subtitle lead">Spring 2023</p>
+<h1 class="title">Introduction to Quarto</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andrew Zieffler </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 4, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -155,60 +167,68 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="welcome" class="level1">
-<h1>Welcome</h1>
-<p>In this class, we will work together to develop a learning community that is inclusive and respectful, and where every student is supported in the learning process. As a class full of diverse individuals (reflected by differences in race, culture, age, religion, gender identity, sexual orientation, socioeconomic background, abilities, professional goals, and other social identities and life experiences) I expect that different students may need different things to support and promote their learning. The TAs and I will do everything we can to help with this, but as we only know what we know, we need you to communicate with us if things are not working for you or you need something we are not providing. I hope you all feel comfortable in helping to promote an inclusive classroom through respecting one another’s individual differences, speaking up, and challenging oppressive/problematic ideas. Finally, I look forward to learning from each of you and the experiences you bring to the class.</p>
-<!-- - **Syllabus, assignments, data, and script files:** [github repository](https://github.com/zief0002/epsy-8251) -->
-<!-- - **Course notes and readings:** [website](https://zief0002.github.io/book-8252/) | [github repository](https://github.com/zief0002/book-8252) -->
-<p><br></p>
-<section id="classroom" class="level2">
-<h2 class="anchored" data-anchor-id="classroom">Classroom</h2>
-<ul>
-<li>Tuesday/Thursday (11:15am–12:30pm): <a href="https://campusmaps.umn.edu/appleby-hall">Appleby Hall 302</a></li>
-<li>Monday/Wednesday (2:30pm–3:45pm): <a href="https://campusmaps.umn.edu/peik-hall">Peik Hall 225</a></li>
-</ul>
-<p><br></p>
+<section id="what-is-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
+<p>Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow.</p>
 </section>
-<section id="syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="syllabus">Syllabus</h2>
-<ul>
-<li>The course syllabus is available <a href="files/syllabus-8252-s23.pdf">here</a>.</li>
-<li><a href="https://t.co/5X88O0DBUZ?amp=1">Message from Snoop Dogg</a> about the syllabus</li>
-</ul>
-<p><br></p>
+<section id="similar-to-rmarkdownbut-better" class="level2">
+<h2 class="anchored" data-anchor-id="similar-to-rmarkdownbut-better">Similar to RMarkdown…But Better</h2>
+<p>For those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification.</p>
 </section>
-<section id="textbooks" class="level2">
-<h2 class="anchored" data-anchor-id="textbooks">Textbooks</h2>
-<p>The course textbooks are available via the University of Minnesota library.</p>
-<ul>
-<li><strong>Required:</strong> Fox, J. (2013). <a href="https://primo.lib.umn.edu/permalink/f/1q7ssba/UMN_ALMA21325943720001701">A mathematical primer for social statistics</a>. Sage.</li>
-<li><strong>Optional:</strong> Anderson, D. R. (2008). <a href="https://primo.lib.umn.edu/permalink/f/1q7ssba/UMN_ALMA51566641220001701">Model based inference in the life sciences: A primer on evidence</a>. Springer.</li>
-</ul>
-<p><br></p>
+<section id="install-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="install-quarto">Install Quarto</h2>
+<ol type="1">
+<li>Head over to <a href="https://quarto.org/" class="uri">https://quarto.org/</a> and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.</li>
+<li>Open RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)</li>
+</ol>
+<p>At this point in RStudio, if you go to <code>File &gt; New File...</code> you should see options to choose <code>Quarto Document</code> and <code>Quarto Presentation</code>.</p>
 </section>
-<section id="other-resources" class="level2">
-<h2 class="anchored" data-anchor-id="other-resources">Other Resources</h2>
+<section id="help-and-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="help-and-tutorials">Help and Tutorials</h2>
+<p>There are several <a href="https://quarto.org/docs/guide/">guides and tutorials</a> available on the Quarto website. These include:</p>
 <ul>
-<li><a href="https://zief0002.github.io/modeling/">Statistical Modeling and Computation for Educational Scientists</a>
+<li>Creating basic content (e.g., figures, tables, diagrams, footnotes, citations)</li>
+<li>Including computation/syntax</li>
+<li>Generating output in different formats (e.g., HTML, PDF, MS Word)</li>
+<li>Creating slides and presentations (These notes are a Quarto presentation!)</li>
+<li>Building websites</li>
+<li>Building books</li>
+<li>Creating interactive dashboards</li>
+</ul>
+</section>
+<section id="create-your-first-quarto-document" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-first-quarto-document">Create Your First Quarto Document</h2>
+<p>Click the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Tutorial: Hello Quarto</a> link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.</p>
+<p><br></p>
+<p>Work through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document.</p>
+</section>
+<section id="learning-how-to-integrate-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="learning-how-to-integrate-r-code">Learning How to Integrate R Code</h2>
+<p>Work through the <a href="https://quarto.org/docs/get-started/computations/rstudio.html">Tutorial: Computations</a> with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial.</p>
+</section>
+<section id="install-a-citation-manager" class="level2">
+<h2 class="anchored" data-anchor-id="install-a-citation-manager">Install a Citation Manager</h2>
+<p>For next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.</p>
 <ul>
-<li>Learn about simple and multiple regression</li>
-<li>Learn about Ordinary Least squares (OLS)</li>
-<li>Learn about correlation/standardized regression</li>
-<li>Learn about regrression assumptions</li>
-<li>Learn about dummy coding for dichotomous/polychotomous predictors</li>
-<li>Learn about interaction effects</li>
+<li>Install <a href="https://www.zotero.org/">Zotero</a>.</li>
+</ul>
+<p>If you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager.</p>
+</section>
+<section id="project-and-file-management" class="level2">
+<h2 class="anchored" data-anchor-id="project-and-file-management">Project and File Management</h2>
+<p>Before next class, also look at your computer files and your organization of those files. Here are some things to reflect on:</p>
+<ul>
+<li>Are your files organized into folders/directories? Or are they all in your Downloads folder?
+<ul>
+<li>How did you organize all the data files, notes, etc. from EPsy 8251?</li>
 </ul></li>
-<li><a href="https://zief0002.github.io/toolkit-quarto/">Computational Toolkit for Educational Scientists</a>
-<ul>
-<li>Learn basics of R</li>
-<li>Learn <code>{dplyr}</code> for wrangling data</li>
-<li>Learn <code>{ggplot2}</code> for visualizing data</li>
-</ul></li>
+<li>If I asked you to find a specific file, could you locate it without using “Search”?</li>
+<li>Can you tell what is in a particular file by just looking at its name?</li>
+<li>Do your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?</li>
+<li>Are your file names consistent (all lower case letters, or all title case)? Or are they all different?</li>
 </ul>
-<p><br></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

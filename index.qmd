@@ -1,0 +1,74 @@
+---
+title: "EPsy 8252"
+subtitle: "Spring 2023"
+---
+
+```{r}
+#| include: false
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
+
+# Welcome
+
+
+In this class, we will work together to develop a learning community that is inclusive and respectful, and where every student is supported in the learning process. As a class full of diverse individuals (reflected by differences in race, culture, age, religion, gender identity, sexual orientation, socioeconomic background, abilities, professional goals, and other social identities and life experiences) I expect that different students may need different things to support and promote their learning. The TAs and I will do everything we can to help with this, but as we only know what we know, we need you to communicate with us if things are not working for you or you need something we are not providing. I hope you all feel comfortable in helping to promote an inclusive classroom through respecting one another's individual differences, speaking up, and challenging oppressive/problematic ideas. Finally, I look forward to learning from each of you and the experiences you bring to the class. 
+
+
+<!-- - **Syllabus, assignments, data, and script files:** [github repository](https://github.com/zief0002/epsy-8251) -->
+<!-- - **Course notes and readings:** [website](https://zief0002.github.io/book-8252/) | [github repository](https://github.com/zief0002/book-8252) -->
+
+
+<br />
+
+
+
+
+## Classroom
+
+- Tuesday/Thursday (11:15am&ndash;12:30pm): [Appleby Hall 302](https://campusmaps.umn.edu/appleby-hall)
+- Monday/Wednesday (2:30pm&ndash;3:45pm): [Peik Hall 225](https://campusmaps.umn.edu/peik-hall)
+
+
+<br />
+
+
+## Syllabus
+
+- The course syllabus is available [here](files/syllabus-8252-s23.pdf).
+- [Message from Snoop Dogg](https://t.co/5X88O0DBUZ?amp=1) about the syllabus
+
+
+<br />
+
+
+## Textbooks
+
+The course textbooks are available via the University of Minnesota library.
+
+- **Required:** Fox, J. (2013). [A mathematical primer for social statistics](https://primo.lib.umn.edu/permalink/f/1q7ssba/UMN_ALMA21325943720001701). Sage. 
+- **Optional:** Anderson, D. R. (2008). [Model based inference in the life sciences: A primer on evidence](https://primo.lib.umn.edu/permalink/f/1q7ssba/UMN_ALMA51566641220001701). Springer.
+
+
+<br />
+
+
+## Other Resources
+
+- [Statistical Modeling and Computation for Educational Scientists](https://zief0002.github.io/modeling/)
+  + Learn about simple and multiple regression
+  + Learn about Ordinary Least squares (OLS)
+  + Learn about correlation/standardized regression
+  + Learn about regrression assumptions
+  + Learn about dummy coding for dichotomous/polychotomous predictors
+  + Learn about interaction effects
+- [Computational Toolkit for Educational Scientists](https://zief0002.github.io/toolkit-quarto/)
+  + Learn basics of R
+  + Learn `{dplyr}` for wrangling data
+  + Learn `{ggplot2}` for visualizing data
+  
+
+<br />
+
+
