@@ -1,11 +1,10 @@
 ---
-title: "Assignment 07"
+title: "Assignment 06"
 subtitle: "LMER: UNCONDITIONAL LONGITUDINAL MODELS"
-author: 
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/assignment-style.css', 'style/syntax.css']
+format:
+  html:
+   css: "assets/styles.css"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
 ---
 
 
@@ -14,17 +13,20 @@ This goal of this assignment is to give you experience working with mixed-effect
 
 
 
-- [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/nhl.csv)
-- [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/nhl.html)
+- [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv)
+- [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html)
 
 
-```{r echo=FALSE, out.width="50%", fig.align='center'}
-knitr::include_graphics("figs/assign-07.png")
+```{r}
+#| echo: false
+#| out-width: "50%"
+#| fig-align: "center"
+knitr::include_graphics("figs/assign-06.png")
 ```
 
 ## Instructions
 
-If you are using R Markdown, submit both your RMD and HTML files of your responses to the following questions. If you are not using R Markdown, submit a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
+Submit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
 
 - All graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.
 - Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown's equation typesetting.
@@ -40,7 +42,7 @@ This assignment is worth 13 points.
 
 ## Preparation
 
-After importing the data set, create a new variable called `c_year` that centers the `year` values at 2002. In other words, the `c_year` variable will have a value of 0 when the `year` variable is 2002, a value of 1 when the `year` variable is 2003, etc. This variable will represent the number of years since 2002. 
+After importing the data set, create a new variable called `c_year` that centers the `year` values at 2002. To center a variable we subtract the value we want to center at. (e.g., $\mathtt{c\_year}=\mathtt{year}-2002$). This variable will represent the number of years since 2002. 
 
 For all analyses in this assignment, unless otherwise requested, use the `c_year` variable and not the `year` variable. 
 
@@ -75,6 +77,7 @@ Fit the following three models. For each of the growth models, include only a ra
 
 <br />
 
+
 ## Adopting and Evaluating an Unconditional Growth Model
 
 7. Based on the AICc, which model (A, B, or C) has the most empirical evidence? Explain.
@@ -83,11 +86,10 @@ Fit the following three models. For each of the growth models, include only a ra
 
 9. Evaluate the assumptions of normality, homogeneity of variance, and that the average residual is equal to zero based on the plots you created in Question 9.
 
-
 <br />
 
-## Reporting the Results from the Adopted Model
 
+## Reporting the Results from the Adopted Model
 
 10. Write the global fitted equation for the model you adopted in Question 7.
 
@@ -95,7 +97,7 @@ Fit the following three models. For each of the growth models, include only a ra
 
 12. Create a plot showing the predicted cost of attending an NHL game over time based on the global fitted model you reported in Question 10. Be sure to include a caption.
 
-13. Add a line to the plot you created in Question \#12 (don't re-create the plot) showing the predicted cost of attending a Minnesota Wild game. Update the caption by adding an additional sentence to differentiate the Minnesota Wild curve from the global curve.
+13. Add a line to the plot you created in Question #12 (don't re-create the plot) showing the predicted cost of attending a Minnesota Wild game. Update the caption by adding an additional sentence to differentiate the Minnesota Wild curve from the global curve.
 
 
 

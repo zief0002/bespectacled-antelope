@@ -1,30 +1,29 @@
 ---
-title: "Assignment 08"
+title: "Assignment 07"
 subtitle: "EXTENDING THE MIXED-EFFECT REGRESSION MODEL"
-author: 
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/assignment-style.css', 'style/syntax.css']
+format:
+  html:
+   css: "assets/styles.css"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
 ---
-
 
 
 This goal of this assignment is to give you more experience working with mixed-effects regression models to analyze longitudinal data. In this assignment, you will again use the data from the file *nhl.csv* to examine longitudinal variation in cost of attending an NHL game.
 
+- [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/wine.csv)
+- [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/wine.html)
 
 
-- [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/nhl.csv)
-- [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/nhl.html)
-
-
-```{r echo=FALSE, out.width="50%", fig.align='center'}
-knitr::include_graphics("figs/assign-07.png")
+```{r}
+#| echo: false
+#| out-width: "50%"
+#| fig-align: "center"
+knitr::include_graphics("figs/assign-06.png")
 ```
 
 ## Instructions
 
-Submit either an HTML file or, if you are not using R Markdown, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
+Submit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
 
 - All graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.
 - Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown's equation typesetting.
@@ -40,9 +39,7 @@ This assignment is worth 12 points.
 
 ## Preparation
 
-After importing the data set, create a new variable called `time` that centers the `year` values at 2002. In other words, the `time` variable will have a value of 0 when the `year` variable is 2002, a value of 1 when the `year` variable is 2003, etc. This variable will represent the number of years since 2002. 
-
-For all analyses in this assignment, unless otherwise requested, use the `time` variable and not the `year` variable. 
+After importing the data set, create a new variable called `c_year` that centers the `year` values at 2002. This variable will represent the number of years since 2002. For all analyses in this assignment, unless otherwise requested, use the `c_year` variable and not the `year` variable. 
 
 <br />
 

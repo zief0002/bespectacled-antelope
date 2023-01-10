@@ -1,37 +1,36 @@
 ---
-title: "Assignment 04"
+title: "Assignment 02"
 subtitle: "POLYNOMIAL EFFECTS"
-author: 
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/assignment-style.css', 'style/syntax.css']
+format:
+  html:
+   css: "assets/styles.css"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
 ---
 
-The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with polynomial effects. 
-
-In this assignment, you will use the data from the file *fertility.csv* to explain variation in in infant mortality rates. 
+The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with polynomial effects. In this assignment, you will use the data from the file *fertility.csv* to explain variation in in infant mortality rates. 
 
 - [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/fertility.csv)
 - [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/fertility.html)
 
 
-```{r echo=FALSE, out.width="50%", fig.align='center'}
-knitr::include_graphics("figs/assign-04.png")
+```{r}
+#| echo: false
+#| out-width: "50%"
+#| fig-align: "center"
+knitr::include_graphics("figs/assign-02.png")
 ```
 
 
 ## Instructions
 
-Submit either an HTML file or, if you are not using R Markdown, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
+This assignment needs to be completed using Quarto. Submit a zipped version of your entire assignment-02 project directory. Your QMD document should include a response to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:
 
 - All graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.
-- Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown's equation typesetting.
+- Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.
 - All syntax should be hidden (i.e., not displayed) unless specifically asked for.
 - Any messages or warnings produced (e.g., from loading packages) should also be hidden.
 
-This assignment is worth 15 points.
-
+For each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. This assignment is worth 15 points.
 
 <br />
 
@@ -50,6 +49,7 @@ This assignment is worth 15 points.
 
 <br />
 
+
 ## Model 2: Quadratic Effect of Female Education Level
 
 6. Regress infant mortality rates on female education level. For this model, posit a quadratic effect of female education level on infant mortality rate (Model 2). Write the *fitted equation* using Equation Editor (or some other program that correctly types mathematical expressions).
@@ -61,6 +61,7 @@ This assignment is worth 15 points.
 
 <br />
 
+
 ## Model 3: Control for Differences in Gross National Income (GNI)
 
 9.  Regress infant mortality rates on female education level. For this model, posit a quadratic effect of female education level on infant mortality rate, and also control for differences in Gross National Income (Model 3). (Use all four levels of GNI.) Write the *fitted equation* using Equation Editor (or some other program that correctly types mathematical expressions).
@@ -69,6 +70,7 @@ This assignment is worth 15 points.
 
 <br />
 
+
 ## Adopting a Model
 
 11. Based on the results of the two likelihood ratio tests, which model will you adopt? Explain.
@@ -76,10 +78,8 @@ This assignment is worth 15 points.
 12. Create the density plot of the marginal distribution of the standardized residuals for your adopted model, as well as the scatterplot of the standardized residuals versus the fitted values. Place these plots side-by-side in your printed document and, for the purposes of captioning, etc. treat them as two subfigures within a single figure.
 
 13. Based on the plots you created in Question 12, evaluate and comment on the tenability of each of the model assumptions. 
-
-
-
 <br />
+
 
 ## Presenting the Results
 

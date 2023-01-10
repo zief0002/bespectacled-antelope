@@ -1,0 +1,86 @@
+---
+title: "Assignment 04"
+subtitle: "LOGARITHMIC TRANSFORMATIONS"
+format:
+  html:
+   css: "assets/styles.css"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+---
+
+The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with logarithmically transformed variables. In this assignment, you will use the data from the file *wine.csv* to examine several different predictors of wine rating (a measure of the wine's quality). The literature has suggested that price of wine is quite predictive of a wine's quality. You will be carrying out a replication study (using a different data set) of a study published by Snipes and Taylor (2014). 
+
+- [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/wine.csv)
+- [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/wine.html)
+
+
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("figs/assign-04.png")
+```
+
+
+## Instructions
+
+Submit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:
+
+- All graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.
+- Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown's equation typesetting.
+- All syntax should be hidden (i.e., not displayed) unless specifically asked for.
+- Any messages or warnings produced (e.g., from loading packages) should also be hidden.
+
+This assignment is worth 15 points.
+
+
+<br />
+
+
+## Model 1: Effect of Wine Rating on Price
+
+1. Create and examine the scatterplot of the relationship between wine rating (predictor) and price. Include the loess smoother in this plot. Does this plot suggest any nonlinearity in the relationship between wine rating and price that we need to address?
+
+2. Regress the log-transformed price variable (using the natural logarithm) on wine rating (Model 1). Report and interpret the slope coefficient (using the log-metric) from the fitted model.
+
+3. Report and interpret the back-transformed slope coefficient from Model 1.
+
+<br />
+
+
+## Effect of Wine Rating and Region on Log-Transformed Price
+
+Fit two additional models:
+
+- A model that includes the effects of whether or not the wine is from California (i.e., `california`) to predict variation in the log-transformed price  (Model 2). 
+- A model that includes the effects of wine rating *and* whether or not the wine is from California (i.e., `california`) to predict variation in the log-transformed price  (Model 3). 
+
+
+4. Interpret the effect associated with `california` predictor (using the log-metric) from Model 3.
+
+5. Report and interpret the back-transformed coefficient associated with `california` predictor from Model 3.
+
+
+Fit a model that includes both the the wine rating and `california` main effects, as well as, the interaction effect between those predictors to predict variation in the log-transformed price (Model 4). 
+
+6.  Create a table to present the numerical information from the three models you fitted in this assignment along with the AICc values. (Mimic the *Presenting Results from Many Fitted Regression Models* section of the document [Creating Tables to Present Statistical Results](https://zief0002.github.io/musings/creating-tables-to-present-statistical-results.html) to create this table. Include the AICc value below the RMSE value in the table.)  Make sure the table you create also has an appropriate caption. If the table is too wide, change the page orientation in your word processing program to "Landscape", rather than changing the size of the font. (Note: Only this table should be presented in landscape orientation...not your entire assignment!) **(3pts.)**
+
+
+<br />
+
+
+## Adopting a "Final" Candidate Model
+
+7. Based on the model evidence, which of the candidate models will you adopt as your "final" model? Explain.
+
+8. Write the fitted equation for the adopted candidate model.
+
+9. Create and report a set of residual plots that allow you to evaluate the adopted model's assumptions. Are the assumptions for the model satisfied? Explain. **(2pts.)**
+
+<br />
+
+
+## Presenting the Results
+
+10. Create a publication quality plot that displays the fitted curve(s) from your adopted candidate model. If you show more than one curve, each line should be easily differentiated in the plot. (Note: Make sure that you back-transform any log-transformed variables when you create this plot.) **(2pts.)**
+
+11. Use the plot to help describe/interpret the effect of wine rating on price.
+
+
+

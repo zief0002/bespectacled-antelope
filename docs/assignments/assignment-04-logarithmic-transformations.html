@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.258">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-01-10">
+
+<title>EPsy 8252 - Assignment 04</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#model-1-effect-of-wine-rating-on-price" id="toc-model-1-effect-of-wine-rating-on-price" class="nav-link" data-scroll-target="#model-1-effect-of-wine-rating-on-price">Model 1: Effect of Wine Rating on Price</a></li>
+  <li><a href="#effect-of-wine-rating-and-region-on-log-transformed-price" id="toc-effect-of-wine-rating-and-region-on-log-transformed-price" class="nav-link" data-scroll-target="#effect-of-wine-rating-and-region-on-log-transformed-price">Effect of Wine Rating and Region on Log-Transformed Price</a></li>
+  <li><a href="#adopting-a-final-candidate-model" id="toc-adopting-a-final-candidate-model" class="nav-link" data-scroll-target="#adopting-a-final-candidate-model">Adopting a “Final” Candidate Model</a></li>
+  <li><a href="#presenting-the-results" id="toc-presenting-the-results" class="nav-link" data-scroll-target="#presenting-the-results">Presenting the Results</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 04</h1>
+<p class="subtitle lead">LOGARITHMIC TRANSFORMATIONS</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 10, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with logarithmically transformed variables. In this assignment, you will use the data from the file <em>wine.csv</em> to examine several different predictors of wine rating (a measure of the wine’s quality). The literature has suggested that price of wine is quite predictive of a wine’s quality. You will be carrying out a replication study (using a different data set) of a study published by Snipes and Taylor (2014).</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/wine.csv">[CSV]</a></li>
+<li><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/wine.html">[Data Codebook]</a></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/assign-04.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>Submit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:</p>
+<ul>
+<li>All graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.</li>
+<li>Any typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.</li>
+<li>All syntax should be hidden (i.e., not displayed) unless specifically asked for.</li>
+<li>Any messages or warnings produced (e.g., from loading packages) should also be hidden.</li>
+</ul>
+<p>This assignment is worth 15 points.</p>
+<p><br></p>
+</section>
+<section id="model-1-effect-of-wine-rating-on-price" class="level2">
+<h2 class="anchored" data-anchor-id="model-1-effect-of-wine-rating-on-price">Model 1: Effect of Wine Rating on Price</h2>
+<ol type="1">
+<li><p>Create and examine the scatterplot of the relationship between wine rating (predictor) and price. Include the loess smoother in this plot. Does this plot suggest any nonlinearity in the relationship between wine rating and price that we need to address?</p></li>
+<li><p>Regress the log-transformed price variable (using the natural logarithm) on wine rating (Model 1). Report and interpret the slope coefficient (using the log-metric) from the fitted model.</p></li>
+<li><p>Report and interpret the back-transformed slope coefficient from Model 1.</p></li>
+</ol>
+<p><br></p>
+</section>
+<section id="effect-of-wine-rating-and-region-on-log-transformed-price" class="level2">
+<h2 class="anchored" data-anchor-id="effect-of-wine-rating-and-region-on-log-transformed-price">Effect of Wine Rating and Region on Log-Transformed Price</h2>
+<p>Fit two additional models:</p>
+<ul>
+<li>A model that includes the effects of whether or not the wine is from California (i.e., <code>california</code>) to predict variation in the log-transformed price (Model 2).</li>
+<li>A model that includes the effects of wine rating <em>and</em> whether or not the wine is from California (i.e., <code>california</code>) to predict variation in the log-transformed price (Model 3).</li>
+</ul>
+<ol start="4" type="1">
+<li><p>Interpret the effect associated with <code>california</code> predictor (using the log-metric) from Model 3.</p></li>
+<li><p>Report and interpret the back-transformed coefficient associated with <code>california</code> predictor from Model 3.</p></li>
+</ol>
+<p>Fit a model that includes both the the wine rating and <code>california</code> main effects, as well as, the interaction effect between those predictors to predict variation in the log-transformed price (Model 4).</p>
+<ol start="6" type="1">
+<li>Create a table to present the numerical information from the three models you fitted in this assignment along with the AICc values. (Mimic the <em>Presenting Results from Many Fitted Regression Models</em> section of the document <a href="https://zief0002.github.io/musings/creating-tables-to-present-statistical-results.html">Creating Tables to Present Statistical Results</a> to create this table. Include the AICc value below the RMSE value in the table.) Make sure the table you create also has an appropriate caption. If the table is too wide, change the page orientation in your word processing program to “Landscape”, rather than changing the size of the font. (Note: Only this table should be presented in landscape orientation…not your entire assignment!) <strong>(3pts.)</strong></li>
+</ol>
+<p><br></p>
+</section>
+<section id="adopting-a-final-candidate-model" class="level2">
+<h2 class="anchored" data-anchor-id="adopting-a-final-candidate-model">Adopting a “Final” Candidate Model</h2>
+<ol start="7" type="1">
+<li><p>Based on the model evidence, which of the candidate models will you adopt as your “final” model? Explain.</p></li>
+<li><p>Write the fitted equation for the adopted candidate model.</p></li>
+<li><p>Create and report a set of residual plots that allow you to evaluate the adopted model’s assumptions. Are the assumptions for the model satisfied? Explain. <strong>(2pts.)</strong></p></li>
+</ol>
+<p><br></p>
+</section>
+<section id="presenting-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="presenting-the-results">Presenting the Results</h2>
+<ol start="10" type="1">
+<li><p>Create a publication quality plot that displays the fitted curve(s) from your adopted candidate model. If you show more than one curve, each line should be easily differentiated in the plot. (Note: Make sure that you back-transform any log-transformed variables when you create this plot.) <strong>(2pts.)</strong></p></li>
+<li><p>Use the plot to help describe/interpret the effect of wine rating on price.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
