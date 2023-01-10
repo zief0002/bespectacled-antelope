@@ -1,0 +1,36 @@
+---
+title: "Introduction to Quarto (Day 2)"
+format:
+  html:
+   css: "../assets/sticky-notes.css"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+## Install a Citation Manager
+
+For the next class you will need a citation manager. If you don't have a citation manager, I strongly recommend Zotero.
+
+-   Install [Zotero](https://www.zotero.org/).
+
+If you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager.
+
+
+<br />
+
+## Download and Import Two Papers 
+
+Download the following two papers from the UMN library:
+
+- Carmichael, L. (1954). [Laziness and the scholarly life](https://primo.lib.umn.edu/permalink/f/dkvf4l/TN_cdi_jstor_primary_21392). *The Scientific Monthly, 78*(4), 208--213.
+- Ross, C. T., Winterhalder, B., &amp; McElreath, R. (2020). [Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates](https://primo.lib.umn.edu/permalink/f/dkvf4l/TN_cdi_proquest_journals_2491565994). *Social Psychological and Personality Science*, 194855062091607. https://doi.org/10.1177/1948550620916071
+
+Import both of these into Zotero by dragging the PDFs into Zotero. After they are imported, check that all the metadata is correct. (Page numbers often need to be updated in Zotero.)
+
+
+
+
+
+
+
+

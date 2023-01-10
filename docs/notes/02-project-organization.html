@@ -126,7 +126,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#projects" id="toc-projects" class="nav-link active" data-scroll-target="#projects">Projects</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link active" data-scroll-target="#projects">Projects</a>
+  <ul class="collapse">
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions">Naming Conventions</a></li>
+  </ul></li>
+  <li><a href="#r-projects" id="toc-r-projects" class="nav-link" data-scroll-target="#r-projects">R Projects</a></li>
+  <li><a href="#working-in-your-project" id="toc-working-in-your-project" class="nav-link" data-scroll-target="#working-in-your-project">Working in Your Project</a></li>
+  <li><a href="#creating-a-readme-file" id="toc-creating-a-readme-file" class="nav-link" data-scroll-target="#creating-a-readme-file">Creating a README File</a>
+  <ul class="collapse">
+  <li><a href="#adding-content-to-readme" id="toc-adding-content-to-readme" class="nav-link" data-scroll-target="#adding-content-to-readme">Adding Content to README</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -160,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 
 </div>
-<p>In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management.</p>
+<p>In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management. At the end of it, you will have an organized project directory to begin work on Assignment 1.</p>
 <p><br></p>
 <section id="projects" class="level1">
 <h1>Projects</h1>
@@ -188,7 +197,152 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>It is typical to show directory and file organization via a “directory tree”. The directory tree for this project is shown below.</p>
+<pre><code>├── assets
+├── data
+├── figs
+└── scripts</code></pre>
+<div class="exercises">
+<p><strong>Your Turn</strong></p>
+<p>Set up a directory called <code>assignment-01</code>. Within this directory, create the four directories: <code>assets</code>, <code>data</code>, <code>figs</code>, and <code>scripts</code>. The directory tree will look like this:</p>
+<pre><code>assignment-01
+    ├── assets
+    ├── data
+    ├── figs
+    └── scripts</code></pre>
+</div>
+<p>Here the directory <code>assignment-01</code> is the primary folder associated with our project. We refer to this as the <em>root directory</em> of our project.</p>
 <p><br></p>
+<section id="naming-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="naming-conventions">Naming Conventions</h2>
+<p>The naming conventions for the directories and files in our project are as follows:</p>
+<ul>
+<li>File names should be short but descriptive (less than 25 characters)</li>
+<li>All lowercase letters</li>
+<li>Avoid special characters and spaces in a file name
+<ul>
+<li>Use hyphens instead of spaces to separate words (e.g., <code>assignment-01</code>)</li>
+</ul></li>
+<li>Any names that include the date will use the ISO 8601 date format (YYYYMMDD)</li>
+<li>Any names that include a number will include at least two digits (e.g., <code>assignment-01</code> rather than <code>assignment-1</code>)</li>
+</ul>
+<p>Again, while there is no one best naming convention, it is important that you have one, and that you are consistent throughout the project. That being said, as you develop naming conventions for your projects, all the conventions should be documented! This documentation helps onboard collaborators to your project.</p>
+<div class="fyi">
+<p>There are several guides available to help you establish naming conventions including <a href="https://datamanagement.hms.harvard.edu/collect/file-naming-conventions">here</a> and <a href="https://libguides.princeton.edu/c.php?g=102546&amp;p=930626">here</a>.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="r-projects" class="level1">
+<h1>R Projects</h1>
+<p>Creating an R project is a way to inform RStudio about which folder is your project’s root directory. This also sets R’s working directory to your project’s root directory making it easier to access data and other files in your QMD documents. To create an R Project associated with the <code>assignmnet-01</code> root directory,</p>
+<ul>
+<li>Click the project icon in RStudio (it might say <code>Project: (None)</code> or something like that) and select <code>New Project...</code> (see screenshot below)</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/02-new-project.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the project wizard, select:</p>
+<ul>
+<li><code>Existing Directory</code>,</li>
+<li>Click <code>Browse</code> and select the <code>assignment-01</code> root directory you created earlier</li>
+<li>Click <code>Open</code></li>
+<li>Click <code>Create Project</code></li>
+</ul>
+<p>The R Project will then be created and you should now see this project (called <code>assignment-01.Rproj</code>) in the <code>assignment-01</code> directory.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The project icon in RStudio should also have changed to <code>assignment-01</code>.</p>
+<pre><code>└── assignment-01
+    ├── assets
+    ├── assignment-01.Rproj
+    ├── data
+    ├── figs
+    └── scripts</code></pre>
+<p>Once an R project has been created, it can be opened in RStudio by double-clicking on the <code>.Rproj</code> file.</p>
+<p>::: <strong>Your Turn</strong></p>
+<p>If you haven’t already, create an R project associated with the <code>assignment-01</code> root directory. :::</p>
+<p><br></p>
+</section>
+<section id="working-in-your-project" class="level1">
+<h1>Working in Your Project</h1>
+<p>In RStudio, the <code>Files</code> pane of your <code>assignmnet-01</code> R Project (see below) should show the contents of your root directory. You can use this pane to navigate to the different directories, or open files in the project.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/02-new-project.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can add files and directories by creating them using an application on our computer or downloading them and saving them to the appropriate project directory.</p>
+<div class="exercises">
+<p><strong>Your Turn</strong></p>
+<p>Download the <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fertility.csv">fertility.csv</a> file to your computer. Make sure that the file suffix is <code>.csv</code>. (Sometimes Safari users will find that the suffix <code>.txt</code> gets appended to the end of the filename—<code>fertility.csv.txt</code>. If that is the case delete the <code>.txt</code> part that was appended.) Place <code>fertility.csv</code> into the <code>data</code> directory of your project. The new tree is:</p>
+<pre><code>assignment-01
+    ├── assets
+    ├── assignment-01.Rproj
+    ├── data
+    │   └── fertility.csv
+    ├── figs
+    └── scripts</code></pre>
+</div>
+<p>In RStudio, in the <code>Files</code> pane, if you click on the <code>data</code> directory, you should see <code>fertility.csv</code>.</p>
+<p><br></p>
+</section>
+<section id="creating-a-readme-file" class="level1">
+<h1>Creating a README File</h1>
+<p>We can also create files from inside RStudio . We are going to create a README file. A README is a plain text file that introduces and explains a project. It contains information that is commonly required to understand what the project is about. Every project should have a README file.</p>
+<div class="exercises">
+<p><strong>Your Turn</strong></p>
+<p>From the RStudio menu, <code>File &gt; New File... &gt; Text File</code>. This should open a blank text file in the RStudio editor. Copy the following text into your blank file:</p>
+<pre><code># assignment-01
+
+This directory contains all of the files necessary to complete Assignment 1.</code></pre>
+<p>Click the Save icon (or select <code>File &gt; Save</code>) and save this file as <code>README</code>; all uppercase. (README files are the one exception to our use of uppercase letters in our naming convention.) README files typically have no file extension—<code>README</code> is correct as opposed to <code>README.txt</code>.</p>
+</div>
+<p>Our directory tree now look like this:</p>
+<pre><code>assignment-01
+    ├── README
+    ├── assets
+    ├── assignment-01.Rproj
+    ├── data
+    │   └── fertility.csv
+    ├── figs
+    └── scripts</code></pre>
+<p>Notice that despite the <code>README</code> file starting with the letter “r”, it is placed first in the root directory prior to our other directories and files. This is by design. In Unix, any file in all uppercase letters is shown first in the directory tree. (It does not show first in the RStudio <code>Files</code> pane, nor in the file view when you open the root directory on your computer.)</p>
+<div class="protip">
+<p>The <code>{usethis}</code> package includes functionality to create many useful files for projects, including README files.</p>
+</div>
+<p><br></p>
+<section id="adding-content-to-readme" class="level2">
+<h2 class="anchored" data-anchor-id="adding-content-to-readme">Adding Content to README</h2>
+<p>Since README files are plain text files, they cannot include formatting like bold or italic. However, they do typically include <a href="https://www.markdownguide.org/basic-syntax/">Markdown syntax</a> (which is itself plain text). The plain text nature of these files keeps them small in size and accessible to anyone with any type of computer.</p>
+<div class="fyi">
+<p>There are several online guides for what to include in a README file, including <a href="https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide">here</a> and <a href="https://www.makeareadme.com/">here</a>. There is also a pretty good template for a README for data science oriented projects <a href="https://raw.githubusercontent.com/sfbrigade/data-science-wg/master/dswg_project_resources/Project-README-template.md">here</a>.</p>
+</div>
+<p>Since the README file is informational, you can include any type of information in this file that is useful to the project. For example, you could add your naming conventions to this file.</p>
+<pre><code># assignment-01
+
+This directory contains all of the files necessary to complete Assignment 1.
+
+
+# Naming Conventions
+
+- File names should be short but descriptive (less than 25 characters)
+- All lowercase letters
+- Avoid special characters and spaces in a file name
+  + Use hyphens instead of spaces to separate words (e.g., `assignment-01`)
+- Any names that include the date will use the ISO 8601 date format (YYYYMMDD)
+- Any names that include a number will include at least two digits (e.g., `assignment-01` rather than `assignment-1`)
+</code></pre>
+<p>While you should only have one README file per directory, you can have different README files in other directories. For example, you could create a README file in the <code>data</code> directory that includes the codebook information for your data files.</p>
+<p><br></p>
+</section>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
@@ -196,7 +350,13 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>R projects have the same name as the root directory you associated it with and have the file suffix <code>.Rproj</code>. Our directory tree is now:<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

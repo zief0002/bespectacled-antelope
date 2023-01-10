@@ -1,0 +1,29 @@
+---
+title: "📖 Welcome to EPsy 8264"
+format:
+  html:
+   css: "../assets/sticky-notes.css"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+Here are some things to do before the first class:
+
+- Download and read through the course syllabus
+- Familiarize yourself with the course website
+- [Update R](https://www.r-project.org/) to the most recent version (v. 4.2.2; *Innocent and Trusting*)
+- [Update RStudio Desktop](https://posit.co/download/rstudio-desktop/) to the most recent version (v. 2022.12.0+353)
+- Update all of your R packages (In the `Packages` tab in RStudio click `Update`)
+
+
+We will also start Day 1 with a short review of the regression content from EPsy 8251.
+
+- Remind yourself of the EPsy 8251 content
+  + [Computational Toolkit for Educational Scientists](https://zief0002.github.io/toolkit-quarto/)
+  + [Statistical Modeling and Computation for Educational Scientists](https://epsy-8251.netlify.app/)
+  
+
+
+<br />
+
+
+

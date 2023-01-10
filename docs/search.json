@@ -11,7 +11,7 @@
     "href": "assignments.html",
     "title": "Assignment Due Dates",
     "section": "",
-    "text": "Below are the due dates for the assignments, as well as links to each assignment. The due dates may change at the instructor’s discretion. Any revised due dates will be announced in class and posted to the website.\n\n\n\n\n\n\nAssignment\n\n\nDue Date (T/R)\n\n\nDue Date (M/W)\n\n\nQMD\n\n\nHTML\n\n\n\n\n\n\nAssignment #1: Introduction to Quarto\n\n\n\nFeb. 09\n\n\nFeb. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #2: Evidence and Model Selection\n\n\n\nFeb. 21\n\n\nFeb. 22\n\n\n\n\n\n\n\n\n\n\nAssignment #3: Polynomial Effects\n\n\n\nMar. 02\n\n\nMar. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #4: Logarithmic Transformations\n\n\nMar. 23\n\n\nMar. 27\n\n\n\n\n\n\n\n\n\n\nAssignment #5: Logistic Regression\n\n\n\nApr. 06\n\n\nApr. 10\n\n\n\n\n\n\n\n\n\n\nAssignment #6: LMER: Unconditional Longitudinal Models\n\n\nApr. 20\n\n\nApr. 24\n\n\n\n\n\n\n\n\n\n\nAssignment #7: LMER: More Longitudinal Models\n\n\nMay 06\n\n\nMay 06"
+    "text": "Below are the due dates for the assignments, as well as links to each assignment. The due dates may change at the instructor’s discretion. Any revised due dates will be announced in class and posted to the website.\n\n\n\n\n\n\nAssignment\n\n\nDue Date (T/R)\n\n\nDue Date (M/W)\n\n\nQMD\n\n\nHTML\n\n\n\n\n\n\nAssignment #1: Introduction to Quarto\n\n\n\nFeb. 09\n\n\nFeb. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #2: Polynomial Effects\n\n\n\nFeb. 21\n\n\nFeb. 22\n\n\n\n\n\n\n\n\n\n\nAssignment #3: Evidence and Model Selection\n\n\n\nMar. 02\n\n\nMar. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #4: Logarithmic Transformations\n\n\nMar. 23\n\n\nMar. 27\n\n\n\n\n\n\n\n\n\n\nAssignment #5: Logistic Regression\n\n\n\nApr. 06\n\n\nApr. 10\n\n\n\n\n\n\n\n\n\n\nAssignment #6: LMER: Unconditional Longitudinal Models\n\n\nApr. 20\n\n\nApr. 24\n\n\n\n\n\n\n\n\n\n\nAssignment #7: LMER: More Longitudinal Models\n\n\nMay 06\n\n\nMay 06"
   },
   {
     "objectID": "codebooks/woods.html",
@@ -109,14 +109,14 @@
     "href": "schedule.html",
     "title": "Calendar",
     "section": "",
-    "text": "The calendar below lists the tentative course topics. The dates listed are subject to change at the instructor’s discretion.\n\n\n\n\n\n\n\n\n\nT/R\n\n\nM/W\n\n\nPrep\n\n\nTopic\n\n\nNotes\n\n\nRmd\n\n\nScript\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 18\n\n\nJan. 19\n\n\n\n\n\nWelcome to Epsy 8252\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit 01: Introduction to RMarkdown\n\n\n\n\n \n\n\nJan. 20\n\n\nJan. 24\n\n\n\n\n\nIntroduction to R Markdown\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 25\n\n\nJan. 26\n\n\n\n\n\nCreating Tables with kable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit 02: Model Selection and Evidence\n\n\n\n\n \n\n\nJan. 27\n\n\nJan. 31\n\n\n\n\n\nProbability Distributions\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nFeb. 01\n\n\nFeb. 02\n\n\n\n\n \n\n\nFeb. 03\n\n\nFeb. 07\n\n\n\n\n\nLikelihood: A framework for evidence\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nFeb. 08\n\n\nFeb. 09\n\n\n\n\n \n\n\nFeb. 10\n\n\nFeb. 14\n\n\n\n\n \n\n\nOptional(on your own)\n\n\n\n\n\nLikelihood: A framework for estimation\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nFeb. 10\n\n\nFeb. 14\n\n\n\n\n\nInformation Criteria and Model Selection\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nFeb. 15\n\n\nFeb. 16\n\n\n\n\n\n\n\nUnit 03: Dealing with Nonlinearity\n\n\n\n\n \n\n\nFeb. 17\n\n\nFeb. 21\n\n\n\n\n\nPolynomial effects\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nFeb. 22\n\n\nFeb. 23\n\n\n\n\n \n\n\nFeb. 24\n\n\nFeb. 28\n\n\n\n\n\nLog-Transforming the Predictor\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 01\n\n\nMar. 02\n\n\n\n\n \n\n\nMar. 03\n\n\nMar. 14\n\n\n\n\n\nLog-Transforming the Outcome\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 07–11\n\n\n\n\n🎉 🍹 SPRING BREAK — NO CLASS   🛏\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 15\n\n\nMar. 16\n\n\n\n\nLog-Transforming the Outcome\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 17\n\n\nMar. 21\n\n\n\n\n\nRule of “the Bulge”—An Example\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit 04: Modeling Dichotomous Outcomes\n\n\n\n\n \n\n\nMar. 17\n\n\nMar. 21\n\n\n\n\n\nLinear Probability Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 24\n\n\nMar. 28\n\n\n\n\n\nLogistic Regression Model\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nMar. 29\n\n\nMar. 30\n\n\n\n\n \n\n\nMar. 31\n\n\nApr. 04\n\n\n\n\n\nMore Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nApr. 05\n\n\nApr. 06\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnit 05: Linear Mixed-Effects Regression Models\n\n\n\n\n \n\n\nApr. 07\n\n\nApr. 11\n\n\n\n\n\nIntroduction to Mixed-Effects Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nApr. 12\n\n\nApr. 13\n\n\n\n\n\nLMER: Average Change Over Time\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nApr. 14\n\n\nApr. 18\n\n\n\n\n \n\n\nApr. 19\n\n\nApr. 20\n\n\n\n\n\nLMER: Other Random-Effects and Covariates\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nApr. 21\n\n\nApr. 25\n\n\n\n\n \n\n\nApr. 26\n\n\nApr. 27\n\n\n\n\n\nLMER: Alternative Representations and Assumptions\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nApr. 28\n\n\nMay 02"
+    "text": "The calendar below lists the tentative course topics. The dates listed are subject to change at the instructor’s discretion.\n\n\n\n\n\n\n\n\n\nT/R\n\n\nM/W\n\n\nPrep\n\n\nTopic\n\n\nNotes\n\n\nQMD\n\n\nScript\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 17\n\n\nJan. 18\n\n\n\n\n\nWelcome to Epsy 8252/Regression Review\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 19\n\n\nJan. 23\n\n\n\n\n\n\n\nUnit 01: Introduction to Quarto\n\n\n\n\n \n\n\nJan. 20\n\n\nJan. 24\n\n\n\n\n\nIntroduction to R Markdown\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 25\n\n\nJan. 26\n\n\n\n\n\nCreating Tables with kable()"
   },
   {
     "objectID": "assignments/s22-assignment-01-introduction-to-quarto.html",
     "href": "assignments/s22-assignment-01-introduction-to-quarto.html",
     "title": "Assignment 01",
     "section": "",
-    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates.\n\n[CSV]\n[Data Codebook]\n\n\n\n\n\n\n\n\n\n\n\nInstructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. Submit both the QMD and knitted HTML file. This assignment is worth 15 points.\n\n\n\nQuestions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. In this dummy variable recode the two categories “Upper/Middle” and “Upper” to be 1, and recode “Low/Middle” and “Low” to be 0. Use the lm() function to fit a main effects linear model regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the kable() function from the knitr package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (Hint: Google “aligning math latex”.) (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) The two references can be included in the document’s YAML (be careful of the indentation) or drawn from an external BIB file. Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) (2pts.)"
+    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates.\n\n[CSV]\n[Data Codebook]\n\n\n\n\n\n\n\n\n\n\n\nInstructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. Submit both the QMD and knitted HTML file. This assignment is worth 15 points.\n\n\n\nQuestions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) The two references can be included in the document’s YAML (be careful of the indentation) or drawn from an external BIB file. Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) (2pts.)\n\n\n\nWhat to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)\nWhen you are ready to submit, you"
   },
   {
     "objectID": "notes/02-quarto/01-introduction-to-quarto.html",
@@ -333,6 +333,531 @@
     "href": "notes/02-project-organization.html",
     "title": "Project Organization",
     "section": "",
-    "text": "In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management.\n\n\nProjects\nIn any project, whether it is work for an RA-ship, an assignment in EPsy 8252, a milestone for your degree (e.g., thesis) or a paper you are working on, it is important to have an organized set of files and good documentation. Both of these help foster rigor and reproducibility of research, and are even more important in collaborative work.\nElectronically, a project consists of a set of directories (i.e., folders) and files. Organizationally, you will want to think about, among other things:\n\nWhat directories you will have;\nWhich files will be located in which directories;\nThe naming rules for files and directories;\n\nWhile there are any of a number of alternative organizational structures that may work in different situations, here I will recommend a general strategy of creating projects for EPsy 8252. (This will also work for other types of projects.) For each project, we will have, at a minimum, the following directories:\n\nassets\ndata\nfigs\nscripts\n\nThe screenshot below shows a project with these directories.\n\n\n\n\n\n\n\n\n\n\n\n\nReferences"
+    "text": "In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management. At the end of it, you will have an organized project directory to begin work on Assignment 1."
+  },
+  {
+    "objectID": "notes/02-project-organization.html#naming-conventions",
+    "href": "notes/02-project-organization.html#naming-conventions",
+    "title": "Project Organization",
+    "section": "Naming Conventions",
+    "text": "Naming Conventions\nThe naming conventions for the directories and files in our project are as follows:\n\nFile names should be short but descriptive (less than 25 characters)\nAll lowercase letters\nAvoid special characters and spaces in a file name\n\nUse hyphens instead of spaces to separate words (e.g., assignment-01)\n\nAny names that include the date will use the ISO 8601 date format (YYYYMMDD)\nAny names that include a number will include at least two digits (e.g., assignment-01 rather than assignment-1)\n\nAgain, while there is no one best naming convention, it is important that you have one, and that you are consistent throughout the project. That being said, as you develop naming conventions for your projects, all the conventions should be documented! This documentation helps onboard collaborators to your project.\n\nThere are several guides available to help you establish naming conventions including here and here."
+  },
+  {
+    "objectID": "notes/02-project-organization.html#adding-content-to-readme",
+    "href": "notes/02-project-organization.html#adding-content-to-readme",
+    "title": "Project Organization",
+    "section": "Adding Content to README",
+    "text": "Adding Content to README\nSince README files are plain text files, they cannot include formatting like bold or italic. However, they do typically include Markdown syntax (which is itself plain text). The plain text nature of these files keeps them small in size and accessible to anyone with any type of computer.\n\nThere are several online guides for what to include in a README file, including here and here. There is also a pretty good template for a README for data science oriented projects here.\n\nSince the README file is informational, you can include any type of information in this file that is useful to the project. For example, you could add your naming conventions to this file.\n# assignment-01\n\nThis directory contains all of the files necessary to complete Assignment 1.\n\n\n# Naming Conventions\n\n- File names should be short but descriptive (less than 25 characters)\n- All lowercase letters\n- Avoid special characters and spaces in a file name\n  + Use hyphens instead of spaces to separate words (e.g., `assignment-01`)\n- Any names that include the date will use the ISO 8601 date format (YYYYMMDD)\n- Any names that include a number will include at least two digits (e.g., `assignment-01` rather than `assignment-1`)\n\nWhile you should only have one README file per directory, you can have different README files in other directories. For example, you could create a README file in the data directory that includes the codebook information for your data files."
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html",
+    "href": "readings/02-introduction-to-quarto.html",
+    "title": "Introduction to Quarto",
+    "section": "",
+    "text": "Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow."
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "",
+    "text": "This document contains a few more tips, tricks, and helpful instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester."
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Spacing Out the Lines",
+    "text": "Spacing Out the Lines\nYou can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{split}\n\\hat{y}_i &= 3 + 4(1) \\\\[1em]\n&= 7\n\\end{split}\n\\]\nHere we have added line space of 1 em. An em is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the en (the width of the letter “n”), and the ex (the width of the letter “x”)."
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#bibtex-files",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#bibtex-files",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "BibTex Files",
+    "text": "BibTex Files\nBibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by Carmichael (1954) and Ross, Winterhalder, & McElreath (2020).\n@article{carmichael_1954,\n    title = {Laziness and the Scholarly Life},\n    volume = {78},\n    number = {4},\n    journal = {The Scientific Monthly},\n    author = {Carmichael, Leonard},\n    year = {1954},\n    pages = {208--213}\n}\n\n@article{ross_2020,\n    title = {Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates},\n    issn = {1948-5506, 1948-5514},\n    url = {http://journals.sagepub.com/doi/10.1177/1948550620916071},\n    doi = {10.1177/1948550620916071},\n    language = {en},\n    urldate = {2020-06-24},\n    journal = {Social Psychological and Personality Science},\n    author = {Ross, Cody T. and Winterhalder, Bruce and McElreath, Richard},\n    month = jun,\n    year = {2020},\n    pages = {194855062091607}\n}\nThe citation identifiers in this example are carmichael_1954 and ross_2020. These identifiers are the first bit of text after the initial curly brace in the reference. This is how we will refer to the citations in our QMD document. (Typically these are auto-generated from our reference manager.) To determine the citiation identifiers, you can open your BibTeX file in RStudio. (Do this by using Open File... within RStudio; double-clicking on the BibTeX file will likely open it in a different application.)"
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Creating .bib Files Using Zotero",
+    "text": "Creating .bib Files Using Zotero\nMost reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.\n\nCreate a New Collection.\nDrag the references you want in your BibTeX database into this collection.\nRight-click the collection and select Export Collection.\nIn the pop-up window, change the format of the exported collection to BibTex.\nClick OK.\n\nName the BibTex file (here I named it my_bibliography.bib) and save it in the Assets folder.\n\n\n\n\n\n\n\n\n\nWhen you call the BibTex file in the bibliography: key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document assignment-01.qmd that has the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\""
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Including Citations in Your Quarto Document",
+    "text": "Including Citations in Your Quarto Document\nCitations go inside square brackets and are separated by semicolons. Each citation must have a key, composed of @citation_identifier from the database (no spaces between them). For example to cite the Carmichael article:\nHere is some text and a citation [@carmichael_1954].\nThis will create a citation where you included it in the text and also add the reference at the end of the document. If you want a section header for your references, include a level-1 heading called “References” at the end of your document.\nThe rendered document now includes a citation where you added this is the QMD document. The associated reference is also included at the end of the document.\n\n\n\n\n\n\n\n\n\nCitations may also include. additional text before and after the citation. In this example we have prefixed the citation with the word “see” and added a page number after the citation. The citation identifier and the text following the citation identifier are separated by a comma.\nHere is some text and a citation [see @carmichael_1954, p. 208].\nThe output of this is:\n\nHere is some text and a citation (see Carmichael, 1954, p. 208).\n\nYou can also include multiple citations. To do this we include the different citation identifiers separated by a semicolon.\nHere are multiple citations [@ross_2020; @carmichael_1954].\nThe output of this is:\n\nHere are multiple citations (Carmichael, 1954; Ross et al., 2020).\n\nWe can also change the format of the citation. For example, here we use a format common to starting a sentence with a citation. To do that we omit the square brackets.\n@carmichael_1954 suggests something is true.\nThe output of this is:\n\nCarmichael (1954) suggests something is true.\n\n\nYou can learn more on the Citations and Footnotes Help Page in the Quarto documentation."
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Use APA Formatted Citations and References",
+    "text": "Use APA Formatted Citations and References\nBy default, citations and references are formatted using the Chicago style. To use another style, you will need to:\n\nDownload the appropriate citation style language (CSL) file. (Find many at https://zotero.org/styles)\nPlace the CSL file in the assets folder of your project’s directory.\nSpecify the name of the CSL style file in the csl: key in the QMD file’s YAML.\n\nFor example, say you have downloaded and saved the apa-single-spaced.csl file as shown in the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\"\ncsl: \"assets/apa-single-spaced.csl\"\nUse of the APA CSL file not only formats the references according to APA format, but it also fixed the order of the citations in the text itself! (Even though we included the Ross citation identifier prior to the Carmichael citation identifier in the multiple references example, the APA CSL file put them in the text alphabetically!)"
+  },
+  {
+    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#citation-extras",
+    "href": "notes/02-quarto-tips-tricks-and-faq.html#citation-extras",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Citation Extras",
+    "text": "Citation Extras\nOne R package that is extremely useful, especially if you are using the visual editor in RStudio for writing QMD documents, is {citr}. This package provides functionality and an RStudio Add-In to search a BibTeX-file to create and insert formatted Markdown citations into a QMD document.\n\n\n\n\n\n\n\n\n\nThe {citr} package is only available via GitHub, so you will need to install it using{remotes}or{devtools}. (See the Computational Toolkit book for a reminder on how to do this.) The directions for installing{citr}` are also on the citr webpage along with instructions for using the package."
+  },
+  {
+    "objectID": "readings/01-welcome-to-8252.html",
+    "href": "readings/01-welcome-to-8252.html",
+    "title": "📖 Welcome to EPsy 8264",
+    "section": "",
+    "text": "Here are some things to do before the first class:\n\nDownload and read through the course syllabus\nFamiliarize yourself with the course website\nUpdate R to the most recent version (v. 4.2.2; Innocent and Trusting)\nUpdate RStudio Desktop to the most recent version (v. 2022.12.0+353)\nUpdate all of your R packages (In the Packages tab in RStudio click Update)\n\nWe will also start Day 1 with a short review of the regression content from EPsy 8251.\n\nRemind yourself of the EPsy 8251 content\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists"
+  },
+  {
+    "objectID": "readings/01-welcome-to-8252.html#prerequisites",
+    "href": "readings/01-welcome-to-8252.html#prerequisites",
+    "title": "📖 Welcome to EPsy 8264",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThe pre-requisites for this course are EPsy 8251 and EPsy 8252. Prerequisite knowledge include topics from a basic statistics course:\n\nFoundational topics in data analysis;\n\nDesign (e.g., random assignment and random sampling)\nDescriptive statistics and plots\nOne- and two-sample tests\n\n\nAnd, topics from EPsy 8251: Methods in Data Analysis for Educational Research I:\n\nStatistical Computation\n\nUsing R\nData wrangling/manipulation\nPlotting\n\nCorrelation;\nSimple regression analysis;\n\nModel-level and coefficient-level interpretation\nOrdinary least squares estimation\nStandardized regression\nPartitioning sums of squares\nModel-level and coefficient-level inference\nAssumption checking/residual analysis\n\nMultiple linear regression\n\nModel-level and coefficient-level interpretation and inference\nAssumption checking/residual analysis\nWorking with categorical predictors (including adjusting p-values for multiple tests)\nInteraction effects\n\n\nAnd topics from EPsy 8252: Methods in Data Analysis for Educational Research II:\n\nDealing with nonlinearity;\n\nQuadratic effects\nLog-transformations\n\nProbability distributions;\n\nProbability density\n\nMaximum likelihood estimation;\nModel selection;\n\nInformation criteria\n\nLinear mixed-effects models (cross-sectional/longitudinal)\n\nBasic ideas of mixed-effects models\nFitting models with random-intercepts and random-slopes\nAssumptions\nLikelihood ratio tests\n\nGeneralized linear models\n\nLogistic models"
+  },
+  {
+    "objectID": "readings/01-welcome-to-8252.html#resources",
+    "href": "readings/01-welcome-to-8252.html#resources",
+    "title": "📖 Welcome to EPsy 8264",
+    "section": "Resources",
+    "text": "Resources\nFor the topics listed, students would be expected to be able to carry out an appropriate data analysis and properly interpret the results. It is also assumed that everyone enrolled in the course has some familiarity with using R. If you need a refresher on any of these topics, see:\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists [EPsy 8251 material]\nEPsy 8252 website"
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#displaying-data",
+    "href": "readings/02-introduction-to-quarto.html#displaying-data",
+    "title": "Introduction to Quarto",
+    "section": "Displaying Data",
+    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
+    "href": "readings/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
+    "title": "Introduction to Quarto",
+    "section": "Similar to RMarkdown…But Better",
+    "text": "Similar to RMarkdown…But Better\nFor those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."
+  },
+  {
+    "objectID": "assignments/s23-assignment-01-introduction-to-quarto.html",
+    "href": "assignments/s23-assignment-01-introduction-to-quarto.html",
+    "title": "Assignment 01",
+    "section": "",
+    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates.\n\n[CSV]\n[Data Codebook]\n\n\n\n\n\n\n\n\n\n\n\nInstructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. Submit both the QMD and knitted HTML file. This assignment is worth 15 points.\n\n\n\nQuestions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this dummy variable use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) Both the BIB and CSL files should be included in your project’s assets directory. (2pts.)\n\n\n\nWhat to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html",
+    "href": "assignments/assignment-01-introduction-to-quarto.html",
+    "title": "Assignment 01",
+    "section": "",
+    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html",
+    "href": "assignments/assignment-02-polynomial-effects.html",
+    "title": "Assignment 02",
+    "section": "",
+    "text": "The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with polynomial effects. In this assignment, you will use the data from the file fertility.csv to explain variation in in infant mortality rates."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#instructions",
+    "href": "assignments/assignment-02-polynomial-effects.html#instructions",
+    "title": "Assignment 02",
+    "section": "Instructions",
+    "text": "Instructions\nThis assignment needs to be completed using Quarto. Submit a zipped version of your entire assignment-02 project directory. Your QMD document should include a response to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. This assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#model-1-linear-effect-of-female-education-level",
+    "href": "assignments/assignment-02-polynomial-effects.html#model-1-linear-effect-of-female-education-level",
+    "title": "Assignment 02",
+    "section": "Model 1: Linear Effect of Female Education Level",
+    "text": "Model 1: Linear Effect of Female Education Level\n\nCreate a scatterplot showing the relationship between female education level and infant mortality rates.\nDescribe the relationship between female education level and infant mortality rates. Be sure to comment on the structural form, direction and strength of the relationship. Also comment on any potential observations that deviate from following this relationship (unusual observations or clusters of observations).\nCompute and report the Pearson correlation coefficient between female education level and infant mortality rate. Based on your response to Question 2, explain whether the Pearson correlation coefficient is an appropriate summary measure of the relationship.\nRegress infant mortality rates on female education level. For this model, posit a linear effect of female education level on infant mortality rate (Model 1). Create the scatterplot of the standardized residuals versus the fitted values from Model 1.\nDoes this plot suggest problems about meeting the assumption that the average residual is zero at each fitted value? Explain."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#model-2-quadratic-effect-of-female-education-level",
+    "href": "assignments/assignment-02-polynomial-effects.html#model-2-quadratic-effect-of-female-education-level",
+    "title": "Assignment 02",
+    "section": "Model 2: Quadratic Effect of Female Education Level",
+    "text": "Model 2: Quadratic Effect of Female Education Level\n\nRegress infant mortality rates on female education level. For this model, posit a quadratic effect of female education level on infant mortality rate (Model 2). Write the fitted equation using Equation Editor (or some other program that correctly types mathematical expressions).\nCompute, report, and interpret the likelihood ratio between Model 2 and Model 1.\nCarry out a likelihood ratio test to compare Model 1 and Model 2. Report the results from this test in a nicely formatted table."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#model-3-control-for-differences-in-gross-national-income-gni",
+    "href": "assignments/assignment-02-polynomial-effects.html#model-3-control-for-differences-in-gross-national-income-gni",
+    "title": "Assignment 02",
+    "section": "Model 3: Control for Differences in Gross National Income (GNI)",
+    "text": "Model 3: Control for Differences in Gross National Income (GNI)\n\nRegress infant mortality rates on female education level. For this model, posit a quadratic effect of female education level on infant mortality rate, and also control for differences in Gross National Income (Model 3). (Use all four levels of GNI.) Write the fitted equation using Equation Editor (or some other program that correctly types mathematical expressions).\nCarry out a likelihood ratio test to compare Model 2 and Model 3. Add the results from this test to the table you created in Question #8."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#adopting-a-model",
+    "href": "assignments/assignment-02-polynomial-effects.html#adopting-a-model",
+    "title": "Assignment 02",
+    "section": "Adopting a Model",
+    "text": "Adopting a Model\n\nBased on the results of the two likelihood ratio tests, which model will you adopt? Explain.\nCreate the density plot of the marginal distribution of the standardized residuals for your adopted model, as well as the scatterplot of the standardized residuals versus the fitted values. Place these plots side-by-side in your printed document and, for the purposes of captioning, etc. treat them as two subfigures within a single figure.\nBased on the plots you created in Question 12, evaluate and comment on the tenability of each of the model assumptions."
+  },
+  {
+    "objectID": "assignments/assignment-02-polynomial-effects.html#presenting-the-results",
+    "href": "assignments/assignment-02-polynomial-effects.html#presenting-the-results",
+    "title": "Assignment 02",
+    "section": "Presenting the Results",
+    "text": "Presenting the Results\n\nMimic the format and structure of either of the first two tables in the Presenting Results from Many Fitted Regression Models section of the document Creating Tables to Present Statistical Results to create a table to present the numerical information from the three models you fitted in this assignment. Make sure the table you create also has an appropriate caption. If the table is too wide, change the page orientation in your word processing program to “Landscape”, rather than changing the size of the font. (Note: Only this table should be presented in landscape orientation…not your entire assignment!)\nCreate a publication quality plot that displays the fitted curves from Model 3. Display four separate lines to show the effect of Gross National Income. The four lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html",
+    "title": "Assignment 03",
+    "section": "",
+    "text": "The goal of this assignment is to build your understanding of using information criteria for model selection. In this assignment, you will use the data from the file wine.csv to examine several different predictors of wine rating (a measure of the wine’s quality). The literature has suggested that price of wine is quite predictive of a wine’s quality."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html#instructions",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html#instructions",
+    "title": "Assignment 03",
+    "section": "Instructions",
+    "text": "Instructions\nSubmit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nThis assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html#preparation",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html#preparation",
+    "title": "Assignment 03",
+    "section": "Preparation",
+    "text": "Preparation\nRead the article: Snipes, M., & Taylor, D. C. (2014). Model selection and Akaike Information Criteria: An example from wine ratings and prices. Wine Economics and Policy, 3(1), 3–9. https://doi.org/10.1016/j.wep.2014.03.001\nYou will be carrying out a form of a robustness study to evaluate the working hypotheses proposed in Snipes and Taylor (2014). In this study, we will fit the same candidate models that Snipes and Taylor fitted in their analysis, however we will be using a different data set (e.g., our data includes more regions than Snipes and Taylor’s data). We will also make one change in the analysis, and that is we will treat vintage as a continuous variable; we won’t categorize it like Snipes and Taylor did. By using a different set of data and making slightly different analytic decisions we can more vigorously evaluate the underlying working hypotheses.\nFit the same nine candidate models that Snipes and Taylor fitted in their analysis, using the wine.csv data. In these models use wine rating (rating) as the outcome. Remember to treat vintage as a continuous variable in the models that include it. These models will be named Model 0, Model 1, …, Model 8 to be consistent with the naming in the Snipes and Taylor paper. Use these fitted models to answer the questions in the assignment."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html#model-selection-likelihood-framework-of-evidence",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html#model-selection-likelihood-framework-of-evidence",
+    "title": "Assignment 03",
+    "section": "Model Selection: Likelihood Framework of Evidence",
+    "text": "Model Selection: Likelihood Framework of Evidence\n\nCompute and report the likelihood for Model 0 given the residuals and set of model assumptions. Use dnorm() for this computation, and show your syntax for full credit.\nCreate a table of the log-likelihoods for the nine candidate models. (Use the logLik() function to compute these values.)\nCompute and interpret the likelihood ratio for comparing the empirical support between Model 2 and Model 3.\nCan we carry out a likelihood ratio test to evaluate whether the amount of empirical support when comparing Model 2 and Model 3 is more than we expect because of sampling error? If so, compute and report the results from the \\(\\chi^2\\)-test. If not, explain why not.\nCompute and interpret the likelihood ratio for comparing the empirical support between Model 2 and Model 5.\nCan we carry out a likelihood ratio test to evaluate whether the amount of empirical support when comparing Model 2 and Model 5 is more than we expect because of sampling error? If so, compute and report the results from the \\(\\chi^2\\)-test. If not, explain why not."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html#model-selection-information-criteria",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html#model-selection-information-criteria",
+    "title": "Assignment 03",
+    "section": "Model Selection: Information Criteria",
+    "text": "Model Selection: Information Criteria\n\nCreate a table of model evidence that includes the following information for each of the nine candidate models. (2pts.)\n\n\nModel\nLog-likelihood\nK\nAICc\n\\(\\Delta\\) AICc\nModel Probability (AICc Weight)\n\nUse this table of model evidence to answer Questions 8–14.\n\nUse the AICc values to select the working hypothesis with the most empirical evidence.\nInterpret the model probability (i.e., AICc weight) for the working hypothesis with the most empirical evidence.\nCompute and interpret the evidence ratio that compares the two working hypotheses with the most empirical evidence.\nBased on previous literature, Snipes and Taylor hypothesized that price was an important predictor of wine quality. Based on your analyses, is price an important predictor of wine quality? Justify your response by referring to the model evidence. (Hint: Pay attention to which models include price and which do not.)\nDoes the empirical evidence support adopting more than one working hypothesis? Justify your response by referring to the model evidence.\nDoes the empirical evidence from the Snipes and Taylor analyses support adopting more than one candidate model? Justify your response by by referring to the model evidence.\nBased on your responses to the last two questions, which set of analyses (yours or Snipes and Taylor) has more model selection uncertainty? Explain."
+  },
+  {
+    "objectID": "assignments/assignment-03-evidence-and-model-selection.html#what-to-submit",
+    "href": "assignments/assignment-03-evidence-and-model-selection.html#what-to-submit",
+    "title": "Assignment 03",
+    "section": "What to Submit",
+    "text": "What to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#instructions",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#instructions",
+    "title": "Assignment 01",
+    "section": "Instructions",
+    "text": "Instructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. This assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#questions",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#questions",
+    "title": "Assignment 01",
+    "section": "Questions",
+    "text": "Questions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this dummy variable use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) Both the BIB and CSL files should be included in your project’s assets directory. (2pts.)"
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
+    "title": "Assignment 01",
+    "section": "What to Submit",
+    "text": "What to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html",
+    "href": "assignments/assignment-04-logarithmic-transformations.html",
+    "title": "Assignment 04",
+    "section": "",
+    "text": "The goal of this assignment is to give you experience fitting, interpreting, and evaluating models with logarithmically transformed variables. In this assignment, you will use the data from the file wine.csv to examine several different predictors of wine rating (a measure of the wine’s quality). The literature has suggested that price of wine is quite predictive of a wine’s quality. You will be carrying out a replication study (using a different data set) of a study published by Snipes and Taylor (2014)."
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html#instructions",
+    "href": "assignments/assignment-04-logarithmic-transformations.html#instructions",
+    "title": "Assignment 04",
+    "section": "Instructions",
+    "text": "Instructions\nSubmit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nThis assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html#model-1-effect-of-wine-rating-on-price",
+    "href": "assignments/assignment-04-logarithmic-transformations.html#model-1-effect-of-wine-rating-on-price",
+    "title": "Assignment 04",
+    "section": "Model 1: Effect of Wine Rating on Price",
+    "text": "Model 1: Effect of Wine Rating on Price\n\nCreate and examine the scatterplot of the relationship between wine rating (predictor) and price. Include the loess smoother in this plot. Does this plot suggest any nonlinearity in the relationship between wine rating and price that we need to address?\nRegress the log-transformed price variable (using the natural logarithm) on wine rating (Model 1). Report and interpret the slope coefficient (using the log-metric) from the fitted model.\nReport and interpret the back-transformed slope coefficient from Model 1."
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html#effect-of-wine-rating-and-region-on-log-transformed-price",
+    "href": "assignments/assignment-04-logarithmic-transformations.html#effect-of-wine-rating-and-region-on-log-transformed-price",
+    "title": "Assignment 04",
+    "section": "Effect of Wine Rating and Region on Log-Transformed Price",
+    "text": "Effect of Wine Rating and Region on Log-Transformed Price\nFit two additional models:\n\nA model that includes the effects of whether or not the wine is from California (i.e., california) to predict variation in the log-transformed price (Model 2).\nA model that includes the effects of wine rating and whether or not the wine is from California (i.e., california) to predict variation in the log-transformed price (Model 3).\n\n\nInterpret the effect associated with california predictor (using the log-metric) from Model 3.\nReport and interpret the back-transformed coefficient associated with california predictor from Model 3.\n\nFit a model that includes both the the wine rating and california main effects, as well as, the interaction effect between those predictors to predict variation in the log-transformed price (Model 4).\n\nCreate a table to present the numerical information from the three models you fitted in this assignment along with the AICc values. (Mimic the Presenting Results from Many Fitted Regression Models section of the document Creating Tables to Present Statistical Results to create this table. Include the AICc value below the RMSE value in the table.) Make sure the table you create also has an appropriate caption. If the table is too wide, change the page orientation in your word processing program to “Landscape”, rather than changing the size of the font. (Note: Only this table should be presented in landscape orientation…not your entire assignment!) (3pts.)"
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html#adopting-a-final-candidate-model",
+    "href": "assignments/assignment-04-logarithmic-transformations.html#adopting-a-final-candidate-model",
+    "title": "Assignment 04",
+    "section": "Adopting a “Final” Candidate Model",
+    "text": "Adopting a “Final” Candidate Model\n\nBased on the model evidence, which of the candidate models will you adopt as your “final” model? Explain.\nWrite the fitted equation for the adopted candidate model.\nCreate and report a set of residual plots that allow you to evaluate the adopted model’s assumptions. Are the assumptions for the model satisfied? Explain. (2pts.)"
+  },
+  {
+    "objectID": "assignments/assignment-04-logarithmic-transformations.html#presenting-the-results",
+    "href": "assignments/assignment-04-logarithmic-transformations.html#presenting-the-results",
+    "title": "Assignment 04",
+    "section": "Presenting the Results",
+    "text": "Presenting the Results\n\nCreate a publication quality plot that displays the fitted curve(s) from your adopted candidate model. If you show more than one curve, each line should be easily differentiated in the plot. (Note: Make sure that you back-transform any log-transformed variables when you create this plot.) (2pts.)\nUse the plot to help describe/interpret the effect of wine rating on price."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html",
+    "href": "assignments/assignment-05-logistic-regression.html",
+    "title": "Assignment 05",
+    "section": "",
+    "text": "This goal of this assignment is to give you experience working with working with logistic regression models to analyze dichotomous outcome data. In this assignment, you will use the data from the file same-sex-marriage.csv to examine the effects of two aspects of religion (denomination, and frequency of attendance of religious services) on the support of same-sex marriage."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#instructions",
+    "href": "assignments/assignment-05-logistic-regression.html#instructions",
+    "title": "Assignment 05",
+    "section": "Instructions",
+    "text": "Instructions\nSubmit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nThis assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#effect-of-religious-service-attendance",
+    "href": "assignments/assignment-05-logistic-regression.html#effect-of-religious-service-attendance",
+    "title": "Assignment 05",
+    "section": "Effect of Religious Service Attendance",
+    "text": "Effect of Religious Service Attendance\nYou will begin the analysis by examining the effect of religious service attendance on support of same-sex marriage. Because the data for this predictor come from a Likert scale (ordinal in nature), we need to examine whether we can treat it as a continuous predictor in the model, or whether we should treat it as categorical.\n\nBegin by computing the empirical proportion of people that support same-sex marriage for each of the attendance categories. Create a line plot that shows the relationship between proportion of support and attendance.\n\nBased on the plot you just created, the relationship between proportion of support and attendance seems linear. Because of this, we can treat the Likert data as continuous; using a line (or polynomial) to fit the relationship. The only caution being that when interpreting a slope, we say something like, “a one-unit difference in \\(X\\) is associated with a \\(\\hat\\beta_1\\)-unit difference in \\(Y\\)”. For ordinal (Likert) data a one-unit difference in \\(X\\) really indicates a shift from one category to the next highest category.\n\nFit two logistic models to the data using religious service attendance. In the first model, only include the linear effect of attendance. In the second model, include both a linear and quadratic effect to predict variation in support for same-sex marriage. Which model should be adopted (linear or quadratic)? Justify your response by providing any statistical evidence you used in reaching your decision. (Note: The model you adopt here will be henceforth referred to as Model 1.)\n\n\n\n\nWrite the fitted equation for Model 1. (Don’t forget to include all appropriate subscripts. Also define any terms in the model that are ambiguous.)\nUse the fitted equation for Model 1 to predict the (a) log-odds, (b) odds, and (c) probability of someone supporting same-sex marriage if that person attends religious services almost every week."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#effect-of-denomination",
+    "href": "assignments/assignment-05-logistic-regression.html#effect-of-denomination",
+    "title": "Assignment 05",
+    "section": "Effect of Denomination",
+    "text": "Effect of Denomination\n\nAre there sample differences in the proportion of people who support same-sex marriage between the denominations? Explain by using evidence from the sample data.\n\nFit a logistic model to the data using denomination to predict variation in support for same-sex marriage (Model 2). In this model, use Protestant as the reference group.\n\nInterpret the effect associated with the Jewish coefficient in terms of (a) log-odds, and (b) odds."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#effect-of-attendance-and-denomination",
+    "href": "assignments/assignment-05-logistic-regression.html#effect-of-attendance-and-denomination",
+    "title": "Assignment 05",
+    "section": "Effect of Attendance and Denomination",
+    "text": "Effect of Attendance and Denomination\nFit the logistic model that includes all the adopted effects for religous service attendance and the effects of denomination to predict variation in support of same-sex marriage. (Note: This model will be referred to as Model 3.)\n\nCompute and report one of the pseudo-\\(R^2\\) values for Model 3. Also provide an interpretation of this measure."
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#adding-covariates",
+    "href": "assignments/assignment-05-logistic-regression.html#adding-covariates",
+    "title": "Assignment 05",
+    "section": "Adding Covariates",
+    "text": "Adding Covariates\nNow you will examine three potential covariates (friends, age, and female) that have been linked in the substantive literature to support of same-sex marriage.\n\nTo help think about which covariates should be included in your model, create a correlation matrix of the outcome, and all three covariates. By referring to this matrix, clearly indicate the order in which you will add covariates into the model.\n\nFit three logistic models based on the order of importance of the three covariates that also include the effects of religious attendance, and denomination. For example, the first of these three models would include the effects of religious attendance, denomination, and the most important covariate you identifed in Question 8. The second model would include the effects of religious attendance, denomination, and the two most important covariates you identified. Finally, the third model would include the effects of religious attendance, denomination, and all three covariates.\n\nWhich of these three models should be adopted as you final model (or set of models)? Justify your response by providing any statistical evidence you used in reaching your decision. (2pts.)\nCreate a table of results from your set of fitted models. This table should include Models 1–3 and also any model(s) you adopted from the previous question. Like other regression tables you have created, be sure to include the estimated coefficients and standard errors for each of the effects included in the models. (To be consistent with ASA recommendations, do not include p-values or stars.) Also include the AICc values for each model. (2pts.)"
+  },
+  {
+    "objectID": "assignments/assignment-05-logistic-regression.html#interpreting-the-final-adopted-model",
+    "href": "assignments/assignment-05-logistic-regression.html#interpreting-the-final-adopted-model",
+    "title": "Assignment 05",
+    "section": "Interpreting the Final Adopted Model",
+    "text": "Interpreting the Final Adopted Model\n\nCreate a plot that visually displays the results of your final adopted fitted model. Be sure to visually show the effects the focal predictors (religious service attendance and denomination). Also show any pertinent covariates you think are necessary to include. (Think about how the inclusion of the covariates help readers better understand the effects of the focal predictors.) (2pts.)\nWrite a few sentences that tell the data narrative about the effects of religious service attendance and denomination on the support of same-sex marriage. Use the models in your table of model results to help create this narrative. Keep the focus on the focal variables in this narrative."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html",
+    "title": "Assignment 06",
+    "section": "",
+    "text": "This goal of this assignment is to give you experience working with mixed-effects regression models to analyze longitudinal data. In this assignment, you will use the data from the file nhl.csv to examine longitudinal variation in cost of attending an NHL game."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#instructions",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#instructions",
+    "title": "Assignment 06",
+    "section": "Instructions",
+    "text": "Instructions\nSubmit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nThis assignment is worth 13 points."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#preparation",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#preparation",
+    "title": "Assignment 06",
+    "section": "Preparation",
+    "text": "Preparation\nAfter importing the data set, create a new variable called c_year that centers the year values at 2002. To center a variable we subtract the value we want to center at. (e.g., \\(\\mathtt{c\\_year}=\\mathtt{year}-2002\\)). This variable will represent the number of years since 2002.\nFor all analyses in this assignment, unless otherwise requested, use the c_year variable and not the year variable."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#data-exploration",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#data-exploration",
+    "title": "Assignment 06",
+    "section": "Data Exploration",
+    "text": "Data Exploration\n\nCreate and report a plot to display the cost of attending an NHL game (FCI) over time for each team (team profiles). In this plot, all teams should be in the same panel. Also add the profile based on the mean cost of attending an NHL game FCI over time. Make the teams’ profiles slightly transparent so that the mean profile is easily visible.\nBased on the average growth profile, describe how the average cost of attending an NHL game has changed over time. Your description of the growth pattern should allude to the functional form for the model."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#fitting-and-evaluating-models",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#fitting-and-evaluating-models",
+    "title": "Assignment 06",
+    "section": "Fitting and Evaluating Models",
+    "text": "Fitting and Evaluating Models\nFit the following three models. For each of the growth models, include only a random-effect of intercept in the model. Use maximum likelihood estimation to fit all the models.\n\nModel A: Unconditional random intercepts model\nModel B: Unconditional linear growth model\nModel C: Unconditional quadratic growth model\n\n\nCreate and report a table that includes the estimated variance components for each of the three fitted models.\nUse the estimated variance components from Model A to determine the proportion of variation unaccounted for at the between- and within-team levels. Report these values.\nUse the estimated variance components to determine the variation accounted for at the between- and within-team levels based on Model B. Report these values.\nWhich source of variation did Model B most account for? Explain why you would expect this based on the predictor included in Model B."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#adopting-and-evaluating-an-unconditional-growth-model",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#adopting-and-evaluating-an-unconditional-growth-model",
+    "title": "Assignment 06",
+    "section": "Adopting and Evaluating an Unconditional Growth Model",
+    "text": "Adopting and Evaluating an Unconditional Growth Model\n\nBased on the AICc, which model (A, B, or C) has the most empirical evidence? Explain.\nCreate and report a density plot of the residuals and a scatterplot of the residuals versus the fitted values for the model you identified in Question 8. You can use the augment() function from {broom.mixed} to obtain both the fitted values (.fitted) and residuals (.resid). We evaluate these residual plots using the same methods we do when we fit an lm() model, so add any confidence envelopes, smoothers, or other guides to these plots that will aid in your evaluation.\nEvaluate the assumptions of normality, homogeneity of variance, and that the average residual is equal to zero based on the plots you created in Question 9."
+  },
+  {
+    "objectID": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#reporting-the-results-from-the-adopted-model",
+    "href": "assignments/assignment-06-lmer-unconditional-longitudinal-models.html#reporting-the-results-from-the-adopted-model",
+    "title": "Assignment 06",
+    "section": "Reporting the Results from the Adopted Model",
+    "text": "Reporting the Results from the Adopted Model\n\nWrite the global fitted equation for the model you adopted in Question 7.\nWrite the team-specific fitted equation for the Minnesota Wild based on the model you adopted in Question 7.\nCreate a plot showing the predicted cost of attending an NHL game over time based on the global fitted model you reported in Question 10. Be sure to include a caption.\nAdd a line to the plot you created in Question #12 (don’t re-create the plot) showing the predicted cost of attending a Minnesota Wild game. Update the caption by adding an additional sentence to differentiate the Minnesota Wild curve from the global curve."
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html",
+    "title": "Assignment 07",
+    "section": "",
+    "text": "This goal of this assignment is to give you more experience working with mixed-effects regression models to analyze longitudinal data. In this assignment, you will again use the data from the file nhl.csv to examine longitudinal variation in cost of attending an NHL game."
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html#instructions",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html#instructions",
+    "title": "Assignment 07",
+    "section": "Instructions",
+    "text": "Instructions\nSubmit either your QMD and HTML file or, if you are not using Quarto, a PDF file of your responses to the following questions. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nThis assignment is worth 12 points."
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html#preparation",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html#preparation",
+    "title": "Assignment 07",
+    "section": "Preparation",
+    "text": "Preparation\nAfter importing the data set, create a new variable called c_year that centers the year values at 2002. This variable will represent the number of years since 2002. For all analyses in this assignment, unless otherwise requested, use the c_year variable and not the year variable."
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html#data-exploration",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html#data-exploration",
+    "title": "Assignment 07",
+    "section": "Data Exploration",
+    "text": "Data Exploration\n\nCreate and report a plot to display the cost of attending an NHL game (FCI) over time facetted on whether or not high school hockey is a tradition in the team’s location. This plot should include the average and team profiles for each facet. Make the teams’ profiles slightly transparent so that the mean profile is easily visible.\nDo the teams’ profiles indicate that a random-effect of linear growth should be included in the candidate models? Explain.\nBased on the plot created in Question #1, indicate whether models that include an effect of high school hockey tradition should be included in the candidate set of models. If this effect should be included, does the data suggest a main-effect or an interaction-effect with time? Explain. (2pts)"
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html#fitting-and-evaluating-models",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html#fitting-and-evaluating-models",
+    "title": "Assignment 07",
+    "section": "Fitting and Evaluating Models",
+    "text": "Fitting and Evaluating Models\nFit the following five models:\n\nModel A: Unconditional random intercepts model\nModel B: Unconditional growth model (with only intercept random-effect)\nModel C: Unconditional growth model (with both intercept and linear growth random-effects)\nModel D: Conditional growth model with main-effect of high school hockey (with both intercept and linear growth random-effects)\nModel E: Conditional growth model with interaction-effect between high school hockey and time (with both intercept and linear growth random-effects)\n\nUse maximum likelihood estimation to fit all the models.\n\nCreate and report a table of regression results. In this table Include the following information for each of the five candidate models (5pts):\n\nEstimated fixed-effect coefficients and standard errors;\nEstimated variance components;\nPseudo \\(R^2\\) measures based on the reduction in the variance components;\nModel-level deviance and AICc measures; and\nAny notes necessary to help the reader"
+  },
+  {
+    "objectID": "assignments/assignment-07-longitudinal-analysis-ii.html#most-empirically-supported-model",
+    "href": "assignments/assignment-07-longitudinal-analysis-ii.html#most-empirically-supported-model",
+    "title": "Assignment 07",
+    "section": "Most Empirically Supported Model",
+    "text": "Most Empirically Supported Model\nBased on the AICc values use the model with the most empirical evidence to answer the remaining questions.\n\nWrite the multilevel equations for the statistical model (not the fitted equations) for the model with the most empirical evidence. Don’t forget to include the assumptions!\nWrite the team-specific fitted equation for the Minnesota Wild based on the model that has the most empirical evidence.\nUse the results from the fitted model with the most empirical evidence to create a plot that displays the predicted average cost of attending an NHL game as a function of time for teams that have a tradition of high school and those that do not.\nAdd a line to the plot you created in Question #7 (don’t re-create the plot) showing the predicted cost of attending a Minnesota Wild game.\nWrite a caption for your plot (3–4 sentences) that help a reader understand the effect of time and high school hockey tradition on cost of attending an NHL game and also how the cost of attending a Wild game compares to the average team over time. (2pts)"
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html",
+    "href": "readings/03-introduction-to-quarto.html",
+    "title": "Introduction to Quarto",
+    "section": "",
+    "text": "Head over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html#displaying-data",
+    "href": "readings/03-introduction-to-quarto.html#displaying-data",
+    "title": "📖 Introduction to Quarto",
+    "section": "Displaying Data",
+    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+  },
+  {
+    "objectID": "readings/02-project-management.html",
+    "href": "readings/02-project-management.html",
+    "title": "📖 Project Management",
+    "section": "",
+    "text": "Before next class, look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
+  },
+  {
+    "objectID": "readings/02-project-management.html#displaying-data",
+    "href": "readings/02-project-management.html#displaying-data",
+    "title": "📖 Project Management",
+    "section": "Displaying Data",
+    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+  },
+  {
+    "objectID": "notes/03-introduction-to-quarto.html",
+    "href": "notes/03-introduction-to-quarto.html",
+    "title": "📖 Introduction to Quarto",
+    "section": "",
+    "text": "In this set of notes, you will continue your Quarto journey. To begin:"
+  },
+  {
+    "objectID": "notes/03-introduction-to-quarto.html#displaying-data",
+    "href": "notes/03-introduction-to-quarto.html#displaying-data",
+    "title": "📖 Introduction to Quarto",
+    "section": "Displaying Data",
+    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#install-quarto",
+    "href": "readings/02-introduction-to-quarto.html#install-quarto",
+    "title": "Introduction to Quarto",
+    "section": "Install Quarto",
+    "text": "Install Quarto\n\nHead over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#help-and-tutorials",
+    "href": "readings/02-introduction-to-quarto.html#help-and-tutorials",
+    "title": "Introduction to Quarto",
+    "section": "Help and Tutorials",
+    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#create-your-first-quarto-document",
+    "href": "readings/02-introduction-to-quarto.html#create-your-first-quarto-document",
+    "title": "Introduction to Quarto",
+    "section": "Create Your First Quarto Document",
+    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
+    "href": "readings/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
+    "title": "Introduction to Quarto",
+    "section": "Learning How to Integrate R Code",
+    "text": "Learning How to Integrate R Code\nWork through the Tutorial: Computations with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
+  },
+  {
+    "objectID": "readings/02-introduction-to-quarto.html#install-a-citation-manager",
+    "href": "readings/02-introduction-to-quarto.html#install-a-citation-manager",
+    "title": "Introduction to Quarto",
+    "section": "Install a Citation Manager",
+    "text": "Install a Citation Manager\nFor next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html#help-and-tutorials",
+    "href": "readings/03-introduction-to-quarto.html#help-and-tutorials",
+    "title": "Introduction to Quarto",
+    "section": "Help and Tutorials",
+    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html#create-your-first-quarto-document",
+    "href": "readings/03-introduction-to-quarto.html#create-your-first-quarto-document",
+    "title": "Introduction to Quarto",
+    "section": "Create Your First Quarto Document",
+    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html#learning-how-to-integrate-r-code",
+    "href": "readings/03-introduction-to-quarto.html#learning-how-to-integrate-r-code",
+    "title": "Introduction to Quarto",
+    "section": "Learning How to Integrate R Code",
+    "text": "Learning How to Integrate R Code\nAlso work through the Tutorial: Computations. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto-day-02.html",
+    "href": "readings/03-introduction-to-quarto-day-02.html",
+    "title": "Introduction to Quarto (Day 2)",
+    "section": "",
+    "text": "For the next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
+    "href": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
+    "title": "Introduction to Quarto (Day 2)",
+    "section": "Download and Import Two Papers",
+    "text": "Download and Import Two Papers\nDownload the following two papers from the UMN library:\n\nCarmichael, L. (1954). Laziness and the scholarly life. The Scientific Monthly, 78(4), 208–213.\nRoss, C. T., Winterhalder, B., & McElreath, R. (2020). Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates. Social Psychological and Personality Science, 194855062091607. https://doi.org/10.1177/1948550620916071\n\nImport both of these into Zotero by dragging the PDFs into Zotero. After they are imported, check that all the metadata is correct. (Page numbers often need to be updated in Zotero.)"
   }
 ]

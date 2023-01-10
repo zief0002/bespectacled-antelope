@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew Zieffler">
 <meta name="dcterms.date" content="2023-01-10">
 
-<title>EPsy 8252 - Introduction to Quarto</title>
+<title>EPsy 8252 - 📖 Project Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,39 +119,20 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link active" data-scroll-target="#what-is-quarto">What is Quarto?</a></li>
-  <li><a href="#similar-to-rmarkdownbut-better" id="toc-similar-to-rmarkdownbut-better" class="nav-link" data-scroll-target="#similar-to-rmarkdownbut-better">Similar to RMarkdown…But Better</a></li>
-  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
-  <li><a href="#help-and-tutorials" id="toc-help-and-tutorials" class="nav-link" data-scroll-target="#help-and-tutorials">Help and Tutorials</a></li>
-  <li><a href="#create-your-first-quarto-document" id="toc-create-your-first-quarto-document" class="nav-link" data-scroll-target="#create-your-first-quarto-document">Create Your First Quarto Document</a></li>
-  <li><a href="#learning-how-to-integrate-r-code" id="toc-learning-how-to-integrate-r-code" class="nav-link" data-scroll-target="#learning-how-to-integrate-r-code">Learning How to Integrate R Code</a></li>
-  <li><a href="#install-a-citation-manager" id="toc-install-a-citation-manager" class="nav-link" data-scroll-target="#install-a-citation-manager">Install a Citation Manager</a></li>
-  <li><a href="#project-and-file-management" id="toc-project-and-file-management" class="nav-link" data-scroll-target="#project-and-file-management">Project and File Management</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Quarto</h1>
+<h1 class="title">📖 Project Management</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew Zieffler </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -167,56 +147,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="what-is-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
-<p>Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow.</p>
-</section>
-<section id="similar-to-rmarkdownbut-better" class="level2">
-<h2 class="anchored" data-anchor-id="similar-to-rmarkdownbut-better">Similar to RMarkdown…But Better</h2>
-<p>For those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification.</p>
-</section>
-<section id="install-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="install-quarto">Install Quarto</h2>
-<ol type="1">
-<li>Head over to <a href="https://quarto.org/" class="uri">https://quarto.org/</a> and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.</li>
-<li>Open RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)</li>
-</ol>
-<p>At this point in RStudio, if you go to <code>File &gt; New File...</code> you should see options to choose <code>Quarto Document</code> and <code>Quarto Presentation</code>.</p>
-</section>
-<section id="help-and-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="help-and-tutorials">Help and Tutorials</h2>
-<p>There are several <a href="https://quarto.org/docs/guide/">guides and tutorials</a> available on the Quarto website. These include:</p>
-<ul>
-<li>Creating basic content (e.g., figures, tables, diagrams, footnotes, citations)</li>
-<li>Including computation/syntax</li>
-<li>Generating output in different formats (e.g., HTML, PDF, MS Word)</li>
-<li>Creating slides and presentations (These notes are a Quarto presentation!)</li>
-<li>Building websites</li>
-<li>Building books</li>
-<li>Creating interactive dashboards</li>
-</ul>
-</section>
-<section id="create-your-first-quarto-document" class="level2">
-<h2 class="anchored" data-anchor-id="create-your-first-quarto-document">Create Your First Quarto Document</h2>
-<p>Click the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Tutorial: Hello Quarto</a> link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.</p>
-<p><br></p>
-<p>Work through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document.</p>
-</section>
-<section id="learning-how-to-integrate-r-code" class="level2">
-<h2 class="anchored" data-anchor-id="learning-how-to-integrate-r-code">Learning How to Integrate R Code</h2>
-<p>Work through the <a href="https://quarto.org/docs/get-started/computations/rstudio.html">Tutorial: Computations</a> with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial.</p>
-</section>
-<section id="install-a-citation-manager" class="level2">
-<h2 class="anchored" data-anchor-id="install-a-citation-manager">Install a Citation Manager</h2>
-<p>For next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.</p>
-<ul>
-<li>Install <a href="https://www.zotero.org/">Zotero</a>.</li>
-</ul>
-<p>If you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager.</p>
-</section>
-<section id="project-and-file-management" class="level2">
-<h2 class="anchored" data-anchor-id="project-and-file-management">Project and File Management</h2>
-<p>Before next class, also look at your computer files and your organization of those files. Here are some things to reflect on:</p>
+<p>Before next class, look at your computer files and your organization of those files. Here are some things to reflect on:</p>
 <ul>
 <li>Are your files organized into folders/directories? Or are they all in your Downloads folder?
 <ul>
@@ -229,7 +160,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

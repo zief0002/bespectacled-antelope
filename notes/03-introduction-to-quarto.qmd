@@ -1,0 +1,146 @@
+---
+title: "📖 Introduction to Quarto"
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
+---
+
+
+In this set of notes, you will continue your Quarto journey. To begin:
+
+:::exercises
+1. Open the Assignment 1 R project (`assignment-01.Rproj`) you created. 
+2. Create a new Quarto document called `assignment-01.qmd` and save this in your root directory. The tree for your project should now look like this:
+
+```
+assignment-01
+    ├── README
+    ├── assets
+    ├── assignment-01.qmd
+    ├── assignment-01.Rproj
+    ├── data
+    │   └── fertility.csv
+    ├── figs
+    └── scripts
+```
+:::
+
+
+# Update the YAML
+
+:::exercises
+In the `assignment-01.qmd` file, update the YAML to the following:
+
+```
+---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: "January XX, 2023"
+format: html
+editor: visual
+---
+```
+
+Change the `date:` key to today's date. For the `editor:` key you can choose `visual` or `source` depending on whether you want the document to open with the visual editor or the source editor.
+:::
+
+<br />
+
+
+# Loading Libraries and Importing Data
+
+The first question on Assignment 1 is:
+
+> Import the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.
+
+
+:::exercises
+- Create a Level-2 Heading in your QMD document that is called "Question 1".
+- Then create a new R chunk. In that chunk load the `{tidyverse}` library. Don't forget to add a comment.
+- In the same R chunk, import the `fertility.csv` data into an object called `fertility`.
+:::
+
+<br />
+
+To import the data (which you put in the `data` directory of your project last class) use the following syntax:
+
+```{r}
+#| eval: false
+fertility = read_csv("data/fertility.csv")
+```
+
+The path inside the quotation marks gives the location (relative to the QMD file) of the `fertility.csv` data. Here, the data are in the directory called `data`. Thus the path `data/fertility.csv` indicates go to the data folder and inside of that locate `fertility.csv`.
+
+:::exercises
+What would the path be inside the quotation marks if our project had the following tree?
+
+```
+assignment-01
+    ├── README
+    ├── assets
+    ├── assignment-01.qmd
+    ├── assignment-01.Rproj
+    ├── data
+       ├── assignment-data
+          └── fertility.csv
+       └── notes-data
+    ├── figs
+    └── scripts
+```
+:::
+
+<br />
+
+
+## Displaying Data
+
+:::exercises
+In the same R chunk display the data by typing the data object name after you import the data.
+:::
+
+<br />
+
+Rendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.
+
+:::exercises
+Update the YAML of your QMD to the following:
+
+```
+---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: "January XX, 2023"
+format:
+  html:
+    df-print: paged
+editor: visual
+---
+```
+
+Re-render the document.
+:::
+
+<br />
+
+This sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation [Data Frames](https://quarto.org/docs/computations/r.html#data-frames), includes other options for printing data frames.
+
+:::protip
+Pay attention to the spacing in the YAML!!!!
+:::
+
+<br />
+
+
+# Equations
+
+
+
