@@ -14,445 +14,32 @@
     "text": "Below are the due dates for the assignments, as well as links to each assignment. The due dates may change at the instructor’s discretion. Any revised due dates will be announced in class and posted to the website.\n\n\n\n\n\n\nAssignment\n\n\nDue Date (T/R)\n\n\nDue Date (M/W)\n\n\nQMD\n\n\nHTML\n\n\n\n\n\n\nAssignment #1: Introduction to Quarto\n\n\n\nFeb. 09\n\n\nFeb. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #2: Polynomial Effects\n\n\n\nFeb. 21\n\n\nFeb. 22\n\n\n\n\n\n\n\n\n\n\nAssignment #3: Evidence and Model Selection\n\n\n\nMar. 02\n\n\nMar. 13\n\n\n\n\n\n\n\n\n\n\nAssignment #4: Logarithmic Transformations\n\n\nMar. 23\n\n\nMar. 27\n\n\n\n\n\n\n\n\n\n\nAssignment #5: Logistic Regression\n\n\n\nApr. 06\n\n\nApr. 10\n\n\n\n\n\n\n\n\n\n\nAssignment #6: LMER: Unconditional Longitudinal Models\n\n\nApr. 20\n\n\nApr. 24\n\n\n\n\n\n\n\n\n\n\nAssignment #7: LMER: More Longitudinal Models\n\n\nMay 06\n\n\nMay 06"
   },
   {
-    "objectID": "codebooks/woods.html",
-    "href": "codebooks/woods.html",
-    "title": "woods.csv",
-    "section": "",
-    "text": "The data in woods.csv were collected from several sources to assesses the effect of political corruption on state environmental policy (Woods, 2008)."
-  },
-  {
-    "objectID": "codebooks/woods.html#attributes",
-    "href": "codebooks/woods.html#attributes",
-    "title": "woods.csv",
-    "section": "Attributes",
-    "text": "Attributes\n\nstate: Two-letter state postal code\nenv_prog_str: Environmental program strength is measured via Hall and Kerr’s (1991) Green Policy Index, a composite score that represents 67 state policy initiatives in a variety of environmental arenas, including air, water, and hazardous waste. The index includes indicators such as the sanctions available to the appropriate agencies in each state, the size of the state’s pollution monitoring program, and the size of the state’s program budget, as well as a variety of specific policy indicators.\ncorrupt: Aggregate number of convictions (per 100 officials) during the Reagan Administration (between 1981 and 1987). Aggregating across several years helps eliminate spikes that occur because a single investigation may result in multiple convictions. The average state had 1.42 convictions per 100 officials over that period.\nwealth: Gross state product per capita, in thousands of dollars. This is an indicator of a state’s financial resources.\ntoxic_waste: Natural logarithm of the total tons of toxic waste emitted in air, water based on the U.S. EPA’s Toxic Release Inventory. Higher values indicate a more severe problem.\ndem_party_control: Represents the average amount of Democratic Party control of state political institutions in the 1980s measured as a proportion.\ninterparty_comp: Holbrook and Van Dunk’s (1993) district-level measure is included as an indicator of interparty competition.\npublic_env: Indication of public attitudes toward environmental protection in the state. It is calculated from the 1988–1992 NES Senate Election Study, which asked the following question: “Should federal spending on the environment be increased, decreased, or stay the same?” Individual responses are coded 1 (decrease), 2 (same), and 3 (increase) and then averaged.\nmanuf_groups: The number of manufacturing groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies.\nenv_groups: The number of environmental groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies."
-  },
-  {
-    "objectID": "codebooks/woods.html#preview",
-    "href": "codebooks/woods.html#preview",
-    "title": "woods.csv",
-    "section": "Preview",
-    "text": "Preview\n\n# Import data\nwoods = readr::read_csv(file = \"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv\")\n\n# View data\nwoods |>\n    print(width = Inf)\n\n# A tibble: 50 × 10\n   state env_prog_str corrupt wealth toxic_waste dem_party_control\n   <chr>        <dbl>   <dbl>  <dbl>       <dbl>             <dbl>\n 1 AK               8   0.586   44.3        1.31             0.625\n 2 AL               6   0.630   18.9        4.70             0.800\n 3 AR               5   0.132   18.4        3.71             0.900\n 4 AZ              13   0.318   19.3        4.19             0.300\n 5 CA              34   0.498   25.5        4.69             0.600\n 6 CO              17   0.212   23.8        2.75             0.5  \n 7 CT              29   0.213   30.2        3.63             0.900\n 8 DE              15   0.301   34.3        2.15             0.300\n 9 FL              24   0.604   19.9        4.12             0.800\n10 GA              12   0.546   22.7        4.46             1    \n   interparty_comp public_env manuf_groups env_groups\n             <dbl>      <dbl>        <dbl>      <dbl>\n 1           53.5        2.42     0.000654  0.000346 \n 2           27.3        2.37     0.000538  0.000064 \n 3            9.26       2.42     0.000636  0.0000455\n 4           33.9        2.52     0.000783  0.000148 \n 5           47.3        2.7      0.000259  0.000014 \n 6           40.2        2.5      0.000521  0.000242 \n 7           52.8        2.59     0.000586  0.000192 \n 8           39.7        2.60     0.00105   0.000127 \n 9           31.1        2.61     0.000875  0.000246 \n10           16.2        2.49     0.000651  0.000143 \n# … with 40 more rows"
-  },
-  {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
-    "section": "",
-    "text": "Name\n\n\nData\n\n\nCodebook\n\n\n\n\n\n\nevaluations.csv\n\n\n  \n\n\n  \n\n\n\n\n\nfertility.csv\n\n\n  \n\n\n  \n\n\n\n\ngraduation.csv\n\n\n  \n\n\n  \n\n\n\n\nhox-gpa.csv\n\n\n  \n\n\n  \n\n\n\n\nmammal.csv\n\n\n\n\n\n\n\n\n\n\nminneapolis.csv\n\n\n\n\n\n\n\n\n\n\nmlb-2019.csv\n\n\n\n\n\n\n\n\n\n\nmn-schools.csv\n\n\n  \n\n\n  \n\n\n\n\nmovies.csv\n\n\n  \n\n\n  \n\n\n\n\nnba-player-data.csv\n\n\n  \n\n\n  \n\n\n\n\nnba-team-data.csv\n\n\n  \n\n\n  \n\n\n\n\nnels.csv\n\n\n  \n\n\n  \n\n\n\n\nnetherlands-schools.csv\n\n\n  \n\n\n  \n\n\n\n\nnetherlands-students.csv\n\n\n  \n\n\n  \n\n\n\n\nnhl.csv\n\n\n  \n\n\n  \n\n\n\n\npopular-classroom.csv\n\n\n  \n\n\n  \n\n\n\n\npopular-student.csv\n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nriverview.csv\n\n\n  \n\n\n  \n\n\n\n\nsame-sex-marriage.csv\n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nusnews.csv\n\n\n  \n\n\n  \n\n\n\n\nvocabulary.csv\n\n\n  \n\n\n  \n\n\n\n\nwine.csv\n\n\n  \n\n\n  \n\n\n\n\nwoods.csv"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EPsy 8252",
-    "section": "",
-    "text": "In this class, we will work together to develop a learning community that is inclusive and respectful, and where every student is supported in the learning process. As a class full of diverse individuals (reflected by differences in race, culture, age, religion, gender identity, sexual orientation, socioeconomic background, abilities, professional goals, and other social identities and life experiences) I expect that different students may need different things to support and promote their learning. The TAs and I will do everything we can to help with this, but as we only know what we know, we need you to communicate with us if things are not working for you or you need something we are not providing. I hope you all feel comfortable in helping to promote an inclusive classroom through respecting one another’s individual differences, speaking up, and challenging oppressive/problematic ideas. Finally, I look forward to learning from each of you and the experiences you bring to the class.\n\n\n\n\n\n\nTuesday/Thursday (11:15am–12:30pm): Appleby Hall 302\nMonday/Wednesday (2:30pm–3:45pm): Peik Hall 225\n\n\n\n\n\n\nThe course syllabus is available here.\nMessage from Snoop Dogg about the syllabus\n\n\n\n\n\nThe course textbooks are available via the University of Minnesota library.\n\nRequired: Fox, J. (2013). A mathematical primer for social statistics. Sage.\nOptional: Anderson, D. R. (2008). Model based inference in the life sciences: A primer on evidence. Springer.\n\n\n\n\n\n\nStatistical Modeling and Computation for Educational Scientists\n\nLearn about simple and multiple regression\nLearn about Ordinary Least squares (OLS)\nLearn about correlation/standardized regression\nLearn about regrression assumptions\nLearn about dummy coding for dichotomous/polychotomous predictors\nLearn about interaction effects\n\nComputational Toolkit for Educational Scientists\n\nLearn basics of R\nLearn {dplyr} for wrangling data\nLearn {ggplot2} for visualizing data"
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#what-is-quarto",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#what-is-quarto",
-    "title": "Introduction to Quarto",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "title": "Introduction to Quarto",
-    "section": "Similar to RMarkdown…But Better",
-    "text": "Similar to RMarkdown…But Better\nFor those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#install-quarto",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#install-quarto",
-    "title": "Introduction to Quarto",
-    "section": "Install Quarto",
-    "text": "Install Quarto\n\nHead over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#help-and-tutorials",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#help-and-tutorials",
-    "title": "Introduction to Quarto",
-    "section": "Help and Tutorials",
-    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#create-your-first-quarto-document",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#create-your-first-quarto-document",
-    "title": "Introduction to Quarto",
-    "section": "Create Your First Quarto Document",
-    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "title": "Introduction to Quarto",
-    "section": "Learning How to Integrate R Code",
-    "text": "Learning How to Integrate R Code\nWork through the Tutorial: Computations with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#install-a-citation-manager",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#install-a-citation-manager",
-    "title": "Introduction to Quarto",
-    "section": "Install a Citation Manager",
-    "text": "Install a Citation Manager\nFor next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
-  },
-  {
-    "objectID": "notes/01-rmarkdown/01-introduction-to-quarto.html#project-and-file-management",
-    "href": "notes/01-rmarkdown/01-introduction-to-quarto.html#project-and-file-management",
-    "title": "Introduction to Quarto",
-    "section": "Project and File Management",
-    "text": "Project and File Management\nBefore next class, also look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Calendar",
-    "section": "",
-    "text": "The calendar below lists the tentative course topics. The dates listed are subject to change at the instructor’s discretion.\n\n\n\n\n\n\n\n\n\nT/R\n\n\nM/W\n\n\nPrep\n\n\nTopic\n\n\nNotes\n\n\nQMD\n\n\nScript\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 17\n\n\nJan. 18\n\n\n\n\n\nWelcome to Epsy 8252/Regression Review\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 19\n\n\nJan. 23\n\n\n\n\n\n\n\nUnit 01: Introduction to Quarto\n\n\n\n\n \n\n\nJan. 20\n\n\nJan. 24\n\n\n\n\n\nIntroduction to R Markdown\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 25\n\n\nJan. 26\n\n\n\n\n\nCreating Tables with kable()"
-  },
-  {
-    "objectID": "assignments/s22-assignment-01-introduction-to-quarto.html",
-    "href": "assignments/s22-assignment-01-introduction-to-quarto.html",
-    "title": "Assignment 01",
-    "section": "",
-    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates.\n\n[CSV]\n[Data Codebook]\n\n\n\n\n\n\n\n\n\n\n\nInstructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. Submit both the QMD and knitted HTML file. This assignment is worth 15 points.\n\n\n\nQuestions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) The two references can be included in the document’s YAML (be careful of the indentation) or drawn from an external BIB file. Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) (2pts.)\n\n\n\nWhat to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)\nWhen you are ready to submit, you"
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html",
-    "title": "Introduction to Quarto",
-    "section": "",
-    "text": "Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "title": "Introduction to Quarto",
-    "section": "Similar to RMarkdown…But Better",
-    "text": "Similar to RMarkdown…But Better\nFor those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#install-quarto",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#install-quarto",
-    "title": "Introduction to Quarto",
-    "section": "Install Quarto",
-    "text": "Install Quarto\n\nHead over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#help-and-tutorials",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#help-and-tutorials",
-    "title": "Introduction to Quarto",
-    "section": "Help and Tutorials",
-    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#create-your-first-quarto-document",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#create-your-first-quarto-document",
-    "title": "Introduction to Quarto",
-    "section": "Create Your First Quarto Document",
-    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "title": "Introduction to Quarto",
-    "section": "Learning How to Integrate R Code",
-    "text": "Learning How to Integrate R Code\nWork through the Tutorial: Computations with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#install-a-citation-manager",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#install-a-citation-manager",
-    "title": "Introduction to Quarto",
-    "section": "Install a Citation Manager",
-    "text": "Install a Citation Manager\nFor next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
-  },
-  {
-    "objectID": "notes/02-quarto/01-introduction-to-quarto.html#project-and-file-management",
-    "href": "notes/02-quarto/01-introduction-to-quarto.html#project-and-file-management",
-    "title": "Introduction to Quarto",
-    "section": "Project and File Management",
-    "text": "Project and File Management\nBefore next class, also look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
-  },
-  {
-    "objectID": "notes/03-creating-tables.html",
-    "href": "notes/03-creating-tables.html",
-    "title": "Creating Tables",
-    "section": "",
-    "text": "Anatomy of a Table\nAny table is essentially a rectangular layout (rows and columns) of information. Below I show two common tables of statistical output taken from @apa:2020. I have also added guide-lines to show the rectangular display of information within each of these tables.\n\n\n\n\n\n\n\n\n\nTo illustrate how to create a table in the QMD document, we will attempt to recreate the following table. I have identified different aspect of this table that I will refer to throughout the notes.\n\n\n\n\n\n\n\n\n\nWe can use the fact that data frames are also rectangular displays of information to create a table in the QMD document. The data.frame() function is used to enter the cell information from each column. This is, of course, done in a code chunk.\n\n# Input cell information\ntab_01 = data.frame(\n  scale = c(\"BAS-T\", \"SR\", \"BDI\", \"ASRM\", \"M-SRM\"),\n  high = c(\"46.17 (2.87)\", \"17.94 (1.88)\", \n           \"7.11 (6.50)\", \"6.46 (4.01)\", \"11.05 (3.36)\"),\n  mod = c(\"37.99 (1.32)\", \"11.52 (1.84)\", \n          \"6.18 (6.09)\", \"5.63 (3.69)\", \"11.76 (2.75)\"),\n  p = c(\"<.001\", \"<.001\", \".254\", \".109\", \".078\")\n  \n)\n\n# Show output\ntab_01\n\n\n\n  \n\n\n\nOnce you have the cell information in a data frame, all the rest of the syntax is formatting, adding a caption, changing column names, etc. There are several R packages that can be used to add this formatting. Here I will illustrate the use of the kable() function from the {knitr} package.\n\n# Load library\nlibrary(gt)\n\n# Create table\ntab_01 |>\n  gt() \n\n\n\n\n\n  \n  \n    \n      scale\n      high\n      mod\n      p\n    \n  \n  \n    BAS-T\n46.17 (2.87)\n37.99 (1.32)\n<.001\n    SR\n17.94 (1.88)\n11.52 (1.84)\n<.001\n    BDI\n7.11 (6.50)\n6.18 (6.09)\n.254\n    ASRM\n6.46 (4.01)\n5.63 (3.69)\n.109\n    M-SRM\n11.05 (3.36)\n11.76 (2.75)\n.078\n  \n  \n  \n\n\n\n  # tab_header(\n  #   title = \"S&P 500\",\n  #   subtitle = glue(\"{start_date} to {end_date}\")\n  # )"
-  },
-  {
-    "objectID": "notes/03-creating-tables.html#changing-column-names",
-    "href": "notes/03-creating-tables.html#changing-column-names",
-    "title": "Creating Tables",
-    "section": "Changing Column Names",
-    "text": "Changing Column Names\nTo change the column names, we use the col.names= argument. We provide this with a vector of column names using the c() function.\n\n# Create table\ntab_01 |>\n  gt() |>\n  cols_align(\n    columns = c(scale),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(high, mod, p),\n    align = \"center\"\n  )\n\n\n\n\n\n  \n  \n    \n      scale\n      high\n      mod\n      p\n    \n  \n  \n    BAS-T\n46.17 (2.87)\n37.99 (1.32)\n<.001\n    SR\n17.94 (1.88)\n11.52 (1.84)\n<.001\n    BDI\n7.11 (6.50)\n6.18 (6.09)\n.254\n    ASRM\n6.46 (4.01)\n5.63 (3.69)\n.109\n    M-SRM\n11.05 (3.36)\n11.76 (2.75)\n.078"
-  },
-  {
-    "objectID": "notes/03-creating-tables.html#column-alignment",
-    "href": "notes/03-creating-tables.html#column-alignment",
-    "title": "Creating Tables using the {gt} Package",
-    "section": "Column Alignment",
-    "text": "Column Alignment\nTo change the column alignment, we use the cols_align() function. We provide this with two arguments. The columns= argument takes a vector of column names using the c() function, and the align= argument takes a character string of \"left\", \"right\", or \"center\". Following typical formatting rules, we left align text columns and center numerical columns.\n\n# Change Column labels to italics\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  )\n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70"
-  },
-  {
-    "objectID": "notes/03-creating-tables.html#adding-a-title-and-subtitle",
-    "href": "notes/03-creating-tables.html#adding-a-title-and-subtitle",
-    "title": "Creating Tables using the {gt} Package",
-    "section": "Adding a Title and Subtitle",
-    "text": "Adding a Title and Subtitle\nThe tab_header() function can be used to add a title or subtitle to your table. Here we again use the md() function to allow us to use Markdown syntax directly in the title. I also use the opt_align_table_header() function to left align the title and subtitle per APA.\n\n# Add title and subtitle\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  ) |>\n    tab_header(\n    title = md(\"**Table 1.** Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\"),\n  ) |>\n  opt_align_table_header(\"left\")\n\n\n\n\n\n  \n    \n      Table 1. Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\n    \n    \n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nSince the title and subtitle appear on separate lines, you can take advantage of that to use the title to provide the table number and the subtitle provides the table caption if you are trying to format in APA style."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html",
-    "href": "notes/02-introduction-to-quarto.html",
-    "title": "Introduction to Quarto",
-    "section": "",
-    "text": "Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "href": "notes/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "title": "Introduction to Quarto",
-    "section": "Similar to RMarkdown…But Better",
-    "text": "Similar to RMarkdown…But Better\nFor those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#install-quarto",
-    "href": "notes/02-introduction-to-quarto.html#install-quarto",
-    "title": "Introduction to Quarto",
-    "section": "Install Quarto",
-    "text": "Install Quarto\n\nHead over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#help-and-tutorials",
-    "href": "notes/02-introduction-to-quarto.html#help-and-tutorials",
-    "title": "Introduction to Quarto",
-    "section": "Help and Tutorials",
-    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#create-your-first-quarto-document",
-    "href": "notes/02-introduction-to-quarto.html#create-your-first-quarto-document",
-    "title": "Introduction to Quarto",
-    "section": "Create Your First Quarto Document",
-    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "href": "notes/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "title": "Introduction to Quarto",
-    "section": "Learning How to Integrate R Code",
-    "text": "Learning How to Integrate R Code\nWork through the Tutorial: Computations with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#install-a-citation-manager",
-    "href": "notes/02-introduction-to-quarto.html#install-a-citation-manager",
-    "title": "Introduction to Quarto",
-    "section": "Install a Citation Manager",
-    "text": "Install a Citation Manager\nFor next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
-  },
-  {
-    "objectID": "notes/02-introduction-to-quarto.html#project-and-file-management",
-    "href": "notes/02-introduction-to-quarto.html#project-and-file-management",
-    "title": "Introduction to Quarto",
-    "section": "Project and File Management",
-    "text": "Project and File Management\nBefore next class, also look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
-  },
-  {
-    "objectID": "notes/03-creating-tables.html#column-labels",
-    "href": "notes/03-creating-tables.html#column-labels",
-    "title": "Creating Tables using the {gt} Package",
-    "section": "Column Labels",
-    "text": "Column Labels\nColumn labels can be changed from the names of the columns used in the data frame. To change them we will use the cols_label() function. This function takes as many arguments as there are columns, each mapping a label to the original column name. Below, we change our column names to match those in Table 1.\n\n# Change Column labels\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = \"Variable\",\n    m = \"M\",\n    sd = \"SD\",\n    min = \"Min.\",\n    max = \"Max.\"\n  )\n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nWe can also use the md() function to include Markdown syntax to further format our labels. For example, to make the column labels italics we use the following.\n\n# Change Column labels to italics\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) \n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nThe names we just gave to the variables are only labels. As we refer to the columns in additional functions, we need to use their original names from the data frame."
-  },
-  {
-    "objectID": "notes/03-creating-tables.html#fine-tuning-the-table",
-    "href": "notes/03-creating-tables.html#fine-tuning-the-table",
-    "title": "Creating Tables using the {gt} Package",
-    "section": "Fine-Tuning the Table",
-    "text": "Fine-Tuning the Table\nThe table is very close to matching the original Table 1. But, there are still a couple of things (if you are an Enneagram One) that we need to attend to. For example, we could remove the horizontal lines in the table. These lines are called “borders” and we can modify them in the tab_style() function. This is a general function that allows us to customize many parts of the table (akin to theme() in ggplot()).\nTo do this we use the style= argument and call the cell_borders() function within tab_style(). Here we remove all borders (top, bottom, left, and right) by using sides=\"all\" and setting style=NULL. The tab_style() function also requires the argument locations=. We give this argument the function cell_body() which we provide the column and row numbers that we want to remove the borders from. Since we want to keep the horizontal border associated with the first and last rows, we omit those row numbers from the rows= argument.\n\n# Add title and subtitle\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  ) |>\n    tab_header(\n    title = md(\"**Table 1.** Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\"),\n  ) |>\n  opt_align_table_header(\"left\")  |>\n  tab_style(\n    style = cell_borders(\n      sides = \"all\", \n      style = NULL\n      ),\n    locations = cells_body(\n      columns = 1:5,\n      rows = 2:6\n    )\n  )\n\n\n\n\n\n  \n    \n      Table 1. Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\n    \n    \n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70"
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#multiline-equations",
-    "href": "notes/02-rmarkdown-tips.html#multiline-equations",
-    "title": "More RMarkdown",
-    "section": "Multiline Equations",
-    "text": "Multiline Equations\nThere are a couple of ways to create multiline equations in a Quarto document. I tend to use the split environment from LaTeX to do this. To use this:\n\nInclude \\begin{split} and \\end{split} in the display equation.\nAt the end of each line (where you want a linebreak) include a double backslash, \\\\.\nIn each line of the multiline equation, also include the ampersand sign (&) at the point we want the multiple lines to align vertically.\n\nHere is an example:\n\n\n\n\n\n\n\n\n\\[\n\\begin{split}\n\\hat{y}_i &= 3 + 4(1) \\\\\n&= 7\n\\end{split}\n\\]"
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html",
-    "href": "notes/02-rmarkdown-tips.html",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "",
-    "text": "This document contains a few more tips, tricks, and helpful instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester."
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#spacing-out-the-lines",
-    "href": "notes/02-rmarkdown-tips.html#spacing-out-the-lines",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Spacing Out the Lines",
-    "text": "Spacing Out the Lines\nYou can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{split}\n\\hat{y}_i &= 3 + 4(1) \\\\[1em]\n&= 7\n\\end{split}\n\\]\nHere we have added line space of 1 em. An em is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the en (the width of the letter “n”), and the ex (the width of the letter “x”)."
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#bibtex-files",
-    "href": "notes/02-rmarkdown-tips.html#bibtex-files",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "BibTex Files",
-    "text": "BibTex Files\nBibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by Carmichael (1954) and Ross, Winterhalder, & McElreath (2020).\n@article{carmichael_1954,\n    title = {Laziness and the Scholarly Life},\n    volume = {78},\n    number = {4},\n    journal = {The Scientific Monthly},\n    author = {Carmichael, Leonard},\n    year = {1954},\n    pages = {208--213}\n}\n\n@article{ross_2020,\n    title = {Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates},\n    issn = {1948-5506, 1948-5514},\n    url = {http://journals.sagepub.com/doi/10.1177/1948550620916071},\n    doi = {10.1177/1948550620916071},\n    language = {en},\n    urldate = {2020-06-24},\n    journal = {Social Psychological and Personality Science},\n    author = {Ross, Cody T. and Winterhalder, Bruce and McElreath, Richard},\n    month = jun,\n    year = {2020},\n    pages = {194855062091607}\n}\nThe citation identifiers in this example are carmichael_1954 and ross_2020. These identifiers are the first bit of text after the initial curly brace in the reference. This is how we will refer to the citations in our QMD document. (Typically these are auto-generated from our reference manager.) To determine the citiation identifiers, you can open your BibTeX file in RStudio. (Do this by using Open File... within RStudio; double-clicking on the BibTeX file will likely open it in a different application.)"
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#creating-.bib-files-using-zotero",
-    "href": "notes/02-rmarkdown-tips.html#creating-.bib-files-using-zotero",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Creating .bib Files Using Zotero",
-    "text": "Creating .bib Files Using Zotero\nMost reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.\n\nCreate a New Collection.\nDrag the references you want in your BibTeX database into this collection.\nRight-click the collection and select Export Collection.\nIn the pop-up window, change the format of the exported collection to BibTex.\nClick OK.\n\nName the BibTex file (here I named it my_bibliography.bib) and save it in the Assets folder.\n\n\n\n\n\n\n\n\n\nWhen you call the BibTex file in the bibliography: key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document assignment-01.qmd that has the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\""
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#including-citations-in-your-quarto-document",
-    "href": "notes/02-rmarkdown-tips.html#including-citations-in-your-quarto-document",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Including Citations in Your Quarto Document",
-    "text": "Including Citations in Your Quarto Document\nCitations go inside square brackets and are separated by semicolons. Each citation must have a key, composed of @citation_identifier from the database (no spaces between them). For example to cite the Carmichael article:\nHere is some text and a citation [@carmichael_1954].\nThis will create a citation where you included it in the text and also add the reference at the end of the document. If you want a section header for your references, include a level-1 heading called “References” at the end of your document.\nThe rendered document now includes a citation where you added this is the QMD document. The associated reference is also included at the end of the document.\n\n\n\n\n\n\n\n\n\nCitations may also include. additional text before and after the citation. In this example we have prefixed the citation with the word “see” and added a page number after the citation. The citation identifier and the text following the citation identifier are separated by a comma.\nHere is some text and a citation [see @carmichael_1954, p. 208].\nThe output of this is:\n\nHere is some text and a citation (see Carmichael, 1954, p. 208).\n\nYou can also include multiple citations. To do this we include the different citation identifiers separated by a semicolon.\nHere are multiple citations [@ross_2020; @carmichael_1954].\nThe output of this is:\n\nHere are multiple citations (Carmichael, 1954; Ross et al., 2020).\n\nWe can also change the format of the citation. For example, here we use a format common to starting a sentence with a citation. To do that we omit the square brackets.\n@carmichael_1954 suggests something is true.\nThe output of this is:\n\nCarmichael (1954) suggests something is true.\n\n\nYou can learn more on the Citations and Footnotes Help Page in the Quarto documentation."
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#use-apa-formatted-citations-and-references",
-    "href": "notes/02-rmarkdown-tips.html#use-apa-formatted-citations-and-references",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Use APA Formatted Citations and References",
-    "text": "Use APA Formatted Citations and References\nBy default, citations and references are formatted using the Chicago style. To use another style, you will need to:\n\nDownload the appropriate citation style language (CSL) file. (Find many at https://zotero.org/styles)\nPlace the CSL file in the assets folder of your project’s directory.\nSpecify the name of the CSL style file in the csl: key in the QMD file’s YAML.\n\nFor example, say you have downloaded and saved the apa-single-spaced.csl file as shown in the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\"\ncsl: \"assets/apa-single-spaced.csl\"\nUse of the APA CSL file not only formats the references according to APA format, but it also fixed the order of the citations in the text itself! (Even though we included the Ross citation identifier prior to the Carmichael citation identifier in the multiple references example, the APA CSL file put them in the text alphabetically!)"
-  },
-  {
-    "objectID": "notes/02-rmarkdown-tips.html#citation-extras",
-    "href": "notes/02-rmarkdown-tips.html#citation-extras",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Citation Extras",
-    "text": "Citation Extras\nOne R package that is extremely useful, especially if you are using the visual editor in RStudio for writing QMD documents, is {citr}. This package provides functionality and an RStudio Add-In to search a BibTeX-file to create and insert formatted Markdown citations into a QMD document.\n\n\n\n\n\n\n\n\n\nThe {citr} package is only available via GitHub, so you will need to install it using{remotes}or{devtools}. (See the Computational Toolkit book for a reminder on how to do this.) The directions for installing{citr}` are also on the citr webpage along with instructions for using the package."
-  },
-  {
-    "objectID": "notes/02-project-organization.html",
-    "href": "notes/02-project-organization.html",
-    "title": "Project Organization",
-    "section": "",
-    "text": "In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management. At the end of it, you will have an organized project directory to begin work on Assignment 1."
-  },
-  {
-    "objectID": "notes/02-project-organization.html#naming-conventions",
-    "href": "notes/02-project-organization.html#naming-conventions",
-    "title": "Project Organization",
-    "section": "Naming Conventions",
-    "text": "Naming Conventions\nThe naming conventions for the directories and files in our project are as follows:\n\nFile names should be short but descriptive (less than 25 characters)\nAll lowercase letters\nAvoid special characters and spaces in a file name\n\nUse hyphens instead of spaces to separate words (e.g., assignment-01)\n\nAny names that include the date will use the ISO 8601 date format (YYYYMMDD)\nAny names that include a number will include at least two digits (e.g., assignment-01 rather than assignment-1)\n\nAgain, while there is no one best naming convention, it is important that you have one, and that you are consistent throughout the project. That being said, as you develop naming conventions for your projects, all the conventions should be documented! This documentation helps onboard collaborators to your project.\n\nThere are several guides available to help you establish naming conventions including here and here."
-  },
-  {
-    "objectID": "notes/02-project-organization.html#adding-content-to-readme",
-    "href": "notes/02-project-organization.html#adding-content-to-readme",
-    "title": "Project Organization",
-    "section": "Adding Content to README",
-    "text": "Adding Content to README\nSince README files are plain text files, they cannot include formatting like bold or italic. However, they do typically include Markdown syntax (which is itself plain text). The plain text nature of these files keeps them small in size and accessible to anyone with any type of computer.\n\nThere are several online guides for what to include in a README file, including here and here. There is also a pretty good template for a README for data science oriented projects here.\n\nSince the README file is informational, you can include any type of information in this file that is useful to the project. For example, you could add your naming conventions to this file.\n# assignment-01\n\nThis directory contains all of the files necessary to complete Assignment 1.\n\n\n# Naming Conventions\n\n- File names should be short but descriptive (less than 25 characters)\n- All lowercase letters\n- Avoid special characters and spaces in a file name\n  + Use hyphens instead of spaces to separate words (e.g., `assignment-01`)\n- Any names that include the date will use the ISO 8601 date format (YYYYMMDD)\n- Any names that include a number will include at least two digits (e.g., `assignment-01` rather than `assignment-1`)\n\nWhile you should only have one README file per directory, you can have different README files in other directories. For example, you could create a README file in the data directory that includes the codebook information for your data files."
-  },
-  {
-    "objectID": "readings/02-introduction-to-quarto.html",
-    "href": "readings/02-introduction-to-quarto.html",
-    "title": "Introduction to Quarto",
-    "section": "",
-    "text": "Quarto® is an open-source scientific and technical publishing system built on Pandoc. For us, it allows us to embed R syntax directly in a text document. Using Quarto is one of the first steps to making your research more reproducible. By integrating your R syntax and your text into a single document, it also improves your analytical workflow."
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "",
-    "text": "This document contains a few more tips, tricks, and helpful instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester."
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Spacing Out the Lines",
-    "text": "Spacing Out the Lines\nYou can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{split}\n\\hat{y}_i &= 3 + 4(1) \\\\[1em]\n&= 7\n\\end{split}\n\\]\nHere we have added line space of 1 em. An em is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the en (the width of the letter “n”), and the ex (the width of the letter “x”)."
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#bibtex-files",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#bibtex-files",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "BibTex Files",
-    "text": "BibTex Files\nBibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by Carmichael (1954) and Ross, Winterhalder, & McElreath (2020).\n@article{carmichael_1954,\n    title = {Laziness and the Scholarly Life},\n    volume = {78},\n    number = {4},\n    journal = {The Scientific Monthly},\n    author = {Carmichael, Leonard},\n    year = {1954},\n    pages = {208--213}\n}\n\n@article{ross_2020,\n    title = {Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates},\n    issn = {1948-5506, 1948-5514},\n    url = {http://journals.sagepub.com/doi/10.1177/1948550620916071},\n    doi = {10.1177/1948550620916071},\n    language = {en},\n    urldate = {2020-06-24},\n    journal = {Social Psychological and Personality Science},\n    author = {Ross, Cody T. and Winterhalder, Bruce and McElreath, Richard},\n    month = jun,\n    year = {2020},\n    pages = {194855062091607}\n}\nThe citation identifiers in this example are carmichael_1954 and ross_2020. These identifiers are the first bit of text after the initial curly brace in the reference. This is how we will refer to the citations in our QMD document. (Typically these are auto-generated from our reference manager.) To determine the citiation identifiers, you can open your BibTeX file in RStudio. (Do this by using Open File... within RStudio; double-clicking on the BibTeX file will likely open it in a different application.)"
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Creating .bib Files Using Zotero",
-    "text": "Creating .bib Files Using Zotero\nMost reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.\n\nCreate a New Collection.\nDrag the references you want in your BibTeX database into this collection.\nRight-click the collection and select Export Collection.\nIn the pop-up window, change the format of the exported collection to BibTex.\nClick OK.\n\nName the BibTex file (here I named it my_bibliography.bib) and save it in the Assets folder.\n\n\n\n\n\n\n\n\n\nWhen you call the BibTex file in the bibliography: key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document assignment-01.qmd that has the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\""
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Including Citations in Your Quarto Document",
-    "text": "Including Citations in Your Quarto Document\nCitations go inside square brackets and are separated by semicolons. Each citation must have a key, composed of @citation_identifier from the database (no spaces between them). For example to cite the Carmichael article:\nHere is some text and a citation [@carmichael_1954].\nThis will create a citation where you included it in the text and also add the reference at the end of the document. If you want a section header for your references, include a level-1 heading called “References” at the end of your document.\nThe rendered document now includes a citation where you added this is the QMD document. The associated reference is also included at the end of the document.\n\n\n\n\n\n\n\n\n\nCitations may also include. additional text before and after the citation. In this example we have prefixed the citation with the word “see” and added a page number after the citation. The citation identifier and the text following the citation identifier are separated by a comma.\nHere is some text and a citation [see @carmichael_1954, p. 208].\nThe output of this is:\n\nHere is some text and a citation (see Carmichael, 1954, p. 208).\n\nYou can also include multiple citations. To do this we include the different citation identifiers separated by a semicolon.\nHere are multiple citations [@ross_2020; @carmichael_1954].\nThe output of this is:\n\nHere are multiple citations (Carmichael, 1954; Ross et al., 2020).\n\nWe can also change the format of the citation. For example, here we use a format common to starting a sentence with a citation. To do that we omit the square brackets.\n@carmichael_1954 suggests something is true.\nThe output of this is:\n\nCarmichael (1954) suggests something is true.\n\n\nYou can learn more on the Citations and Footnotes Help Page in the Quarto documentation."
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Use APA Formatted Citations and References",
-    "text": "Use APA Formatted Citations and References\nBy default, citations and references are formatted using the Chicago style. To use another style, you will need to:\n\nDownload the appropriate citation style language (CSL) file. (Find many at https://zotero.org/styles)\nPlace the CSL file in the assets folder of your project’s directory.\nSpecify the name of the CSL style file in the csl: key in the QMD file’s YAML.\n\nFor example, say you have downloaded and saved the apa-single-spaced.csl file as shown in the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\"\ncsl: \"assets/apa-single-spaced.csl\"\nUse of the APA CSL file not only formats the references according to APA format, but it also fixed the order of the citations in the text itself! (Even though we included the Ross citation identifier prior to the Carmichael citation identifier in the multiple references example, the APA CSL file put them in the text alphabetically!)"
-  },
-  {
-    "objectID": "notes/02-quarto-tips-tricks-and-faq.html#citation-extras",
-    "href": "notes/02-quarto-tips-tricks-and-faq.html#citation-extras",
-    "title": "Quarto Tips, Tricks, and FAQ",
-    "section": "Citation Extras",
-    "text": "Citation Extras\nOne R package that is extremely useful, especially if you are using the visual editor in RStudio for writing QMD documents, is {citr}. This package provides functionality and an RStudio Add-In to search a BibTeX-file to create and insert formatted Markdown citations into a QMD document.\n\n\n\n\n\n\n\n\n\nThe {citr} package is only available via GitHub, so you will need to install it using{remotes}or{devtools}. (See the Computational Toolkit book for a reminder on how to do this.) The directions for installing{citr}` are also on the citr webpage along with instructions for using the package."
-  },
-  {
-    "objectID": "readings/01-welcome-to-8252.html",
-    "href": "readings/01-welcome-to-8252.html",
-    "title": "📖 Welcome to EPsy 8264",
-    "section": "",
-    "text": "Here are some things to do before the first class:\n\nDownload and read through the course syllabus\nFamiliarize yourself with the course website\nUpdate R to the most recent version (v. 4.2.2; Innocent and Trusting)\nUpdate RStudio Desktop to the most recent version (v. 2022.12.0+353)\nUpdate all of your R packages (In the Packages tab in RStudio click Update)\n\nWe will also start Day 1 with a short review of the regression content from EPsy 8251.\n\nRemind yourself of the EPsy 8251 content\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists"
-  },
-  {
-    "objectID": "readings/01-welcome-to-8252.html#prerequisites",
-    "href": "readings/01-welcome-to-8252.html#prerequisites",
-    "title": "📖 Welcome to EPsy 8264",
-    "section": "Prerequisites",
-    "text": "Prerequisites\nThe pre-requisites for this course are EPsy 8251 and EPsy 8252. Prerequisite knowledge include topics from a basic statistics course:\n\nFoundational topics in data analysis;\n\nDesign (e.g., random assignment and random sampling)\nDescriptive statistics and plots\nOne- and two-sample tests\n\n\nAnd, topics from EPsy 8251: Methods in Data Analysis for Educational Research I:\n\nStatistical Computation\n\nUsing R\nData wrangling/manipulation\nPlotting\n\nCorrelation;\nSimple regression analysis;\n\nModel-level and coefficient-level interpretation\nOrdinary least squares estimation\nStandardized regression\nPartitioning sums of squares\nModel-level and coefficient-level inference\nAssumption checking/residual analysis\n\nMultiple linear regression\n\nModel-level and coefficient-level interpretation and inference\nAssumption checking/residual analysis\nWorking with categorical predictors (including adjusting p-values for multiple tests)\nInteraction effects\n\n\nAnd topics from EPsy 8252: Methods in Data Analysis for Educational Research II:\n\nDealing with nonlinearity;\n\nQuadratic effects\nLog-transformations\n\nProbability distributions;\n\nProbability density\n\nMaximum likelihood estimation;\nModel selection;\n\nInformation criteria\n\nLinear mixed-effects models (cross-sectional/longitudinal)\n\nBasic ideas of mixed-effects models\nFitting models with random-intercepts and random-slopes\nAssumptions\nLikelihood ratio tests\n\nGeneralized linear models\n\nLogistic models"
-  },
-  {
-    "objectID": "readings/01-welcome-to-8252.html#resources",
-    "href": "readings/01-welcome-to-8252.html#resources",
-    "title": "📖 Welcome to EPsy 8264",
-    "section": "Resources",
-    "text": "Resources\nFor the topics listed, students would be expected to be able to carry out an appropriate data analysis and properly interpret the results. It is also assumed that everyone enrolled in the course has some familiarity with using R. If you need a refresher on any of these topics, see:\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists [EPsy 8251 material]\nEPsy 8252 website"
-  },
-  {
-    "objectID": "readings/02-introduction-to-quarto.html#displaying-data",
-    "href": "readings/02-introduction-to-quarto.html#displaying-data",
-    "title": "Introduction to Quarto",
-    "section": "Displaying Data",
-    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
-  },
-  {
-    "objectID": "readings/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "href": "readings/02-introduction-to-quarto.html#similar-to-rmarkdownbut-better",
-    "title": "Introduction to Quarto",
-    "section": "Similar to RMarkdown…But Better",
-    "text": "Similar to RMarkdown…But Better\nFor those of you familiar with RMarkdown, Quarto® is a multi-language, next generation version of R Markdown from RStudio, with many new new features and capabilities. Like R Markdown, Quarto® uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."
-  },
-  {
-    "objectID": "assignments/s23-assignment-01-introduction-to-quarto.html",
-    "href": "assignments/s23-assignment-01-introduction-to-quarto.html",
-    "title": "Assignment 01",
-    "section": "",
-    "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates.\n\n[CSV]\n[Data Codebook]\n\n\n\n\n\n\n\n\n\n\n\nInstructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. Submit both the QMD and knitted HTML file. This assignment is worth 15 points.\n\n\n\nQuestions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this dummy variable use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) Both the BIB and CSL files should be included in your project’s assets directory. (2pts.)\n\n\n\nWhat to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
-  },
-  {
     "objectID": "assignments/assignment-01-introduction-to-quarto.html",
     "href": "assignments/assignment-01-introduction-to-quarto.html",
     "title": "Assignment 01",
     "section": "",
     "text": "The goal of this assignment is to give you experience using Quarto to integrate analysis and documentation. In this assignment, you will use the data from the file fertility.csv to explain variation in infant mortality rates."
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#instructions",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#instructions",
+    "title": "Assignment 01",
+    "section": "Instructions",
+    "text": "Instructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. This assignment is worth 15 points."
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#questions",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#questions",
+    "title": "Assignment 01",
+    "section": "Questions",
+    "text": "Questions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this dummy variable use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) Both the BIB and CSL files should be included in your project’s assets directory. (2pts.)"
+  },
+  {
+    "objectID": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
+    "href": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
+    "title": "Assignment 01",
+    "section": "What to Submit",
+    "text": "What to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
   },
   {
     "objectID": "assignments/assignment-02-polynomial-effects.html",
@@ -542,27 +129,6 @@
     "objectID": "assignments/assignment-03-evidence-and-model-selection.html#what-to-submit",
     "href": "assignments/assignment-03-evidence-and-model-selection.html#what-to-submit",
     "title": "Assignment 03",
-    "section": "What to Submit",
-    "text": "What to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
-  },
-  {
-    "objectID": "assignments/assignment-01-introduction-to-quarto.html#instructions",
-    "href": "assignments/assignment-01-introduction-to-quarto.html#instructions",
-    "title": "Assignment 01",
-    "section": "Instructions",
-    "text": "Instructions\nCreate a QMD document to respond to each of the questions below. Please adhere to the following guidelines for further formatting your assignment:\n\nAll graphics should be resized so that they do not take up more room than necessary and should have an appropriate caption. Learn how to do this in a code chunk using knitr syntax.\nAny typed mathematics (equations, matrices, vectors, etc.) should be appropriately typeset within the document using Markdown’s equation typesetting. See here for some examples of how mathematics can be typeset in R Markdown.\nAll syntax should be hidden (i.e., not displayed) unless specifically asked for.\nAny messages or warnings produced (e.g., from loading packages) should also be hidden.\n\nFor each question, specify the question number (e.g., Question 2) using a level-2 (or smaller) header. This assignment is worth 15 points."
-  },
-  {
-    "objectID": "assignments/assignment-01-introduction-to-quarto.html#questions",
-    "href": "assignments/assignment-01-introduction-to-quarto.html#questions",
-    "title": "Assignment 01",
-    "section": "Questions",
-    "text": "Questions\n\nImport the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.\nCreate a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.\nRecode the gni_class variable by creating a dummy variable called high_gni. To create this dummy variable use the syntax below. Explain in words (not code) how the high_gni dummy variable is being coded.\n\n\nfertility = fertility |>\n  mutate(\n    high_gni = if_else(gni_class == \"Upper/Middle\" | gni_class == \"Upper\", 1, 0)\n  )\n\n\nUse the lm() function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the tidy() function from the broom package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)\nUse a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.\nCreate a well-formatted table of the model’s coefficient tidy() output (e.g., using the gt() function from the {gt} package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the p-values, which should be rounded to three decimal places. Also add a caption. (2pts.)\nCreate a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the x-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the fig-cap option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using fig-width and fig-height in the code chunk so that it looks good. Lastly, change the values of the output width/height (out-width, out-height) to change the size of the plot from the default values. (2pts.)\nUse a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from lm(). Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. (2pts.)\nWrite the following sentence: “The estimated partial regression coefficient (\\(\\hat\\beta_\\mathrm{Female~Education}\\)) is \\(x\\).” In this sentence, use an inline code chunk to replace \\(x\\) with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the tidy() output. (Hint: Google “R extract element from dataframe”.) (2pts.)\nCompute the sum of squared residuals for the fitted regression. Although you can use the anova() function to check your work, compute this value by actually using R syntax to carry out the computation, \\(\\sum(y_i - \\hat{y}_i)^2\\). Show the syntax you used in your document.\nWrite a sentence that includes two references in an inline citation. This should also generate the actual references when you knit your document. One of the two references should be the Fox textbook. The other should be a journal article of your choice. You can choose the topic of the sentence and how the two references are used in the citation. (Note the references do not actually have to pertain to what is written in the sentence. This is just an exercise in using the bibliography tools in Markdown.) Specify an appropriate CSL file so that the references and citations are in APA format. (If you want to use a citation style that is different from APA, say for a specific journal, use the appropriate CSL file, and indicate that on the assignment.) Both the BIB and CSL files should be included in your project’s assets directory. (2pts.)"
-  },
-  {
-    "objectID": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
-    "href": "assignments/assignment-01-introduction-to-quarto.html#what-to-submit",
-    "title": "Assignment 01",
     "section": "What to Submit",
     "text": "What to Submit\nYou need to submit a zipped version of your entire assignment-01 project directory. When the TA unzips this and opens your R project file they will render your QMD document. This should produce the HTML file that will be graded. (You can include your HTML file as an extra attachment if you want, but the QMD document will need to render. If it doesn’t render the TA will return it to you to try again.)"
   },
@@ -749,32 +315,88 @@
     "text": "Most Empirically Supported Model\nBased on the AICc values use the model with the most empirical evidence to answer the remaining questions.\n\nWrite the multilevel equations for the statistical model (not the fitted equations) for the model with the most empirical evidence. Don’t forget to include the assumptions!\nWrite the team-specific fitted equation for the Minnesota Wild based on the model that has the most empirical evidence.\nUse the results from the fitted model with the most empirical evidence to create a plot that displays the predicted average cost of attending an NHL game as a function of time for teams that have a tradition of high school and those that do not.\nAdd a line to the plot you created in Question #7 (don’t re-create the plot) showing the predicted cost of attending a Minnesota Wild game.\nWrite a caption for your plot (3–4 sentences) that help a reader understand the effect of time and high school hockey tradition on cost of attending an NHL game and also how the cost of attending a Wild game compares to the average team over time. (2pts)"
   },
   {
-    "objectID": "readings/03-introduction-to-quarto.html",
-    "href": "readings/03-introduction-to-quarto.html",
-    "title": "Introduction to Quarto",
+    "objectID": "codebooks/woods.html",
+    "href": "codebooks/woods.html",
+    "title": "woods.csv",
     "section": "",
-    "text": "Head over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
+    "text": "The data in woods.csv were collected from several sources to assesses the effect of political corruption on state environmental policy (Woods, 2008)."
   },
   {
-    "objectID": "readings/03-introduction-to-quarto.html#displaying-data",
-    "href": "readings/03-introduction-to-quarto.html#displaying-data",
-    "title": "📖 Introduction to Quarto",
-    "section": "Displaying Data",
-    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+    "objectID": "codebooks/woods.html#attributes",
+    "href": "codebooks/woods.html#attributes",
+    "title": "woods.csv",
+    "section": "Attributes",
+    "text": "Attributes\n\nstate: Two-letter state postal code\nenv_prog_str: Environmental program strength is measured via Hall and Kerr’s (1991) Green Policy Index, a composite score that represents 67 state policy initiatives in a variety of environmental arenas, including air, water, and hazardous waste. The index includes indicators such as the sanctions available to the appropriate agencies in each state, the size of the state’s pollution monitoring program, and the size of the state’s program budget, as well as a variety of specific policy indicators.\ncorrupt: Aggregate number of convictions (per 100 officials) during the Reagan Administration (between 1981 and 1987). Aggregating across several years helps eliminate spikes that occur because a single investigation may result in multiple convictions. The average state had 1.42 convictions per 100 officials over that period.\nwealth: Gross state product per capita, in thousands of dollars. This is an indicator of a state’s financial resources.\ntoxic_waste: Natural logarithm of the total tons of toxic waste emitted in air, water based on the U.S. EPA’s Toxic Release Inventory. Higher values indicate a more severe problem.\ndem_party_control: Represents the average amount of Democratic Party control of state political institutions in the 1980s measured as a proportion.\ninterparty_comp: Holbrook and Van Dunk’s (1993) district-level measure is included as an indicator of interparty competition.\npublic_env: Indication of public attitudes toward environmental protection in the state. It is calculated from the 1988–1992 NES Senate Election Study, which asked the following question: “Should federal spending on the environment be increased, decreased, or stay the same?” Individual responses are coded 1 (decrease), 2 (same), and 3 (increase) and then averaged.\nmanuf_groups: The number of manufacturing groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies.\nenv_groups: The number of environmental groups registered to lobby in the state in 1990 standardized by gross state product to account for the fact that the density of organized interests is greater in states with larger economies."
   },
   {
-    "objectID": "readings/02-project-management.html",
-    "href": "readings/02-project-management.html",
-    "title": "📖 Project Management",
+    "objectID": "codebooks/woods.html#preview",
+    "href": "codebooks/woods.html#preview",
+    "title": "woods.csv",
+    "section": "Preview",
+    "text": "Preview\n\n# Import data\nwoods = readr::read_csv(file = \"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv\")\n\n# View data\nwoods |>\n    print(width = Inf)\n\n# A tibble: 50 × 10\n   state env_prog_str corrupt wealth toxic_waste dem_party_control\n   <chr>        <dbl>   <dbl>  <dbl>       <dbl>             <dbl>\n 1 AK               8   0.586   44.3        1.31             0.625\n 2 AL               6   0.630   18.9        4.70             0.800\n 3 AR               5   0.132   18.4        3.71             0.900\n 4 AZ              13   0.318   19.3        4.19             0.300\n 5 CA              34   0.498   25.5        4.69             0.600\n 6 CO              17   0.212   23.8        2.75             0.5  \n 7 CT              29   0.213   30.2        3.63             0.900\n 8 DE              15   0.301   34.3        2.15             0.300\n 9 FL              24   0.604   19.9        4.12             0.800\n10 GA              12   0.546   22.7        4.46             1    \n   interparty_comp public_env manuf_groups env_groups\n             <dbl>      <dbl>        <dbl>      <dbl>\n 1           53.5        2.42     0.000654  0.000346 \n 2           27.3        2.37     0.000538  0.000064 \n 3            9.26       2.42     0.000636  0.0000455\n 4           33.9        2.52     0.000783  0.000148 \n 5           47.3        2.7      0.000259  0.000014 \n 6           40.2        2.5      0.000521  0.000242 \n 7           52.8        2.59     0.000586  0.000192 \n 8           39.7        2.60     0.00105   0.000127 \n 9           31.1        2.61     0.000875  0.000246 \n10           16.2        2.49     0.000651  0.000143 \n# … with 40 more rows"
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
     "section": "",
-    "text": "Before next class, look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
+    "text": "Name\n\n\nData\n\n\nCodebook\n\n\n\n\n\n\nevaluations.csv\n\n\n  \n\n\n  \n\n\n\n\n\nfertility.csv\n\n\n  \n\n\n  \n\n\n\n\ngraduation.csv\n\n\n  \n\n\n  \n\n\n\n\nhox-gpa.csv\n\n\n  \n\n\n  \n\n\n\n\nmammal.csv\n\n\n\n\n\n\n\n\n\n\nminneapolis.csv\n\n\n\n\n\n\n\n\n\n\nmlb-2019.csv\n\n\n\n\n\n\n\n\n\n\nmn-schools.csv\n\n\n  \n\n\n  \n\n\n\n\nmovies.csv\n\n\n  \n\n\n  \n\n\n\n\nnba-player-data.csv\n\n\n  \n\n\n  \n\n\n\n\nnba-team-data.csv\n\n\n  \n\n\n  \n\n\n\n\nnels.csv\n\n\n  \n\n\n  \n\n\n\n\nnetherlands-schools.csv\n\n\n  \n\n\n  \n\n\n\n\nnetherlands-students.csv\n\n\n  \n\n\n  \n\n\n\n\nnhl.csv\n\n\n  \n\n\n  \n\n\n\n\npopular-classroom.csv\n\n\n  \n\n\n  \n\n\n\n\npopular-student.csv\n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nriverview.csv\n\n\n  \n\n\n  \n\n\n\n\nsame-sex-marriage.csv\n\n\n  \n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nusnews.csv\n\n\n  \n\n\n  \n\n\n\n\nvocabulary.csv\n\n\n  \n\n\n  \n\n\n\n\nwine.csv\n\n\n  \n\n\n  \n\n\n\n\nwoods.csv"
   },
   {
-    "objectID": "readings/02-project-management.html#displaying-data",
-    "href": "readings/02-project-management.html#displaying-data",
-    "title": "📖 Project Management",
-    "section": "Displaying Data",
-    "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EPsy 8252",
+    "section": "",
+    "text": "In this class, we will work together to develop a learning community that is inclusive and respectful, and where every student is supported in the learning process. As a class full of diverse individuals (reflected by differences in race, culture, age, religion, gender identity, sexual orientation, socioeconomic background, abilities, professional goals, and other social identities and life experiences) I expect that different students may need different things to support and promote their learning. The TAs and I will do everything we can to help with this, but as we only know what we know, we need you to communicate with us if things are not working for you or you need something we are not providing. I hope you all feel comfortable in helping to promote an inclusive classroom through respecting one another’s individual differences, speaking up, and challenging oppressive/problematic ideas. Finally, I look forward to learning from each of you and the experiences you bring to the class.\n\n\n\n\n\n\nTuesday/Thursday (11:15am–12:30pm): Appleby Hall 302\nMonday/Wednesday (2:30pm–3:45pm): Peik Hall 225\n\n\n\n\n\n\nThe course syllabus is available here.\nMessage from Snoop Dogg about the syllabus\n\n\n\n\n\nThe course textbooks are available via the University of Minnesota library.\n\nRequired: Fox, J. (2013). A mathematical primer for social statistics. Sage.\nOptional: Anderson, D. R. (2008). Model based inference in the life sciences: A primer on evidence. Springer.\n\n\n\n\n\n\nStatistical Modeling and Computation for Educational Scientists\n\nLearn about simple and multiple regression\nLearn about Ordinary Least squares (OLS)\nLearn about correlation/standardized regression\nLearn about regrression assumptions\nLearn about dummy coding for dichotomous/polychotomous predictors\nLearn about interaction effects\n\nComputational Toolkit for Educational Scientists\n\nLearn basics of R\nLearn {dplyr} for wrangling data\nLearn {ggplot2} for visualizing data"
+  },
+  {
+    "objectID": "notes/02-project-organization.html",
+    "href": "notes/02-project-organization.html",
+    "title": "Project Organization",
+    "section": "",
+    "text": "In this set of notes, you will learn some basic tips and tricks for organizing directories and files for project management. At the end of it, you will have an organized project directory to begin work on Assignment 1."
+  },
+  {
+    "objectID": "notes/02-project-organization.html#naming-conventions",
+    "href": "notes/02-project-organization.html#naming-conventions",
+    "title": "Project Organization",
+    "section": "Naming Conventions",
+    "text": "Naming Conventions\nThe naming conventions for the directories and files in our project are as follows:\n\nFile names should be short but descriptive (less than 25 characters)\nAll lowercase letters\nAvoid special characters and spaces in a file name\n\nUse hyphens instead of spaces to separate words (e.g., assignment-01)\n\nAny names that include the date will use the ISO 8601 date format (YYYYMMDD)\nAny names that include a number will include at least two digits (e.g., assignment-01 rather than assignment-1)\n\nAgain, while there is no one best naming convention, it is important that you have one, and that you are consistent throughout the project. That being said, as you develop naming conventions for your projects, all the conventions should be documented! This documentation helps onboard collaborators to your project.\n\nThere are several guides available to help you establish naming conventions including here and here."
+  },
+  {
+    "objectID": "notes/02-project-organization.html#adding-content-to-readme",
+    "href": "notes/02-project-organization.html#adding-content-to-readme",
+    "title": "Project Organization",
+    "section": "Adding Content to README",
+    "text": "Adding Content to README\nSince README files are plain text files, they cannot include formatting like bold or italic. However, they do typically include Markdown syntax (which is itself plain text). The plain text nature of these files keeps them small in size and accessible to anyone with any type of computer.\n\nThere are several online guides for what to include in a README file, including here and here. There is also a pretty good template for a README for data science oriented projects here.\n\nSince the README file is informational, you can include any type of information in this file that is useful to the project. For example, you could add your naming conventions to this file.\n# assignment-01\n\nThis directory contains all of the files necessary to complete Assignment 1.\n\n\n# Naming Conventions\n\n- File names should be short but descriptive (less than 25 characters)\n- All lowercase letters\n- Avoid special characters and spaces in a file name\n  + Use hyphens instead of spaces to separate words (e.g., `assignment-01`)\n- Any names that include the date will use the ISO 8601 date format (YYYYMMDD)\n- Any names that include a number will include at least two digits (e.g., `assignment-01` rather than `assignment-1`)\n\nWhile you should only have one README file per directory, you can have different README files in other directories. For example, you could create a README file in the data directory that includes the codebook information for your data files."
+  },
+  {
+    "objectID": "notes/03-creating-tables.html#column-labels",
+    "href": "notes/03-creating-tables.html#column-labels",
+    "title": "Creating Tables using the {gt} Package",
+    "section": "Column Labels",
+    "text": "Column Labels\nColumn labels can be changed from the names of the columns used in the data frame. To change them we will use the cols_label() function. This function takes as many arguments as there are columns, each mapping a label to the original column name. Below, we change our column names to match those in Table 1.\n\n# Change Column labels\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = \"Variable\",\n    m = \"M\",\n    sd = \"SD\",\n    min = \"Min.\",\n    max = \"Max.\"\n  )\n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nWe can also use the md() function to include Markdown syntax to further format our labels. For example, to make the column labels italics we use the following.\n\n# Change Column labels to italics\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) \n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nThe names we just gave to the variables are only labels. As we refer to the columns in additional functions, we need to use their original names from the data frame."
+  },
+  {
+    "objectID": "notes/03-creating-tables.html#column-alignment",
+    "href": "notes/03-creating-tables.html#column-alignment",
+    "title": "Creating Tables using the {gt} Package",
+    "section": "Column Alignment",
+    "text": "Column Alignment\nTo change the column alignment, we use the cols_align() function. We provide this with two arguments. The columns= argument takes a vector of column names using the c() function, and the align= argument takes a character string of \"left\", \"right\", or \"center\". Following typical formatting rules, we left align text columns and center numerical columns.\n\n# Change Column labels to italics\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  )\n\n\n\n\n\n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70"
+  },
+  {
+    "objectID": "notes/03-creating-tables.html#adding-a-title-and-subtitle",
+    "href": "notes/03-creating-tables.html#adding-a-title-and-subtitle",
+    "title": "Creating Tables using the {gt} Package",
+    "section": "Adding a Title and Subtitle",
+    "text": "Adding a Title and Subtitle\nThe tab_header() function can be used to add a title or subtitle to your table. Here we again use the md() function to allow us to use Markdown syntax directly in the title. I also use the opt_align_table_header() function to left align the title and subtitle per APA.\n\n# Add title and subtitle\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  ) |>\n    tab_header(\n    title = md(\"**Table 1.** Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\"),\n  ) |>\n  opt_align_table_header(\"left\")\n\n\n\n\n\n  \n    \n      Table 1. Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\n    \n    \n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70\n  \n  \n  \n\n\n\n\nSince the title and subtitle appear on separate lines, you can take advantage of that to use the title to provide the table number and the subtitle provides the table caption if you are trying to format in APA style."
+  },
+  {
+    "objectID": "notes/03-creating-tables.html#fine-tuning-the-table",
+    "href": "notes/03-creating-tables.html#fine-tuning-the-table",
+    "title": "Creating Tables using the {gt} Package",
+    "section": "Fine-Tuning the Table",
+    "text": "Fine-Tuning the Table\nThe table is very close to matching the original Table 1. But, there are still a couple of things (if you are an Enneagram One) that we need to attend to. For example, we could remove the horizontal lines in the table. These lines are called “borders” and we can modify them in the tab_style() function. This is a general function that allows us to customize many parts of the table (akin to theme() in ggplot()).\nTo do this we use the style= argument and call the cell_borders() function within tab_style(). Here we remove all borders (top, bottom, left, and right) by using sides=\"all\" and setting style=NULL. The tab_style() function also requires the argument locations=. We give this argument the function cell_body() which we provide the column and row numbers that we want to remove the borders from. Since we want to keep the horizontal border associated with the first and last rows, we omit those row numbers from the rows= argument.\n\n# Add title and subtitle\ntab_01 |>\n  gt() |>\n  cols_label(\n    variable = md(\"*Variable*\"),\n    m = md(\"*M*\"),\n    sd = md(\"*SD*\"),\n    min = md(\"*Min.*\"),\n    max = md(\"*Max.*\")\n  ) |>\n  cols_align(\n    columns = c(variable),\n    align = \"left\"\n  ) |>\n  cols_align(\n    columns = c(m, sd, min, max),\n    align = \"center\"\n  ) |>\n    tab_header(\n    title = md(\"**Table 1.** Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\"),\n  ) |>\n  opt_align_table_header(\"left\")  |>\n  tab_style(\n    style = cell_borders(\n      sides = \"all\", \n      style = NULL\n      ),\n    locations = cells_body(\n      columns = 1:5,\n      rows = 2:6\n    )\n  )\n\n\n\n\n\n  \n    \n      Table 1. Summary statistics for the unstandardized outcome, focal predictor, and five covariates.\n    \n    \n  \n  \n    \n      Variable\n      M\n      SD\n      Min.\n      Max.\n    \n  \n  \n    Environmental policy strength\n17.60\n8.23\n4.00\n37.00\n    Corruption\n0.32\n0.22\n0.00\n0.98\n    Wealth\n28.15\n36.38\n12.78\n278.01\n    Toxic waste severity\n3.53\n1.14\n0.00\n5.76\n    Democratic control\n0.63\n0.26\n0.00\n1.00\n    Interparty competition\n39.03\n11.40\n9.26\n56.58\n    Public environmentalism\n2.49\n0.10\n2.31\n2.70"
   },
   {
     "objectID": "notes/03-introduction-to-quarto.html",
@@ -791,39 +413,88 @@
     "text": "Displaying Data\n\nIn the same R chunk display the data by typing the data object name after you import the data.\n\n\nRendering the document should display the entire data set in your outputted HTML file! In general, we do not want to take the space (especially when data sets are large) to do this. One option is to change the way that data frames/tibbles are printed in the Quarto document. To do this we need to update our YAML.\n\nUpdate the YAML of your QMD to the following:\n---\ntitle: \"Assignment 1\"\nsubtitle: \"Introduction to Quarto\"\nauthor: \"Your Group's Names\"\ndate: \"January XX, 2023\"\nformat:\n  html:\n    df-print: paged\neditor: visual\n---\nRe-render the document.\n\n\nThis sets the printing option for data frames into an HTML table that has clickable paging when the data are large. The Quarto documentation Data Frames, includes other options for printing data frames.\n\nPay attention to the spacing in the YAML!!!!"
   },
   {
-    "objectID": "readings/02-introduction-to-quarto.html#install-quarto",
-    "href": "readings/02-introduction-to-quarto.html#install-quarto",
-    "title": "Introduction to Quarto",
-    "section": "Install Quarto",
-    "text": "Install Quarto\n\nHead over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "",
+    "text": "This document contains a few more tips, tricks, and helpful instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester."
   },
   {
-    "objectID": "readings/02-introduction-to-quarto.html#help-and-tutorials",
-    "href": "readings/02-introduction-to-quarto.html#help-and-tutorials",
-    "title": "Introduction to Quarto",
-    "section": "Help and Tutorials",
-    "text": "Help and Tutorials\nThere are several guides and tutorials available on the Quarto website. These include:\n\nCreating basic content (e.g., figures, tables, diagrams, footnotes, citations)\nIncluding computation/syntax\nGenerating output in different formats (e.g., HTML, PDF, MS Word)\nCreating slides and presentations (These notes are a Quarto presentation!)\nBuilding websites\nBuilding books\nCreating interactive dashboards"
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#spacing-out-the-lines",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Spacing Out the Lines",
+    "text": "Spacing Out the Lines\nYou can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{split}\n\\hat{y}_i &= 3 + 4(1) \\\\[1em]\n&= 7\n\\end{split}\n\\]\nHere we have added line space of 1 em. An em is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the en (the width of the letter “n”), and the ex (the width of the letter “x”)."
   },
   {
-    "objectID": "readings/02-introduction-to-quarto.html#create-your-first-quarto-document",
-    "href": "readings/02-introduction-to-quarto.html#create-your-first-quarto-document",
-    "title": "Introduction to Quarto",
-    "section": "Create Your First Quarto Document",
-    "text": "Create Your First Quarto Document\nClick the Tutorial: Hello Quarto link on the left-side of the “Getting Started” page. Make sure that the RStudio tool is selected at the top of the tutorial.\n\nWork through this tutorial with a neighbor. This will introduce you to some of the basic concepts of creating and rendering a Quarto document."
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#bibtex-files",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#bibtex-files",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "BibTex Files",
+    "text": "BibTex Files\nBibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by Carmichael (1954) and Ross, Winterhalder, & McElreath (2020).\n@article{carmichael_1954,\n    title = {Laziness and the Scholarly Life},\n    volume = {78},\n    number = {4},\n    journal = {The Scientific Monthly},\n    author = {Carmichael, Leonard},\n    year = {1954},\n    pages = {208--213}\n}\n\n@article{ross_2020,\n    title = {Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates},\n    issn = {1948-5506, 1948-5514},\n    url = {http://journals.sagepub.com/doi/10.1177/1948550620916071},\n    doi = {10.1177/1948550620916071},\n    language = {en},\n    urldate = {2020-06-24},\n    journal = {Social Psychological and Personality Science},\n    author = {Ross, Cody T. and Winterhalder, Bruce and McElreath, Richard},\n    month = jun,\n    year = {2020},\n    pages = {194855062091607}\n}\nThe citation identifiers in this example are carmichael_1954 and ross_2020. These identifiers are the first bit of text after the initial curly brace in the reference. This is how we will refer to the citations in our QMD document. (Typically these are auto-generated from our reference manager.) To determine the citiation identifiers, you can open your BibTeX file in RStudio. (Do this by using Open File... within RStudio; double-clicking on the BibTeX file will likely open it in a different application.)"
   },
   {
-    "objectID": "readings/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "href": "readings/02-introduction-to-quarto.html#learning-how-to-integrate-r-code",
-    "title": "Introduction to Quarto",
-    "section": "Learning How to Integrate R Code",
-    "text": "Learning How to Integrate R Code\nWork through the Tutorial: Computations with your neighbor. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#creating-.bib-files-using-zotero",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Creating .bib Files Using Zotero",
+    "text": "Creating .bib Files Using Zotero\nMost reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.\n\nCreate a New Collection.\nDrag the references you want in your BibTeX database into this collection.\nRight-click the collection and select Export Collection.\nIn the pop-up window, change the format of the exported collection to BibTex.\nClick OK.\n\nName the BibTex file (here I named it my_bibliography.bib) and save it in the Assets folder.\n\n\n\n\n\n\n\n\n\nWhen you call the BibTex file in the bibliography: key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document assignment-01.qmd that has the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\""
   },
   {
-    "objectID": "readings/02-introduction-to-quarto.html#install-a-citation-manager",
-    "href": "readings/02-introduction-to-quarto.html#install-a-citation-manager",
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#including-citations-in-your-quarto-document",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Including Citations in Your Quarto Document",
+    "text": "Including Citations in Your Quarto Document\nCitations go inside square brackets and are separated by semicolons. Each citation must have a key, composed of @citation_identifier from the database (no spaces between them). For example to cite the Carmichael article:\nHere is some text and a citation [@carmichael_1954].\nThis will create a citation where you included it in the text and also add the reference at the end of the document. If you want a section header for your references, include a level-1 heading called “References” at the end of your document.\nThe rendered document now includes a citation where you added this is the QMD document. The associated reference is also included at the end of the document.\n\n\n\n\n\n\n\n\n\nCitations may also include. additional text before and after the citation. In this example we have prefixed the citation with the word “see” and added a page number after the citation. The citation identifier and the text following the citation identifier are separated by a comma.\nHere is some text and a citation [see @carmichael_1954, p. 208].\nThe output of this is:\n\nHere is some text and a citation (see Carmichael, 1954, p. 208).\n\nYou can also include multiple citations. To do this we include the different citation identifiers separated by a semicolon.\nHere are multiple citations [@ross_2020; @carmichael_1954].\nThe output of this is:\n\nHere are multiple citations (Carmichael, 1954; Ross et al., 2020).\n\nWe can also change the format of the citation. For example, here we use a format common to starting a sentence with a citation. To do that we omit the square brackets.\n@carmichael_1954 suggests something is true.\nThe output of this is:\n\nCarmichael (1954) suggests something is true.\n\n\nYou can learn more on the Citations and Footnotes Help Page in the Quarto documentation."
+  },
+  {
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#use-apa-formatted-citations-and-references",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Use APA Formatted Citations and References",
+    "text": "Use APA Formatted Citations and References\nBy default, citations and references are formatted using the Chicago style. To use another style, you will need to:\n\nDownload the appropriate citation style language (CSL) file. (Find many at https://zotero.org/styles)\nPlace the CSL file in the assets folder of your project’s directory.\nSpecify the name of the CSL style file in the csl: key in the QMD file’s YAML.\n\nFor example, say you have downloaded and saved the apa-single-spaced.csl file as shown in the following directory/folder structure:\n\n\n\n\n\n\n\n\n\nYou would include the following in your YAML.\ntitle: \"Assignment 1\"\nformat: html\nbibiography: \"assets/my-bibliography.bib\"\ncsl: \"assets/apa-single-spaced.csl\"\nUse of the APA CSL file not only formats the references according to APA format, but it also fixed the order of the citations in the text itself! (Even though we included the Ross citation identifier prior to the Carmichael citation identifier in the multiple references example, the APA CSL file put them in the text alphabetically!)"
+  },
+  {
+    "objectID": "notes/03-quarto-tips-tricks-and-faq.html#citation-extras",
+    "href": "notes/03-quarto-tips-tricks-and-faq.html#citation-extras",
+    "title": "Quarto Tips, Tricks, and FAQ",
+    "section": "Citation Extras",
+    "text": "Citation Extras\nOne R package that is extremely useful, especially if you are using the visual editor in RStudio for writing QMD documents, is {citr}. This package provides functionality and an RStudio Add-In to search a BibTeX-file to create and insert formatted Markdown citations into a QMD document.\n\n\n\n\n\n\n\n\n\nThe {citr} package is only available via GitHub, so you will need to install it using{remotes}or{devtools}. (See the Computational Toolkit book for a reminder on how to do this.) The directions for installing{citr}` are also on the citr webpage along with instructions for using the package."
+  },
+  {
+    "objectID": "readings/01-welcome-to-8252.html",
+    "href": "readings/01-welcome-to-8252.html",
+    "title": "📖 Welcome to EPsy 8264",
+    "section": "",
+    "text": "Here are some things to do before the first class:\n\nDownload and read through the course syllabus\nFamiliarize yourself with the course website\nUpdate R to the most recent version (v. 4.2.2; Innocent and Trusting)\nUpdate RStudio Desktop to the most recent version (v. 2022.12.0+353)\nUpdate all of your R packages (In the Packages tab in RStudio click Update)\n\nWe will also start Day 1 with a short review of the regression content from EPsy 8251.\n\nRemind yourself of the EPsy 8251 content\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists"
+  },
+  {
+    "objectID": "readings/02-project-organization.html",
+    "href": "readings/02-project-organization.html",
+    "title": "📖 Project Management",
+    "section": "",
+    "text": "Before next class, look at your computer files and your organization of those files. Here are some things to reflect on:\n\nAre your files organized into folders/directories? Or are they all in your Downloads folder?\n\nHow did you organize all the data files, notes, etc. from EPsy 8251?\n\nIf I asked you to find a specific file, could you locate it without using “Search”?\nCan you tell what is in a particular file by just looking at its name?\nDo your file names contain spaces? What about characters that aren’t letters, numbers, dashes, or underscores?\nAre your file names consistent (all lower case letters, or all title case)? Or are they all different?"
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto-day-02.html",
+    "href": "readings/03-introduction-to-quarto-day-02.html",
+    "title": "Introduction to Quarto (Day 2)",
+    "section": "",
+    "text": "For the next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
+    "href": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
+    "title": "Introduction to Quarto (Day 2)",
+    "section": "Download and Import Two Papers",
+    "text": "Download and Import Two Papers\nDownload the following two papers from the UMN library:\n\nCarmichael, L. (1954). Laziness and the scholarly life. The Scientific Monthly, 78(4), 208–213.\nRoss, C. T., Winterhalder, B., & McElreath, R. (2020). Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates. Social Psychological and Personality Science, 194855062091607. https://doi.org/10.1177/1948550620916071\n\nImport both of these into Zotero by dragging the PDFs into Zotero. After they are imported, check that all the metadata is correct. (Page numbers often need to be updated in Zotero.)"
+  },
+  {
+    "objectID": "readings/03-introduction-to-quarto.html",
+    "href": "readings/03-introduction-to-quarto.html",
     "title": "Introduction to Quarto",
-    "section": "Install a Citation Manager",
-    "text": "Install a Citation Manager\nFor next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
+    "section": "",
+    "text": "Head over to https://quarto.org/ and click on the big, blue “Get Started” button. Then follow the instructions to install Quarto.\nOpen RStudio. (Note if RStudio was open when you installed Quarto, quit and re-open it.)\n\nAt this point in RStudio, if you go to File > New File... you should see options to choose Quarto Document and Quarto Presentation."
   },
   {
     "objectID": "readings/03-introduction-to-quarto.html#help-and-tutorials",
@@ -847,17 +518,17 @@
     "text": "Learning How to Integrate R Code\nAlso work through the Tutorial: Computations. Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial."
   },
   {
-    "objectID": "readings/03-introduction-to-quarto-day-02.html",
-    "href": "readings/03-introduction-to-quarto-day-02.html",
-    "title": "Introduction to Quarto (Day 2)",
-    "section": "",
-    "text": "For the next class you will need a citation manager. If you don’t have a citation manager, I strongly recommend Zotero.\n\nInstall Zotero.\n\nIf you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager."
+    "objectID": "readings/03-introduction-to-quarto.html#learn-more",
+    "href": "readings/03-introduction-to-quarto.html#learn-more",
+    "title": "Introduction to Quarto",
+    "section": "Learn More",
+    "text": "Learn More\nIf you are familiar with RMarkdown and want to learn how to switch over to Quarto, here is a nice 30 minute talk by Mine Çetinkaya-Rundel that helps you do that.\n\n2022 Toronto Workshop on Reproducibility - Mine Çetinkaya-Rundel (YouTube Video)"
   },
   {
-    "objectID": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
-    "href": "readings/03-introduction-to-quarto-day-02.html#download-and-import-two-papers",
-    "title": "Introduction to Quarto (Day 2)",
-    "section": "Download and Import Two Papers",
-    "text": "Download and Import Two Papers\nDownload the following two papers from the UMN library:\n\nCarmichael, L. (1954). Laziness and the scholarly life. The Scientific Monthly, 78(4), 208–213.\nRoss, C. T., Winterhalder, B., & McElreath, R. (2020). Racial disparities in police use of deadly force against unarmed individuals persist after appropriately benchmarking shooting data on violent crime rates. Social Psychological and Personality Science, 194855062091607. https://doi.org/10.1177/1948550620916071\n\nImport both of these into Zotero by dragging the PDFs into Zotero. After they are imported, check that all the metadata is correct. (Page numbers often need to be updated in Zotero.)"
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Calendar",
+    "section": "",
+    "text": "The calendar below lists the tentative course topics. The dates listed are subject to change at the instructor’s discretion.\n\n\n\n\n\n\n\n\n\nT/R\n\n\nM/W\n\n\nPrep\n\n\nTopic\n\n\nNotes\n\n\nQMD\n\n\nScript\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 17\n\n\nJan. 18\n\n\n\n\n\nWelcome to Epsy 8252/Regression Review\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 19\n\n\nJan. 23\n\n\n\n\n\n\n\nUnit 01: Introduction to Quarto\n\n\n\n\n \n\n\nJan. 24\n\n\nJan. 25\n\n\n\n\n\nProject Organization\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 26\n\n\nJan. 30\n\n\n\n\n\nIntroduction to Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\nJan. 31\n\n\nFeb. 01\n\n\n\n\n \n\n\n\n\n\n\n\n\n\nCreating Tables with {gt}\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\nQuarto Tips, Tricks, and FAQs"
   }
 ]

@@ -32,14 +32,13 @@ website:
       collapse-level: 1
       contents: 
         - assignments.qmd
-        - assignments/assignment-01.qmd
-        - assignments/assignment-02.qmd
-        - assignments/assignment-03.qmd
-        - assignments/assignment-04.qmd
-        - assignments/assignment-05.qmd
-        - assignments/assignment-06.qmd
-        - assignments/assignment-07.qmd
-        - assignments/assignment-08.qmd
+        - assignments/assignment-01-introduction-to-quarto.qmd
+        - assignments/assignment-02-polynomial-effects.qmd
+        - assignments/assignment-03-evidence-and-model-selection.qmd
+        - assignments/assignment-04-logarithmic-transformations.qmd
+        - assignments/assignment-05-logistic-regression.qmd
+        - assignments/assignment-06-lmer-unconditional-longitudinal-models.qmd
+        - assignments/assignment-07-longitudinal-analysis-ii.qmd
 
 format:
   html:

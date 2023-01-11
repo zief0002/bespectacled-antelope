@@ -56,15 +56,14 @@ Work through this tutorial. This will introduce you to some of the basic concept
 Also work through the [Tutorial: Computations](https://quarto.org/docs/get-started/computations/rstudio.html). Again, before starting, ensure that the RStudio tool is selected at the top of the tutorial.
 
 
-<!-- ## Install a Citation Manager -->
-
-<!-- For next class you will need a citation manager. If you don't have a citation manager, I strongly recommend Zotero. -->
-
-<!-- -   Install [Zotero](https://www.zotero.org/). -->
-
-<!-- If you use a different citation manager, you will need to figure out how to export a .BIB file from your citation manager. -->
+<br />
 
 
+## Learn More
+
+If you are familiar with RMarkdown and want to learn how to switch over to Quarto, here is a nice 30 minute talk by Mine Çetinkaya-Rundel that helps you do that.
+
+- [2022 Toronto Workshop on Reproducibility - Mine Çetinkaya-Rundel (YouTube Video)](https://www.youtube.com/watch?v=6p4vOKS6Xls)
 
 
 
