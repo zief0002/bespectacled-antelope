@@ -23,7 +23,7 @@ title: "Data"
 <tr>
 <td>evaluations.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/evaluations.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/evaluations.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -38,7 +38,7 @@ title: "Data"
 <!-- <tr>
 <td>fci-2019.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/fci-2019.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fci-2019.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -53,7 +53,7 @@ title: "Data"
 <tr>
 <td>fertility.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/fertility.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fertility.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -67,7 +67,7 @@ title: "Data"
 <tr>
 <td>graduation.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/graduation.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -82,7 +82,7 @@ title: "Data"
 <tr>
 <td>hox-gpa.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/hox-gpa.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/hox-gpa.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -97,7 +97,7 @@ title: "Data"
 <tr>
 <td>mammal.csv</td>
 <td align="center" style="vertical-align:middle;">
-  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mammal.csv)
+  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammal.csv)
 </td>
 <td align="center" style="vertical-align:middle;">
   <!--[<span class="fas fa-book-open" style="font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/mlb-2019.html)-->
@@ -107,7 +107,7 @@ title: "Data"
 <tr>
 <td>minneapolis.csv</td>
 <td align="center" style="vertical-align:middle;">
-  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/minneapolis.csv)
+  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv)
 </td>
 <td align="center" style="vertical-align:middle;">
   [<span class="fas fa-book-open" style="font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/minneapolis.html)
@@ -117,7 +117,7 @@ title: "Data"
 <tr>
 <td>mlb-2019.csv</td>
 <td align="center" style="vertical-align:middle;">
-  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mlb-2019.csv)
+  [<span class="fas fa-file-csv" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mlb-2019.csv)
 </td>
 <td align="center" style="vertical-align:middle;">
   [<span class="fas fa-book-open" style="font-size: 20px;"></span>](http://zief0002.github.io/bespectacled-antelope/codebooks/mlb-2019.html)
@@ -127,7 +127,7 @@ title: "Data"
 <tr>
 <td>mn-schools.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/mn-schools.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -141,7 +141,7 @@ title: "Data"
 <tr>
 <td>movies.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/movies.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/movies.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -155,7 +155,7 @@ title: "Data"
 <tr>
 <td>nba-player-data.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nba-player-data.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nba-player-data.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -169,7 +169,7 @@ title: "Data"
 <tr>
 <td>nba-team-data.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nba-team-data.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nba-team-data.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -184,7 +184,7 @@ title: "Data"
 <tr>
 <td>nels.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nels.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nels.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -199,7 +199,7 @@ title: "Data"
 <tr>
 <td>netherlands-schools.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/netherlands-schools.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/netherlands-schools.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -213,7 +213,7 @@ title: "Data"
 <tr>
 <td>netherlands-students.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/netherlands-students.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/netherlands-students.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -227,7 +227,7 @@ title: "Data"
 <tr>
 <td>nhl.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/nhl.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -241,7 +241,7 @@ title: "Data"
 <tr>
 <td>popular-classroom.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/popular-classroom.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/popular-classroom.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -255,7 +255,7 @@ title: "Data"
 <tr>
 <td>popular-student.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/popular-student.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/popular-student.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -269,7 +269,7 @@ title: "Data"
 <!-- <tr> -->
 <!-- <td>risky-behavior.csv</td> -->
 <!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/risky-behavior.csv"> -->
+<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/risky-behavior.csv"> -->
 <!--     <span class="fas fa-file-csv" style="font-size: 20px;"></span> -->
 <!--   </a> -->
 <!-- </td> -->
@@ -282,7 +282,7 @@ title: "Data"
 <tr>
 <td>riverview.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/riverview.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/riverview.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -296,7 +296,7 @@ title: "Data"
 <tr>
 <td>same-sex-marriage.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/same-sex-marriage.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/same-sex-marriage.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -310,7 +310,7 @@ title: "Data"
 <!-- <tr> -->
 <!-- <td>stop-and-frisk.csv</td> -->
 <!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/stop-and-frisk.csv"> -->
+<!--   <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/stop-and-frisk.csv"> -->
 <!--     <span class="fas fa-file-csv" style="font-size: 20px;"></span> -->
 <!--   </a> -->
 <!-- </td> -->
@@ -323,7 +323,7 @@ title: "Data"
 <tr>
 <td>usnews.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/usnews.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/usnews.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -338,7 +338,7 @@ title: "Data"
 <tr>
 <td>vocabulary.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/vocabulary.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
@@ -352,7 +352,7 @@ title: "Data"
 <tr>
 <td>wine.csv</td>
 <td align="center" style="vertical-align:middle;">
-  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/data/wine.csv">
+  <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/wine.csv">
     <span class="fas fa-file-csv" style="font-size: 20px;"></span>
   </a>
 </td>
