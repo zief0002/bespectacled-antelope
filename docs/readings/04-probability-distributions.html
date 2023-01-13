@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-01-13">
+
+<title>EPsy 8252 - Introduction to Probability Distributions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable/js/pagedtable.js"></script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-01-introduction-to-quarto.html">
+ <span class="dropdown-text">Assignment 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-02-polynomial-effects.html">
+ <span class="dropdown-text">Assignment 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-03-evidence-and-model-selection.html">
+ <span class="dropdown-text">Assignment 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-04-logarithmic-transformations.html">
+ <span class="dropdown-text">Assignment 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-05-logistic-regression.html">
+ <span class="dropdown-text">Assignment 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-06-lmer-unconditional-longitudinal-models.html">
+ <span class="dropdown-text">Assignment 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-07-longitudinal-analysis-ii.html">
+ <span class="dropdown-text">Assignment 07</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#terminology-and-basic-ideas-of-probability-distributions" id="toc-terminology-and-basic-ideas-of-probability-distributions" class="nav-link active" data-scroll-target="#terminology-and-basic-ideas-of-probability-distributions">Terminology and Basic Ideas of Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#probability-density" id="toc-probability-density" class="nav-link" data-scroll-target="#probability-density">Probability Density</a></li>
+  </ul></li>
+  <li><a href="#pdf-for-a-normal-gaussian-distribution" id="toc-pdf-for-a-normal-gaussian-distribution" class="nav-link" data-scroll-target="#pdf-for-a-normal-gaussian-distribution">PDF for a Normal (Gaussian) Distribution</a>
+  <ul class="collapse">
+  <li><a href="#other-useful-r-functions-for-working-with-normal-probability-distributions" id="toc-other-useful-r-functions-for-working-with-normal-probability-distributions" class="nav-link" data-scroll-target="#other-useful-r-functions-for-working-with-normal-probability-distributions">Other Useful R Functions for Working with Normal Probability Distributions</a></li>
+  <li><a href="#pnorm-computing-cumulative-probability-density" id="toc-pnorm-computing-cumulative-probability-density" class="nav-link" data-scroll-target="#pnorm-computing-cumulative-probability-density">pnorm(): Computing Cumulative Probability Density</a>
+  <ul class="collapse">
+  <li><a href="#qnorm-computing-quantiles" id="toc-qnorm-computing-quantiles" class="nav-link" data-scroll-target="#qnorm-computing-quantiles">qnorm(): Computing Quantiles</a></li>
+  <li><a href="#rnorm-generating-random-observations" id="toc-rnorm-generating-random-observations" class="nav-link" data-scroll-target="#rnorm-generating-random-observations">rnorm(): Generating Random Observations</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#students-t-distribution" id="toc-students-t-distribution" class="nav-link" data-scroll-target="#students-t-distribution">Student’s <em>t</em>-Distribution</a></li>
+  <li><a href="#the-f-distribution" id="toc-the-f-distribution" class="nav-link" data-scroll-target="#the-f-distribution">The F-distribution</a></li>
+  <li><a href="#creating-a-pdf-and-adding-shading-in-a-ggplot" id="toc-creating-a-pdf-and-adding-shading-in-a-ggplot" class="nav-link" data-scroll-target="#creating-a-pdf-and-adding-shading-in-a-ggplot">Creating a PDF and Adding Shading in a ggplot</a></li>
+  <li><a href="#probability-distributions-in-regression" id="toc-probability-distributions-in-regression" class="nav-link" data-scroll-target="#probability-distributions-in-regression">Probability Distributions in Regression</a></li>
+  <li><a href="#model-level-inference-the-f-distribution" id="toc-model-level-inference-the-f-distribution" class="nav-link" data-scroll-target="#model-level-inference-the-f-distribution">Model-Level Inference: The <em>F</em>-Distribution</a>
+  <ul class="collapse">
+  <li><a href="#computing-f-from-the-anova-partitioning" id="toc-computing-f-from-the-anova-partitioning" class="nav-link" data-scroll-target="#computing-f-from-the-anova-partitioning">Computing F from the ANOVA Partitioning</a></li>
+  <li><a href="#testing-the-model-level-null-hypothesis" id="toc-testing-the-model-level-null-hypothesis" class="nav-link" data-scroll-target="#testing-the-model-level-null-hypothesis">Testing the Model-Level Null Hypothesis</a></li>
+  <li><a href="#mean-squares-are-variance-estimates" id="toc-mean-squares-are-variance-estimates" class="nav-link" data-scroll-target="#mean-squares-are-variance-estimates">Mean Squares are Variance Estimates</a></li>
+  </ul></li>
+  <li><a href="#coefficent-level-inference-the-t-distribution" id="toc-coefficent-level-inference-the-t-distribution" class="nav-link" data-scroll-target="#coefficent-level-inference-the-t-distribution">Coefficent-Level Inference: The <em>t</em>-Distribution</a>
+  <ul class="collapse">
+  <li><a href="#confidencecompatibility-intervals-for-the-coefficients" id="toc-confidencecompatibility-intervals-for-the-coefficients" class="nav-link" data-scroll-target="#confidencecompatibility-intervals-for-the-coefficients">Confidence/Compatibility Intervals for the Coefficients</a></li>
+  </ul></li>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Probability Distributions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 13, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>If you need to refresh your knowledge about probability distributions, I recommend reading <strong>Section 3.1.1:</strong> (<em>Probability Basics</em>) in <span class="citation" data-cites="Fox:2009">Fox (<a href="#ref-Fox:2009" role="doc-biblioref">2009</a>)</span>. You could also go through the <a href="https://www.khanacademy.org/math/probability/random-variables-topic">Kahn Academy: Random Variables and Probability Distributions</a> tutorial.</p>
+<p>Here is some ideas you will need to be familiar with from those readings/tutorials:</p>
+<ul>
+<li>Probability experiment</li>
+<li>Outcome</li>
+<li>Sample space</li>
+<li>Axioms/Rules of probability</li>
+</ul>
+<p>Below, I introduce some ideas about probability distributions (especially continuous probability distributions) that will be useful for understanding likelihood.</p>
+<p><br></p>
+<section id="terminology-and-basic-ideas-of-probability-distributions" class="level1">
+<h1>Terminology and Basic Ideas of Probability Distributions</h1>
+<p>A probability distribution is simply a mapping of every outcome in the sample space to a probability. (It is conventional to use <em>x</em> to denote the outcomes.) This mapping can take many forms such a list, a plot, or an equation. All are reasonable to define the probability distribution, although some of these are more typical for discrete variables (e.g., list, plot), while others are more typical for continuous distributions (e.g., plot, equation). Here are a couple different probability distributions:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-01" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/04-probability-distributions-example.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: An example of a discrete and continuous probability distribution.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In general, the probability of an outcome (<em>p(x)</em>) is defined as the number of times an outcome appears in the sample space divided by the total number of outcomes. So, for example, in the probability experiment of flipping a fair coin twice, the sample space is:</p>
+<p><span class="math display">\[
+S = \{HH,~HT,~TH,~TT\}
+\]</span></p>
+<p>The probability of a head and a tail (assuming order doesn’t matter) is:</p>
+<p><span class="math display">\[
+p(HT~\mathrm{or}~TH) = \frac{2}{4} = 0.5
+\]</span> This falls apart when we move to continuous distributions. For example, consider finding the probability of a zero occurring in the standard normal distribution given in <a href="#fig-01">Figure&nbsp;1</a>. The sample space includes every outcome possible and is:</p>
+<p><span class="math display">\[
+S = \{-\infty, ~ +\infty\}
+\]</span> so the probability of zero (which occurs once in that sample space) is:</p>
+<p><span class="math display">\[
+p(0) = \frac{1}{\infty} \approx 0
+\]</span></p>
+<p>Likewise the probability of 1 or 2 is also:</p>
+<p><span class="math display">\[
+\begin{split}
+p(1) = \frac{1}{\infty} \approx 0 \\
+p(2) = \frac{1}{\infty} \approx 0
+\end{split}
+\]</span></p>
+<p>In fact the probability of every possible outcome is 0. The problem is that if we add all the probabilities together, we have to get 1 (Law of Probability), and in this case we don’t; the sum of <span class="math inline">\(0 + 0 + \ldots + 0 = 0\)</span>. Because of this, in continuous distributions, we typically compute the probability of a range of values. For example, in our standard normal distribution:</p>
+<p><span class="math display">\[
+\begin{split}
+p(x \leq 0) = 0.5 \\
+p(-1 \leq x \leq 1) = 0.68 \\
+p(-2 \leq x \leq 2) = 0.95
+\end{split}
+\]</span></p>
+<p><br></p>
+<section id="probability-density" class="level2">
+<h2 class="anchored" data-anchor-id="probability-density">Probability Density</h2>
+<p>In a continuous distribution we also need to account be able to talk about the fact that some outcomes are more likely than other outcomes. For example, in our standard normal distribution outcomes near zero are more probable than outcomes near 1, which are more probable than outcomes near 2, etc. Since we can’t use probability to do this (remember the probability of each outcome is the same, namely 0), we use something called <em>probability density</em>. This is akin to a relative probability, so outcomes with a higher probability density are more likely than outcomes with a lower probability density.</p>
+<p>The mapping of all the outcomes to their probability densities is called a <em>probability density function</em> (PDF). Thus the equation or “bell-shaped” curve describing the standard normal distribution in <a href="#fig-01">Figure&nbsp;1</a> is technically a PDF Here are some laws governing PDFs:</p>
+<ul>
+<li>Probability densities are always positive.</li>
+<li>The probability of an outcome <em>x</em> between <em>a</em> and <em>b</em> equals the integral (area under the curve) between <em>a</em> and <em>b</em> of the probability density function. That is:</li>
+</ul>
+<p><span class="math display">\[
+p(a \leq x \leq b) = \int_a^b p(x) dx
+\]</span></p>
+<ul>
+<li>The area under the curve from negative infinity to positive infinity is 1. That is:</li>
+</ul>
+<p><span class="math display">\[
+p(-\infty \leq x \leq +\infty) = \int_{-\infty}^{+\infty} p(x) = 1
+\]</span></p>
+<p>Next we will look at the PDF for a normal distribution.</p>
+<p><br></p>
+</section>
+</section>
+<section id="pdf-for-a-normal-gaussian-distribution" class="level1">
+<h1>PDF for a Normal (Gaussian) Distribution</h1>
+<p>The probability density function (PDF) of a normal distribution is mathematically defined as:</p>
+<p><span class="math display">\[
+p(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]
+\]</span></p>
+<p>for <span class="math inline">\(-\infty \leq x \leq \infty\)</span>.</p>
+<p>To calculate the probability density, we need three pieces of information: (1) the outcome (<em>x</em>-value) for which we want to determine the probability density, (2) the mean (<span class="math inline">\(\mu\)</span>) of the normal distribution <em>x</em> is a member of, and (3) the standard deviation (<span class="math inline">\(\sigma\)</span>) of the normal distribution <em>x</em> is a member of. Then, we can compute the probability density (<span class="math inline">\(p(x)\)</span>) for a particular <span class="math inline">\(x\)</span> value by using the equation.</p>
+<p>As an example, consider a normal distribution with a mean of 50, and a standard deviation of 10. The probability density for <span class="math inline">\(x=65\)</span> can be found using,</p>
+<p><span class="math display">\[
+\begin{split}
+p(65) &amp;= \frac{1}{10\sqrt{2\pi}}\exp\left[-\frac{(65-50)^2}{2\times10^2}\right] \\[1ex]
+&amp;= 0.01295176
+\end{split}
+\]</span></p>
+<p>Using R, we can carry out the computation,</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the probability density of x=65 in N(50,10)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">/</span> (<span class="dv">10</span> <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi))) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="dv">225</span>) <span class="sc">/</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01295176</code></pre>
+</div>
+</div>
+<p>There is also a more direct way to compute this using the <code>dnorm()</code> function. This function computes the density of <code>x</code> from a normal distribution with a specified <code>mean</code> and <code>sd</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the probability density of x=65 in N(50,10)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01295176</code></pre>
+</div>
+</div>
+<p>Symbolically, we might write</p>
+<p><span class="math display">\[
+P\bigg(x=65 \mid \mathcal{N}(50,10)\bigg) = 0.01295176
+\]</span></p>
+<p>which is read:</p>
+<blockquote class="blockquote">
+<p>The probability density of <span class="math inline">\(x=65\)</span> GIVEN the normal distribution having a mean of 50 and standard deviation of 10 is equal to 0.013.</p>
+</blockquote>
+<p>Note that the probability density for a value is not only a function of <em>x</em>, but also depends on the mean and standard deviation of the normal distribution. For example, the probability density of <span class="math inline">\(x=65\)</span> in the normal distribution having a mean of 30 and standard deviation of 20 is a different value than the probability density we found earlier.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the probability density of x=65 in N(30,20)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004313866</code></pre>
+</div>
+</div>
+<p>Here,</p>
+<p><span class="math display">\[
+P\bigg(x=65 \mid \mathcal{N}(30,20)\bigg) = 0.004313866
+\]</span></p>
+<p>In general, when we think about the normal distribution, we are thinking about the mapping of each <em>x</em>-value from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span> to its associated probability density. Rather than list each of these mappings out, we can create a plot of these mappings. This plot gives us the familiar “bell shape”. Theoretically this plot is the graphical depiction of the PDF.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataset</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig_02 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">40</span>, <span class="at">to =</span> <span class="dv">90</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y1 =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y2 =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_02, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y1)) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#0085af"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Y2), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"X"</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">y =</span> <span class="fl">0.01295176</span>,  <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#0085af"</span>) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">y =</span> <span class="fl">0.004313866</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#c62f4b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-02" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-02-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Plot of the probability density function (PDF) for a <span class="math inline">\(\mathcal{N}(50,10)\)</span> distribution (blue, solid line) and for a <span class="math inline">\(\mathcal{N}(30,20)\)</span> distribution (red, dashed line). The probability density value for <span class="math inline">\(x=65\)</span> is also displayed on both PDFs.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Of course, the PDF is different for normal distributions with different means (<span class="math inline">\(\mu\)</span>) or standard deviations (<span class="math inline">\(\sigma\)</span>). This implies that there is not one normal distribution, but rather an infinite number of normal distributions, each with a different mean or standard deviation. (We refer to the normal distribution as a “family” of distributions.)</p>
+<p>To completely define the PDF we need to specify the mean and standard deviation we are using to compute the probability densities. Specifying these values is referred to as <em>parameterizing the distribution</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p><br></p>
+<section id="other-useful-r-functions-for-working-with-normal-probability-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="other-useful-r-functions-for-working-with-normal-probability-distributions">Other Useful R Functions for Working with Normal Probability Distributions</h2>
+<p>We use <code>dnorm()</code> when we want to compute the probability density associated with a particular <em>x</em>-value in a given normal distribution. There are three other functions that are quite useful for working with the normal probability distribution:</p>
+<ul>
+<li><code>pnorm()</code> : To compute the probability (area under the PDF)</li>
+<li><code>qnorm()</code> : To compute the <span class="math inline">\(x\)</span> value given a particular probability</li>
+<li><code>rnorm()</code> : To draw a random observation from the distribution</li>
+</ul>
+<p>Each of these function also requires the arguments <code>mean=</code> and <code>sd=</code>. Below we will examine how to use each of these additional functions.</p>
+<p><br></p>
+</section>
+<section id="pnorm-computing-cumulative-probability-density" class="level2">
+<h2 class="anchored" data-anchor-id="pnorm-computing-cumulative-probability-density">pnorm(): Computing Cumulative Probability Density</h2>
+<p>The function <code>pnorm()</code> computes the area under the PDF curve from <span class="math inline">\(-\infty\)</span> to some <em>x</em>-value. (Sometimes this is referred to as the cumulative probability density of <em>x</em>.) It is important to note that the PDF is defined such that the entire area under the curve is equal to 1. Because of this, we can also think about using area under the curve as an analog to probability in a continuous distribution.</p>
+<p>For example, we might ask about the probability of observing an <em>x</em>-value that is less than or equal to 65 given it is from a <span class="math inline">\(\mathcal{N}(50,10)\)</span> distribution. Symbolically, we want to find:</p>
+<p><span class="math display">\[
+P\bigg(x \leq 65 \mid \mathcal{N}(50,10)\bigg)
+\]</span></p>
+<p>This is akin to finding the proportion of the area under the <span class="math inline">\(\mathcal{N}(50,10)\)</span> PDF that is to the left of 65. The figure below shows a graphical depiction of the cumulative probability density for <span class="math inline">\(x=65\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataset</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig_03 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">90</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out X&lt;=65</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>shaded <span class="ot">=</span> fig_03 <span class="sc">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&lt;=</span> <span class="dv">65</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_03, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shaded, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="fu">aes</span>(<span class="at">ymax =</span> Y), <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"X"</span>) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-03" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-03-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Plot of the probability density function (PDF) for a <span class="math inline">\(\mathcal{N}(50,10)\)</span> distribution. The area that is shaded grey (relative to the total area under the PDF) represents the cumulative probability density for <span class="math inline">\(x=65\)</span>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can compute the cumulative probability density using the <code>pnorm()</code> function. The “p” stand for “probability”.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find P(x&lt;=65 | N(50,10) )</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">65</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9331928</code></pre>
+</div>
+</div>
+<p>We can interpret this as:</p>
+<blockquote class="blockquote">
+<p>The probability of observing an <em>x</em>-value that is less than or equal to 65 (if it is drawn from a normal distribution with a mean of 50 and standard deviation of 10) is 0.933.</p>
+</blockquote>
+<p>In mathematics, the area under a curve is called an <em>integral</em>. The grey-shaded area in the previous figure can also be expressed as an integral of the probability density function:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{65} p(x) dx
+\]</span></p>
+<p>where <span class="math inline">\(p(x)\)</span> is the PDF for the normal distribution.</p>
+<p>The most common application for finding the cumulative density is to compute a <em>p</em>-value. The <em>p</em>-value is just the area under the distribution (curve) that is AT LEAST as extreme as some observed value. For example, assume we computed a test statistic of <span class="math inline">\(z=2.5\)</span>, and were evaluating whether this was different from 0 (two-tailed test). Graphically, we want to determine the proportion of the area under the PDF that is shaded grey in the figure below.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig_04 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for shading</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>shade_01 <span class="ot">=</span> fig_04 <span class="sc">%&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&gt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>shade_02 <span class="ot">=</span> fig_04 <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&lt;=</span> <span class="sc">-</span><span class="fl">2.5</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_04, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_01, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="fu">aes</span>(<span class="at">ymax =</span> Y), <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_02, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="fu">aes</span>(<span class="at">ymax =</span> Y), <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"z"</span>) <span class="sc">+</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-04" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-04-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Plot of the probability density function (PDF) for the standard normal distribution (<span class="math inline">\(M=0\)</span>, <span class="math inline">\(SD=1\)</span>). The cumulative density representing the <em>p</em>-value for a two-tailed test evaluating whether <span class="math inline">\(\mu=0\)</span> using an observed mean of 2.5 is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If the distribution of the test statistic is normally distributed, we can use <code>pnorm()</code> to compute the <em>p</em>-value. If we assume the test statistic, <em>z</em>, has been scaled to use standardized units, the standard deviation we use in <code>pnorm()</code> will be <code>sd=1</code>. The mean is based on the value being tested in the null hypothesis. In most null hypotheses, we are testing a difference from 0 (e.g., <span class="math inline">\(H_0: \mu=0\)</span>, <span class="math inline">\(H_0: \beta=0\)</span>), so we would use <code>mean=0</code> in the <code>pnorm()</code> function.</p>
+<p>Remember, <code>pnorm()</code> computes the proportion of the area under the curve TO THE LEFT of a particular value. Here we will compute the area to the left of <span class="math inline">\(-2.5\)</span> and then double it to produce the actual <em>p</em>-value. (We can double it because the normal distribution is symmetric so the area to the left of <span class="math inline">\(-2.5\)</span> is the same as the area to the right of <span class="math inline">\(+2.5\)</span>.)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the p-value based on z=2.5</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="at">q =</span> <span class="sc">-</span><span class="fl">2.5</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01241933</code></pre>
+</div>
+</div>
+<p>We interpret this <em>p</em>-value as:</p>
+<blockquote class="blockquote">
+<p>The probability of observing a statistic at least as extreme as 2.5, assuming the null hypothesis is true, is 0.012. This is evidence against the null hypothesis since the data are inconsistent with the assumed hypothesis.</p>
+</blockquote>
+<p><br></p>
+<section id="qnorm-computing-quantiles" class="level3">
+<h3 class="anchored" data-anchor-id="qnorm-computing-quantiles">qnorm(): Computing Quantiles</h3>
+<p>The <code>qnorm()</code> function is essentially the inverse of the <code>pnorm()</code> function. The <code>pnorm()</code> function computes the cumulative probability GIVEN a particular quantile (<em>x</em>-value). The <code>qnorm()</code> function computes the quantile GIVEN a cumulative probability. For example, in the <span class="math inline">\(\mathcal{N}(50, 10)\)</span> distribution, half of the area under the PDF is below the <em>x</em>-value (quantile) of 50.</p>
+<p>To use the <code>qnorm()</code> function to give the <em>x</em>-value (quantile) that defines the lower 0.5 of the area under the <span class="math inline">\(\mathcal{N}(50, 10)\)</span> PDF, the syntax would be:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the quantile that has a cumulative density of 0.5 in the N(50, 10) distribution</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="rnorm-generating-random-observations" class="level3">
+<h3 class="anchored" data-anchor-id="rnorm-generating-random-observations">rnorm(): Generating Random Observations</h3>
+<p>The <code>rnorm()</code> function can be used to generate random observations drawn from a specified normal distribution. Aside from the <code>mean=</code> and <code>sd=</code> arguments, we also need to specify the number of observations to generate by including the argument <code>n=</code>. For example, to generate 15 observations drawn from a <span class="math inline">\(\mathcal{N}(50,10)\)</span> distribution we would use the following syntax:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 15 observations from N(50,10)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">15</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 44.97808 51.31531 49.21083 58.86785 51.16971 53.18630 44.18209 57.14533
+ [9] 41.74741 46.40138 50.89886 50.96274 47.98366 57.39840 51.23380</code></pre>
+</div>
+</div>
+<p>The <code>set.seed()</code> function sets the state of the random number generator used in R so that the results are reproducible. If you don’t use <code>set.seed()</code> you will get a different set of observations each time you run <code>rnorm()</code>. Here we set the starting seed to 100, but you can set this to any integer you want.</p>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="students-t-distribution" class="level1">
+<h1>Student’s <em>t</em>-Distribution</h1>
+<p>The PDF of Student’s <em>t</em>-distribution looks similar to the PDF for a standard normal distribution. In the figure below, Student’s <em>t</em>-distribution is depicted with a solid, black line and the standard normal distribution (<span class="math inline">\(M=0\)</span>, <span class="math inline">\(SD=1\)</span>) is depicted with a dotted, red line.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fig_05 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y_t =</span> <span class="fu">dt</span>(<span class="at">x =</span> X, <span class="at">df =</span> <span class="dv">5</span>),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y_norm =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_05, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y_t)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Y_norm), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"t"</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-05" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-05-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Plot of the probability density function (PDF) for both the standard normal distribution (dotted, red line) and Student’s <span class="math inline">\(t(5)\)</span> distribution (solid, black line).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Both the standard normal distribution and Student’s <em>t</em>-distribution are symmetric distributions.</li>
+<li>Both the standard normal distribution and Student’s <em>t</em>-distribution have a mean (expected value) of 0.</li>
+<li>The standard deviation for Student’s <em>t</em>-distribution is, however, larger than the standard deviation for the standard normal distribution (<span class="math inline">\(SD&gt;1\)</span>). You can see this in the distribution because the tails in Student’s <em>t</em>-distribution are fatter (more error) than the standard normal distribution.</li>
+</ul>
+<p>In practice, we often use Student’s <em>t</em>-distribution rather than the standard normal distribution in our evaluations of sample data. This is because the increased error (i.e., standard deviation) associated with Student’s <em>t</em>-distribution better models the additional uncertainty associated with having incomplete information (i.e., a sample rather than the entire population).</p>
+<p>Student’s <em>t</em>-distribution also constitutes a family of distributions; there is not a single <em>t</em>-distribution. The specific shape (and thus probability density) is defined by a parameter called the <em>degrees of freedom</em> (<em>df</em>). The plot below shows the standard normal distribution (purple) and four <em>t</em>-distributions with varying <em>df</em>-values. The means and standard deviations for each of these distributions is also provided in a table.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for t(3)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_03 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dt</span>(<span class="at">x =</span> X, <span class="at">df =</span> <span class="dv">3</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"03"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for t(5)</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>df_05 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dt</span>(<span class="at">x =</span> X, <span class="at">df =</span> <span class="dv">5</span>),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"05"</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for t(10)</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>df_10 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dt</span>(<span class="at">x =</span> X, <span class="at">df =</span> <span class="dv">10</span>),</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"10"</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for t(25)</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>df_25 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dt</span>(<span class="at">x =</span> X, <span class="at">df =</span> <span class="dv">25</span>),</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"25"</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for standard normal</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">dnorm</span>(<span class="at">x =</span> X, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"Standard normal"</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all datasets into one</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>fig_06 <span class="ot">=</span> <span class="fu">rbind</span>(df_03, df_05, df_10, df_25, z)</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_06, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">color =</span> df, <span class="at">linetype =</span> df)) <span class="sc">+</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"t"</span>) <span class="sc">+</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_d3</span>() <span class="sc">+</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-06" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-06-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Plot of several <em>t</em>-Distributions with differing degrees of freedom.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data from table</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>tab_01 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="st">"3"</span>, <span class="st">"5"</span>, <span class="st">"10"</span>, <span class="st">"25"</span>, <span class="st">"z"</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">M =</span> <span class="fl">0.00</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">1.5</span>, <span class="fl">1.22</span>, <span class="fl">1.08</span>, <span class="fl">1.00</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>tab_01 <span class="sc">|&gt;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="fu">md</span>(<span class="st">"*df*"</span>),</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">md</span>(<span class="st">"*M*"</span>),</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">md</span>(<span class="st">"*SD*"</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(df, M, SD),</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-01" class="anchored">
+
+<div id="bsddtpugyp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#bsddtpugyp) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#bsddtpugyp) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#bsddtpugyp) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#bsddtpugyp) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#bsddtpugyp) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#bsddtpugyp) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#bsddtpugyp) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#bsddtpugyp) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#bsddtpugyp) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#bsddtpugyp) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#bsddtpugyp) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#bsddtpugyp) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#bsddtpugyp) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#bsddtpugyp) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#bsddtpugyp) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#bsddtpugyp) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#bsddtpugyp) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#bsddtpugyp) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#bsddtpugyp) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#bsddtpugyp) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#bsddtpugyp) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#bsddtpugyp) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#bsddtpugyp) .gt_left {
+  text-align: left;
+}
+
+:where(#bsddtpugyp) .gt_center {
+  text-align: center;
+}
+
+:where(#bsddtpugyp) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#bsddtpugyp) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#bsddtpugyp) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#bsddtpugyp) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#bsddtpugyp) .gt_super {
+  font-size: 65%;
+}
+
+:where(#bsddtpugyp) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#bsddtpugyp) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#bsddtpugyp) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#bsddtpugyp) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#bsddtpugyp) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#bsddtpugyp) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#bsddtpugyp) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table"><caption>Table&nbsp;1:  Means and standard deviations for four t-Distributions and the standard normal distribution. </caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>df</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>M</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>SD</em></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_center">3</td>
+<td class="gt_row gt_center">0</td>
+<td class="gt_row gt_center">2.00</td></tr>
+    <tr><td class="gt_row gt_center">5</td>
+<td class="gt_row gt_center">0</td>
+<td class="gt_row gt_center">1.50</td></tr>
+    <tr><td class="gt_row gt_center">10</td>
+<td class="gt_row gt_center">0</td>
+<td class="gt_row gt_center">1.22</td></tr>
+    <tr><td class="gt_row gt_center">25</td>
+<td class="gt_row gt_center">0</td>
+<td class="gt_row gt_center">1.08</td></tr>
+    <tr><td class="gt_row gt_center">z</td>
+<td class="gt_row gt_center">0</td>
+<td class="gt_row gt_center">1.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>If we compare the means and standard deviations for these distributions, we find that the mean for all the <em>t</em>-distributions is 0, same as the standard normal distribution. All <em>t</em>-distributions are unimodal and symmetric around zero. The standard deviation for every <em>t</em>-distribution is higher than the standard deviation for the standard normal distribution. Mathematically, the variance for the <em>t</em>-distribution is:</p>
+<p><span class="math display">\[
+\sigma^2(t) = \frac{\nu}{\nu-2}
+\]</span></p>
+<p>where <span class="math inline">\(\nu\)</span> (the Greek letter nu) is the degrees of freedom. (Note that <span class="math inline">\(\nu \geq 2\)</span>.) Examining this formula, we find that Student <em>t</em>-distributions with higher <em>df</em> values have less variation. When <span class="math inline">\(\nu=+\infty\)</span>, the variance approaches 1, which is the same as the standard normal distribution.</p>
+<p>There are four primary functions for working with Student’s <em>t</em>-distribution:</p>
+<ul>
+<li><code>dt()</code> : To compute the probability density (point on the curve)</li>
+<li><code>pt()</code> : To compute the cumulative density (area under the PDF)</li>
+<li><code>qt()</code> : To compute the quantile value given a particular probability</li>
+<li><code>rt()</code> : To draw a random observation from the distribution</li>
+</ul>
+<p>Each of these requires the argument <code>df=</code>.</p>
+<p><br></p>
+</section>
+<section id="the-f-distribution" class="level1">
+<h1>The F-distribution</h1>
+<p>The <em>F</em>-distribution, like the <em>t</em>-distribution, constitutes a family of distributions. They are positively skewed and generally have a lower-limit of 0. To parameterize an <em>F</em>-distribution we need two parameters, namely <span class="math inline">\(\nu_1\)</span> and <span class="math inline">\(\nu_2\)</span>. These are both degrees of freedom. The exact shape of the <em>F</em>-distribution s governed by the two degrees of freedom parameters. The figure below shows several <em>F</em>-distributions with different degrees of freedom.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for F(1,10)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">10</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"F(1, 10)"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for F(5,25)</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">5</span>, <span class="at">df2 =</span> <span class="dv">25</span>),</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"F(5, 25)"</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for F(15,30)</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">15</span>, <span class="at">df2 =</span> <span class="dv">30</span>),</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"F(15, 30)"</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for F(30,60)</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">30</span>, <span class="at">df2 =</span> <span class="dv">60</span>),</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="st">"F(30, 60)"</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all datasets into one</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>fig_07 <span class="ot">=</span> <span class="fu">rbind</span>(f1, f2, f3, f4)</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_07, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">color =</span> df, <span class="at">linetype =</span> df)) <span class="sc">+</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_d3</span>(<span class="at">name =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">values =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-07" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-07-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Plot of several <em>F</em>-Distributions with differing degrees of freedom.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The expected value (mean) and standard deviation of the <em>F</em>-distribution is:</p>
+<p><span class="math display">\[
+\begin{split}
+E(F) &amp;= \frac{\nu_2}{\nu_2 - 2} \\[1ex]
+\sigma^2(F) &amp;= \frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2-2)^2(\nu_2-4)}
+\end{split}
+\]</span></p>
+<p>where <span class="math inline">\(\nu_2 &gt; 2\)</span> for the mean and <span class="math inline">\(\nu_2 &gt; 4\)</span> for the variance.</p>
+<p>From these formulas we can see that as <span class="math inline">\(\nu_2 \rightarrow +\infty\)</span> the mean of the <em>F</em>-distribution approaches 1. We can also see that the variation in the <em>F</em>-distribution is a function of both parameters and the variance decreases as either parameter gets larger.</p>
+<p>The means and standard deviations for our four example <em>F</em>-distributions are given in the table below.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data from table</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tab_02 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">df1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">5</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">df2 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">25</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(       </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> df2 <span class="sc">/</span> (df2 <span class="sc">-</span> <span class="dv">2</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">sqrt</span>((<span class="dv">2</span><span class="sc">*</span>df2<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(df1 <span class="sc">+</span> df2 <span class="sc">-</span> <span class="dv">2</span>)) <span class="sc">/</span> (df1<span class="sc">*</span>(df2<span class="dv">-2</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(df2<span class="dv">-4</span>)))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>tab_02 <span class="sc">|&gt;</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">df1 =</span> <span class="fu">md</span>(<span class="st">"*df1*"</span>),</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">df2 =</span> <span class="fu">md</span>(<span class="st">"*df2*"</span>),</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">M =</span> <span class="fu">md</span>(<span class="st">"*M*"</span>),</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">SD =</span> <span class="fu">md</span>(<span class="st">"*SD*"</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(df1, df2, M, SD),</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(M, SD),</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-02" class="anchored">
+
+<div id="ktbfmwavii" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#ktbfmwavii) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#ktbfmwavii) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#ktbfmwavii) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#ktbfmwavii) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#ktbfmwavii) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#ktbfmwavii) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#ktbfmwavii) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#ktbfmwavii) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#ktbfmwavii) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#ktbfmwavii) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#ktbfmwavii) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#ktbfmwavii) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#ktbfmwavii) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ktbfmwavii) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#ktbfmwavii) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#ktbfmwavii) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ktbfmwavii) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#ktbfmwavii) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ktbfmwavii) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#ktbfmwavii) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ktbfmwavii) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ktbfmwavii) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ktbfmwavii) .gt_left {
+  text-align: left;
+}
+
+:where(#ktbfmwavii) .gt_center {
+  text-align: center;
+}
+
+:where(#ktbfmwavii) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#ktbfmwavii) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#ktbfmwavii) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#ktbfmwavii) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#ktbfmwavii) .gt_super {
+  font-size: 65%;
+}
+
+:where(#ktbfmwavii) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#ktbfmwavii) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#ktbfmwavii) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#ktbfmwavii) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#ktbfmwavii) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#ktbfmwavii) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#ktbfmwavii) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table"><caption>Table&nbsp;2:  Means and standard deviations for four F-distributions. </caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>df1</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>df2</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>M</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><em>SD</em></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_center">1</td>
+<td class="gt_row gt_center">10</td>
+<td class="gt_row gt_center">1.25</td>
+<td class="gt_row gt_center">2.17</td></tr>
+    <tr><td class="gt_row gt_center">15</td>
+<td class="gt_row gt_center">30</td>
+<td class="gt_row gt_center">1.07</td>
+<td class="gt_row gt_center">0.50</td></tr>
+    <tr><td class="gt_row gt_center">30</td>
+<td class="gt_row gt_center">60</td>
+<td class="gt_row gt_center">1.03</td>
+<td class="gt_row gt_center">0.33</td></tr>
+    <tr><td class="gt_row gt_center">5</td>
+<td class="gt_row gt_center">25</td>
+<td class="gt_row gt_center">1.09</td>
+<td class="gt_row gt_center">0.79</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>Because there is no negative side of the distribution, when we use the <em>F</em>-distribution to compute a <em>p</em>-value, we only compute the cumulative density GREATER THAN OR EQUAL TO the value of the <em>F</em>-statistic. For example, the figure below shows the <span class="math inline">\(F(5,25)\)</span>-distribution and the shaded area corresponds to the <em>p</em>-value for an observed <em>F</em>-statistic of 2.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for F(5,25)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fig_08 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">5</span>, <span class="at">df2 =</span> <span class="dv">25</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for shading</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>shade_01 <span class="ot">=</span> fig_08 <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_08, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_01, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="fu">aes</span>(<span class="at">ymax =</span> Y), <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-08" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-08-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Plot of the probability density function (PDF) for the <span class="math inline">\(F(5,25)\)</span>-distribution. The cumulative density representing the <em>p</em>-value associated with an <em>F</em>-statistic of 2 is shaded in grey.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we can use the <code>pf()</code> function to compute the <em>p</em>-value. Remember, <code>pf()</code> computes the proportion of the area under the curve TO THE LEFT of a particular value. Here we will need to compute the area to the RIGHT of <span class="math inline">\(+2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the p-value based on F(5,25)=2</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="at">q =</span> <span class="dv">2</span>, <span class="at">df1 =</span> <span class="dv">5</span>, <span class="at">df2 =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1134803</code></pre>
+</div>
+</div>
+<p>The probability of observing an <em>F</em>-statistic at least as extreme as 2, assuming the null hypothesis is true, is 0.113. This is not evidence against the null hypothesis since the data are consistent with the assumed hypothesis.</p>
+<p><br></p>
+</section>
+<section id="creating-a-pdf-and-adding-shading-in-a-ggplot" class="level1">
+<h1>Creating a PDF and Adding Shading in a ggplot</h1>
+<p>One method to create the PDF for a distribution using <code>ggplot()</code> is to create a dataset that includes a sequence of <em>X</em>-values for which you want to show the PDF and compute the probability density for each of those values. Then you can use <code>geom_line()</code> to connect those probability densities.</p>
+<p>For example, say we want to create the PDF of the <span class="math inline">\(F(15, 100)\)</span>-distribution. Here I will define this for <em>F</em>-values from 0 to 10. (These are the <em>x</em>-values in my plot.) Then I need to compute the probability densities for each of those values using <code>pf()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create F-value and compute probability densities</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>fig_09 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">5</span>, <span class="at">df2 =</span> <span class="dv">25</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fig_09)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Y"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.00","2":"0.000000000","_rn_":"1"},{"1":"0.01","2":"0.008319698","_rn_":"2"},{"1":"0.02","2":"0.022838243","_rn_":"3"},{"1":"0.03","2":"0.040722606","_rn_":"4"},{"1":"0.04","2":"0.060856280","_rn_":"5"},{"1":"0.05","2":"0.082557740","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Then we can plot the <em>Y</em> versus the <em>X</em> values and connect them using <code>geom_line()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_09, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-09" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-09-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Plot of the probability density function (PDF) for the <span class="math inline">\(F(5,25)\)</span>-distribution.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To add shading under the curve we need to create a new dataset that only includes the <em>X</em> and <em>Y</em> values in the shaded region. For example to shade the area under the PDF where <span class="math inline">\(F &gt; 2\)</span>, we need to create a new dataset where the <em>X</em> values are greater than 2. Below I do this using <code>filter()</code> and store the data in an object called <code>shade_01</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data included in the shaded region</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>shade_09 <span class="ot">=</span> fig_09 <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shade_01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["X"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Y"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.00","2":"0.1558647","_rn_":"1"},{"1":"2.01","2":"0.1537083","_rn_":"2"},{"1":"2.02","2":"0.1515807","_rn_":"3"},{"1":"2.03","2":"0.1494816","_rn_":"4"},{"1":"2.04","2":"0.1474106","_rn_":"5"},{"1":"2.05","2":"0.1453676","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We re-draw the PDF and then use <code>geom_ribbon()</code> to add shading. This layer requires us to define the area we want shaded. Here we want to shade from <span class="math inline">\(Y=0\)</span> to <span class="math inline">\(Y=\)</span> the probability density for each of the <em>X</em> values in the shading data. To carry this out we need to define <code>x=</code>, <code>ymin=</code> and <code>ymax=</code>.</p>
+<p>Since the <em>X</em> values are in a column called <code>X</code> and the probability densities are in a column called <code>Y</code> in the shaded dataa frame, we can call <code>x=X</code> and <code>ymax=Y</code> in the <code>aes()</code> of <code>geom_ribbon()</code>. The <code>ymin=</code> value of 0 is not a column in the data frame, so it is specified OUTSIDE the <code>aes()</code> function. We can then also set characteristics like color of the shading (<code>color=</code>) and transparency level (<code>alpha=</code>). Finally, to ensure that <code>geom_ribbon()</code> is shading only the region we want, we set <code>data=shade_01</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_09, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y))  <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade_01, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">ymax =</span> Y), </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-10" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-10-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10: Plot of the probability density function (PDF) for the <span class="math inline">\(F(5,25)\)</span>-distribution. The cumulative density representing the <em>p</em>-value associated with an <em>F</em>-statistic of 2 is shaded in grey.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="protip">
+<p>You can click the <code>Code</code> button to see the underlying syntax for many of the figures created in this document.</p>
+</div>
+<p><br></p>
+</section>
+<section id="probability-distributions-in-regression" class="level1">
+<h1>Probability Distributions in Regression</h1>
+<p>To illustrate how probability distributions are used in practice, we will will use the data in the file <em>riverview.csv</em> (see the <a href="https://zief0002.github.io/bespectacled-antelope/codebooks/riverview.html">data codebook</a> for more information about these data) and fit a regression model that uses education level and seniority to predict variation in employee income. Some (most?) of this content should also be review from EPsy 8251.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>city <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/riverview.csv"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>city</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["education"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["income"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["seniority"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["gender"],"name":[4],"type":["chr"],"align":["left"]},{"label":["party"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"8","2":"26.430","3":"9","4":"female","5":"Independent"},{"1":"8","2":"37.449","3":"7","4":"Not female","5":"Democrat"},{"1":"10","2":"34.182","3":"16","4":"female","5":"Independent"},{"1":"10","2":"25.479","3":"1","4":"female","5":"Republican"},{"1":"10","2":"47.034","3":"14","4":"Not female","5":"Democrat"},{"1":"12","2":"46.488","3":"11","4":"female","5":"Democrat"},{"1":"12","2":"52.480","3":"16","4":"female","5":"Independent"},{"1":"12","2":"37.656","3":"14","4":"Not female","5":"Democrat"},{"1":"12","2":"50.265","3":"24","4":"Not female","5":"Democrat"},{"1":"14","2":"32.631","3":"5","4":"female","5":"Independent"},{"1":"14","2":"49.968","3":"18","4":"Not female","5":"Independent"},{"1":"14","2":"64.926","3":"26","4":"Not female","5":"Independent"},{"1":"15","2":"37.302","3":"8","4":"female","5":"Democrat"},{"1":"16","2":"38.586","3":"11","4":"female","5":"Independent"},{"1":"16","2":"55.878","3":"22","4":"female","5":"Independent"},{"1":"16","2":"59.499","3":"20","4":"female","5":"Independent"},{"1":"16","2":"55.782","3":"6","4":"Not female","5":"Democrat"},{"1":"16","2":"63.471","3":"10","4":"Not female","5":"Democrat"},{"1":"17","2":"60.068","3":"10","4":"female","5":"Independent"},{"1":"18","2":"54.840","3":"20","4":"female","5":"Republican"},{"1":"18","2":"62.466","3":"16","4":"female","5":"Republican"},{"1":"19","2":"56.019","3":"21","4":"female","5":"Independent"},{"1":"19","2":"65.142","3":"16","4":"Not female","5":"Republican"},{"1":"20","2":"56.343","3":"22","4":"female","5":"Independent"},{"1":"20","2":"54.672","3":"12","4":"female","5":"Independent"},{"1":"20","2":"61.629","3":"5","4":"Not female","5":"Republican"},{"1":"20","2":"82.726","3":"23","4":"Not female","5":"Republican"},{"1":"21","2":"71.202","3":"26","4":"female","5":"Democrat"},{"1":"21","2":"73.542","3":"16","4":"Not female","5":"Republican"},{"1":"22","2":"56.322","3":"8","4":"female","5":"Independent"},{"1":"22","2":"70.044","3":"14","4":"Not female","5":"Independent"},{"1":"24","2":"79.227","3":"27","4":"Not female","5":"Democrat"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>To begin, we will fit a multiple regression model that uses level of education and seniority to predict variation in employee’s incomes. The model is:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Income}_i &amp;= \beta_0 + \beta_1(\mathrm{Education}_i) + \beta_2(\mathrm{Seniority}_i) + \epsilon_i \\
+&amp; \mathrm{where}\quad \epsilon_i \sim \mathcal{N}(0, \sigma^2_{\epsilon})
+\end{split}
+\]</span></p>
+<p>We have four unknowns in this model that need to be estimated: <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, and <span class="math inline">\(\sigma^2_{\epsilon}\)</span>. This last unknown is the error (or residual) variance. As a side note, when you report results from a fitted regression model, you should report the estimated residual variance (or residual standard error) along with the coefficient estimates.</p>
+<p>Aside from the estimates for the coefficients and RSE, we are also generally interested in the estimates of uncertainty for the coefficients (i.e., the standard errors). These uncertainty estimates also allow us to carry out hypothesis tests on the effects included in the model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">lm</span>(income <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> education <span class="sc">+</span> seniority, <span class="at">data =</span> city)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In practice, all of the estimates, SEs, and inferential output are available using functionality in R. For example, the model-level output, including <span class="math inline">\(R^2\)</span>, the <em>F</em>-statistic, the model and residual <em>df</em>, and the residual standard error are all outputted from the <code>glance()</code> function from the <code>{broom}</code> package. We can also partition the variation using the <code>anova()</code> function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.7417857","2":"0.7239778","3":"7.645854","4":"41.6549","5":"0.000000002976563","6":"2","7":"-108.9242","8":"225.8484","9":"231.7114","10":"1695.313","11":"29","12":"32"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Partition the variation</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4147.3305","3":"4147.33049","4":"70.94416","5":"0.000000002780644","_rn_":"education"},{"1":"1","2":"722.8836","3":"722.88365","4":"12.36564","5":"0.001459777425592","_rn_":"seniority"},{"1":"29","2":"1695.3133","3":"58.45908","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Similarly the <code>tidy()</code> function from the <code>{broom}</code> package outputs coefficient-level output, including the coefficients, standard errors, <em>t</em>-values, and associated <em>p</em>-values.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.1</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["conf.low"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["conf.high"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"6.7691720","3":"5.3728914","4":"1.259875","5":"0.2177593428983","6":"-4.2196249","7":"17.75797"},{"1":"education","2":"2.2518456","3":"0.3346443","4":"6.729073","5":"0.0000002202903","6":"1.5674213","7":"2.93627"},{"1":"seniority","2":"0.7387965","3":"0.2100954","4":"3.516481","5":"0.0014597774256","6":"0.3091031","7":"1.16849"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Our goal here is to understand how the probability distributions play a role in determining some of these values.</p>
+<p><br></p>
+</section>
+<section id="model-level-inference-the-f-distribution" class="level1">
+<h1>Model-Level Inference: The <em>F</em>-Distribution</h1>
+<p>At the model-level, we are interested in whether or not the model (as a whole) explains variation in the outcome. Our estimate of how much variation the model explains is based on partitioning the total variation of the outcome (<span class="math inline">\(\mathrm{SS}_{\mathrm{Total}}\)</span>) into that which is explained by the model (<span class="math inline">\(\mathrm{SS}_{\mathrm{Model}}\)</span>) and that which is not explained by the model (<span class="math inline">\(\mathrm{SS}_{\mathrm{Residual}}\)</span>). From the <code>anova()</code> output:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SS}_{\mathrm{Model}} &amp;= 4147.3 + 722.9 = 4870.2\\[1ex]
+\mathrm{SS}_{\mathrm{Residual}} &amp;= 1695.3\\[1ex]
+\mathrm{SS}_{\mathrm{Total}} &amp;= 4870.2 + 1695.3 = 6565.5
+\end{split}
+\]</span></p>
+<p>Then we compute the a statistic called <span class="math inline">\(R^2\)</span> by computing the ratio of the explained variation to the total variation.</p>
+<p><span class="math display">\[
+R^2 = \frac{4870.2}{6565.5} = 0.742
+\]</span></p>
+<p>The model (differences in education and seniority levels) explains 74.2% of the variation in employee’s incomes in the sample. We might also want to test whether this is more variation than we expect because of sampling error. To do this we want to test the hypothesis that:</p>
+<p><span class="math display">\[
+H_0: \rho^2 = 0
+\]</span></p>
+<p>To evaluate this we convert the sample <span class="math inline">\(R^2\)</span> value into a test statistic using,</p>
+<p><span class="math display">\[
+F = \frac{R^2}{1 - R^2} \times \frac{\mathit{df}_{\mathrm{Error}}}{\mathit{df}_{\mathrm{Model}}}
+\]</span></p>
+<p>The degrees of freedom (<em>df</em>) is also partitioned in the <code>anova()</code> output:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{df}_{\mathrm{Model}} &amp;= 1 + 1 = 2\\[1ex]
+\mathrm{df}_{\mathrm{Residual}} &amp;= 29\\[1ex]
+\mathrm{df}_{\mathrm{Total}} &amp;= 2 + 29 = 31
+\end{split}
+\]</span></p>
+<p>Converting our <span class="math inline">\(R^2\)</span> value of 0.742 value to an <em>F</em>-statistic:</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{0.742}{1-0.742} \times \frac{29}{2} \\
+&amp;= 41.7
+\end{split}
+\]</span></p>
+<p>We write this standardization of <span class="math inline">\(R^2\)</span> as <span class="math inline">\(F(2,29)=41.7\)</span>.</p>
+<p><br></p>
+<section id="computing-f-from-the-anova-partitioning" class="level2">
+<h2 class="anchored" data-anchor-id="computing-f-from-the-anova-partitioning">Computing F from the ANOVA Partitioning</h2>
+<p>We can also compute the model-level <em>F</em>-statistic directly using the partitioning of variation from the ANOVA table.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Partition the variation</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"4147.3305","3":"4147.33049","4":"70.94416","5":"0.000000002780644","_rn_":"education"},{"1":"1","2":"722.8836","3":"722.88365","4":"12.36564","5":"0.001459777425592","_rn_":"seniority"},{"1":"29","2":"1695.3133","3":"58.45908","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The <em>F</em>-statistic is a ratio of the mean square for the model and the mean square for the error. To compute a mean square we use the general formula:</p>
+<p><span class="math display">\[
+\mathrm{MS} = \frac{\mathrm{SS}}{\mathrm{df}}
+\]</span></p>
+<p>The model includes both the education and seniority predictor, so we combine the SS and df. The MS model is:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{MS}_{\mathrm{Model}} &amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{df}_{\mathrm{Model}}} \\[1ex]
+&amp;= \frac{4147.3 + 722.9}{1 + 1} \\[1ex]
+&amp;= \frac{4870.2}{2} \\[1ex]
+&amp;= 2435.1
+\end{split}
+\]</span></p>
+<p>The MS error is:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{MS}_{\mathrm{Error}} &amp;= \frac{\mathrm{SS}_{\mathrm{Error}}}{\mathrm{df}_{\mathrm{Error}}} \\[1ex]
+&amp;= \frac{1695.3 }{29} \\[1ex]
+&amp;= 58.5
+\end{split}
+\]</span></p>
+<p>Then, we compute the <em>F</em>-statistic by computing the ratio of these two mean squares.</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{\mathrm{MS}_{\mathrm{Model}}}{\mathrm{MS}_{\mathrm{Error}}} \\[1ex]
+&amp;= \frac{2435.1}{58.5} \\[1ex]
+&amp;= 41.6
+\end{split}
+\]</span></p>
+<p>Since a mean square represents the average amount of variation (per degree of freedom), we can see that <em>F</em> is a ratio between the average amount of variation explained by the model and the average amount of variation unexplained by the model. In our example, this ratio is 41.6; on average the model explains 41.6 times the variation that is unexplained.</p>
+<p>Note that this is an identical computation (although reframed) as the initial computation for <em>F</em>. We can use mathematics to show this equivalence:</p>
+<p><span class="math display">\[
+\begin{split}
+F &amp;= \frac{R^2}{1-R^2} \times \frac{\mathrm{df}_{\mathrm{Error}}}{\mathrm{df}_{\mathrm{Model}}} \\[1ex]
+&amp;= \frac{\frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Total}}}}{\frac{\mathrm{SS}_{\mathrm{Error}}}{\mathrm{SS}_{\mathrm{Total}}}} \times \frac{\mathrm{df}_{\mathrm{Error}}}{\mathrm{df}_{\mathrm{Model}}} \\[1ex]
+&amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{SS}_{\mathrm{Error}}} \times \frac{\mathrm{df}_{\mathrm{Error}}}{\mathrm{df}_{\mathrm{Model}}} \\[1ex]
+&amp;= \frac{\mathrm{SS}_{\mathrm{Model}}}{\mathrm{df}_{\mathrm{Model}}} \times \frac{\mathrm{df}_{\mathrm{Error}}}{\mathrm{SS}_{\mathrm{Error}}} \\[1ex]
+&amp;= \mathrm{MS}_{\mathrm{Model}} \times \frac{1}{\mathrm{MS}_{\mathrm{Error}}}\\[1ex]
+&amp;= \frac{\mathrm{MS}_{\mathrm{Model}}}{\mathrm{MS}_{\mathrm{Error}}}
+\end{split}
+\]</span></p>
+<p><br></p>
+</section>
+<section id="testing-the-model-level-null-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-model-level-null-hypothesis">Testing the Model-Level Null Hypothesis</h2>
+<p>We evaluate our test statistic (<em>F</em> in this case) in the appropriate test distribution, in this case an <em>F</em>-distribution with 2 and 29 degrees of freedom. The figure below, shows the <span class="math inline">\(F(2,29)\)</span>-distribution as a solid, black line. The <em>p</em>-value is the area under the curve that is at least as extreme as the observed <em>F</em>-value of 41.7.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>fig_11 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">50</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">df</span>(<span class="at">x =</span> X, <span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> <span class="dv">29</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter shaded area</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>shade <span class="ot">=</span> fig_11 <span class="sc">%&gt;%</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(X <span class="sc">&gt;=</span> <span class="fl">41.7</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fig_11, <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> shade, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="fu">aes</span>(<span class="at">ymax =</span> Y), <span class="at">color =</span> <span class="st">"#bbbbbb"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-11" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-probability-distributions_files/figure-html/fig-11-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;11: Plot of the probability density function (PDF) for the <span class="math inline">\(F(2,~29)\)</span>-distribution. The cumulative density representing the <em>p</em>-value for a test evaluating whether <span class="math inline">\(\rho^2=0\)</span> using an observed <em>F</em>-statistic of 41.7 is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The computation using the cumulative density function, <code>pf()</code>, to obtain the <em>p</em>-value is:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value for F(2,29)=41.7</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="fl">41.7</span>, <span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> <span class="dv">29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.000000002942114</code></pre>
+</div>
+</div>
+<p>Because we want the upper-tail, rather than taking the difference from 1, we can also use the <code>lower.tail=FALSE</code> argument in <code>pf()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value for F(2,29)=41.7</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">41.7</span>, <span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> <span class="dv">29</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.000000002942114</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="mean-squares-are-variance-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="mean-squares-are-variance-estimates">Mean Squares are Variance Estimates</h2>
+<p>Mean squares are also estimates of the <em>variance</em>. Consider the computational formula for the sample variance,</p>
+<p><span class="math display">\[
+\hat{\sigma}^2 = \frac{\sum(Y - \bar{Y})^2}{n-1}
+\]</span></p>
+<p>This is the total sum of squares divided by the total <em>df</em>. The variance of the outcome variable is interpreted as the average amount of variation in the outcome variable (in the squared metric). Thus, it is also referred to as the mean square total.</p>
+<p>When we compute an <em>F</em>-statistic, we are finding the ratio of two different variance estimates—one based on the model (explained variance) and one based on the error (unexplained variance). Under the null hypothesis that <span class="math inline">\(\rho^2 = 0\)</span>, we are assuming that all the variance is unexplained. In that case, our <em>F</em>-statistic would be close to zero. When the model explains a significant amount of variation, the numerator gets larger relative to the denominator and the <em>F</em>-value is larger.</p>
+<p>The mean squared error (from the <code>anova()</code> output) plays a special role in regression analysis. It is the variance estimate for the conditional distributions of the residuals in our visual depiction of the distributional assumptions of the residuals underlying linear regression.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-12" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/04-regression-assumptions-residuals.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;12: Visual Depiction of the Distributional Assumptions of the Residuals Underlying Linear Regression</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Recall that we made implicit assumptions about the conditional distributions of the residuals, namely that they were identically and normally distributed with a mean of zero and some variance. Based on the estimate of the mean squared error, the variance of each of these distributions is 58.5.</p>
+<p>While the variance is a mathematical convenience, the standard deviation is often a better descriptor of the variation in a distribution since it is measured in the original metric. The standard deviation fro the residuals (error) is 7.6. Because the residuals are statistics (summaries computed from sample data), their standard deviation is referred to as a “standard error”.</p>
+<div class="fyi">
+<p>The <em>residual standard error</em> (RSE) is sometimes referred to as the <em>Root Mean Squared Error</em> (RMSE).</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute RMSE</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">58.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.648529</code></pre>
+</div>
+</div>
+<p>Why is this value important? It gives the expected variation in the conditional residual distributions, which is a measure of the average amount of error. For example, since all of the conditional distributions of the residuals are assumed to be normally distributed, we would expect that 95% of the residuals would fall between <span class="math inline">\(\pm2\)</span> standard errors from 0; or, in this case, between <span class="math inline">\(-15.3\)</span> and <span class="math inline">\(+15.3\)</span>. Observations with residuals that are more extreme may be regression outliers.</p>
+<p>More importantly, it is a value that we need to estimate in order to specify the model.</p>
+<p><br></p>
+</section>
+</section>
+<section id="coefficent-level-inference-the-t-distribution" class="level1">
+<h1>Coefficent-Level Inference: The <em>t</em>-Distribution</h1>
+<p>Recall that the coefficients and SEs for the coefficients are computed directly from the raw data based on the OLS estimation. These can then be uses to construct a test statistic (e.g., <em>t</em>) to carry out a hypothesis test or compute endpoints for a confidence interval. To see how this is done, we will consider the partial effect of education level (after controlling for differences in seniority) in our fitted model.</p>
+<p><span class="math display">\[
+\begin{split}
+\hat\beta_{\mathrm{Education}}&amp;=2.25 \\[1ex]
+\mathrm{SE}(\hat\beta_{\mathrm{Education}}) &amp;=0.335
+\end{split}
+\]</span></p>
+<p>We might want to test whether the partial effect of education level on income, after accounting for differences in seniority level, we observed in the data is more than we would expect because of sampling error. To answer this we need to evaluate the following hypothesis:</p>
+<p><span class="math display">\[
+H_0: \beta_{\mathrm{Education}} = 0
+\]</span></p>
+<p>We begin by converting our estimated regression coefficient to a <em>t</em>-statistic using:</p>
+<p><span class="math display">\[
+t_k = \frac{\hat\beta_k}{\mathrm{SE}(\hat\beta_k)}
+\]</span></p>
+<p>In our example,</p>
+<p><span class="math display">\[
+\begin{split}
+t_{\mathrm{Education}} &amp;= \frac{2.25}{0.335} \\[1ex]
+&amp;= 6.72
+\end{split}
+\]</span></p>
+<p>Remember this tells us the education coefficient of 2252 is 6.72 standard errors above 0. Since we are estimating the SE using sample data, our test statistic is likely <em>t</em>-distributed<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Which value should we use for <em>df</em>? Well, for that, statistical theory tells us that we should use the error <em>df</em> value from the model. In our example, this would be:</p>
+<p><span class="math display">\[
+t(29) = 6.72
+\]</span></p>
+<p>Using the <em>t</em>-distribution with 29 <em>df</em>, we can compute the <em>p</em>-value associated with the two-tailed test that <span class="math inline">\(\beta_{\mathrm{Education}=0}\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value for the two-tailed test of no effect of education</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="at">q =</span> <span class="sc">-</span><span class="fl">6.72</span>, <span class="at">df =</span> <span class="dv">29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0000002257125</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="at">q =</span> <span class="fl">6.72</span>, <span class="at">df =</span> <span class="dv">29</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0000002257125</code></pre>
+</div>
+</div>
+<p>The <em>p</em>-value is 0.0000002. The data are inconsistent with the hypothesis that there is no partial effect of education level on income (after accounting for differences in seniority level).</p>
+<p>We could also carry out these tests for the partial effect of seniority level and, if it is of interest, for the intercept. For both of those tests, we would use the same <em>t</em>-distribution, but our test statistic would be computed based on the coefficient estimates and standard errors for those terms, respectively.</p>
+<p><br></p>
+<section id="confidencecompatibility-intervals-for-the-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="confidencecompatibility-intervals-for-the-coefficients">Confidence/Compatibility Intervals for the Coefficients</h2>
+<p>The confidence interval for the <em>k</em>th regression coefficient is computed as:</p>
+<p><span class="math display">\[
+\mathrm{CI} = \hat\beta_k \pm t^{*}(\mathrm{SE}_{\hat\beta_k})
+\]</span></p>
+<p>where <span class="math inline">\(t^*\)</span> is the quantile of the <em>t</em>-distribution that defines the confidence level for the interval. (This <em>t</em>-distribution, again, has degrees-of-freedom equal to the error <em>df</em> in the model.) The confidence level is related to the alpha level (type I error rate) used in inference. Namely,</p>
+<p><span class="math display">\[
+\mathrm{Confidence~Level} = 1 - \alpha
+\]</span></p>
+<p>So, if you use <span class="math inline">\(\alpha=.05\)</span>, then the confidence level would be <span class="math inline">\(.95\)</span>, and we would call this a 95% confidence interval. The alpha value also helps determine the quantile we use in the CI formula,</p>
+<p><span class="math display">\[
+t^* = (1-\frac{\alpha}{2}) ~ \mathrm{quantile}
+\]</span> For the example using <span class="math inline">\(\alpha=.05\)</span>, a 95% confidence interval, the <span class="math inline">\(t^*\)</span> value would be associated with the quantile of 0.975. We would denote this as:</p>
+<p><span class="math display">\[
+t^{*}_{.975}
+\]</span></p>
+<p>Say we wanted to find the 95% confidence interval for the education coefficient. We know that the estimated coefficient for education is 2.25, and the standard error for this estimate is 0.335. We also know that based on the model fitted, the residual <em>df</em> is 29. We need to find the 0.975th quantile in the <em>t</em>-distribution with 29 <em>df</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find 0.975th quantile</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.04523</code></pre>
+</div>
+</div>
+<p>Now we can use all of this information to compute the confidence interval:</p>
+<p><span class="math display">\[
+\begin{split}
+95\%~CI  &amp;= 2.25 \pm 2.04523(0.335) \\[1ex]
+&amp;= \big[1.56,~2.94\big]
+\end{split}
+\]</span></p>
+</section>
+</section>
+<section id="learn-more" class="level1">
+<h1>Learn More</h1>
+<p>For more information, you can also see the following sections in the <span class="citation" data-cites="Fox:2009">Fox (<a href="#ref-Fox:2009" role="doc-biblioref">2009</a>)</span> textbook.</p>
+<ul>
+<li><strong>Sections 3.3.1–3.3.4:</strong> <em>Continuous Distributions</em></li>
+</ul>
+<p><br></p>
+</section>
+<section id="references" class="level1">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Fox:2009" class="csl-entry" role="doc-biblioentry">
+Fox, J. (2009). <em>A mathematical primer for social statistics</em>. Thousand Oaks, CA: Sage.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Remember, the mean and standard deviations in the population are called “parameters”.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Whether this is actually <em>t</em>-distributed depends on whether the model assumptions are met.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

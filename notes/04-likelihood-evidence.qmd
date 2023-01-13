@@ -1,63 +1,37 @@
 ---
 title: "Likelihood: A Framework for Evidence"
-date: "`r Sys.Date()`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-<!-- Need this to display the mathematics on the web -->
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-## Global options
-options(
-  max.print = "75",
-  scipen = 5
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 # Preparation
 
-In this set of notes, you will learn about the law of likelihood, and the use of likelihood ratios as statistical evidence for model selection. To do so, we will use the [mn-schools.csv](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv) dataset (see the [data codebook](http://zief0002.github.io/epsy-8252/codebooks/mn-schools.html)) to examine if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate, and whether this varies by sector (public/private).
+In this set of notes, you will learn about the law of likelihood, and the use of likelihood ratios as statistical evidence for model selection. To do so, we will use the [mn-schools.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv) dataset (see the [data codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html)) to examine if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate, and whether this varies by sector (public/private).
 
 
 
-```{r preparation, warning=FALSE, message=FALSE}
+```{r}
+#| label: setup
 # Load libraries
 library(broom)
 library(tidyverse)
+library(gt)
 
-# Read in data
-mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv")
+# Import data
+mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
 
 # View data
 mn
@@ -119,7 +93,7 @@ $$
 
 While hypothesis tests have filled a need in the educational and social science to have some standard for evaluating statistical evidence, it is unclear whether this is the approach we should be using. As statistician David Lindley so aptly states,  "[significance tests] are widely used, yet are logically indefensible" [comment in @Johnstone:1986, p. 502]. Psychologist Jacob Cohen was more pointed, saying "[hypothesis testing] has not only failed to support the advance of psychology as a science but also has seriously impeded it" [@Cohen:1994, p. 997].
 
-:::note
+:::fyi
 "The main purpose of a significance test is to inhibit the natural enthusiasm of the investigator" (@Mosteller:1954, p. 331--332).
 :::
 
@@ -189,7 +163,9 @@ $$
 \mathcal{L}(\mu = 20, \sigma = 4 \mid x)
 $$
 
-*Note:* Although we need to specify the model this is typically not included in the symbolic notation; instead it is often a part of the assumptions. 
+:::fyi
+Although we need to specify the model this is typically not included in the symbolic notation; instead it is often a part of the assumptions.
+:::
 
 <br />
 
@@ -224,23 +200,23 @@ The empirical support for the $\mathcal{N}(25,4^2)$ parameterization is 31 times
 
 # Some Notes and Caveats
 
-It is important to note that although we use the joint probability under a set of parameters to compute the likelihood of those parameters, theoretically joint density and likelihood are very different. Likelihood takes the data and model as given and computes the probability of a set of parameters. Whereas joint density assumes that the model and parameters are given and gives us the probability of the data. 
+It is important to note that although we use the joint probability under a set of parameters to compute the likelihood of those parameters, theoretically joint density and likelihood are very different. Likelihood takes the data and model as given and computes the probability of a set of parameters. Whereas joint density assumes that the model and parameters are given and gives us the probability of the data.
 
-:::Note
+:::fyi
 Likelihood refers to the probability of the parameters and joint probability density refers to the probability of the data.
 :::
 
-Once we collect the data, the probability of observing that set of data is 1; it is no longer unknown. The likelihood method treats our data as known and offers us a way of making probabilistic statements about the unknown parameters. This is more aligned with our scientific process than making some assumption about the parameter (e.g., $\beta_1=0$) and then trying to deterine the probability of the data under that assumption. Moreover, likelihood does not use unobserved data (e.g., data more extreme than what we observed) in the computation. 
+Once we collect the data, the probability of observing that set of data is 1; it is no longer unknown. The likelihood method treats our data as known and offers us a way of making probabilistic statements about the unknown parameters. This is more aligned with our scientific process than making some assumption about the parameter (e.g., $\beta_1=0$) and then trying to deterine the probability of the data under that assumption. Moreover, likelihood does not use unobserved data (e.g., data more extreme than what we observed) in the computation.
 
-It is also important to acknowledge what likelihood and the likelihood ratio don't tell us. First, they only tell us the probability of a set of parameters for the data we have. Future collections of data might change the amount of support or which set of parameters is supported. Since changing the data, changes the likelihood, this also means we cannot make cross study comparisons of the likelihood (unless the studies used the exact same data). Secondly, the model assumed is important. If a different model is assumed, the likelihood will be different, and again could change the amount of support or which set of parameters is supported. 
+It is also important to acknowledge what likelihood and the likelihood ratio don't tell us. First, they only tell us the probability of a set of parameters for the data we have. Future collections of data might change the amount of support or which set of parameters is supported. Since changing the data, changes the likelihood, this also means we cannot make cross study comparisons of the likelihood (unless the studies used the exact same data). Secondly, the model assumed is important. If a different model is assumed, the likelihood will be different, and again could change the amount of support or which set of parameters is supported.
 
-The likelihood ratio (LR), while useful for comparing the relative support between parameterizations, does not tell you that a particular parameterization is correct. For example, the LR of 31.11 tells us that there is more empirical support for the $\mathcal{N}(25,4^2)$ parameterization than $\mathcal{N}(20, 4^2). But, there might be even more support for a parameterization we haven't considered.
+The likelihood ratio (LR), while useful for comparing the relative support between parameterizations, does not tell you that a particular parameterization is correct. For example, the LR of 31.11 tells us that there is more empirical support for the $\mathcal{N}(25,4^2)$ parameterization than $\mathcal{N}(20, 4^2)$. But, there might be even more support for a parameterization we haven't considered.
 
 These shortcomings are not unique to the likelihood paradigm The also exist in the classical hypothesis testing paradigm for statistical evidence. All in all, the added advantages to the likelihood paradigm make it more useful to applied work than hypothesis testing.
 
 <br />
- 
- 
+
+
 # Likelihood in Regression: Back to Our Example
 
 When fitting a regression model, we make certain assumptions about the relationship between a set of predictors and the outcome. For example, in Model 1 from our earlier example, we assume that the relationship between median SAT score and graduation rate can be described by the following model:
@@ -249,16 +225,16 @@ $$
 \hat{\mathrm{Graduation~Rate}}_i = \beta_0 + \beta_1(\mathrm{SAT}_i) + \epsilon_i \quad \mathrm{where~}\epsilon_i \overset{i.i.d.}{\sim}\mathcal{N}(0,\sigma^2_{\epsilon})
 $$
 
-Here we use OLS to estimate the regression coefficients. Then we can use those, along with the observed data to obtain the residuals and the estimate for the residual standard error. The residuals are the GIVEN data and the set up distributional assumptions for the model (e.g., normal, mean of 0, constant variance) allow us to compute the likelihood for the entire set of parameters in this model ($\beta_0$, $\beta_1$, $\sigma^2_{\epsilon}$). 
+Here we use OLS to estimate the regression coefficients. Then we can use those, along with the observed data to obtain the residuals and the estimate for the residual standard error. The residuals are the GIVEN data and the set up distributional assumptions for the model (e.g., normal, mean of 0, constant variance) allow us to compute the likelihood for the entire set of parameters in this model ($\beta_0$, $\beta_1$, $\sigma^2_{\epsilon}$).
 
-Below is a set of syntax to compute the likelihood, based on fitting `lm.1`. We use the `residuals()` function to compute the residuals. (It is the same as grabbing the column called `.resid` from the `augment()` output.) We also use the estimated value of the residual standard error ($\hat{\sigma}_{\epsilon} = 7.79$) from the `glance()` output.
+Below is a set of syntax to compute the likelihood, based on fitting `lm.1`. We use the `resid()` function to compute the residuals. (It is the same as grabbing the column called `.resid` from the `augment()` output.) We also use the estimated value of the residual standard error ($\hat{\sigma}_{\epsilon} = 7.79$) from the `glance()` output.
 
 ```{r}
 # Compute likelihood for lm.1
 prod(dnorm(x = resid(lm.1), mean = 0, sd = 7.79))
 ```
 
-This value by itself is somewhat meaningless. It is only worthwhile when we compare it to the likelihood from another model. For example, let's compute the likelihood for `lm.2` and compare this to the likelihood for `lm.1`. Remember that `lm.2` also included sector, in addition to the median SAT score. In `lm.2`, $\hat{\sigma}_{\epsilon} = 6.86$ 
+This value by itself is somewhat meaningless. It is only worthwhile when we compare it to the likelihood from another model. For example, let's compute the likelihood for `lm.2` and compare this to the likelihood for `lm.1`. Remember that `lm.2` also included sector, in addition to the median SAT score. In `lm.2`, $\hat{\sigma}_{\epsilon} = 6.86$
 
 ```{r}
 # Fit Model 2
@@ -279,8 +255,8 @@ The likelihood value for `lm.2` is higher than the likelihood value for `lm.1`. 
 
 This suggests that given the data, Model 2 is 110.91 times more likely than Model 1. In practice, we would adopt Model 2 over Model 1 because it is more likely given the evidence we have.
 
-:::math_note
-### Mathematics Ahead
+:::mathnote
+### Mathematics of Likelihood
 
 Being able to express the likelihood mathematically is important for quantitative methodologists as it allows us to manipulate and study the likelihood function and its properties. It also gives us insight into how the individual components of the likelihood affect its value.
 
@@ -312,14 +288,18 @@ $$
 \begin{split}
 \mathcal{L}(\beta_0, \beta_1 | \mathrm{data}) &= p(\epsilon_1) \times p(\epsilon_2) \times \ldots \times p(\epsilon_n) \\[1em]
 &= \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}}\exp\left[-\frac{\epsilon_1
-^2}{2\sigma^2_{\epsilon}}\right] \times \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}}\exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \ldots \times \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}}\exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right] 
+^2}{2\sigma^2_{\epsilon}}\right] \times \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}}\exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \\ 
+&~~~~~~\ldots \times \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}}\exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right]
 \end{split}
 $$
 
 We can simplify this:
 
 $$
-\mathcal{L}(\beta_0, \beta_1 | \mathrm{data}) =\left[ \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}} \right]^n \times \exp\left[-\frac{\epsilon_1^2}{2\sigma^2_{\epsilon}}\right] \times \exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \ldots \times \exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right] 
+\begin{split}
+\mathcal{L}(\beta_0, \beta_1 | \mathrm{data}) &=\left[ \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}} \right]^n \times \exp\left[-\frac{\epsilon_1^2}{2\sigma^2_{\epsilon}}\right] \times \exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \ldots \\ 
+&~~~~~~ \times \exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right]
+\end{split}
 $$
 We can also simplify this by using the product notation:
 
@@ -372,7 +352,7 @@ We can also express the likelihood ratio using log-likelihoods. To do so we take
 $$
 \begin{split}
 \ln(\mathrm{LR}) &= \ln \bigg(\frac{\mathcal{L}_2}{\mathcal{L}_1}\bigg) \\[2ex]
-&= \ln \big(\mathcal{L}_2\big) - \ln \big(\mathcal{L}_1\big) 
+&= \ln \big(\mathcal{L}_2\big) - \ln \big(\mathcal{L}_1\big)
 \end{split}
 $$
 
@@ -395,14 +375,15 @@ exp(4.708743)
 
 Model 2 has 110.9 times the empirical support than Model 1.
 
-:::math_note
-### Mathematics Ahead
+:::mathnote
+### Mathematics of Log-Likelihood
 
 We can express the log-likelihood of the regression residuals mathematically by taking the natural logarithm of the likelihood we computed earlier:
 
 $$
 \begin{split}
-\ln \Bigl(\mathcal{L}(\beta_0, \beta_1 | \mathrm{data})\Bigr) &= \ln \Biggl( \left[ \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}} \right]^n \times \exp\left[-\frac{\epsilon_1^2}{2\sigma^2_{\epsilon}}\right] \times \exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \ldots \times \exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right] \Biggr) \\
+\ln \Bigl(\mathcal{L}(\beta_0, \beta_1 | \mathrm{data})\Bigr) &= \ln \Biggl( \left[ \frac{1}{\sigma_{\epsilon}\sqrt{2\pi}} \right]^n \times \exp\left[-\frac{\epsilon_1^2}{2\sigma^2_{\epsilon}}\right] \times  \\ 
+&~~~~~~ \exp\left[-\frac{\epsilon_2^2}{2\sigma^2_{\epsilon}}\right] \times \ldots \times \exp\left[-\frac{\epsilon_n^2}{2\sigma^2_{\epsilon}}\right] \Biggr) \\
 \end{split}
 $$
 
@@ -418,7 +399,7 @@ $$
 \mathcal{l}(\beta_0, \beta_1 | \mathrm{data}) = -\frac{n}{2} \times \ln (2\pi\sigma^2_{\epsilon}) - \frac{1}{2\sigma^2_{\epsilon}} \times \sum \big[Y_i - \beta_0 - \beta_1(X_i)\big]^2
 $$
 
-And, again, since $\sigma^2_{\epsilon}$ is a function of the regression coefficients and $n$, this means that the only variables in the log-likelihood function are the coefficients. 
+And, again, since $\sigma^2_{\epsilon}$ is a function of the regression coefficients and $n$, this means that the only variables in the log-likelihood function are the coefficients.
 :::
 
 <br />
@@ -450,7 +431,7 @@ exp(logLik(lm.2)[1])
 exp( logLik(lm.2)[1] - logLik(lm.1)[1] )
 ```
 
-Because the output from `logLik()` includes extraneous information (e.g., `df`), we use indexing (square brackets) to extract only the part of the output we want. In this case, the `[1]` extracts the log-likelihood value from the `logLik()` output (ignoring the `df` part). 
+Because the output from `logLik()` includes extraneous information (e.g., `df`), we use indexing (square brackets) to extract only the part of the output we want. In this case, the `[1]` extracts the log-likelihood value from the `logLik()` output (ignoring the `df` part).
 
 Also of note is that the `df` for Model 2 is four, indicating that this model is estimating four parameters ($\beta_0$, $\beta_{\mathrm{SAT}}$, $\beta_{\mathrm{Sector}}$, and $\sigma^2_{\epsilon}$). The value of `df` in the `logLik()` output is a quantification of the model's complexity. Here Model 2 (`df` = 4) is more complex than Model 1 (`df` = 3).
 
@@ -464,7 +445,7 @@ In this case, with a LR of 116, it seems like the data certainly support adoptin
 
 # Likelihood Ratio Test for Nested Models
 
-One question that arises is, if the likelihood for a more complex model is higher than the likelihood for a simpler model, how large does the likelihood ratio have to be before we adopt the more complex model? In general, there is no perfect answer for this. 
+One question that arises is, if the likelihood for a more complex model is higher than the likelihood for a simpler model, how large does the likelihood ratio have to be before we adopt the more complex model? In general, there is no perfect answer for this.
 
 If the models being compared are nested, then we can carry out a hypothesis test^[This is in some sense mixing the paradigms of likelihood-based evidence and classical hypothesis test-based evidence. In a future set of notes we will learn about information criteria which eliminate the need to mix these two paradigms.] to see if the LR is more than we would expect because of chance. Models are nested when the parameters in the simpler model are a subset of the parameters in the more complex model. For example, in our example, the parameters in Model 1 are a subset of the parameters in Model 2:
 
@@ -474,7 +455,7 @@ $$
 \mathbf{Model~2~Parameters:}&\quad\{\beta_0,~\beta_{\mathrm{SAT}},~\beta_{\mathrm{Sector}},~\sigma^2_{\epsilon}\} \\[1ex]
 \end{split}
 $$
-The parameters for Model 1 all appear in the list of parameters for Model 2. Because of this we can say that Model 1 is nested in Model 2. 
+The parameters for Model 1 all appear in the list of parameters for Model 2. Because of this we can say that Model 1 is nested in Model 2.
 
 <br />
 
@@ -489,6 +470,7 @@ H_0:& ~\theta_0 = \{\beta_0,~\beta_{\mathrm{SAT}},~\sigma^2_{\epsilon}\}\\[1ex]
 H_A:& \theta_1 = \{\beta_0,~\beta_{\mathrm{SAT}},~\beta_{\mathrm{Sector}},~\sigma^2_{\epsilon}\}
 \end{split}
 $$
+
 where $\theta_0$ refers to the simpler model and $\theta_1$ refers to the more complex model. This translates to adopting either the simpler model (fail to reject $H_0$) or the more complex model (reject $H_0$). To carry out this test, we translate our likelihood ratio to a test statistic called $\chi^2$ (pronounced chi-squared):
 
 $$
@@ -511,7 +493,7 @@ For our example, we compute this using the
 <br />
 
 
-## Deviance: A Measure of the Model--Data Error
+# Deviance: A Measure of the Model--Data Error
 
 If we re-write the formula for the $\chi^2$-statistic by distributing the $-2$, we get a better glimpse of what this statistic is measuring.
 
@@ -525,17 +507,17 @@ $$
 \mathrm{Deviance} = n \ln\big(2\pi\sigma^2_{\epsilon}\big) + \frac{\mathrm{RSS}}{\sigma^2_{\epsilon}}
 $$
 
-where $\mathrm{RSS}=\sum\epsilon_i^2$ and $\sigma^2_{\epsilon} = \frac{\mathrm{RSS}}{n}$. This formula illustrates that the residual deviance is a generalization of the residual sum of squares (RSS), and measures the model--data misfit. 
+where $\mathrm{RSS}=\sum\epsilon_i^2$ and $\sigma^2_{\epsilon} = \frac{\mathrm{RSS}}{n}$. This formula illustrates that the residual deviance is a generalization of the residual sum of squares (RSS), and measures the model--data misfit.
 
-:::math_note
+:::mathnote
 
-### Mathematics Ahead
+## Mathematics of Deviance
 
 We can express the deviance mathematically by multiplying the log-likelihood by $-2$.
 
 $$
 \begin{split}
-\mathrm{Deviance} &= -2 \times\mathcal{l}(\beta_0, \beta_1 | \mathrm{data}) \\[1ex] 
+\mathrm{Deviance} &= -2 \times\mathcal{l}(\beta_0, \beta_1 | \mathrm{data}) \\[1ex]
 &= -2 \bigg(-\frac{n}{2} \times \ln (2\pi\sigma^2_{\epsilon}) - \frac{1}{2\sigma^2_{\epsilon}} \times \sum \epsilon_i^2\bigg) \\[1ex]
 &= -n\ln (2\pi\sigma^2_{\epsilon}) + \frac{1}{\sigma^2_{\epsilon}}\sum \epsilon_i^2 \\[1ex]
 &= -n\ln (2\pi\sigma^2_{\epsilon}) + \frac{\mathrm{RSS}}{\sigma^2_{\epsilon}}
@@ -569,7 +551,7 @@ Here the deviance for Model 2 (217.59) is less than the deviance for Model 1 (22
 227.0944 - 217.5929
 ```
 
-Model 2 improves the fit (reduces the misfit) by 9.5015 over Model 1. This is the value of our $\chi^2$-statistic. That is, the $\chi^2$-statistic is difference in residual deviance valuess and measures the amount of improvement in the model--data misfit.
+Model 2 improves the fit (reduces the misfit) by 9.5015 over Model 1. This is the value of our $\chi^2$-statistic. That is, the $\chi^2$-statistic is difference in residual deviance values and measures the amount of improvement in the model--data misfit.
 
 <br />
 
@@ -582,21 +564,25 @@ $$
 \chi^2(1) = 9.50
 $$
 
-```{r echo=FALSE, fig.cap="Plot of the probability density function (PDF) for a $\\chi^2(1)$ distribution. The greyshaded area represents the *p*-value based on $\\chi^2=9.5015$."}
+```{r}
+#| label: fig-01
+#| out-width: "70%"
+#| fig-cap: "Plot of the probability density function (PDF) for a $\\chi^2(1)$ distribution. The grey shaded area represents the *p*-value based on $\\chi^2=9.5015$."
+#| code-fold: true
 # Create dataset
-fig = data.frame(
+fig_01 = data.frame(
   X = seq(from = 0, to = 20, by = 0.01)
-  ) %>% 
+  ) %>%
   mutate(
     Y = dchisq(x = X, df = 1)
     )
 
 # Filter out X<=65
-shaded = fig %>%
+shaded = fig_01 %>%
   filter(X >=9.5015)
 
 # Create plot
-ggplot(data = fig, aes(x = X, y = Y)) +
+ggplot(data = fig_01, aes(x = X, y = Y)) +
   geom_line() +
   xlab("Chi-squared") +
   ylab("Probability density") +
@@ -614,7 +600,7 @@ To compute the *p*-value we use the `pchisq()` function.
 pchisq(q = 9.5015, df = 1, lower.tail = FALSE)
 ```
 
-Based on the *p*-value, we would reject the null hypothesis for the likelihood ratio test, which suggests that we should adopt the more complex model.
+Based on the *p*-value, we would reject the null hypothesis for the likelihood ratio test, which suggests that we should adopt the more complex model (Model 2).
 
 <br />
 
@@ -629,6 +615,7 @@ $$
 \mathbf{Model~3~Parameters:}&\quad\{\beta_0,~\beta_{\mathrm{SAT}},~\beta_{\mathrm{Sector}},~\beta_{\mathrm{SAT}\times\mathrm{Sector}},~\sigma^2_{\epsilon}\} \\[1ex]
 \end{split}
 $$
+
 We can see that the parameters for Model 2 are a subset of those for Model 3. Below we fit Model 3 and compute the log-likelihood:
 
 ```{r}
@@ -681,7 +668,7 @@ Evaluating this in a $\chi^2$-distribution with 1 degree-of-freedom:
 pchisq(q = 0.588511, df = 1, lower.tail = FALSE)
 ```
 
-Based on this *p*-value, we would adopt the simpler main effects model (Model 2). 
+Based on this *p*-value, we would adopt the simpler main effects model (Model 2).
 
 <br />
 
@@ -690,7 +677,7 @@ Based on this *p*-value, we would adopt the simpler main effects model (Model 2)
 
 We can also use the `lrtest()` function from the `{lmtest}` package to carry out a likelihood ratio test. We provide this function the name of the model object for the simpler model, followed by the name of the model object for the more complex model.
 
-```{r message=FALSE}
+```{r}
 # Load library
 library(lmtest)
 
@@ -714,11 +701,8 @@ We can also get the results of both likelihood ratio tests in a single call to `
 lrtest(lm.1, lm.2, lm.3)
 ```
 
-
-
-
-
 <br />
+
 
 # References
 

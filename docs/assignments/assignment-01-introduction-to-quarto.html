@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-11">
+<meta name="dcterms.date" content="2023-01-13">
 
 <title>EPsy 8252 - Assignment 01</title>
 <style>
@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2023</p>
+      <p class="date">January 13, 2023</p>
     </div>
   </div>
   
@@ -279,8 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
 <ol type="1">
-<li><p>Import the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.</p></li>
-<li><p>Create a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each region represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.</p></li>
+<li><p>Import the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be hidden.</p></li>
 <li><p>Recode the <code>gni_class</code> variable by creating a dummy variable called <code>high_gni</code>. To create this dummy variable use the syntax below. Explain in words (not code) how the <code>high_gni</code> dummy variable is being coded.</p></li>
 </ol>
 <div class="cell">
@@ -289,11 +288,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_gni =</span> <span class="fu">if_else</span>(gni_class <span class="sc">==</span> <span class="st">"Upper/Middle"</span> <span class="sc">|</span> gni_class <span class="sc">==</span> <span class="st">"Upper"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="4" type="1">
+<ol start="3" type="1">
+<li><p>Create a well-formatted table that includes the mean infant mortality rate and the standard deviation of infant mortality rates for each of the two High GNI levels represented in the data. Display these in a summary table. All numerical output should be rounded to two decimal places. Also add an appropriate caption (the caption does not have to follow APA formatting). Do not display any syntax.</p></li>
 <li><p>Use the <code>lm()</code> function to fit a main effects linear model (unstandardized) regressing infant mortality on your dummy variable and female education level. Use the <code>tidy()</code> function from the <em>broom</em> package to display the model’s coefficient-level output. (Reminder: Do not display any syntax, only the model’s coefficient-level output.)</p></li>
 <li><p>Use a bulleted list to provide an interpretation of each estimated regression coefficient (including the intercept) from the regression you fitted in Question 3; one interpretation per list item.</p></li>
-<li><p>Create a well-formatted table of the model’s coefficient <code>tidy()</code> output (e.g., using the <code>gt()</code> function from the <code>{gt}</code> package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. The last four column names should be italicized since they are statistics. All numerical output should be rounded to two decimal places, except the <em>p</em>-values, which should be rounded to three decimal places. Also add a caption. <strong>(2pts.)</strong></p></li>
-<li><p>Create a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the <em>x</em>-axis. Display a separate line for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the <code>fig-cap</code> option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using <code>fig-width</code> and <code>fig-height</code> in the code chunk so that it looks good. Lastly, change the values of the output width/height (<code>out-width</code>, <code>out-height</code>) to change the size of the plot from the default values. <strong>(2pts.)</strong></p></li>
+<li><p>Create a well-formatted table of the model’s coefficient <code>tidy()</code> output (e.g., using the <code>gt()</code> function from the <code>{gt}</code> package). In the final outputted table, the five column names should be “Predictor”, “B”, “SE”, “t”, and “p”, respectively. (The last four column names should be italicized since they are statistics.) All numerical output should be rounded to two decimal places, except the <em>p</em>-values, which should be rounded to three decimal places. Also add a caption. <strong>(2pts.)</strong></p></li>
+<li><p>Create a publication quality plot that displays the results from the fitted model. For this plot, put the female education level predictor on the <em>x</em>-axis. Display separate lines to show the effects for each level of the dummy-coded GNI variable. The two lines should be displayed using different linetypes or colors (or both) so that they can be easily differentiated in the plot. Be sure that the figure includes a caption using the <code>fig-cap</code> option in the code chunk. The plot should be centered on the page. Adjust the aspect ratio of the plot using <code>fig-width</code> and <code>fig-height</code> in the code chunk so that it looks good. Lastly, change the values of the output width/height (<code>out-width</code>, <code>out-height</code>) to change the size of the plot from the default values. <strong>(2pts.)</strong></p></li>
 <li><p>Use a display equation to write the equation for the underlying <em>regression model</em> (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the <em>fitted least squares regression equation</em> based on the output from <code>lm()</code>. Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs. <strong>(2pts.)</strong></p></li>
 <li><p>Write the following sentence: “The estimated partial regression coefficient (<span class="math inline">\(\hat\beta_\mathrm{Female~Education}\)</span>) is <span class="math inline">\(x\)</span>.” In this sentence, use an inline code chunk to replace <span class="math inline">\(x\)</span> with the value for the fitted coefficient from the fitted equation. In this code chunk, do not just write in the value for the coefficient, but use syntax to extract the value from the <code>tidy()</code> output. (Hint: Google “R extract element from dataframe”.) <strong>(2pts.)</strong></p></li>
 <li><p>Compute the sum of squared residuals for the fitted regression. Although you can use the <code>anova()</code> function to check your work, compute this value by actually using R syntax to carry out the computation, <span class="math inline">\(\sum(y_i - \hat{y}_i)^2\)</span>. Show the syntax you used in your document.</p></li>

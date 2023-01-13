@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-11">
+<meta name="dcterms.date" content="2023-01-13">
 
 <title>EPsy 8252 - 📖 Introduction to Quarto</title>
 <style>
@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../assets/sticky-notes.css">
 </head>
@@ -217,12 +218,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#update-the-yaml" id="toc-update-the-yaml" class="nav-link active" data-scroll-target="#update-the-yaml">Update the YAML</a></li>
-  <li><a href="#loading-libraries-and-importing-data" id="toc-loading-libraries-and-importing-data" class="nav-link" data-scroll-target="#loading-libraries-and-importing-data">Loading Libraries and Importing Data</a>
+  <li><a href="#your-first-task" id="toc-your-first-task" class="nav-link active" data-scroll-target="#your-first-task">Your First Task</a></li>
+  <li><a href="#update-the-yaml" id="toc-update-the-yaml" class="nav-link" data-scroll-target="#update-the-yaml">Update the YAML</a></li>
+  <li><a href="#adding-text" id="toc-adding-text" class="nav-link" data-scroll-target="#adding-text">Adding Text</a></li>
+  <li><a href="#adding-headings" id="toc-adding-headings" class="nav-link" data-scroll-target="#adding-headings">Adding Headings</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks">Code Chunks</a>
   <ul class="collapse">
+  <li><a href="#add-a-code-chunk-to-load-libraries-and-import-data" id="toc-add-a-code-chunk-to-load-libraries-and-import-data" class="nav-link" data-scroll-target="#add-a-code-chunk-to-load-libraries-and-import-data">Add a Code Chunk to Load Libraries and Import Data</a></li>
   <li><a href="#displaying-data" id="toc-displaying-data" class="nav-link" data-scroll-target="#displaying-data">Displaying Data</a></li>
+  <li><a href="#add-a-code-chunk-to-create-a-plot" id="toc-add-a-code-chunk-to-create-a-plot" class="nav-link" data-scroll-target="#add-a-code-chunk-to-create-a-plot">Add a Code Chunk to Create a Plot</a>
+  <ul class="collapse">
+  <li><a href="#figure-size" id="toc-figure-size" class="nav-link" data-scroll-target="#figure-size">Figure Size</a></li>
   </ul></li>
-  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations">Equations</a></li>
+  <li><a href="#inline-code-chunks-for-better-reproducibility" id="toc-inline-code-chunks-for-better-reproducibility" class="nav-link" data-scroll-target="#inline-code-chunks-for-better-reproducibility">Inline Code Chunks for Better Reproducibility</a>
+  <ul class="collapse">
+  <li><a href="#rounding" id="toc-rounding" class="nav-link" data-scroll-target="#rounding">Rounding</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations">Equations</a>
+  <ul class="collapse">
+  <li><a href="#better-typesetting-of-equations" id="toc-better-typesetting-of-equations" class="nav-link" data-scroll-target="#better-typesetting-of-equations">Better Typesetting of Equations</a></li>
+  </ul></li>
+  <li><a href="#multiline-equations" id="toc-multiline-equations" class="nav-link" data-scroll-target="#multiline-equations">Multiline Equations</a>
+  <ul class="collapse">
+  <li><a href="#spacing-out-the-lines" id="toc-spacing-out-the-lines" class="nav-link" data-scroll-target="#spacing-out-the-lines">Spacing Out the Lines</a></li>
+  </ul></li>
+  <li><a href="#hyphens-minus-signs-and-dashes" id="toc-hyphens-minus-signs-and-dashes" class="nav-link" data-scroll-target="#hyphens-minus-signs-and-dashes">Hyphens, Minus Signs, and Dashes</a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2023</p>
+      <p class="date">January 13, 2023</p>
     </div>
   </div>
   
@@ -252,12 +273,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>In this set of notes, you will continue your Quarto journey. To begin:</p>
+<p>In this set of notes, you will continue your Quarto journey. One important note before we begin:</p>
+<div class="fyi">
+<p>In EPsy 8251, when we create objects, they are stored in the R environment and we can operate on those objects. For example, in this document we will read in the <em>fertility.csv</em> data and assign it to the object <code>fertility</code>. We can then use functions to compute values and operate on the data.</p>
+<p>Trying to operate on an object that we created in the R environment, but do not create in our Quarto document will lead to an error. This is because the R environment and your Quarto document are completely independent from one another.</p>
+<p><strong>If you want to operate on an object you have to create the object in the Quarto document.</strong></p>
+</div>
+<p><br></p>
+<section id="your-first-task" class="level1">
+<h1>Your First Task</h1>
+<p>To begin:</p>
 <div class="exercises">
 <ol type="1">
 <li>Open the Assignment 1 R project (<code>assignment-01.Rproj</code>) you created.</li>
 <li>Create a new Quarto document called <code>assignment-01.qmd</code> and save this in your root directory. The tree for your project should now look like this:</li>
 </ol>
+<!-- -->
 <pre><code>assignment-01
     ├── README
     ├── assets
@@ -268,6 +299,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     ├── figs
     └── scripts</code></pre>
 </div>
+<p><br></p>
+<p>Before we start updating the document, here is a useful resource.</p>
+<ul>
+<li>If you are using the <code>Source</code> editor, there is a <em>Markdown Reference Guide</em> available in RStudio via <code>Help &gt; Markdown Quick Reference</code>. This will include the Markdown syntax for basic things like changing the font style, creating lists, adding links, etc.</li>
+</ul>
+<p><br></p>
+</section>
 <section id="update-the-yaml" class="level1">
 <h1>Update the YAML</h1>
 <div class="exercises">
@@ -284,11 +322,29 @@ editor: visual
 </div>
 <p><br></p>
 </section>
-<section id="loading-libraries-and-importing-data" class="level1">
-<h1>Loading Libraries and Importing Data</h1>
+<section id="adding-text" class="level1">
+<h1>Adding Text</h1>
+<div class="exercises">
+<p>Start by clearing all the text in the document below the YAML (underneath the three hyphens). Then add some text into your document. Within this text, make some words italics and some words bold. Also add a bulletted list. (Maybe the names of the pets/plants/kids for everyone in your group.)</p>
+</div>
+<p><br></p>
+</section>
+<section id="adding-headings" class="level1">
+<h1>Adding Headings</h1>
+<div class="exercises">
+<p>Add a Level-1 and a Level-2 heading into your document. Separate each of these by adding some text after each of them. If you need a refresher, see the “Headings” section in the <a href="https://quarto.org/docs/authoring/markdown-basics.html#headings">Markdown Basics Tutorial</a>.</p>
+</div>
+<p><br></p>
+</section>
+<section id="code-chunks" class="level1">
+<h1>Code Chunks</h1>
+<p>Recall from the <a href="https://quarto.org/docs/get-started/computations/rstudio.html">Computations Tutorial</a>, we can add R syntax to our document using a code chunk.</p>
+<p><br></p>
+<section id="add-a-code-chunk-to-load-libraries-and-import-data" class="level2">
+<h2 class="anchored" data-anchor-id="add-a-code-chunk-to-load-libraries-and-import-data">Add a Code Chunk to Load Libraries and Import Data</h2>
 <p>The first question on Assignment 1 is:</p>
 <blockquote class="blockquote">
-<p>Import the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be displayed, as should the output.</p>
+<p>Import the data and display the first several rows of data (not all of it). Use one of the paged table options in your YAML to ensure that this is printed nicely. All syntax for these commands should be hidden.</p>
 </blockquote>
 <div class="exercises">
 <ul>
@@ -297,7 +353,6 @@ editor: visual
 <li>In the same R chunk, import the <code>fertility.csv</code> data into an object called <code>fertility</code>.</li>
 </ul>
 </div>
-<p><br></p>
 <p>To import the data (which you put in the <code>data</code> directory of your project last class) use the following syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fertility <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/fertility.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -317,7 +372,11 @@ editor: visual
     ├── figs
     └── scripts</code></pre>
 </div>
+<div class="protip">
+<p>Use the first code chunk in your Quarto document to load all the packages and datasets used in the document. Label this chunk <code>setup</code>. This has the added advantage that others can immediately see what packages and datasets are needed to run the document. Labelling it <code>setup</code> also runs that chunk when you try to run other chunks, so your code works!</p>
+</div>
 <p><br></p>
+</section>
 <section id="displaying-data" class="level2">
 <h2 class="anchored" data-anchor-id="displaying-data">Displaying Data</h2>
 <div class="exercises">
@@ -346,9 +405,248 @@ editor: visual
 </div>
 <p><br></p>
 </section>
+<section id="add-a-code-chunk-to-create-a-plot" class="level2">
+<h2 class="anchored" data-anchor-id="add-a-code-chunk-to-create-a-plot">Add a Code Chunk to Create a Plot</h2>
+<div class="exercises">
+<p>Create another Level-1 header in your document called “Scatterplot”. Then create a code chunk in which you create a scatterplot of infant mortality rates (<em>y</em>-axis) versus female education level (<em>x</em>-axis).</p>
+</div>
+<p>It is a good idea to include a label in the chunk options for each plot you create. A label is the name of this code chunk. (Any code chunk, even if it is not a plot, can have a label.) In the plot below, the chunk’s label is <code>fig-scatterplot</code>.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatterplot</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Scatterplot showing the relationship between female education level and infant mortality."</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fertility, <span class="fu">aes</span>(<span class="at">x =</span> educ_female, <span class="at">y =</span> infant_mortality)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="03-introduction-to-quarto_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Scatterplot showing the relationship between female education level and infant mortality.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that by labeling this chunk, the figure is numbered in the document. We also added a caption using the <code>fig-cap:</code> option.</p>
+<p><br></p>
+<section id="figure-size" class="level3">
+<h3 class="anchored" data-anchor-id="figure-size">Figure Size</h3>
+<p>There are a couple other chunk options for figures that help set the aspect ratio and size of the figure in your document. The aspect ratio is the ratio of a figure’s width to its height. We set this using the <code>fig-width:</code> and <code>fig-height:</code> chunk options. (The default value for both is 6; thus the figure appears square.) Below we change these so that the figure appears wider than it is tall.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatterplot-2</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Scatterplot showing the relationship between female education level and infant mortality."</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 9</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fertility, <span class="fu">aes</span>(<span class="at">x =</span> educ_female, <span class="at">y =</span> infant_mortality)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="03-introduction-to-quarto_files/figure-html/fig-scatterplot-2-1.png" class="img-fluid figure-img" width="864"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Scatterplot showing the relationship between female education level and infant mortality.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="protip">
+<p>It is important to change the aspect ratio when you have legends or when you are using <code>{patchwork}</code> to stack or put multiple figures next to each other. Many times you need to find a good aspect ratio though trial-and-error of trying different values.</p>
+</div>
+<p>The actual size of the figure in the document is independent of the aspect ratio and can be set using the <code>out-width:</code> or <code>out-height:</code> chunk option. These options take a character string of the direct size (in HTML documents this is typically in pixels) or of the percentage of the output width/height. Here we keep the same aspect ratio, but make the figure smaller by setting the figure width to 40% of the document’s width.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatterplot-3</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Scatterplot showing the relationship between female education level and infant mortality."</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 9</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "40%"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fertility, <span class="fu">aes</span>(<span class="at">x =</span> educ_female, <span class="at">y =</span> infant_mortality)) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="03-introduction-to-quarto_files/figure-html/fig-scatterplot-3-1.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Scatterplot showing the relationship between female education level and infant mortality.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>:::protip If you set the aspect ratio of the figure, you need only set <code>out-width:</code> or <code>out-height:</code>. You don’t need to set both as the other will be determined by the aspect ratio. ::</p>
+<p><br></p>
+</section>
+</section>
+<section id="inline-code-chunks-for-better-reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="inline-code-chunks-for-better-reproducibility">Inline Code Chunks for Better Reproducibility</h2>
+<p>In writing papers where there are results from data analyses being reported in the text, inline code chunks are boss! For example, consider writing the following sentence in an analysis of the <em>fertility.csv</em> data.</p>
+<blockquote class="blockquote">
+<p>The mean infant mortality rate is 26.05% (SD = 23.98).</p>
+</blockquote>
+<p>Rather than computing these values and then transposing the values into the sentence, we can use inline code chunks to directly compute and write the values in the sentence. Here is some syntax we could use:</p>
+<p>The mean infant mortality rate is <code>`r mean(fertility$infant_mortality)`</code> (SD = <code>`r sd(fertility$infant_mortality)`</code>).</p>
+<p>This produces the following sentence in the rendered document:</p>
+<blockquote class="blockquote">
+<p>The mean infant mortality rate is 26.05 (SD = 23.982719).</p>
+</blockquote>
+<p><br></p>
+<section id="rounding" class="level3">
+<h3 class="anchored" data-anchor-id="rounding">Rounding</h3>
+<p>There are several ways to set the rounding to two decimal places. One is to embed the computation in the <code>round()</code> function. For example, in the first inline chunk we could use: <code>round(mean(fertility$infant_mortality), 2)</code>.</p>
+<p>You can also do this in a separate code chunk and then call the values in the inline computation (as suggested in the <a href="https://quarto.org/docs/get-started/computations/rstudio.html">Quarto Computations Tutorial</a>).</p>
+<p><br></p>
+</section>
+</section>
 </section>
 <section id="equations" class="level1">
 <h1>Equations</h1>
+<p>There are two different manners in which equations/mathematics is included in a document.</p>
+<ul>
+<li><strong>Display equations</strong> are typeset on a separate line from the body text and are centered on the page.</li>
+<li><strong>Inline equations</strong> are typeset directly within the body text.</li>
+</ul>
+<p>For example, here is a display equation:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1(x_i) + \epsilon_i
+\]</span></p>
+<p>The syntax I used to create this display equation is:</p>
+<pre><code>$$
+y_i = \beta_0 + \beta_1(x_i) + \epsilon_i
+$$</code></pre>
+<p>Here is the same equation as an inline equation: <span class="math inline">\(y_i = \beta_0 + \beta_1(x_i) + \epsilon_i\)</span>. Notice that in an inline equation, the equation is embedded directly in the text. To create the inline equation we embed the mathematical expression in single dollar signs (<code>$y_i = \beta_0 + \beta_1(x_i) + \epsilon_i$</code>) rather than double dollar signs.</p>
+<div class="fyi">
+<p>If you need a reminder about how to create these, check out the “Equations” section of the <a href="https://quarto.org/docs/authoring/markdown-basics.html#equations">Markdown Basics</a> tutorial.</p>
+</div>
+<p>The syntax we use to create the mathematical expressions is from LaTeX. Here are a couple reference you can use:</p>
+<ul>
+<li><a href="https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols">List of LaTeX mathematical symbols</a></li>
+<li><a href="https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf">LaTeX Mathematical Symbols</a></li>
+</ul>
+<div class="exercises">
+<p><strong>Your Turn</strong></p>
+<p>Part of Question #8 asks you to use a display equation to write the fitted equation based on the following output.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"63.370963","3":"3.1515263","4":"20.108023","5":"2.176131e-40"},{"1":"educ_female","2":"-3.599037","3":"0.5490205","4":"-6.555379","5":"1.431500e-09"},{"1":"high_gni","2":"-17.583207","3":"3.7836312","4":"-4.647178","5":"8.640582e-06"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Try to write this fitted equation in your Quarto document using a display equation.</p>
+</div>
+<p><br></p>
+<section id="better-typesetting-of-equations" class="level2">
+<h2 class="anchored" data-anchor-id="better-typesetting-of-equations">Better Typesetting of Equations</h2>
+<p>When we typeset equations, there are a couple things we should do:</p>
+<ul>
+<li>Use variable names that make sense to our reader, rather than their name in our dataset/R. For example “Female Education Level” is a better name than “educ_female”.</li>
+</ul>
+<p>This means we will need to add spaces into our variable names in the mathematical expression. If you tried that earlier, you found out that just hitting the spacebar does not produce a space in the outputted expression. We need to include a tilde (<code>~</code>) every time you want a space. So to get the name “Female Education Level” we need to use the following in our equation:</p>
+<pre><code>$$
+Female~Education~Level
+$$</code></pre>
+<ul>
+<li>Variable names should also be typeset using normal text rather than italic (the default in mathematical expressions).</li>
+</ul>
+<p>To achieve this, we have to embed the text we want to be normal in the syntax <code>\mathrm{}</code>. This typesets the text in a roman font (normal text). For example:</p>
+<pre><code>$$
+\mathrm{Female~Education~Level}
+$$</code></pre>
+<p>You can also use <code>\mathit{}</code> (italics), <code>\mathbf{}</code> (bold), <code>\mathtt{}</code> (typewriter text), and <code>\mathcal{}</code> (caligraphy; this is useful for the “N” we use to indicate a normal distribution).</p>
+<ul>
+<li>Hyphens need special syntax since a hyphen would be interpreted as a minus sign. In typesetting, the minus sign is longer than the hyphen symbol.</li>
+</ul>
+<p>If you want to include a hyphen, we need to include it in <code>\mbox{}</code>. For example, to add a hyphen in our variable name to get “Female Education-Level”, we use:</p>
+<pre><code>$$
+\mathrm{Female~Education\mbox{-}Level}
+$$</code></pre>
+<div class="exercises">
+<p>Update your fitted equation from before to include spaces in variable names. Also be sure the variable names are written in normal font.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="multiline-equations" class="level1">
+<h1>Multiline Equations</h1>
+<p>There are a couple of ways to create multiline equations in a Quarto document. I tend to use the <code>split</code> environment from LaTeX to do this. To use this:</p>
+<ul>
+<li>Include <code>\begin{split}</code> and <code>\end{split}</code> in the display equation.</li>
+<li>At the end of each line (where you want a linebreak) include a double backslash, <code>\\</code>.</li>
+<li>In each line of the multiline equation, also include the ampersand sign (<code>&amp;</code>) at the point we want the multiple lines to align vertically.</li>
+</ul>
+<p>Here is an example:</p>
+<pre><code>$$
+\begin{split}
+\hat{y}_i &amp;= 3 + 4(1) \\
+&amp;= 7
+\end{split}
+$$</code></pre>
+<p>And the resulting display equation is:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{y}_i &amp;= 3 + 4(1) \\
+&amp;= 7
+\end{split}
+\]</span></p>
+<p>Note that the ampersand appeared immediately before the equal sign in each line of the equation, so that is where the two lines are aligned vertically (the equal signs are on top of each other). You can add as many lines to this as you want.</p>
+<div class="protip">
+<p>Multiline equations are quite useful to show your work and when you have really long single equations that need to be broken up so they fit on the page (e.g., a regression equation with many predictors).</p>
+</div>
+<p><br></p>
+<section id="spacing-out-the-lines" class="level2">
+<h2 class="anchored" data-anchor-id="spacing-out-the-lines">Spacing Out the Lines</h2>
+<p>You can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.</p>
+<pre><code>$$
+\begin{split}
+\hat{y}_i &amp;= 3 + 4(1) \\[1em]
+&amp;= 7
+\end{split}
+$$</code></pre>
+<p>Here the resulting display equation is:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{y}_i &amp;= 3 + 4(1) \\[1em]
+&amp;= 7
+\end{split}
+\]</span></p>
+<p>Here we have added line space of 1 em. An <em>em</em> is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the <em>en</em> (the width of the letter “n”), and the <em>ex</em> (the width of the letter “x”).</p>
+<div class="exercises">
+<p>Question #8 actually asks:</p>
+<blockquote class="blockquote">
+<p>Use a display equation to write the equation for the underlying regression model (including error and assumptions) using Greek letters, subscripts, and variable names. Also write the equation for the fitted least squares regression equation based on the output from <code>lm()</code>. Type these two equations in the same display equation, each on a separate line of text in your document, and align the equals signs.</p>
+</blockquote>
+<p>Try writing this multiline equation.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="hyphens-minus-signs-and-dashes" class="level1">
+<h1>Hyphens, Minus Signs, and Dashes</h1>
+<p>In printed work the width of a hyphen, a minus sign, and dashes are all different. Quarto will correctly typeset these, but you have to indicate what you want. Below are how we indicate these in Quarto.</p>
+<ul>
+<li><strong>Hyphen:</strong> A hyphen is used to join two or more words together. To typeset a hyphen in Quarto, use a single hyphen; <code>-</code>.</li>
+<li><strong>En Dash:</strong> An en dash is used to mark ranges and to indicate the meaning “to” in phrases like “Minneapolis–St.&nbsp;Paul”. An en dash is slightly longer than a hyphen and is typeset in Quarto using two hyphens; <code>--</code>.</li>
+<li><strong>Em Dash:</strong> An em dash is used to separate extra information or mark a break in a sentence. An em dash is slightly longer than an en dash and is typeset in Quarto using three hyphens; <code>---</code>.</li>
+<li><strong>Minus Sign:</strong> A minus sign is used in mathematical expressions (e.g., in subtraction or to indicate a negative number). To typeset a minus sign, use the inline equation with a single hyphen; <code>$-$</code>. When a minus sign is typeset, not only is the length of it different than a hyphen, but it also includes the correct spacing around it for mathematical typesetting.</li>
+</ul>
+<p>Here is a sentence incorporating each of these so you can see the differences:</p>
+<p><em>During the time from January–February, my three dogs enjoy playing in the snow—apparently snow is fun for canines—with their sweaters on since it is</em> <span class="math inline">\(-30\)</span>-degrees Fahrenheit outside.</p>
+<p>The input for this sentence was:</p>
+<p><code>During the time from January--February, my three dogs enjoy playing in the snow---apparently snow is fun for canines---with their sweaters on since it is $-30$-degrees Fahrenheit outside.</code></p>
+<p>Note that you can also typeset these in Word:</p>
+<ul>
+<li><strong>Hyphen:</strong> On both a Mac and PC, press “hyphen”.</li>
+<li><strong>En Dash:</strong> On a Mac, press “option+hyphen key”. On a PC, press “ctrl+hyphen”.</li>
+<li><strong>Em Dash:</strong> On a Mac, press “option+shift+hyphen key”. On a PC, press “alt+ctrl+hyphen”.</li>
+<li><strong>Minus Sign:</strong> For a minus sign, you should use Equation Editor.</li>
+</ul>
+<p><br></p>
 
 
 </section>

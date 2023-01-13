@@ -61,6 +61,11 @@ Also work through the [Tutorial: Computations](https://quarto.org/docs/get-start
 
 ## Learn More
 
+Check out the Welcome to Quarto Workshop. This is a 2 1/2 hour workshop introducing people to Quarto.
+
+- [Welcome to Quarto Workshop! (YouTube Video)](https://www.youtube.com/watch?v=yvi5uXQMvu4)
+
+
 If you are familiar with RMarkdown and want to learn how to switch over to Quarto, here is a nice 30 minute talk by Mine Çetinkaya-Rundel that helps you do that.
 
 - [2022 Toronto Workshop on Reproducibility - Mine Çetinkaya-Rundel (YouTube Video)](https://www.youtube.com/watch?v=6p4vOKS6Xls)

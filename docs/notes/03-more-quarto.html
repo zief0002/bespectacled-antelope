@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-11">
+<meta name="dcterms.date" content="2023-01-13">
 
-<title>EPsy 8252 - Quarto Tips, Tricks, and FAQ</title>
+<title>EPsy 8252 - More Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -83,7 +146,6 @@ div.csl-indent {
 <script src="../site_libs/pagedtable/js/pagedtable.js"></script>
 <script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../assets/sticky-notes.css">
 </head>
@@ -174,19 +236,16 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#multiline-equations" id="toc-multiline-equations" class="nav-link active" data-scroll-target="#multiline-equations">Multiline Equations</a>
+  <li><a href="#citations" id="toc-citations" class="nav-link active" data-scroll-target="#citations">Citations</a>
   <ul class="collapse">
-  <li><a href="#spacing-out-the-lines" id="toc-spacing-out-the-lines" class="nav-link" data-scroll-target="#spacing-out-the-lines">Spacing Out the Lines</a></li>
-  </ul></li>
-  <li><a href="#hyphens-minus-signs-and-dashes" id="toc-hyphens-minus-signs-and-dashes" class="nav-link" data-scroll-target="#hyphens-minus-signs-and-dashes">Hyphens, Minus Signs, and Dashes</a></li>
-  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a>
-  <ul class="collapse">
-  <li><a href="#bibtex-files" id="toc-bibtex-files" class="nav-link" data-scroll-target="#bibtex-files">BibTex Files</a></li>
   <li><a href="#creating-.bib-files-using-zotero" id="toc-creating-.bib-files-using-zotero" class="nav-link" data-scroll-target="#creating-.bib-files-using-zotero">Creating .bib Files Using Zotero</a></li>
+  <li><a href="#including-the-bib-file-in-your-yaml" id="toc-including-the-bib-file-in-your-yaml" class="nav-link" data-scroll-target="#including-the-bib-file-in-your-yaml">Including the BIB File in your YAML</a></li>
+  <li><a href="#bibtex-files" id="toc-bibtex-files" class="nav-link" data-scroll-target="#bibtex-files">BibTex Files</a></li>
   <li><a href="#including-citations-in-your-quarto-document" id="toc-including-citations-in-your-quarto-document" class="nav-link" data-scroll-target="#including-citations-in-your-quarto-document">Including Citations in Your Quarto Document</a></li>
   <li><a href="#use-apa-formatted-citations-and-references" id="toc-use-apa-formatted-citations-and-references" class="nav-link" data-scroll-target="#use-apa-formatted-citations-and-references">Use APA Formatted Citations and References</a></li>
   <li><a href="#citation-extras" id="toc-citation-extras" class="nav-link" data-scroll-target="#citation-extras">Citation Extras</a></li>
   </ul></li>
+  <li><a href="#auto-populating-the-date-in-your-yaml" id="toc-auto-populating-the-date-in-your-yaml" class="nav-link" data-scroll-target="#auto-populating-the-date-in-your-yaml">Auto-Populating the Date in Your YAML</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -196,7 +255,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Quarto Tips, Tricks, and FAQ</h1>
+<h1 class="title">More Quarto</h1>
 </div>
 
 
@@ -207,7 +266,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2023</p>
+      <p class="date">January 13, 2023</p>
     </div>
   </div>
   
@@ -220,81 +279,8 @@ div.csl-indent {
 <div class="cell">
 
 </div>
-<p>This document contains a few more tips, tricks, and helpful instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester.</p>
+<p>This document contains some additional instruction for EPsy 8252. Note that I might add to this as students hit me with questions over the course of the semester.</p>
 <p><br></p>
-<section id="multiline-equations" class="level1">
-<h1>Multiline Equations</h1>
-<p>There are a couple of ways to create multiline equations in a Quarto document. I tend to use the <code>split</code> environment from LaTeX to do this. To use this:</p>
-<ul>
-<li>Include <code>\begin{split}</code> and <code>\end{split}</code> in the display equation.</li>
-<li>At the end of each line (where you want a linebreak) include a double backslash, <code>\\</code>.</li>
-<li>In each line of the multiline equation, also include the ampersand sign (<code>&amp;</code>) at the point we want the multiple lines to align vertically.</li>
-</ul>
-<p>Here is an example:</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-multiline-equation-01.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math display">\[
-\begin{split}
-\hat{y}_i &amp;= 3 + 4(1) \\
-&amp;= 7
-\end{split}
-\]</span></p>
-<p>Note that the ampersand appeared immediately befor the equal sign in each line of the equation, so that is where the two lines are aligned vertically (the equal signs are on top of each other). You can add as many lines to this as you want.</p>
-<div class="protip">
-<p>Multiline equations are quite useful to show your work and when you have really long single equations that need to be broken up so they fit on the page (e.g., a regression equation with many predictors).</p>
-</div>
-<p><br></p>
-<section id="spacing-out-the-lines" class="level2">
-<h2 class="anchored" data-anchor-id="spacing-out-the-lines">Spacing Out the Lines</h2>
-<p>You can add space between the lines of your multiline equation by including a unit of measurement between square brackets after the double backslashes.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-multiline-equation-02.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math display">\[
-\begin{split}
-\hat{y}_i &amp;= 3 + 4(1) \\[1em]
-&amp;= 7
-\end{split}
-\]</span></p>
-<p>Here we have added line space of 1 em. An <em>em</em> is a unit for measuring the width of printed work, equal to the height of the type size being used (typically the width of the letter “m”). Other common printing units include the <em>en</em> (the width of the letter “n”), and the <em>ex</em> (the width of the letter “x”).</p>
-<p><br></p>
-</section>
-</section>
-<section id="hyphens-minus-signs-and-dashes" class="level1">
-<h1>Hyphens, Minus Signs, and Dashes</h1>
-<p>In printed work the width of a hyphen, a minus sign, and dashes are all different. Quarto will correctly typeset these, but you have to indicate what you want. Below are how we indicate these in Quarto.</p>
-<ul>
-<li><strong>Hyphen:</strong> A hyphen is used to join two or more words together. To typeset a hyphen in Quarto, use a single hyphen; <code>-</code>.</li>
-<li><strong>En Dash:</strong> An en dash is used to mark ranges and to indicate the meaning “to” in phrases like “Minneapolis–St.&nbsp;Paul”. An en dash is slightly longer than a hyphen and is typeset in Quarto using two hyphens; <code>--</code>.</li>
-<li><strong>Em Dash:</strong> An em dash is used to separate extra information or mark a break in a sentence. An em dash is slightly longer than an en dash and is typeset in Quarto using three hyphens; <code>---</code>.</li>
-<li><strong>Minus Sign:</strong> A minus sign is used in mathematical expressions (e.g., in subtraction or to indicate a negative number). To typeset a minus sign, use the inline equation with a single hyphen; <code>$-$</code>. When a minus sign is typeset, not only is the length of it different than a hyphen, but it also includes the correct spacing around it for mathematical typesetting.</li>
-</ul>
-<p>Here is a sentence incorporating each of these so you can see the differences:</p>
-<p><em>During the time from January–February, my three dogs enjoy playing in the snow—apparently snow is fun for canines—with their sweaters on since it is <span class="math inline">\(-30\)</span>-degrees Fahrenheit outside.</em></p>
-<p>The input for this sentence was:</p>
-<p><code>During the time from January--February, my three dogs enjoy playing in the snow---apparently snow is fun for canines---with their sweaters on since it is $-30$-degrees Fahrenheit outside.</code></p>
-<p>Note that you can also typeset these in Word:</p>
-<ul>
-<li><strong>Hyphen:</strong> On both a Mac and PC, press “hyphen”.</li>
-<li><strong>En Dash:</strong> On a Mac, press “option+hyphen key”. On a PC, press “ctrl+hyphen”.</li>
-<li><strong>Em Dash:</strong> On a Mac, press “option+shift+hyphen key”. On a PC, press “alt+ctrl+hyphen”.</li>
-<li><strong>Minus Sign:</strong> For a minus sign, you should use Equation Editor.</li>
-</ul>
-<p><br></p>
-</section>
 <section id="citations" class="level1">
 <h1>Citations</h1>
 <p>To add citations, we need to:</p>
@@ -304,9 +290,56 @@ div.csl-indent {
 <li>Include <code>bibliography: "location/bibliography-name.bib"</code> in the YAML of our QMD document</li>
 </ul>
 <p><br></p>
+<section id="creating-.bib-files-using-zotero" class="level2">
+<h2 class="anchored" data-anchor-id="creating-.bib-files-using-zotero">Creating .bib Files Using Zotero</h2>
+<p>Most reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.</p>
+<ul>
+<li>Create a <code>New Collection</code>.</li>
+<li>Drag the references you want in your BibTeX database into this collection. For today, drag the <span class="citation" data-cites="carmichael_1954">Carmichael (<a href="#ref-carmichael_1954" role="doc-biblioref">1954</a>)</span> and <span class="citation" data-cites="ross_2020">Ross, Winterhalder, &amp; McElreath (<a href="#ref-ross_2020" role="doc-biblioref">2020</a>)</span> references into this collection.</li>
+<li>Right-click the collection and select <code>Export Collection</code>.</li>
+<li>In the pop-up window, change the format of the exported collection to <code>BibTex</code>.</li>
+<li>Click <code>OK</code>.</li>
+</ul>
+<p>Name the BibTex file (here I named it <code>my-bibliography.bib</code>) and save it in the <code>assets</code> folder.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/02-zotero-bibtex.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When you call the BibTex file in the <code>bibliography:</code> key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document <code>assignment-01.qmd</code> that has the following directory/folder structure:</p>
+<pre><code>assignment-01
+    ├── README
+    ├── assets
+       └── my-bibliography.bib
+    ├── assignment-01.qmd
+    ├── assignment-01.Rproj
+    ├── data
+       └── fertility.csv
+    ├── figs
+    └── scripts</code></pre>
+<p><br></p>
+</section>
+<section id="including-the-bib-file-in-your-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="including-the-bib-file-in-your-yaml">Including the BIB File in your YAML</h2>
+<p>You would then include the following in your Quarto document’s YAML:</p>
+<pre><code>---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: "January XX, 2023"
+format: html
+editor: visual
+bibliography: "assets/my-bibliography.bib"
+---</code></pre>
+<p><br></p>
+</section>
 <section id="bibtex-files" class="level2">
 <h2 class="anchored" data-anchor-id="bibtex-files">BibTex Files</h2>
-<p>BibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by <span class="citation" data-cites="carmichael_1954">Carmichael (<a href="#ref-carmichael_1954" role="doc-biblioref">1954</a>)</span> and <span class="citation" data-cites="ross_2020">Ross, Winterhalder, &amp; McElreath (<a href="#ref-ross_2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>BibTeX files are essentially databases that store bibliographic information in a plain-text (style-independent) file. The database includes a set of references and their metadata. Here is the raw text inside an example BibTex file that includes two articles written by <span class="citation" data-cites="carmichael_1954">Carmichael (<a href="#ref-carmichael_1954" role="doc-biblioref">1954</a>)</span> and <span class="citation" data-cites="ross_2020">Ross et al. (<a href="#ref-ross_2020" role="doc-biblioref">2020</a>)</span>.</p>
 <pre><code>@article{carmichael_1954,
     title = {Laziness and the Scholarly Life},
     volume = {78},
@@ -331,42 +364,6 @@ div.csl-indent {
     pages = {194855062091607}
 }</code></pre>
 <p>The citation identifiers in this example are <code>carmichael_1954</code> and <code>ross_2020</code>. These identifiers are the first bit of text after the initial curly brace in the reference. This is how we will refer to the citations in our QMD document. (Typically these are auto-generated from our reference manager.) To determine the citiation identifiers, you can open your BibTeX file in RStudio. (Do this by using <code>Open File...</code> within RStudio; double-clicking on the BibTeX file will likely open it in a different application.)</p>
-<p><br></p>
-</section>
-<section id="creating-.bib-files-using-zotero" class="level2">
-<h2 class="anchored" data-anchor-id="creating-.bib-files-using-zotero">Creating .bib Files Using Zotero</h2>
-<p>Most reference managers (e.g., Papers, Zotero, Mendelay) can produce BibTex files. Here I will illustrate the process using Zotero.</p>
-<ul>
-<li>Create a <code>New Collection</code>.</li>
-<li>Drag the references you want in your BibTeX database into this collection.</li>
-<li>Right-click the collection and select <code>Export Collection</code>.</li>
-<li>In the pop-up window, change the format of the exported collection to <code>BibTex</code>.</li>
-<li>Click <code>OK</code>.</li>
-</ul>
-<p>Name the BibTex file (here I named it <code>my_bibliography.bib</code>) and save it in the <code>Assets</code> folder.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-zotero-bibtex.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>When you call the BibTex file in the <code>bibliography:</code> key of the YAML in your QMD document, you will need to give the location of the BibTex (relative to the QMD document) and the name you just gave it. For example if you are calling a bibliography in the quarto document <code>assignment-01.qmd</code> that has the following directory/folder structure:</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-directory-tree.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You would include the following in your YAML.</p>
-<pre><code>title: "Assignment 1"
-format: html
-bibiography: "assets/my-bibliography.bib"</code></pre>
 <p><br></p>
 </section>
 <section id="including-citations-in-your-quarto-document" class="level2">
@@ -415,21 +412,30 @@ bibiography: "assets/my-bibliography.bib"</code></pre>
 <li>Place the CSL file in the <code>assets</code> folder of your project’s directory.</li>
 <li>Specify the name of the CSL style file in the <code>csl:</code> key in the QMD file’s YAML.</li>
 </ul>
-<p>For example, say you have downloaded and saved the <code>apa-single-spaced.csl</code> file as shown in the following directory/folder structure:</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/02-directory-tree.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>For example, say you have downloaded and saved the <code>apa-single-spaced.csl</code> file and placed it in the <code>assets</code> directory, giving the following directory/folder structure:</p>
+<pre><code>assignment-01
+    ├── README
+    ├── assets
+       ├── apa-single-spaced.csl
+       └── my-bibliography.bib
+    ├── assignment-01.qmd
+    ├── assignment-01.Rproj
+    ├── data
+       └── fertility.csv
+    ├── figs
+    └── scripts</code></pre>
 <p>You would include the following in your YAML.</p>
-<pre><code>title: "Assignment 1"
+<p>If, for example, you had named the BIB file <code>my-bibliography.bib</code> and had put this file in the <code>assets</code> directory, your YAML would be:</p>
+<pre><code>---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: "January XX, 2023"
 format: html
-bibiography: "assets/my-bibliography.bib"
-csl: "assets/apa-single-spaced.csl"</code></pre>
+editor: visual
+bibliography: "assets/my-bibliography.bib"
+csl: "assets/apa-single-spaced.csl"
+---</code></pre>
 <p>Use of the APA CSL file not only formats the references according to APA format, but it also fixed the order of the citations in the text itself! (Even though we included the Ross citation identifier prior to the Carmichael citation identifier in the multiple references example, the APA CSL file put them in the text alphabetically!)</p>
 <p><br></p>
 </section>
@@ -448,6 +454,44 @@ csl: "assets/apa-single-spaced.csl"</code></pre>
 <p>The <code>{citr} package is only available via GitHub, so you will need to install it using</code>{remotes}<code>or</code>{devtools}<code>. (See the Computational Toolkit book for a reminder on how to do this.) The directions for installing</code>{citr}` are also on the <a href="https://github.com/crsh/citr">citr webpage</a> along with instructions for using the package.</p>
 <p><br></p>
 </section>
+</section>
+<section id="auto-populating-the-date-in-your-yaml" class="level1">
+<h1>Auto-Populating the Date in Your YAML</h1>
+<p>We can auto-populate the <code>date:</code> key in our document’s YAML by including an inline code chunk that calls the <code>Sys.Date()</code> function. This function returns your computer’s idea of the current date in the <code>YYYY-MM-DD</code> format (ISO 8601 standard). If you want to be hyper specific, you can use <code>Sys.time()</code> to return the date and time in the format: <code>YYYY-MM-DD HH-MM:SS Time Zone</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return date</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2023-01-13"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retuen time</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2023-01-13 12:07:09 CST"</code></pre>
+</div>
+</div>
+<p>Here is an example of the YAML in the <code>date:</code> key to use <code>Sys.Date()</code> to auto-populate the date.</p>
+<pre><code>---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: " `r Sys.Date()`"
+format: html
+editor: visual
+bibliography: "assets/my-bibliography.bib"
+---</code></pre>
+<p>Note that the inline chunk is embedded in quotation marks. We can custom format each of these using the <code>format()</code> function. This function takes the <code>Sys.Date()</code> function as its first argument, and then a character string of formatting rules. Here I format the date to have the full month name, day of the month, and year (with century): e.g., January 12, 2023.</p>
+<pre><code>---
+title: "Assignment 1"
+subtitle: "Introduction to Quarto"
+author: "Your Group's Names"
+date: " `r format(Sys.Date(), '%B %d %Y')`"
+format: html
+editor: visual
+bibliography: "assets/my-bibliography.bib"
+---</code></pre>
+<p>You can see all the formatting options by calling <code>help(strptime)</code>.</p>
+<p><br></p>
 </section>
 <section id="references" class="level1">
 
