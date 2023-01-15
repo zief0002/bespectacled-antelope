@@ -56,7 +56,7 @@ The course textbooks are available via the University of Minnesota library.
 
 ## Other Resources
 
-- [Statistical Modeling and Computation for Educational Scientists](https://zief0002.github.io/modeling/)
+- [Statistical Modeling and Computation for Educational Scientists](https://epsy-8251.netlify.app/)
   + Learn about simple and multiple regression
   + Learn about Ordinary Least squares (OLS)
   + Learn about correlation/standardized regression
