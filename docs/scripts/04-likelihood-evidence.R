@@ -11,7 +11,7 @@ library(tidyverse)
 ##################################################
 
 # Read in data
-mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv")
+mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
 
 
 # View data

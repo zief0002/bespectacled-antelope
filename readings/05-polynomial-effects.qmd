@@ -1,0 +1,25 @@
+---
+title: "📖 Polynomial Effects"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Refresh your knowledge about parabolas and quadratic functions by going though the [Khan Academy Parabolas Intro](https://www.khanacademy.org/math/algebra-home/alg-quadratics).
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about polynomial functions. Here are some resources that may be helpful in that endeavor:
+
+
+- [Varsity Tutors: Quadratic Function](https://www.varsitytutors.com/hotmath/hotmath_help/topics/quadratic-function)
+- [Math Centre: Polynomial Function](http://www.mathcentre.ac.uk/resources/uploaded/mc-ty-polynomial-2009-1.pdf)
+- [Overfitting: A guided tour](https://www.alexpghayes.com/blog/overfitting-a-guided-tour/)
+

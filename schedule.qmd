@@ -189,30 +189,37 @@ The calendar below lists the tentative course topics. The dates listed are subje
 <td>Feb. 08</td>
 </tr>
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Feb. 10</td> -->
-<!-- <td>Feb. 14</td> -->
-<!-- </tr> -->
+
+<tr>
+<td colspan="8"><b>Unit 03: Dealing with Nonlinearity</b></td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td align="center" colspan="2">*Optional*<br />*(on your own)*</td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fa fa-book" style="color: #ff2600; font-size: 17px;"></span>](#readings) -->
-<!-- </td> -->
-<!-- <td style="vertical-align:middle;">Likelihood: A framework for estimation</td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fas fa-link" style="color: #ff2600; font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/07-likelihood-estimation.html) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fab fa-markdown" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/07-likelihood-estimation.Rmd) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fa fa-code" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/07-likelihood-estimation.R) -->
-<!-- </td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Feb. 09</td>
+<td>Feb. 13</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/05-polynomial-effects.html)
+</td>
+<td style="vertical-align:middle;" rowspan="2">Polynomial Effects</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+   [<span class="fas fa-link" style="font-size: 17px;"></span>](notes/05-polynomial-effects.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/notes/05-polynomial-effects.qmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](scripts/05-polynomial-effects.R)
+</td>
+</tr>
+
+
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Feb. 14</td>
+<td>Feb. 15</td>
+</tr>
 
 
 <!-- <tr> -->

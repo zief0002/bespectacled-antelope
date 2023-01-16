@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-01-16">
+
+<title>EPsy 8252 - Polynomial Effects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable/js/pagedtable.js"></script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-01-introduction-to-quarto.html">
+ <span class="dropdown-text">Assignment 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-02-polynomial-effects.html">
+ <span class="dropdown-text">Assignment 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-03-evidence-and-model-selection.html">
+ <span class="dropdown-text">Assignment 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-04-logarithmic-transformations.html">
+ <span class="dropdown-text">Assignment 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-05-logistic-regression.html">
+ <span class="dropdown-text">Assignment 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-06-lmer-unconditional-longitudinal-models.html">
+ <span class="dropdown-text">Assignment 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-07-longitudinal-analysis-ii.html">
+ <span class="dropdown-text">Assignment 07</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#examine-relationship-between-graduation-rate-and-sat-scores" id="toc-examine-relationship-between-graduation-rate-and-sat-scores" class="nav-link" data-scroll-target="#examine-relationship-between-graduation-rate-and-sat-scores">Examine Relationship between Graduation Rate and SAT Scores</a>
+  <ul class="collapse">
+  <li><a href="#residual-plot-another-way-to-spot-nonlinearity" id="toc-residual-plot-another-way-to-spot-nonlinearity" class="nav-link" data-scroll-target="#residual-plot-another-way-to-spot-nonlinearity">Residual Plot: Another Way to Spot Nonlinearity</a></li>
+  </ul></li>
+  <li><a href="#polynomial-effects" id="toc-polynomial-effects" class="nav-link" data-scroll-target="#polynomial-effects">Polynomial Effects</a>
+  <ul class="collapse">
+  <li><a href="#are-the-assumptions-more-tenable-for-this-model" id="toc-are-the-assumptions-more-tenable-for-this-model" class="nav-link" data-scroll-target="#are-the-assumptions-more-tenable-for-this-model">Are the Assumptions More Tenable for this Model?</a></li>
+  </ul></li>
+  <li><a href="#interpretation-of-a-polynomial-term" id="toc-interpretation-of-a-polynomial-term" class="nav-link" data-scroll-target="#interpretation-of-a-polynomial-term">Interpretation of a Polynomial Term</a>
+  <ul class="collapse">
+  <li><a href="#graphical-interpretation" id="toc-graphical-interpretation" class="nav-link" data-scroll-target="#graphical-interpretation">Graphical Interpretation</a></li>
+  <li><a href="#algebraic-interpretation" id="toc-algebraic-interpretation" class="nav-link" data-scroll-target="#algebraic-interpretation">Algebraic Interpretation</a></li>
+  </ul></li>
+  <li><a href="#alternative-r-syntax-fit-the-polynomial-term-using-the-i-function" id="toc-alternative-r-syntax-fit-the-polynomial-term-using-the-i-function" class="nav-link" data-scroll-target="#alternative-r-syntax-fit-the-polynomial-term-using-the-i-function">Alternative R Syntax: Fit the Polynomial Term using the I() Function</a></li>
+  <li><a href="#adding-covariates-main-effects-model" id="toc-adding-covariates-main-effects-model" class="nav-link" data-scroll-target="#adding-covariates-main-effects-model">Adding Covariates: Main Effects Model</a></li>
+  <li><a href="#interactions-with-polynomial-terms" id="toc-interactions-with-polynomial-terms" class="nav-link" data-scroll-target="#interactions-with-polynomial-terms">Interactions with Polynomial Terms</a>
+  <ul class="collapse">
+  <li><a href="#summarizing-the-adopted-interaction-model" id="toc-summarizing-the-adopted-interaction-model" class="nav-link" data-scroll-target="#summarizing-the-adopted-interaction-model">Summarizing the Adopted Interaction Model</a></li>
+  </ul></li>
+  <li><a href="#presenting-results-from-the-analysis" id="toc-presenting-results-from-the-analysis" class="nav-link" data-scroll-target="#presenting-results-from-the-analysis">Presenting Results from the Analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Polynomial Effects</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 16, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="preparation" class="level1">
+<h1>Preparation</h1>
+<p>In this set of notes, you will learn one method of dealing with nonlinearity. Specifically, we will look at the inclusion of polynomial effects into a model. To do so, we will use the <a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv">mn-schools.csv</a> dataset (see the <a href="http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html">data codebook</a>) to examine if (and how) academic “quality” of the student-body (measured by SAT score) is related to institutional graduation rate.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educate) </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Augsburg College","3":"65.2","4":"0","5":"10.30","6":"39.294"},{"1":"3","2":"Bethany Lutheran College","3":"52.6","4":"0","5":"10.65","6":"30.480"},{"1":"4","2":"Bethel University, Saint Paul, MN","3":"73.3","4":"0","5":"11.45","6":"39.400"},{"1":"5","2":"Carleton College","3":"92.6","4":"0","5":"14.00","6":"54.265"},{"1":"6","2":"College of Saint Benedict","3":"81.1","4":"0","5":"11.85","6":"43.198"},{"1":"7","2":"Concordia College at Moorhead","3":"69.4","4":"0","5":"11.45","6":"36.590"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="examine-relationship-between-graduation-rate-and-sat-scores" class="level1">
+<h1>Examine Relationship between Graduation Rate and SAT Scores</h1>
+<p>As always, we begin the analysis by graphing the data. We will create a scatterplot of the graduation rates versus the median SAT scores for the 33 institutions. We will also add a loess smoother to the plot, which is one empirical method that statisticians use to help determine the functional form to use in the regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#ff2d21"</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Six-year graduation rate plotted as a function of median SAT score. The loess smoother (red, solid line) is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The loess smoother suggests that the relationship between SAT scores and graduation rate may be nonlinear. Nonlinearity implies that a the effect of SAT on graduation rates is not constant across the range of SAT scores; for colleges with lower values of SAT (say SAT <span class="math inline">\(&lt;1100\)</span>) the effect of SAT has a rather high, positive effect (steep slope), while for colleges with higher values of SAT (<span class="math inline">\(\geq 1100\)</span>) the effect of SAT is positive and moderate (the slope is less steep). Another way of saying this is that for schools with lower SAT scores, a one-unit difference in SAT is associated with a larger change in graduation rates than the same one-unit change for schools with higher SAT values.</p>
+<p><br></p>
+<section id="residual-plot-another-way-to-spot-nonlinearity" class="level2">
+<h2 class="anchored" data-anchor-id="residual-plot-another-way-to-spot-nonlinearity">Residual Plot: Another Way to Spot Nonlinearity</h2>
+<p>Sometimes, the nonlinear relationship is difficult to detect from the scatterplot of <em>Y</em> versus <em>X</em>. Often it helps to fit the linear model and then examine the assumption of linearity in the residuals. It is sometimes easier to detect nonlinearity in the scatterplot of the residuals versus the fitted values.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat, <span class="at">data =</span> mn)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual plot: Scatterplot</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">residual_plots</span>(lm<span class="fl">.1</span>, <span class="at">type =</span> <span class="st">"s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuals-linear" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-residuals-linear-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Standardized residuals versus the fitted values for a model regressing six-year graduation rates on median SAT scores. The line <span class="math inline">\(Y=0\)</span> (black) and the loess smoother (blue) are also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot suggests that the assumption of linearity may be violated; the average residual is not zero at each fitted value. For low fitted values it appears as though the average residual may be less than zero, for moderate fitted values it appears as though the average residual may be more than zero, and for high fitted values it appears as though the average residual may be less than zero.</p>
+<p>Notice that the pattern displayed in the residuals is consistent with the pattern of the observed data in the initial scatterplot (Figure 1). If we look at the data relative to the regression smoother we see that there is not even vertical scatter around this line. At low and high SAT scores the observed data tends to be below the regression line (the regression is over-estimating the average graduation rate), while for moderate SAT scores the observed data tends to be above the regression line (the regression is under-estimating the average graduation rate).</p>
+<p><br></p>
+</section>
+</section>
+<section id="polynomial-effects" class="level1">
+<h1>Polynomial Effects</h1>
+<p>One way of modeling nonlinearity is by including polynomial effects. In regression, polynomial effects are predictors that have a power greater than one. For example, <span class="math inline">\(x^2\)</span> (quadratic term), or <span class="math inline">\(x^3\)</span> (cubic term). The lowest order polynomial effect is the quadratic, which mathematically is,</p>
+<p><span class="math display">\[
+x^2 = x \times x.
+\]</span></p>
+<p>So the quadratic term, <span class="math inline">\(x^2\)</span> is a product of <em>x</em> times itself. Recall that products are how we express interactions. Thus the quadratic term of <span class="math inline">\(x^2\)</span> is really the interaction of <em>x</em> with itself. To model this, we simply (1) create the product term, and (2) include the product term and all constituent main-effects in the regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create quadratic term in the data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sat_quadratic =</span> sat <span class="sc">*</span> sat</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sat_quadratic"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Augsburg College","3":"65.2","4":"0","5":"10.30","6":"39.294","7":"106.0900"},{"1":"3","2":"Bethany Lutheran College","3":"52.6","4":"0","5":"10.65","6":"30.480","7":"113.4225"},{"1":"4","2":"Bethel University, Saint Paul, MN","3":"73.3","4":"0","5":"11.45","6":"39.400","7":"131.1025"},{"1":"5","2":"Carleton College","3":"92.6","4":"0","5":"14.00","6":"54.265","7":"196.0000"},{"1":"6","2":"College of Saint Benedict","3":"81.1","4":"0","5":"11.85","6":"43.198","7":"140.4225"},{"1":"7","2":"Concordia College at Moorhead","3":"69.4","4":"0","5":"11.45","6":"36.590","7":"131.1025"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>After creating the quadratic term in the data, we fit the regression model that includes both the linear and quadratic effects as predictors in the model. We then compare the two models using a likelihood ratio test since the linear model is nested in the quadratic model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> sat_quadratic, <span class="at">data =</span> mn)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood ratio test</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(lm<span class="fl">.1</span>, lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["#Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["LogLik"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"-113.5472","3":"NA","4":"NA","5":"NA","_rn_":"1"},{"1":"4","2":"-109.5583","3":"1","4":"7.977845","5":"0.004735328","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Based on computing the likelihood ratio, the empirical support for the quadratic model is 54.05 times that for the linear model. This is more support than we expect because of sampling error, <span class="math inline">\(\chi^2(1)=7.98\)</span>, <span class="math inline">\(p=.005\)</span>, and suggests that we should adopt the quadratic model. Once we have adopted a model, we can examine the model-level output from that model to obtain the estimate for the residual standard error and other pertinent summaries (e.g., <span class="math inline">\(R^2\)</span>) that we want to report.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8351173","2":"0.8241251","3":"7.01931","4":"75.97376","5":"1.809785e-12","6":"2","7":"-109.5583","8":"227.1166","9":"233.1026","10":"1478.121","11":"30","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Model 2 explains 83.5% of the variation in graduation rates. The residual standard error estimate is <span class="math inline">\(\hat\sigma_{\epsilon}=7.79\)</span>.</p>
+<p><br></p>
+<section id="are-the-assumptions-more-tenable-for-this-model" class="level2">
+<h2 class="anchored" data-anchor-id="are-the-assumptions-more-tenable-for-this-model">Are the Assumptions More Tenable for this Model?</h2>
+<p>More important than whether the <em>p</em>-value is small, is whether including the quadratic effect improved the assumption violation we noted earlier. To evaluate this, we will examine the two residual plots for the quadratic model: (1) a density plot of the standardized residuals; and (2) a plot of the standardized residuals versus the fitted values.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residual plots</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">residual_plots</span>(lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residual-plots-quadratic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-residual-plots-quadratic-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Residual plots for the quadratic model regressing six-year graduation rate on median SAT scores. LEFT: Density plot of the standardized residuals. The confidence envelope for a normal reference distribution (blue shaded area) is also displayed. RIGHT: Standardized residuals versus the fitted values. The line <span class="math inline">\(Y=0\)</span> (black) and confidence envelope (grey shaded area) for that line are shown, along with the loess smoother (blue) esimating the mean pattern of the residuals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot of the standardized residuals versus the fitted values suggests that the residuals for the quadratic model are far better behaved; indicating much more consistency with the assumption that the average residual is zero at each fitted value than the linear model. This is the evidence that we would use to justify retaining the quadratic effect in the model. This plot also suggests that the homoskedasticity assumption is tenable. Finally, the empirical density of the residuals also seems consistent with the assumption of normality for this model.</p>
+<p><strong>Reminder:</strong> The assumption of independence can’t be evaluated from the plots, but is vary important given we rely on it to be able to correctly compute the likelihood. From the design of the study, we haven’t sampled the schools randomly, nor randomly assigned the schools to their levels of the predictor(s), so we can’t infer independence from that. So the question becomes, does knowing the graduation rate of a school in the population give us information about the graduation rate for other schools in the population with the same median SAT score? If the answer is “no”, then we can call the independence assumption tenable. If the answer is “yes”, the independence assumption is violated and we should not use the <code>lm()</code> function or believe that results from that function are valid.</p>
+<p><br></p>
+</section>
+</section>
+<section id="interpretation-of-a-polynomial-term" class="level1">
+<h1>Interpretation of a Polynomial Term</h1>
+<p>How do we interpret the quadratic effect of SAT? First, we will write out the fitted model based on the coefficient-level output.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-366.342872","3":"98.6203199","4":"-3.714679","5":"0.0008310151"},{"1":"sat","2":"62.716548","3":"17.2703818","4":"3.631451","5":"0.0010397248"},{"1":"sat_quadratic","2":"-2.150292","3":"0.7507138","4":"-2.864329","5":"0.0075586682"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\widehat{\mathrm{Graduation~Rate}_i} = -366.34 + 62.72(\mathrm{SAT}_i) - 2.15(\mathrm{SAT}^2_i)
+\]</span></p>
+<p>Since the quadratic term is an interaction, we can interpret this term as we do any other interaction, namely that:</p>
+<blockquote class="blockquote">
+<p>The effect of median SAT score on six-year graduation rates <em>depends on</em> the magnitude of median SAT score.</p>
+</blockquote>
+<p>To better understand the nature of this effect we will plot the fitted equation and use the plot to aid our interpretation.</p>
+<div class="fyi">
+<p>Note that the <em>t</em>- and <em>p</em>-values from the <code>tidy()</code> output should not be reported or even considered in the likelihood framework. Remember, they are based in the classical hypothesis testing framework. If you need coefficient-level <em>p</em>-values, you will need to fit the appropriate nested models to evaluate the individual effects.</p>
+</div>
+<p><br></p>
+<section id="graphical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="graphical-interpretation">Graphical Interpretation</h2>
+<p>To plot the fitted equation, we use the <code>geom_function()</code> layer to add the fitted curve. (Note that we can no longer use <code>geom_abline()</code> since the addition of the polynomial effect implies that a line is no longer suitable.) This layer takes the argument <code>fun=</code> which describes a function that will be plotted as a line. To describe a function, use the syntax <code>function(){...}</code>. Here we use this syntax to describe the function of <code>x</code> (which in the <code>ggplot()</code> global layer is mapped to the <code>sat</code> variable). The fitted equation is then also written in terms of <code>x</code> and placed inside the curly braces. (Note that it is best to be more exact in the coefficient values—don’t round—when you create this plot as even minor differences can grossly change the plot.)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">366.34</span> <span class="sc">+</span> <span class="fl">62.72</span><span class="sc">*</span>x <span class="sc">-</span> <span class="fl">2.15</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>},</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#0072b2"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-quadratic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-fitted-quadratic-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Scatterplot of six-year graduation rate versus median SAT score. The fitted curve from the quadratic regression model (blue line) is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The fitted curve helps us interpret the nature of the relationship between median SAT scores and graduation rates. The effect of median SAT score on graduation rate depends on SAT score (definition of an interaction). For schools with low SAT scores, the effect of SAT score on graduation rate is positive and fairly high. For schools with high SAT scores, the effect of SAT score on graduation rate remains positive, but it has a smaller effect on graduation rates; the effect diminishes.</p>
+<p><br></p>
+</section>
+<section id="algebraic-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="algebraic-interpretation">Algebraic Interpretation</h2>
+<p>From algebra, you may remember that the coefficient in front of the quadratic term (<span class="math inline">\(-2.2\)</span>) informs us of whether the quadratic is an upward-facing U-shape, or a downward-facing U-shape. Since our term is negative, the U-shape is downward-facing. This is consistent with what we saw in the plot. What the algebra fails to show is that, within the range of SAT scores in our data, we only see part of the entire downward U-shape.</p>
+<p>This coefficient also indicates whether the U-shape is skinny or wide. Although “skinny” and “wide” are only useful as relative comparisons. Algebraically, the comparison is typically to a quadratic coefficient of 1, which is generally not useful in our interpretation. The intercept and coefficient for the linear term help us locate the U-shape in the coordinate plane (moving it right, left, up, or down from the origin). You could work all of this out algebraically. You can see how different values of these coefficients affect the curve <a href="https://en.wikipedia.org/wiki/Quadratic_equation#/media/File:Quadratic_equation_coefficients.png">on Wikipedia</a>.</p>
+<p>What can be useful is to find where the minimum (upward facing U-shape) or maximum (downward facing U-shape) occurs. This point is referred to as the <em>vertex</em> of the parabola and can be algebraically determined. To do this we determine the <em>x</em>-location of the vertex by</p>
+<p><span class="math display">\[
+x_\mathrm{Vertex} = -\frac{\hat{\beta}_1}{2 \times \hat\beta_2}
+\]</span></p>
+<p>where, <span class="math inline">\(\hat{\beta}_1\)</span> is the estimated coefficient for the linear term and <span class="math inline">\(\hat{\beta}_2\)</span> is the estimated coefficient for the quadratic term. The <em>y</em> coordinate for the vertex can then be found by substituting the <em>x</em>-coordinate into the fitted equation. For our example,</p>
+<p><span class="math display">\[
+x_\mathrm{Vertex} = -\frac{62.72}{2 \times -2.15} = 14.58
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
+\]</span></p>
+<p>This suggests that at a median SAT score of 1458 we predict a six-year graduate rate of 91.08. This <em>x</em>-value also represents the value at which the direction of the effect changes. In our example recall that for higher values of SAT the effect of SAT on graduation rate was diminishing. This is true for schools with median SAT scores up to 1458. For schools with higher SAT scores the effect of SAT score on graduation rate would theoretically be negative, and would be more negative for higher values.</p>
+<p>This is all theoretical as our data only includes median SAT scores up to 1400. Everything past that value (including the vertex) is extrapolation. Extrapolation is exceedingly sketchy when we start fitting non-linear models. For example, do we really think that the average graduation rate for schools with a median SAT scores higher than 1458 would actually be smaller than for schools at 1458? It is more likely that the effect just flattens out.</p>
+<p><br></p>
+</section>
+</section>
+<section id="alternative-r-syntax-fit-the-polynomial-term-using-the-i-function" class="level1">
+<h1>Alternative R Syntax: Fit the Polynomial Term using the I() Function</h1>
+<p>We can also use a method of fitting polynomial terms directly in the <code>lm()</code> function. To do this, we create the polynomial directly in the model using the <code>I()</code> function. When you use the <code>I()</code> function to create the polynomial term, you do not need to create a new column of squared values in the data set. Here we fit the same quadratic model using this method of fitting the model. (Note: You <em>cannot</em> use the colon notation (<code>:</code>) to fit a polynomial term in the model.)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model using I() function</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> <span class="fu">I</span>(sat <span class="sc">^</span> <span class="dv">2</span>), <span class="at">data =</span> mn)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8351173","2":"0.8241251","3":"7.01931","4":"75.97376","5":"1.809785e-12","6":"2","7":"-109.5583","8":"227.1166","9":"233.1026","10":"1478.121","11":"30","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-366.342872","3":"98.6203199","4":"-3.714679","5":"0.0008310151"},{"1":"sat","2":"62.716548","3":"17.2703818","4":"3.631451","5":"0.0010397248"},{"1":"I(sat^2)","2":"-2.150292","3":"0.7507138","4":"-2.864329","5":"0.0075586682"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="adding-covariates-main-effects-model" class="level1">
+<h1>Adding Covariates: Main Effects Model</h1>
+<p>We can also include covariates in a polynomial model (to control for other predictors), the same way we do in a linear model, by including them as additive terms in the <code>lm()</code> model. Below we include the <code>public</code> dummy-coded predictor to control for the effects of sector.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> <span class="fu">I</span>(sat<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> public, <span class="at">data =</span> mn)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Model 2 and Model 3</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(lm<span class="fl">.2</span>, lm<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["#Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["LogLik"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"-109.5583","3":"NA","4":"NA","5":"NA","_rn_":"1"},{"1":"5","2":"-101.8028","3":"1","4":"15.51097","5":"0.00008202776","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Based on computing the likelihood ratio, the empirical support for Model 3 is 2344.9 times that for the Model 2. This is more support than we expect because of sampling error, <span class="math inline">\(\chi^2(1)=15.51\)</span>, <span class="math inline">\(p&lt;.001\)</span>, and suggests that we should adopt Model 3.</p>
+<p>We can also examine the model-level output from Model 3 to summarize the variance accounted for and the residual standard error.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.896951","2":"0.8862907","3":"5.644044","4":"84.13981","5":"2.047584e-14","6":"3","7":"-101.8028","8":"213.6056","9":"221.0882","10":"923.8019","11":"29","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Model 3 explains 89.7% of the variation in graduation rates, an increase of 6.2 percentage points from Model 2. The residual standard error for Model 3, <span class="math inline">\(\hat\sigma_{\epsilon}=7.02\)</span>, has also decreased from that for Model 2 indicating that this model has less error than Model 2. Next, we turn to the coefficient-level output.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-384.160622","3":"79.4129902","4":"-4.837504","5":"0.00003984411"},{"1":"sat","2":"67.037086","3":"13.9252368","4":"4.814072","5":"0.00004252324"},{"1":"I(sat^2)","2":"-2.370715","3":"0.6059378","4":"-3.912473","5":"0.00050713616"},{"1":"public","2":"-9.124813","3":"2.1874311","4":"-4.171474","5":"0.00025067714"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Interpreting the coefficient-level output:</p>
+<ul>
+<li>The predicted average graduation rate for private institutions with a median SAT score of 0 is <span class="math inline">\(-384.2\)</span>. This is extrapolation.</li>
+<li>We will not interpret the linear effect of SAT since we have included a higher-order polynomial effect of SAT. (Lower-order effects of interactions are not interpreted.)</li>
+<li>The quadratic effect of SAT indicates that the effect of median SAT score on graduation rate varies by median SAT scores, after controlling for differences in sector.</li>
+<li>Public institutions have a graduation rate that is 9.12 percentage points lower than private institutions, on average, controlling for differences in median SAT scores.</li>
+</ul>
+<p><strong>Private Institutions</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} &amp;= -384.16 + 67.04(\mathrm{SAT}_i) - 2.37(\mathrm{SAT}^2_i) - 9.12(0) \\[1ex]
+&amp;= -384.16 + 67.04(\mathrm{SAT}_i) - 2.37(\mathrm{SAT}^2_i)
+\end{split}
+\]</span></p>
+<p><strong>Public Institutions</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Public:~} \hat{\mathrm{Graduation~Rate}_i} &amp;= -384.16 + 67.04(\mathrm{SAT}_i) - 2.37(\mathrm{SAT}^2_i) - 9.12(1) \\[1ex]
+&amp;= -393.29 + 67.04(\mathrm{SAT}_i) - 2.37(\mathrm{SAT}^2_i)
+\end{split}
+\]</span></p>
+<p>Note that the coefficients associated with the linear and quadratic effects of median SAT score are identical for both private and public institutions. This implies that the effect of SAT on graduation rates, despite being nonlinear, is the same for both sectors. The difference in intercepts reflects the sector effect on average graduation rates. To visualize these effects, we can plot each fitted curve by including each in a separate <code>geom_function()</code> layer.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of the fitted model</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">384.16</span> <span class="sc">+</span> <span class="fl">67.04</span><span class="sc">*</span>x <span class="sc">-</span> <span class="fl">2.37</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>},</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#2ec4b6"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">393.29</span> <span class="sc">+</span> <span class="fl">67.04</span><span class="sc">*</span>x <span class="sc">-</span> <span class="fl">2.37</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>},</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#ff9f1c"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"solid"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-quadratic-sector" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-fitted-quadratic-sector-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Six-year graduation rate as a function of median SAT score for private (orange, solid line) and public (blue, dashed line) institutions.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The curvature (linear and quadratic slopes) of the lines shows the linear and quadratic effect of median SAT scores on graduation rate. For both sectors, the effect of median SAT on graduation rates is positive (institutions with higher median SAT scores tend to have higher graduation rates. But, this effect diminishes for institutions with increasingly higher SAT scores. The main effect of sector is also visualized since private schools have higher graduation rates, on average, than public schools for all levels of median SAT score. This difference, regardless of median SAT score, is constantly that public schools have a lower graduation rate than private schools by 9.12 percentage points.</p>
+<p><br></p>
+</section>
+<section id="interactions-with-polynomial-terms" class="level1">
+<h1>Interactions with Polynomial Terms</h1>
+<p>We can also fit interactions between predictors in polynomial models. In this example, an interaction between median SAT score and sector would indicate that the fitted curves for the public and private institutions are not parallel. In other words, the effect of median SAT score on graduation rates does not have the exact same positive, diminishing effect for both public and private institutions.</p>
+<p>With polynomial models, there are many ways a potential interaction can play out. In our example, sector can interact with the linear effect of median SAT score or the quadratic effect of median SAT score. Remember that if we include an interaction, we need to include all lower order effects as well. In a polynomial model this means that if we include an interaction with a higher order polynomial term, we also need to include interactions with the lower order polynomial terms.</p>
+<p>For us this implies that if we want to include an interaction between sector and the quadratic effect of median SAT score, we also need to include the interaction between sector and the linear effect of median SAT score. Because of this there are two potential interaction models we can fit.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interaction between sector and linear effect of SAT</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.4</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> <span class="fu">I</span>(sat<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> public <span class="sc">+</span> public<span class="sc">:</span>sat, <span class="at">data =</span> mn)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Interaction between sector and linear and quadratic effects of SAT</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.5</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> <span class="fu">I</span>(sat<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> public <span class="sc">+</span> public<span class="sc">:</span>sat <span class="sc">+</span> public<span class="sc">:</span><span class="fu">I</span>(sat<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> mn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We now have three candidate models describing the effects of median SAT scores and sector to graduation rates. In increasing levels of complexity these are:</p>
+<ol type="1">
+<li>Main effects model (Model 3);</li>
+<li>Interaction effect between linear SAT term and sector (Model 4); and</li>
+<li>Interaction effect between quadratic SAT term and sector AND linear SAT term and sector (Model 5)</li>
+</ol>
+<p>Since each of these models is nested in the subsequent model, we can compare them using a set of likelihood ratio tests.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Likelihood ratio tests</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lrtest</span>(lm<span class="fl">.3</span>, lm<span class="fl">.4</span>, lm<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["#Df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["LogLik"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Chisq"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"5","2":"-101.8028","3":"NA","4":"NA","5":"NA","_rn_":"1"},{"1":"6","2":"-100.2776","3":"1","4":"3.0504773","5":"0.08071342","_rn_":"2"},{"1":"7","2":"-100.0546","3":"1","4":"0.4458624","5":"0.50430640","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Comparing Model 3 to Model 4, we find a modicum of empirical support for including the interaction between sector and the linear effect of SAT; <span class="math inline">\(LR=4.57\)</span>, <span class="math inline">\(\chi^2(1)=3.05\)</span>, <span class="math inline">\(p=.081\)</span>. However, there is not empirical support for also including the interaction between sector and the quadratic effect of SAT; <span class="math inline">\(LR=1.25\)</span>, <span class="math inline">\(\chi^2(1)=0.44\)</span>, <span class="math inline">\(p=.504\)</span>.</p>
+<p>Whether you ultimately adopt Model 3 or Model 4 depends on your research approach and the decisions you made about the the level of evidence you would need to adopt one model over another. Here, since we have taken an exploratory approach to the analysis, we will adopt Model 4, but will acknowledge that the there is uncertainty in this model selection.</p>
+<p><br></p>
+<section id="summarizing-the-adopted-interaction-model" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-the-adopted-interaction-model">Summarizing the Adopted Interaction Model</h2>
+<p>Again, we will obtain model- and coefficient-level output and use those to summarize the results of the fitted model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.9060497","2":"0.8926282","3":"5.484507","4":"67.50745","5":"5.712308e-14","6":"4","7":"-100.2776","8":"212.5551","9":"221.5342","10":"842.2349","11":"28","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Model 4 explains 90.6% of the variation in graduation rates, an increase of 0.9 percentage points from Model 3. The residual standard error for Model 4, <span class="math inline">\(\hat\sigma_{\epsilon}=5.64\)</span>, has also decreased from that for Model 3 indicating that this model has less error than Model 3.</p>
+<p>The coefficient-level output is:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-413.798015","3":"79.2392764","4":"-5.222133","5":"0.00001511256"},{"1":"sat","2":"71.654268","3":"13.8190586","4":"5.185177","5":"0.00001671777"},{"1":"I(sat^2)","2":"-2.544468","3":"0.5981894","4":"-4.253615","5":"0.00021215128"},{"1":"public","2":"35.071344","3":"26.9229492","4":"1.302656","5":"0.20330489896"},{"1":"sat:public","2":"-4.112108","3":"2.4971513","4":"-1.646720","5":"0.11079534069"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We can use this to obtain the fitted equation:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} = -&amp;413.80 + 71.65(\mathrm{SAT}_i) - 2.54(\mathrm{SAT}^2_i) + \\
+&amp;35.07(\mathrm{Public}_i) - 4.11(\mathrm{SAT}_i)(\mathrm{Public}_i)
+\end{split}
+\]</span></p>
+<p>The interaction tells us that the effect of SAT on graduation rate differs for public and private institutions. Rather than parsing this difference by trying to interpret each of the effects, we will again plot the fitted curves for private and public institutions, and use the plot to aid our interpretation.</p>
+<p><strong>Private Institutions</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} &amp;= -413.80 + 71.65(\mathrm{SAT}_i) - 2.54(\mathrm{SAT}^2_i) + 35.07(0) - 4.11(\mathrm{SAT}_i)(0) \\
+&amp;= -413.80 + 71.65(\mathrm{SAT}_i) - 2.54(\mathrm{SAT}^2_i)
+\end{split}
+\]</span></p>
+<p><strong>Public Institutions</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} &amp;= -413.80 + 71.65(\mathrm{SAT}_i) - 2.54(\mathrm{SAT}^2_i) + 35.07(1) - 4.11(\mathrm{SAT}_i)(1) \\
+&amp;= -378.73 + 67.54(\mathrm{SAT}_i) - 2.54(\mathrm{SAT}^2_i)
+\end{split}
+\]</span></p>
+<p>Comparing these two fitted equations, we see that not only is the intercept in the two fitted models different (due to the main effect of sector), but now the coefficient for the interaction between sector and the linear effect of SAT also differs; it is lower for public institutions (by 4.11 units) than for private institutions. The quadratic effect of SAT is the same for both public and private institutions. (If we had adopted the model with both interaction terms, the quadratic effect would also be different across sectors.)</p>
+<p>To visualize the effect of SAT, we can again plot each fitted curve by including each in a separate <code>geom_function()</code> layer.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of the fitted model</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">378.73</span> <span class="sc">+</span> <span class="fl">67.54</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="fl">2.54</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>},</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#2ec4b6"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">413.80</span> <span class="sc">+</span> <span class="fl">71.65</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="fl">2.54</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span>},</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#ff9f1c"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"solid"</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-model-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="05-polynomial-effects_files/figure-html/fig-model-4-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Six-year graduation rate as a function of median SAT score for private (orange, solid line) and public (blue, dashed line) institutions.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The curvature (linear and quadratic slopes) of the lines now looks different for the two sectors because of the interaction term. (Note that interactions with the linear effect of SAT or the quadratic effect of SAT contribute to a change in the curvature.) For both sectors, the effect of median SAT on graduation rates is positive (institutions with higher median SAT scores tend to have higher graduation rates. But, this effect diminishes for institutions with increasingly higher SAT scores. Private schools have higher graduation rates, on average, than public schools for all levels of median SAT score. Moreover, this difference in graduation rates is getting larger at higher levels of SAT (that is the interaction!).</p>
+<p><br></p>
+<!-- # Model Selection with Information Criteria -->
+<!-- We could also have used the AICc for model selection. -->
+<!-- ```{r} -->
+<!-- aictab( -->
+<!--   cand.set = list(lm.1, lm.2, lm.3, lm.4, lm.5), -->
+<!--   modnames = c("Model 1", "Model 2", "Model 3", "Model 4", "Model 5") -->
+<!-- ) -->
+<!-- ``` -->
+<!-- The empirical evidence (given the data and candidate models) again supports Model 4. This is similar to the results of model selection using the likelihood ratio tests. This coherence in the results does not always happen.  -->
+<!-- <br /> -->
+</section>
+</section>
+<section id="presenting-results-from-the-analysis" class="level1">
+<h1>Presenting Results from the Analysis</h1>
+<p>It is important to indicate the set of candidate models considered in the model adoption process and also present the statistical evidence used to select among them. However, there is no one preferred way to do this. For example, some educational scientists present this in the prose (text), while others may present this information in tables. Here, is one possible method of presenting the models and the evidence from the set of likelihood ratio tests we used in the analysis.</p>
+<p>We fitted the following set of five candidate models:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Model~1:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{SAT}_i) + \epsilon_i \\[1ex]
+\mathbf{Model~2:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{SAT}_i) + \beta_2(\mathrm{SAT}^2_i) + \epsilon_i \\[1ex]
+\mathbf{Model~3:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{SAT}_i) + \beta_2(\mathrm{SAT}^2_i) + \beta_3(\mathrm{Public}_i) + \epsilon_i \\[1ex]
+\mathbf{Model~4:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{SAT}_i) + \beta_2(\mathrm{SAT}^2_i) + \beta_3(\mathrm{Public}_i) + \\
+&amp;~~~~~\beta_4(\mathrm{SAT}_i)(\mathrm{Public}_i) + \epsilon_i \\[1ex]
+\mathbf{Model~5:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{SAT}_i) + \beta_2(\mathrm{SAT}^2_i) + \beta_3(\mathrm{Public}_i) +\\
+&amp;~~~~~\beta_4(\mathrm{SAT}_i)(\mathrm{Public}_i) + \beta_5(\mathrm{SAT}^2_i)(\mathrm{Public}_i) + \epsilon_i \\[1ex]
+\end{split}
+\]</span></p>
+<p>To evaluate these candidate models, likelihood ratio tests (LRTs) were used to compare each subsequently more complex model to the previous candidate model (e.g., Model 2 was compared to Model 1, Model 3 was compared to Model 2). More complex models were adopted if the <em>p</em>-value for the LRT was below a threshold of .10; a more liberal criterion than .05 adopted due to the exploratory nature of the analysis. The results of these tests are presented in the table below.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frame of model results</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>my_models <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>, <span class="st">"Model 3"</span>, <span class="st">"Model 4"</span>, <span class="st">"Model 5"</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">log_lik =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">113.55</span>, <span class="sc">-</span><span class="fl">109.56</span>, <span class="sc">-</span><span class="fl">101.80</span>, <span class="sc">-</span><span class="fl">100.28</span>, <span class="sc">-</span><span class="fl">100.06</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">lr =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="fl">54.05</span>, <span class="fl">2344.90</span>, <span class="fl">4.57</span>, <span class="fl">1.25</span>),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lr_test =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"$$</span><span class="sc">\\</span><span class="st">chi^2(1)=7.98,~p=.005$$"</span>, <span class="st">"$$</span><span class="sc">\\</span><span class="st">chi^2(1)=15.51,~p&lt;.001$$"</span>, <span class="st">"$$</span><span class="sc">\\</span><span class="st">chi^2(1)=3.05,~p=.081$$"</span>, <span class="st">"$$</span><span class="sc">\\</span><span class="st">chi^2(1)=0.45,~p=.504$$"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>my_models <span class="sc">|&gt;</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="fu">md</span>(<span class="st">"*Model*"</span>),</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="fu">md</span>(<span class="st">"*df*"</span>),</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_lik =</span> <span class="fu">md</span>(<span class="st">"*Log-likelihood*"</span>),</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">lr =</span> <span class="fu">md</span>(<span class="st">"*LR*"</span>),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">lr_test =</span> <span class="fu">md</span>(<span class="st">"*LRT*"</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(model),</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"left"</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(df, log_lik, lr, lr_test),</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_missing</span>(</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_text =</span> <span class="st">""</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-model-likelihood" class="anchored">
+
+<div id="jdbzdabdui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#jdbzdabdui) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#jdbzdabdui) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#jdbzdabdui) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#jdbzdabdui) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#jdbzdabdui) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#jdbzdabdui) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#jdbzdabdui) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#jdbzdabdui) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#jdbzdabdui) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#jdbzdabdui) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#jdbzdabdui) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#jdbzdabdui) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#jdbzdabdui) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#jdbzdabdui) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#jdbzdabdui) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#jdbzdabdui) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#jdbzdabdui) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#jdbzdabdui) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#jdbzdabdui) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#jdbzdabdui) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#jdbzdabdui) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#jdbzdabdui) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#jdbzdabdui) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#jdbzdabdui) .gt_left {
+  text-align: left;
+}
+
+:where(#jdbzdabdui) .gt_center {
+  text-align: center;
+}
+
+:where(#jdbzdabdui) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#jdbzdabdui) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#jdbzdabdui) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#jdbzdabdui) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#jdbzdabdui) .gt_super {
+  font-size: 65%;
+}
+
+:where(#jdbzdabdui) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#jdbzdabdui) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#jdbzdabdui) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#jdbzdabdui) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#jdbzdabdui) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#jdbzdabdui) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#jdbzdabdui) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table"><caption>Table&nbsp;1:  Results from a set of likelihood ratio tests (LRT) to compare a set of nested candidate models. Models are compared to the model in the previous row. </caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<em>Model</em>"><em>Model</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<em>df</em>"><em>df</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<em>Log-likelihood</em>"><em>Log-likelihood</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<em>LR</em>"><em>LR</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<em>LRT</em>"><em>LRT</em></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="model" class="gt_row gt_left">Model 1</td>
+<td headers="df" class="gt_row gt_center">3</td>
+<td headers="log_lik" class="gt_row gt_center">-113.55</td>
+<td headers="lr" class="gt_row gt_center"></td>
+<td headers="lr_test" class="gt_row gt_center"></td></tr>
+    <tr><td headers="model" class="gt_row gt_left">Model 2</td>
+<td headers="df" class="gt_row gt_center">4</td>
+<td headers="log_lik" class="gt_row gt_center">-109.56</td>
+<td headers="lr" class="gt_row gt_center">54.05</td>
+<td headers="lr_test" class="gt_row gt_center">$$\chi^2(1)=7.98,~p=.005$$</td></tr>
+    <tr><td headers="model" class="gt_row gt_left">Model 3</td>
+<td headers="df" class="gt_row gt_center">5</td>
+<td headers="log_lik" class="gt_row gt_center">-101.80</td>
+<td headers="lr" class="gt_row gt_center">2344.90</td>
+<td headers="lr_test" class="gt_row gt_center">$$\chi^2(1)=15.51,~p&lt;.001$$</td></tr>
+    <tr><td headers="model" class="gt_row gt_left">Model 4</td>
+<td headers="df" class="gt_row gt_center">6</td>
+<td headers="log_lik" class="gt_row gt_center">-100.28</td>
+<td headers="lr" class="gt_row gt_center">4.57</td>
+<td headers="lr_test" class="gt_row gt_center">$$\chi^2(1)=3.05,~p=.081$$</td></tr>
+    <tr><td headers="model" class="gt_row gt_left">Model 5</td>
+<td headers="df" class="gt_row gt_center">7</td>
+<td headers="log_lik" class="gt_row gt_center">-100.06</td>
+<td headers="lr" class="gt_row gt_center">1.25</td>
+<td headers="lr_test" class="gt_row gt_center">$$\chi^2(1)=0.45,~p=.504$$</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>You should also include the estimates and any summary measures from the model(s) you adopt. Here we would for sure want to report the estimates and summaries for Model 4. Since the number of candidate models here is small (only five models) I would probably present the estimates and summaries from all five candidate models.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(texreg)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">htmlreg</span>(</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">l =</span> <span class="fu">list</span>(lm<span class="fl">.1</span>, lm<span class="fl">.2</span>, lm<span class="fl">.3</span>, lm<span class="fl">.4</span>, lm<span class="fl">.5</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">stars =</span> <span class="fu">numeric</span>(<span class="dv">0</span>),    <span class="co">#No p-value stars</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">padding =</span> <span class="dv">20</span>,          <span class="co">#Add space around columns (you may need to adjust this via trial-and-error)</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.adjrs =</span> <span class="cn">FALSE</span>, <span class="co">#Omit Adjusted R^2</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.nobs =</span> <span class="cn">FALSE</span>,  <span class="co">#Omit sample size</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.rmse =</span> <span class="cn">TRUE</span>,   <span class="co">#Include RMSE</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom.model.names =</span> <span class="fu">c</span>(<span class="st">"M1"</span>, <span class="st">"M2"</span>, <span class="st">"M3"</span>, <span class="st">"M4"</span>, <span class="st">"M5"</span>),</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom.coef.names =</span> <span class="fu">c</span>(<span class="st">"Intercept"</span>, <span class="st">"Median SAT score (L)"</span>, <span class="st">"Median SAT score (Q)"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Public"</span>, <span class="st">"Median SAT score (L) x Public"</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Median SAT score (Q) x Public"</span>),</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">custom.note =</span> <span class="st">"Note. (L) = Linear effect. (Q) = Quadratic effect."</span>,</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">reorder.coef =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span>), <span class="co">#Put intercept at bottom of table</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption.above =</span> <span class="cn">TRUE</span>, <span class="co">#Move caption above table</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">inner.rules =</span> <span class="dv">1</span>, <span class="co">#Include line rule before model-level output</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">outer.rules =</span> <span class="dv">1</span>,  <span class="co">#Include line rules around table</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Table 2: Coefficients (and standard errors) for five candidate models (M1--M5) predicting variation in six-year graduation rates."</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 1px solid #000000;">
+<caption>
+Table 2: Coefficients (and standard errors) for five candidate models (M1–M5) predicting variation in six-year graduation rates.
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</th>
+<th style="padding-left: 20px;padding-right: 20px;">
+M1
+</th>
+<th style="padding-left: 20px;padding-right: 20px;">
+M2
+</th>
+<th style="padding-left: 20px;padding-right: 20px;">
+M3
+</th>
+<th style="padding-left: 20px;padding-right: 20px;">
+M4
+</th>
+<th style="padding-left: 20px;padding-right: 20px;">
+M5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 20px;padding-right: 20px;">
+Median SAT score (L)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+13.35
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+62.72
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+67.04
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+71.65
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+73.12
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(1.24)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(17.27)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(13.93)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(13.82)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(14.19)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+Median SAT score (Q)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-2.15
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-2.37
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-2.54
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-2.61
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(0.75)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(0.61)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(0.60)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(0.61)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+Public
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-9.12
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+35.07
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+304.22
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(2.19)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(26.92)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(444.95)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+Median SAT score (L) x Public
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-4.11
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-52.64
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(2.50)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(80.12)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+Median SAT score (Q) x Public
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+2.17
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(3.59)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+Intercept
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-86.08
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-366.34
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-384.16
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-413.80
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+-422.16
+</td>
+</tr>
+<tr>
+<td style="padding-left: 20px;padding-right: 20px;">
+&nbsp;
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(13.68)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(98.62)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(79.41)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(79.24)
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+(81.33)
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 20px;padding-right: 20px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+0.79
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+0.84
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+0.90
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+0.91
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+0.91
+</td>
+</tr>
+<tr style="border-bottom: 1px solid #000000;">
+<td style="padding-left: 20px;padding-right: 20px;">
+RMSE
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+7.79
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+7.02
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+5.64
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+5.48
+</td>
+<td style="padding-left: 20px;padding-right: 20px;">
+5.55
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="6">
+Note. (L) = Linear effect. (Q) = Quadratic effect.
+</td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+<p><br></p>
+<!-- ## References -->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
