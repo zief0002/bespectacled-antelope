@@ -1,0 +1,44 @@
+---
+title: "riverview.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+
+The data in [riverview.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/riverview.csv) come from @Lewis-Beck:2016 and contain five attributes collected from a random sample of $n=32$ employees working for the city of Riverview, a hypothetical midwestern city. The attributes include:
+
+- `education`: Years of formal education
+- `income`: Annual income (in thousands of U.S. dollars)
+- `seniority`: Years of seniority
+- `gender`: Employee's gender
+- `male`: Dummy coded gender variable (0 = Female, 1 = Male)
+- `party`: Political party affiliation
+
+
+### Preview
+
+```{r}
+# Import data
+city = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/riverview.csv")
+
+# View data
+city
+```
+
+
+### References
+
+

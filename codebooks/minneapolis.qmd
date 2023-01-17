@@ -1,0 +1,47 @@
+---
+title: "minneapolis.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+The data in [minneapolis.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv) were provided in @Long:2012. They constitute a sample of $n=22$ students taken from a much larger dataset collected by the Minneapolis Public School District. The data were collected to comply with the No Child Left Behind Act of 2001 and began during the 2004-05 school year. The variables included in the data are:
+
+- `student_id`: De-identified student ID number
+- `reading_score`: Reading achievement score$^\dagger$. 
+- `grade`: Grade-level.
+- `special_ed`: Is the student recieving special education services?
+- `attendance`: Proportion of attendance based on the number of school days the student attended school during the four year of the study.
+
+
+$^\dagger$The reading achievement scores are based on the reading section of th Northwest Achievement Levels Test (NALT), a multiple-choice, adaptive assessment of students' academic achievement. The NALT raw scores were converted to vertically equated scaled scores using an IRT model. Higher scale scores indicate more reading achievement.
+
+
+### Preview
+
+```{r}
+# Import data
+mpls = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
+
+# View data
+mpls
+```
+
+
+### References
+
+
+
+

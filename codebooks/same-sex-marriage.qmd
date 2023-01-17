@@ -1,0 +1,41 @@
+---
+title: "same-sex-marriage.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+The data in [same-sex-marriage.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/same-sex-marriage.csv) were collected from the 2008 American National Election Study, conducted jointly by the University of Michigan and Stanford University. These particular data consist of 1,746 American's responses. The attributes are:
+
+- `support`: Dummy-coded variable indicating whether the respondent supports gay marriage? (1=Yes; 0=No)
+- `attendance`: Frequency the respondent attends religious services (0=Never; 1=Few times a year; 2=Once or twice a month; 3=Almost every week; 4=Every week) 
+- `denomination`: Respondent's religious denomination? (Catholic; Jewish; Protestant; Other)
+- `friends`: Does the respondent have family or friends that are LGBT? (1=Yes; 0=No)
+- `age`: Respondent's age, in years
+- `female`: Dummy-coded variable indicating whether the respondent is female (1=Yes; 0=No)
+
+
+### Preview
+
+```{r}
+# Import data
+same_sex = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/same-sex-marriage.csv")
+
+# View data
+same_sex
+```
+
+
+<!-- ### References -->

@@ -1,0 +1,44 @@
+---
+title: "vocabulary.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+
+The data in [vocabulary.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv), adapted from data provided by @Bock:1975, come from the Laboratory School of the University of Chicago and include scaled test scores across four grades from the vocabulary section of the Cooperative Reading Test for $n=64$ students. The attributes in the dataset include:
+
+- `id`: The student ID number
+- `vocab_08`: The scaled vocabulary test score in 8th grade
+- `vocab_09`: The scaled vocabulary test score in 9th grade
+- `vocab_10`: The scaled vocabulary test score in 10th grade
+- `vocab_11`: The scaled vocabulary test score in 11th grade
+- `female`: Dummy coded sex variable (0 = Not female, 1 = Female)
+
+
+### Preview
+
+```{r}
+# Import data
+vocab = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv")
+
+# View data
+vocab
+```
+
+
+### References
+
+

@@ -1,0 +1,51 @@
+---
+title: "mammals.csv"
+output: 
+  html:
+    css: '../assets/codebooks.css'
+    df_print: paged
+    code_folding: show
+theme: "lumen"
+highlight-style: "atom-one"
+bibliography: '../assets/epsy8252.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+```{r}
+#| include: false
+source("../assets/codebook-setup.R")
+```
+
+
+The data in [mammals.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv) come from @Allison:1976 and contain data on 62 species of mammals. The attributes include:
+
+- `species`: Common name of species
+- `body_weight`: Body weight, in *kg*
+- `brain_weight`: Brain weight, in *g*
+- `slow_wave`: Average slow wave (non-dreaming) sleep per day, in hours
+- `paradox`: Average paradoxical (dreaming) sleep per day, in hours
+- `total_sleep`: Average sleep per day, in hours
+- `lifespan`: Average lifespan, in years
+- `gestation`: Average gestation period, in days
+- `predation`: Rating of degree to which species are preyed upon, 1 (low)--5 (high)
+- `exposure`: Rating of sleep exposure from 1 (low exposure; e.g., sleep in a burrow or den)--5 (maximally exposed sleep)
+- `danger`: Rating of predatory danger based on predation and exposure scales, 1 (low danger)--5 (high degreee of danger)
+					
+									
+
+
+### Preview
+
+```{r}
+# Import data
+mammals = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv")
+
+# View data
+mammals
+```
+
+
+### References
+
+
