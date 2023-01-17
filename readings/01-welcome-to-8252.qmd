@@ -13,6 +13,7 @@ Here are some things to do before the first class:
 - [Update R](https://www.r-project.org/) to the most recent version (v. 4.2.2; *Innocent and Trusting*)
 - [Update RStudio Desktop](https://posit.co/download/rstudio-desktop/) to the most recent version (v. 2022.12.0+353)
 - Update all of your R packages (In the `Packages` tab in RStudio click `Update`)
+- Update the `{educate}` package (to at least v.0.3.0.1). This is a github package, so see the instructions in [Installing Packages from GitHub](https://zief0002.github.io/toolkit-quarto/03-getting-started-with-r.html)
 
 
 We will also start Day 1 with a short review of the regression content from EPsy 8251.

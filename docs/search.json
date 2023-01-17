@@ -543,7 +543,7 @@
     "href": "readings/01-welcome-to-8252.html",
     "title": "📖 Welcome to EPsy 8264",
     "section": "",
-    "text": "Here are some things to do before the first class:\n\nDownload and read through the course syllabus\nFamiliarize yourself with the course website\nUpdate R to the most recent version (v. 4.2.2; Innocent and Trusting)\nUpdate RStudio Desktop to the most recent version (v. 2022.12.0+353)\nUpdate all of your R packages (In the Packages tab in RStudio click Update)\n\nWe will also start Day 1 with a short review of the regression content from EPsy 8251.\n\nRemind yourself of the EPsy 8251 content\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists"
+    "text": "Here are some things to do before the first class:\n\nDownload and read through the course syllabus\nFamiliarize yourself with the course website\nUpdate R to the most recent version (v. 4.2.2; Innocent and Trusting)\nUpdate RStudio Desktop to the most recent version (v. 2022.12.0+353)\nUpdate all of your R packages (In the Packages tab in RStudio click Update)\nUpdate the {educate} package (to at least v.0.3.0.1). This is a github package, so see the instructions in Installing Packages from GitHub\n\nWe will also start Day 1 with a short review of the regression content from EPsy 8251.\n\nRemind yourself of the EPsy 8251 content\n\nComputational Toolkit for Educational Scientists\nStatistical Modeling and Computation for Educational Scientists"
   },
   {
     "objectID": "readings/02-project-organization.html",
