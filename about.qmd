@@ -20,7 +20,7 @@ knitr::include_graphics(c("img/andy-avatar.png", "img/kyle.jpg"))
 
 **TA:** Kyle Stagnaro  <br />
 **Email:** [stagn011@umn.edu](mailto://stagn011@umn.edu) <br />
-**Office:** [Education Sciences Building 275E](https://www.google.com/maps/place/Education+Sciences+Building/@44.9784043,-93.2394586,15z/data=!4m2!3m1!1s0x0:0x45656dac481b9150)  <br />
-**Office Hours:** Thursday 2:00 PM&ndash;3:00 PM; and by appointment
+**Office:** [Zoom](https://umn.zoom.us/j/8643731501)  <br />
+**Office Hours:** Monday 12:00 PM&ndash;1:00 PM; and by appointment
 
 <!-- <br /> -->
