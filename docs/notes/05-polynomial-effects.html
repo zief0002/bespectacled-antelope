@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-16">
+<meta name="dcterms.date" content="2023-01-18">
 
 <title>EPsy 8252 - Polynomial Effects</title>
 <style>
@@ -258,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 16, 2023</p>
+      <p class="date">January 18, 2023</p>
     </div>
   </div>
   
@@ -475,7 +475,10 @@ x^2 = x \times x.
 <section id="algebraic-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="algebraic-interpretation">Algebraic Interpretation</h2>
 <p>From algebra, you may remember that the coefficient in front of the quadratic term (<span class="math inline">\(-2.2\)</span>) informs us of whether the quadratic is an upward-facing U-shape, or a downward-facing U-shape. Since our term is negative, the U-shape is downward-facing. This is consistent with what we saw in the plot. What the algebra fails to show is that, within the range of SAT scores in our data, we only see part of the entire downward U-shape.</p>
-<p>This coefficient also indicates whether the U-shape is skinny or wide. Although “skinny” and “wide” are only useful as relative comparisons. Algebraically, the comparison is typically to a quadratic coefficient of 1, which is generally not useful in our interpretation. The intercept and coefficient for the linear term help us locate the U-shape in the coordinate plane (moving it right, left, up, or down from the origin). You could work all of this out algebraically. You can see how different values of these coefficients affect the curve <a href="https://en.wikipedia.org/wiki/Quadratic_equation#/media/File:Quadratic_equation_coefficients.png">on Wikipedia</a>.</p>
+<p>This coefficient also indicates whether the U-shape is skinny or wide. Although “skinny” and “wide” are only useful as relative comparisons. Algebraically, the comparison is typically to a quadratic coefficient of 1, which is generally not useful in our interpretation. The intercept and coefficient for the linear term help us locate the U-shape in the coordinate plane (moving it right, left, up, or down from the origin). You could work all of this out algebraically.</p>
+<div class="fyi">
+<p>You can see how different values of these coefficients affect the curve <a href="https://en.wikipedia.org/wiki/Quadratic_equation#/media/File:Quadratic_equation_coefficients.png">on Wikipedia</a>. Here is an <a href="https://www.intmath.com/quadratic-equations/interactive-quadratic-function-graph.php">interactive graph</a> that lets you explore how changing the different coefficients changes the parabola.</p>
+</div>
 <p>What can be useful is to find where the minimum (upward facing U-shape) or maximum (downward facing U-shape) occurs. This point is referred to as the <em>vertex</em> of the parabola and can be algebraically determined. To do this we determine the <em>x</em>-location of the vertex by</p>
 <p><span class="math display">\[
 x_\mathrm{Vertex} = -\frac{\hat{\beta}_1}{2 \times \hat\beta_2}
@@ -802,12 +805,12 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
 <div class="cell-output-display">
 <div id="tbl-model-likelihood" class="anchored">
 
-<div id="jdbzdabdui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hicgsjobhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#jdbzdabdui) .gt_table {
+:where(#hicgsjobhr) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -832,7 +835,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-left-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_heading {
+:where(#hicgsjobhr) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -844,12 +847,12 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-right-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_caption {
+:where(#hicgsjobhr) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#jdbzdabdui) .gt_title {
+:where(#hicgsjobhr) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -861,7 +864,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-bottom-width: 0;
 }
 
-:where(#jdbzdabdui) .gt_subtitle {
+:where(#hicgsjobhr) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -873,13 +876,13 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-top-width: 0;
 }
 
-:where(#jdbzdabdui) .gt_bottom_border {
+:where(#hicgsjobhr) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_col_headings {
+:where(#hicgsjobhr) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -894,7 +897,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-right-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_col_heading {
+:where(#hicgsjobhr) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -914,7 +917,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   overflow-x: hidden;
 }
 
-:where(#jdbzdabdui) .gt_column_spanner_outer {
+:where(#hicgsjobhr) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -926,15 +929,15 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 4px;
 }
 
-:where(#jdbzdabdui) .gt_column_spanner_outer:first-child {
+:where(#hicgsjobhr) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#jdbzdabdui) .gt_column_spanner_outer:last-child {
+:where(#hicgsjobhr) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#jdbzdabdui) .gt_column_spanner {
+:where(#hicgsjobhr) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -946,7 +949,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   width: 100%;
 }
 
-:where(#jdbzdabdui) .gt_group_heading {
+:where(#hicgsjobhr) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -972,7 +975,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   text-align: left;
 }
 
-:where(#jdbzdabdui) .gt_empty_group_heading {
+:where(#hicgsjobhr) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -987,15 +990,15 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   vertical-align: middle;
 }
 
-:where(#jdbzdabdui) .gt_from_md > :first-child {
+:where(#hicgsjobhr) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#jdbzdabdui) .gt_from_md > :last-child {
+:where(#hicgsjobhr) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#jdbzdabdui) .gt_row {
+:where(#hicgsjobhr) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1014,7 +1017,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   overflow-x: hidden;
 }
 
-:where(#jdbzdabdui) .gt_stub {
+:where(#hicgsjobhr) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1027,7 +1030,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 5px;
 }
 
-:where(#jdbzdabdui) .gt_stub_row_group {
+:where(#hicgsjobhr) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1041,11 +1044,11 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   vertical-align: top;
 }
 
-:where(#jdbzdabdui) .gt_row_group_first td {
+:where(#hicgsjobhr) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#jdbzdabdui) .gt_summary_row {
+:where(#hicgsjobhr) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1055,16 +1058,16 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 5px;
 }
 
-:where(#jdbzdabdui) .gt_first_summary_row {
+:where(#hicgsjobhr) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_first_summary_row.thick {
+:where(#hicgsjobhr) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#jdbzdabdui) .gt_last_summary_row {
+:where(#hicgsjobhr) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1074,7 +1077,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_grand_summary_row {
+:where(#hicgsjobhr) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1084,7 +1087,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 5px;
 }
 
-:where(#jdbzdabdui) .gt_first_grand_summary_row {
+:where(#hicgsjobhr) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1094,11 +1097,11 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-top-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_striped {
+:where(#hicgsjobhr) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#jdbzdabdui) .gt_table_body {
+:where(#hicgsjobhr) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1107,7 +1110,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-bottom-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_footnotes {
+:where(#hicgsjobhr) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1121,7 +1124,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-right-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_footnote {
+:where(#hicgsjobhr) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1130,7 +1133,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 5px;
 }
 
-:where(#jdbzdabdui) .gt_sourcenotes {
+:where(#hicgsjobhr) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1144,7 +1147,7 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   border-right-color: #D3D3D3;
 }
 
-:where(#jdbzdabdui) .gt_sourcenote {
+:where(#hicgsjobhr) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1152,64 +1155,64 @@ y_\mathrm{Vertex} = -366.34 + 62.72(14.58) - 2.15(14.58^2) = 91.08
   padding-right: 5px;
 }
 
-:where(#jdbzdabdui) .gt_left {
+:where(#hicgsjobhr) .gt_left {
   text-align: left;
 }
 
-:where(#jdbzdabdui) .gt_center {
+:where(#hicgsjobhr) .gt_center {
   text-align: center;
 }
 
-:where(#jdbzdabdui) .gt_right {
+:where(#hicgsjobhr) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#jdbzdabdui) .gt_font_normal {
+:where(#hicgsjobhr) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#jdbzdabdui) .gt_font_bold {
+:where(#hicgsjobhr) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#jdbzdabdui) .gt_font_italic {
+:where(#hicgsjobhr) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#jdbzdabdui) .gt_super {
+:where(#hicgsjobhr) .gt_super {
   font-size: 65%;
 }
 
-:where(#jdbzdabdui) .gt_footnote_marks {
+:where(#hicgsjobhr) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#jdbzdabdui) .gt_asterisk {
+:where(#hicgsjobhr) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#jdbzdabdui) .gt_indent_1 {
+:where(#hicgsjobhr) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#jdbzdabdui) .gt_indent_2 {
+:where(#hicgsjobhr) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#jdbzdabdui) .gt_indent_3 {
+:where(#hicgsjobhr) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#jdbzdabdui) .gt_indent_4 {
+:where(#hicgsjobhr) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#jdbzdabdui) .gt_indent_5 {
+:where(#hicgsjobhr) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

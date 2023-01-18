@@ -1,0 +1,27 @@
+---
+title: "📖 Polynomial Effects"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Read the following:
+
+- Elliott, L. P., &amp; Brook, B. W. (2007). [Revisiting Chamberlin: Multiple working hypotheses for the 21st century](https://academic.oup.com/bioscience/article/57/7/608/238555). *BioScience, 57*(7), 608--614. doi: 10.1641/B570708
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about information criteria and model selection. Here are some resources that may be helpful in that endeavor:
+
+- Anderson, D. R. (2008). [Model based inference in the life sciences: A primer on evidence](https://link-springer-com.ezp3.lib.umn.edu/book/10.1007%2F978-0-387-74075-1). New York: Springer. [*Optional Textbook*]
+- Burnham, K. P., &amp; Anderson, D. R. (2002). [Model selection and multimodel inference: A practical information-theoretic approach](http://ecologia.ib.usp.br/bie5782/lib/exe/fetch.php?media=bie5782:pdfs:burnham_anderson2002.pdf). New York: Springer.
+- Burnham, K. P., Anderson, D. R., &amp; Huyvaert, K. P. (2010). [AIC model selection and multimodel inference in behavioral ecology: Some background, observations, and comparisons](https://link-springer-com.ezp3.lib.umn.edu/article/10.1007/s00265-010-1029-6). *Behavioral Ecology and Sociobiology, 65*(1), 23--35.
+
+

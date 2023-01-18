@@ -292,8 +292,17 @@ bibliography: "assets/my-bibliography.bib"
 
 You can see all the formatting options by calling `help(strptime)`.
 
+<br />
+
+
+# Learn More
+
+Yihui Xie, the creater of the RMarkdown package (which does a lot of the work in converting your QMD file to an HTML/PDF file, gave a nice trechnical talk to the *American Statistical Association's Section on Statistical Computing* that explain what actually happens behind the scenes when you click the `Knit` or `Render` button in RStudio to render a RMD or QMD document.
+
+- [An anatomy of R Markdown with minimal applications ](https://www.youtube.com/watch?v=fiy32LjgGUE)
 
 <br />
+
 
 # References
 

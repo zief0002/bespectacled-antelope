@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-01-13">
+<meta name="dcterms.date" content="2023-01-18">
 
 <title>EPsy 8252 - More Quarto</title>
 <style>
@@ -246,6 +246,7 @@ div.csl-indent {
   <li><a href="#citation-extras" id="toc-citation-extras" class="nav-link" data-scroll-target="#citation-extras">Citation Extras</a></li>
   </ul></li>
   <li><a href="#auto-populating-the-date-in-your-yaml" id="toc-auto-populating-the-date-in-your-yaml" class="nav-link" data-scroll-target="#auto-populating-the-date-in-your-yaml">Auto-Populating the Date in Your YAML</a></li>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -266,7 +267,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2023</p>
+      <p class="date">January 18, 2023</p>
     </div>
   </div>
   
@@ -462,12 +463,12 @@ csl: "assets/apa-single-spaced.csl"
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return date</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-01-13"</code></pre>
+<pre><code>[1] "2023-01-18"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retuen time</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-01-13 12:07:09 CST"</code></pre>
+<pre><code>[1] "2023-01-18 07:46:50 CST"</code></pre>
 </div>
 </div>
 <p>Here is an example of the YAML in the <code>date:</code> key to use <code>Sys.Date()</code> to auto-populate the date.</p>
@@ -491,6 +492,14 @@ editor: visual
 bibliography: "assets/my-bibliography.bib"
 ---</code></pre>
 <p>You can see all the formatting options by calling <code>help(strptime)</code>.</p>
+<p><br></p>
+</section>
+<section id="learn-more" class="level1">
+<h1>Learn More</h1>
+<p>Yihui Xie, the creater of the RMarkdown package (which does a lot of the work in converting your QMD file to an HTML/PDF file, gave a nice trechnical talk to the <em>American Statistical Association’s Section on Statistical Computing</em> that explain what actually happens behind the scenes when you click the <code>Knit</code> or <code>Render</code> button in RStudio to render a RMD or QMD document.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=fiy32LjgGUE">An anatomy of R Markdown with minimal applications</a></li>
+</ul>
 <p><br></p>
 </section>
 <section id="references" class="level1">

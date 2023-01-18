@@ -1,65 +1,44 @@
 ---
 title: "Information Criteria and Model Selection"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-<!-- This adds mathjax for internet hosting. Not needed if you are only serving locally -->
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 
 # Preparation
 
-In this set of notes, you will use information theoretic approaches (e.g., information criteria) to select one (or more) empirically supported model from a set of candidate models. To do so, we will use the *mn-schools.csv* dataset (see the [data codebook](http://zief0002.github.io/epsy-8252/codebooks/mn-schools.html)) to examine if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate.
+In this set of notes, you will use information theoretic approaches (e.g., information criteria) to select one (or more) empirically supported model from a set of candidate models. To do so, we will use the *mn-schools.csv* dataset: 
+
+- [CSV File](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv)
+- [Data Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html)
 
 
-```{r preparation, warning=FALSE, message=FALSE}
+Our goal will be to examine if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate.
+
+
+```{r}
+#| label: setup
 # Load libraries
 library(AICcmodavg)
 library(broom)
+library(gt)
 library(tidyverse)
 
 # Read in data
-mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv")
+mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
 ```
 
 <br />
@@ -68,6 +47,7 @@ mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/maste
 # Working Hypotheses and Candidate Models
 
 Over the prior sets of notes, we have considered several models that explain variation in graduation rates. 
+
 $$
 \begin{split}
 \mathbf{Model~1:~} \quad \hat{\mathrm{Graduation~Rate}}_i &= \beta_0 + \beta_1(\mathrm{SAT}_i) + \epsilon_i \\[1ex]
@@ -96,7 +76,7 @@ Each of these models correspond to a different **scientific working hypothesis**
 These working hypotheses are typically created from the theory and previous empirical work in a substantive area. They need to be translated into a statistical models, which can be quite difficult, especially if there is not a lot of theory to guide this translation.
 :::
 
-One method for choosing among a set of candidate models is to pick based on the residuals. In this method, we adopt the model for which the data best meet the assumptions, and employing the principle of parsimony--- adopting the more parsimonious model when there are multiple models that produce equally "good" residuals. Additionally, we can use the likelihood ratio test (LRT) to help make this deicsion. This method provides additional empirical evidence about which model is supported when the candidate models are nested.
+One method for choosing among a set of candidate models is to pick based on the residuals. In this method, we adopt the model for which the data best meet the assumptions, and employing the principle of parsimony---adopting the more parsimonious model when there are multiple models that produce equally "good" residuals. Additionally, we can use the likelihood ratio test (LRT) to help make this decision. This method provides additional empirical evidence about which model is supported when the candidate models are nested.
 
 Unfortunately, we cannot always use the LRT to select models, since there are many times when the set of candidate models are not all nested. Information criteria give us metrics to compare the empirical support for models whether they are nested or not. In the remainder of these notes, we will examine several of the more popular information criteria metrics used for model selection. 
 
@@ -105,7 +85,7 @@ Unfortunately, we cannot always use the LRT to select models, since there are ma
 
 # Akiake's Information Criteria (AIC)
 
-The AIC metric is calculated by adding a penalty term to the model's deviance ($-2\ln(\mathrm{Likelihood})$). 
+The AIC metric is calculated by adding a penalty term to the model's deviance ($-2\ln(\mathrm{Likelihood})$).
 
 $$
 \begin{split}
@@ -116,7 +96,7 @@ $$
 
 where *k* is the number of parameters (including the residual standard error) being estimated in the model. (Recall that the value for *k* is given as *df* in the `logLik()` output.)
 
-Remember that deviance is similar to error (it measures model-data misfit), and so models that have lower values of deviance are more empirically supported. The problem with deviance, however, is that more complex models tend to have smaller deviances and are, therefore, more supported than their simpler counterparts. Unfortunately, these complex models tend not to generalize as well as simpler models (this is called *overfitting*). The AIC metric's penalty term penalizes the deviance more when a more complex model is fitted; it is offsetting the lower degree of model-data misfit in complex models by increasing the 'misfit' based on the number of parameters. 
+Remember that deviance is similar to error (it measures model-data misfit), and so models that have lower values of deviance are more empirically supported. The problem with deviance, however, is that more complex models tend to have smaller deviances and are, therefore, more supported than their simpler counterparts. Unfortunately, these complex models tend not to generalize as well as simpler models (this is called *overfitting*). The AIC metric's penalty term penalizes the deviance more when a more complex model is fitted; it is offsetting the lower degree of model-data misfit in complex models by increasing the 'misfit' based on the number of parameters.
 
 This penalty-adjusted measure of 'misfit' is called Akiake's Information Criteria (AIC). We compute the AIC for each of the candidate models and the model with the lowest AIC is selected. This model, we say, is the candidate model with the most empirical support. Below we compute the AIC for the first candidate model.
 
@@ -140,7 +120,7 @@ AIC(lm.3)
 ```
 
 
-Based on the AIC values, the candidate model with the most empirical evidence is the model with main effects of median SAT score and educatinal sector (Model 2); it has the lowest AIC. 
+Based on the AIC values, the candidate model with the most empirical evidence is the model with main effects of median SAT score and educational sector (Model 2); it has the lowest AIC.
 
 Lastly, we note that the AIC value is produced as a column in the model-level output from the `glance()` function. (Note that the `df` column from `glance()` does NOT give the number of model parameters.)
 
@@ -159,22 +139,25 @@ Because the models are proxies for the scientific working hypotheses, the AIC en
 
 - **H2:** The effect of median SAT scores on graduation rates is constant across all levels of SAT. And, while there is also an effect of educational sector on graduation rates, the effect of median SAT scores is identical for both public and private schools.
 - **H3:** The effect of median SAT scores on graduation rates is constant across all levels of SAT. Moreover, this effect varies across educational sector.
-- **H1:** The effect of median SAT scores on graduation rates is constant across all levels of SAT, and educational sector does not have an effect on graduation rates. 
+- **H1:** The effect of median SAT scores on graduation rates is constant across all levels of SAT, and educational sector does not have an effect on graduation rates.
 
-It is important to remember that the phrase **given the data and other candidate models** is highly important. The ranking of models/working hypotheses is a *relative ranking* of the models' level of empirical support contingent on the candidate models we included in the comparison and the data we used to compute the AIC. 
+It is important to remember that the phrase **given the data and other candidate models** is highly important. The ranking of models/working hypotheses is a *relative ranking* of the models' level of empirical support contingent on the candidate models we included in the comparison and the data we used to compute the AIC.
 
 As such, this method is not able to rank any hypotheses that you did not consider as part of the candidate set of scientific working hypotheses. Moreover, the AIC is a direct function of the likelihood which is based on the actual model fitted as a proxy for the scientific working hypothesis. If the predictors used in any of the models had been different, it would lead to different likelihood and AIC values, and potentially a different rank ordering of the hypotheses.
 
-The ranking of models is also based on the data we have. Even though Model 2 may not be what we expect substantively, it is more empirically supported than the interaction model (or the simple model). Why? Well, we only have data in a certain range of median SAT scores for public and private schools. Within this range of scores, Model 2 is more empirically supported, even after accounting for the additional complexity of the interaction model. If we had a broader range of median SAT scores in these two sectors (or had differentiated between private for-profit and private not-for-proft school), that evidence might support a different model. This is very important. Model 2 is the most empirically supported candidate model GIVEN the three candidate models we compared and the data we used to compute the AIC metric. 
+The ranking of models is also based on the data we have. Even though Model 2 may not be what we expect substantively, it is more empirically supported than the interaction model (or the simple model). Why? Well, we only have data in a certain range of median SAT scores for public and private schools. Within this range of scores, Model 2 is more empirically supported, even after accounting for the additional complexity of the interaction model. If we had a broader range of median SAT scores in these two sectors (or had differentiated between private for-profit and private not-for-proft school), that evidence might support a different model. This is very important. Model 2 is the most empirically supported candidate model GIVEN the three candidate models we compared and the data we used to compute the AIC metric.
 
 :::fyi
-The model selection and ranking is contingent on both the set of candidate models you are evaluating, and the data you have. 
+The model selection and ranking is contingent on both the set of candidate models you are evaluating, and the data you have.
 :::
 
 Based on the AIC values for the three candidate models we ranked the hypotheses based on the amount of empirical support:
 
-```{r tab_01, echo=FALSE}
-data.frame(
+```{r}
+#| label: tbl-aics
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AIC."
+#| code-fold: true
+cand_models = data.frame(
   Model = c(
     "Model 2",
     "Model 3",
@@ -182,16 +165,27 @@ data.frame(
     ),
   k = c(4, 5, 3),
   AIC = c(AIC(lm.2), AIC(lm.3), AIC(lm.1))
-) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AIC.",
-    digits = 1,
-    table.attr = "style='width:40%;'"
-    ) %>%
-  kable_classic()
+) 
+
+cand_models |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AIC),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AIC = md("*AIC*")
+  ) |>
+  tab_options(
+    table.width = pct(40)
+  )
+
 ```
 
 <br />
@@ -205,7 +199,12 @@ $$
 \mathrm{AIC_c} = \mathrm{Deviance} + 2k\left( \frac{n}{n - k - 1} \right)
 $$
 
-where *k* is, again, the number of estimated parameters (including residual standard error), and *n* is the sample size used to fit the model. Note that when *n* is very large (especially relative to *k*) that the last term is essentially 1 and the AICc value would basically reduce to the AIC value. When *n* is small relative to *k* this will add more of a penalty to the deviance. **The statistical recommendation is to pretty much always use AICc rather than AIC when selecting models.**
+where *k* is, again, the number of estimated parameters (including residual standard error), and *n* is the sample size used to fit the model. Note that when *n* is very large (especially relative to *k*) that the last term is essentially 1 and the AICc value would basically reduce to the AIC value. When *n* is small relative to *k* this will add more of a penalty to the deviance. 
+
+
+:::protip
+The statistical recommendation is to pretty much always use AICc rather than AIC when selecting models.
+:::
 
 Below, we will compute the AICc for the first candidate model. (Note that we use $n=33$ cases for the computation for all the models in this data.)
 
@@ -219,7 +218,7 @@ k = 3
 
 In practice, we will use the `AICc()` function from the `{AICcmodavg}` package to compute the AICc value directly. Here we compute the AICc for the three candidate models.
 
-```{r message=FALSE}
+```{r}
 # Model 1
 AICc(lm.1)
 
@@ -233,8 +232,11 @@ AICc(lm.3)
 
 Based on the AICc values, the model with the most empirical support given the data and three candidate models is, again, Model 2. Using these results, we can, again, rank order the models (which correspond to working hypotheses) based on the empirical support for each.
 
-```{r tab_02, echo=FALSE}
-data.frame(
+```{r}
+#| label: tbl-aicc
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc."
+#| code-fold: true
+cand_models = data.frame(
   Model = c(
     "Model 2",
     "Model 3",
@@ -242,16 +244,27 @@ data.frame(
     ),
   k = c(4, 5, 3),
   AICc = c(AICc(lm.2), AICc(lm.3), AICc(lm.1))
-) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:40%;'"
-    ) %>%
-  kable_classic()
+) 
+
+cand_models |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AICc),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AICc = md("*AICc*")
+  ) |>
+  tab_options(
+    table.width = pct(40)
+  )
+
 ```
 
 <br />
@@ -279,29 +292,34 @@ AICc(lm.3) - AICc(lm.2)
 ```
 
 
-```{r tab_03, echo=FALSE}
-data.frame(
-  Model = c(
-    "Model 2",
-    "Model 3",
-    "Model 1"
-    ),
-  k = c(4, 5, 3),
-  AICc = c(AICc(lm.2), AICc(lm.3), AICc(lm.1))
-) %>%
+```{r}
+#| label: tbl-delta-aicc
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc. Other evidence includes the &#916;AICc for each model."
+#| code-fold: true
+cand_models = cand_models |>
   mutate(
     delta_a = AICc - AICc(lm.2)
-  ) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = c("Model", "k", "AICc", "$\\Delta$AICc"),
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:50%;'"
-    ) %>%
-  kable_classic()
+  ) 
+
+cand_models |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AICc, delta_a),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AICc = md("*AICc*"),
+    delta_a = html("&#916;AICc")
+  ) |>
+  tab_options(
+    table.width = pct(50)
+  )
 ```
 
 @Burnham:2011 [p. 25] give rough guidelines for interpreting $\Delta$AICc values. They suggest that hypotheses with $\Delta$AICc values less than 2 are plausible, those in the range of 4--7 have some empirical support, those in the range of 9--11 have relatively little support, and those greater than 13 have essentially no empirical support. Using these criteria:
@@ -324,45 +342,49 @@ $$
 $$
 
 ```{r}
-# Model 1
+# Relative likelihood for Model 1
 exp(-1/2 * 6.900556)
 
-# Model 2
+# Relative likelihood for Model 2
 exp(-1/2 * 0)
 
-# Model 3
+# Relative likelihood for Model 3
 exp(-1/2 * 2.20514)
 ```
 
-```{r tab_04, echo=FALSE}
-data.frame(
-  Model = c(
-    "Model 2",
-    "Model 3",
-    "Model 1"
-    ),
-  k = c(4, 5, 3),
-  AICc = c(AICc(lm.2), AICc(lm.3), AICc(lm.1))
-) %>%
+```{r}
+#| label: tbl-rel-lik
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc. Other evidence includes the &#916;AICc, and relative likelihood for each model."
+#| code-fold: true
+cand_models = cand_models |>
   mutate(
-    delta_a = AICc - AICc(lm.2),
     rel_lik = exp(-1/2 * delta_a)
-  ) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = c("Model", "k", "AICc", "$\\Delta$AICc", "Rel($\\mathcal{L}$)"),
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:50%;'"
-    ) %>%
-  footnote(
-    general = "Rel($\\mathcal{L}$) = Relative Likelihood",
-    general_title = "Note.",
-    footnote_as_chunk = TRUE
-    ) %>%
-  kable_classic()
+  ) 
+
+cand_models |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AICc, delta_a, rel_lik),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AICc = md("*AICc*"),
+    delta_a = html("&#916;AICc"),
+    rel_lik = html("Rel(&#8466;)")
+  ) |>
+  tab_options(
+    table.width = pct(50)
+  ) |>
+  tab_footnote(
+    footnote = html("Rel(&#8466;) = Relative likelihood"),
+    locations = cells_column_labels(columns = rel_lik)
+  )
 ```
 
 The relative likelihood values allow us to compute *evidence ratios*, which are evidentiary statements for comparing any two model or scientific hypotheses. Evidence ratios quantify how much more empirical support one model/hypothesis has versus another. To obtain an evidence ratio, we divide the relative likelihood for any two models/hypotheses. As an example, the evidence ratio comparing Model 2 to Model 3 is computed as:
@@ -374,7 +396,7 @@ The relative likelihood values allow us to compute *evidence ratios*, which are 
 
 That is,
 
-- The empirical support for Model 2 is 3.01 times that of the empirical support for Model 1. 
+- The empirical support for Model 2 is 3.01 times that of the empirical support for Model 1.
 
 We can similarly compute the evidence ratio to make an evidentiary statement comparing the empirical support for Model 2 versus Model 1.
 
@@ -397,49 +419,53 @@ Here we compute the model probability for all three candidate models.
 # Compute sum of relative likelihoods
 sum_rel = 0.03173681 + 1 + 0.3320167
 
-# Model 1
+# Model probability for Model 1
 0.03173681 / sum_rel
 
-# Model 2
+# Model probability for Model 2
 1 / sum_rel
 
-# Model 3
+# Model probability for Model 3
 0.3320167/ sum_rel
 ```
 
 We also add these to our table of model evidence.
 
 
-```{r tab_05, echo=FALSE}
-data.frame(
-  Model = c(
-    "Model 2",
-    "Model 3",
-    "Model 1"
-    ),
-  k = c(4, 5, 3),
-  AICc = c(AICc(lm.2), AICc(lm.3), AICc(lm.1))
-) %>%
+```{r}
+#| label: tbl-model-prob
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc. Other evidence includes the &#916;AICc, relative likelihood, and model probability (AICc weight) for each model."
+#| code-fold: true
+cand_models = cand_models |>
   mutate(
-    delta_a = AICc - AICc(lm.2),
-    rel_lik = exp(-1/2 * delta_a),
     model_prob = rel_lik / sum(rel_lik)
-  ) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = c("Model", "k", "AICc", "$\\Delta$AICc", "Rel($\\mathcal{L}$)", "AICc Weight"),
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:50%;'"
-    ) %>%
-  footnote(
-    general = "Rel($\\mathcal{L}$) = Relative Likelihood",
-    general_title = "Note.",
-    footnote_as_chunk = TRUE
-    ) %>%
-  kable_classic()
+  ) 
+
+cand_models |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AICc, delta_a, rel_lik, model_prob),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AICc = md("*AICc*"),
+    delta_a = html("&#916;AICc"),
+    rel_lik = html("Rel(&#8466;)"),
+    model_prob = md("*AICc Wt.*")
+  ) |>
+  tab_options(
+    table.width = pct(50)
+  ) |>
+  tab_footnote(
+    footnote = html("Rel(&#8466;) = Relative likelihood"),
+    locations = cells_column_labels(columns = rel_lik)
+  )
 ```
 
 
@@ -462,7 +488,7 @@ Based on the model evidence given the data for this candidate set of models:
 - The third working scientific hypothesis also has a fair amount of empirical support.
 - There is very little empirical support for the first working scientific hypothesis.
 
-Remember, we are computing all of this evidence to select from among the candidate models. Here the empirical evidence is supporting both the hypothesis associated with Model 2 and Model 3. The data we have does not make it crystal clear about which of these hypotheses is really more supported. (This might be because our sample size is not large enough or that the data are too noisy to make this differentiation.) 
+Remember, we are computing all of this evidence to select from among the candidate models. Here the empirical evidence is supporting both the hypothesis associated with Model 2 and Model 3. The data we have does not make it crystal clear about which of these hypotheses is really more supported. (This might be because our sample size is not large enough or that the data are too noisy to make this differentiation.)
 
 Recall that the information criteria are a function of the log-likelihood. Log-likelihood values, and thus information criteria, from different models can be compared, so long as:
 
@@ -471,38 +497,50 @@ Recall that the information criteria are a function of the log-likelihood. Log-l
 - The assumptions underlying the likelihood (independence, distributional assumptions) are met.
 
 
-In all three models we are using the same data set and outcome. However, the assumptions only seem reasonably tenable for the second and third models (and maybe not even the third). That means that we should not really include Model 1 in our candidate set of models/working hypotheses. Changing the set of candidate models/working hypotheses we produce the following table of model evidence.
+In all three models we are using the same data set and outcome. However, the assumptions only seem reasonably tenable for the second and third models (and maybe not even the third)^[Analyses not shown.]. That means that we should not really include Model 1 in our candidate set of models/working hypotheses. Changing the set of candidate models/working hypotheses we produce the following table of model evidence.
 
 
-```{r tab_06, echo=FALSE}
-data.frame(
-  Model = c(
-    "Model 2",
-    "Model 3"
-    ),
-  k = c(4, 5),
+```{r}
+#| label: tbl-model-prob-2
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc after removing Model 1 from the candidate set. Other evidence includes the &#916;AICc, relative likelihood, and model probability (AICc weight) for each model."
+#| code-fold: true
+cand_models_2 = data.frame(
+  Model = c("Model 2", "Model 3"),
+  k = c(5, 3),
   AICc = c(AICc(lm.2), AICc(lm.3))
-) %>%
+  ) |>
   mutate(
     delta_a = AICc - AICc(lm.2),
     rel_lik = exp(-1/2 * delta_a),
     model_prob = rel_lik / sum(rel_lik)
-  ) %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = c("Model", "k", "AICc", "$\\Delta$AICc", "Rel($\\mathcal{L}$)", "AICc Weight"),
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:50%;'"
-    ) %>%
-  footnote(
-    general = "Rel($\\mathcal{L}$) = Relative Likelihood",
-    general_title = "Note.",
-    footnote_as_chunk = TRUE
-    ) %>%
-  kable_classic()
+  ) 
+  
+  
+cand_models_2 |>
+  gt() |>
+  cols_align(
+    columns = c(Model),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(k, AICc, delta_a, rel_lik, model_prob),
+    align = "center"
+  ) |>
+  cols_label(
+    Model = md("*Model*"),
+    k = md("*k*"),
+    AICc = md("*AICc*"),
+    delta_a = html("&#916;AICc"),
+    rel_lik = html("Rel(&#8466;)"),
+    model_prob = md("*AICc Wt.*")
+  ) |>
+  tab_options(
+    table.width = pct(50)
+  ) |>
+  tab_footnote(
+    footnote = html("Rel(&#8466;) = Relative likelihood"),
+    locations = cells_column_labels(columns = rel_lik)
+  )
 ```
 
 Here since we only removed a model from the candidate set, the only thing that changed is the model probabilities (the Akiake weights). Changing the predictors in the candidate models, or adding other models to the candidate set can impact the amount of empirical support and the rank-ordering of hypotheses. If we had a different set of data, we may also have a whole new ranking of models or interpretation of empirical support. The empirical support is linked to the data. The empirical support is very much relative to the candidate set of models and the data we have.
@@ -530,7 +568,7 @@ We will use the `aictab()` function from the `{AICcmodavg}` package to compute a
 ```{r}
 #Create table of model evidence
 model_evidence = aictab(
-  cand.set = list(lm.1, lm.2, lm.3), 
+  cand.set = list(lm.1, lm.2, lm.3),
   modnames = c("Model 1", "Model 2", "Model 3")
   )
 
@@ -543,14 +581,14 @@ The model evidence provided for each model includes the number of parameters (`K
 <br />
 
 
-## Pretty Printing Tables of Model Evidence for R Markdown Documents
+## Pretty Printing Tables of Model Evidence for Quarto Documents
 
-We can format the output from `aictab()` to be used in the `kable()` function. Because there are multiple classes associated with the output from the `aictab()` function, we first pipe `model_evidence` into the `data.frame()` function. Viewing this, we see that the data frame, also includes an additional column that gives the relative likelihoods (`ModelLik`).
+We can format the output from `aictab()` to be used in the `gt()` function. Because there are multiple classes associated with the output from the `aictab()` function, we first pipe `model_evidence` object into the `data.frame()` function. Viewing this, we see that the data frame, also includes an additional column that gives the relative likelihoods (`ModelLik`).
 
 ```{r}
 # Create data frame to format into table
 tab_01 = model_evidence %>%
-  data.frame() 
+  data.frame()
 
 # View table
 tab_01
@@ -560,33 +598,44 @@ Then we can use the `select()` function to drop the `LL` and `Cum.Wt` columns fr
 
 ```{r}
 # Drop columns
-tab_01 = tab_01 %>%
+tab_01 = tab_01 |>
   select(-LL, -Cum.Wt)
 
 # View table
 tab_01
 ```
 
-We can then pipe the `tab_01` data frame into the `kable()` function to format the table for pretty-printing in RMarkdown. I use the `footnote()` and `kable_classic()` functions from the `{kableExtra}` package to add a footnote to the table and also to format the table in our outputted HTML file.
+We can then pipe the `tab_01` data frame into the `gt()` function to format the table for pretty-printing in Quarto. For some column labels, I use the `html()` function in order to use [HTML symbols](https://www.htmlsymbols.xyz/) to create the Greek letter Delta and the scripted "L".
 
 ```{r}
+#| label: tbl-pretty-print
+#| tbl-cap: "Models rank-ordered by the amount of empirical support as measured by the AICc after removing Model 1 from the candidate set. Other evidence includes the &#916;AICc, relative likelihood, and model probability (AICc weight) for each model."
 # Create knitted table
-tab_01 %>%
-  kable(
-    format = "html",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = c("Hypothesis", "k", "AICc", "$\\Delta$AICc", "Rel($\\mathcal{L}$)", "AICc Weight"),
-    caption = "Models rank-ordered by the amount of empirical support as measured by the AICc. The sample size used to fit each model was $n=33$.",
-    digits = 1,
-    table.attr = "style='width:50%;'"
-    ) %>%
-  footnote(
-    general = "Rel($\\mathcal{L}$) = Relative Likelihood",
-    general_title = "Note.",
-    footnote_as_chunk = TRUE
-    ) %>%
-  kable_classic()
+tab_01 |>
+  gt() |>
+  cols_align(
+    columns = c(Modnames),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(K, AICc, Delta_AICc, ModelLik, AICcWt),
+    align = "center"
+  ) |>
+  cols_label(
+    Modnames = md("*Model*"),
+    K = md("*k*"),
+    AICc = md("*AICc*"),
+    Delta_AICc = html("&#916;AICc"),
+    ModelLik = html("Rel(&#8466;)"),
+    AICcWt = md("*AICc Wt.*")
+  ) |>
+  tab_options(
+    table.width = pct(50)
+  ) |>
+  tab_footnote(
+    footnote = html("Rel(&#8466;) = Relative likelihood"),
+    locations = cells_column_labels(columns = ModelLik)
+  )
 ```
 
 

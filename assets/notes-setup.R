@@ -29,7 +29,7 @@ opts_chunk$set(
   fig.width = 6, 
   fig.height = 6,
   fig.align = 'center', 
-  out.width = '40%'
+  out.width = '60%'
   )
 
 
