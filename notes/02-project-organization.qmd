@@ -127,7 +127,7 @@ The R Project will then be created and you should now see this project (called `
 
 Once an R project has been created, it can be opened in RStudio by double-clicking on the `.Rproj` file. 
 
-:::
+:::exercises
 **Your Turn**
 
 If you haven't already, create an R project associated with the `assignment-01` root directory.
