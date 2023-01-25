@@ -1,0 +1,190 @@
+country,region,co2,wealth,urbanization
+Afghanistan,Asia,0.254,1.070389328,3.35
+Albania,Europe,1.59,3.754887502,1.32
+Algeria,Africa,3.69,3.5360529,2.81
+Angola,Africa,1.12,2.711494907,4.31
+Antigua and Barbuda,Americas,5.88,4.357552005,0.432
+Argentina,Americas,4.41,4.491853096,1.15
+Armenia,Europe,1.89,3.722466024,0.309
+Australia,Oceania,16.9,5.602884409,1.66
+Austria,Europe,7.75,5.817623258,0.836
+Azerbaijan,Europe,3.7,3.786596362,1.47
+Bahamas,Americas,4.7,5.129283017,1.13
+Bahrain,Asia,19.8,5.48864354,5.03
+Bangladesh,Asia,0.531,2.247927513,3.19
+Barbados,Americas,4.48,3.935459748,0.105
+Belarus,Europe,6.93,4.224966365,0.374
+Belgium,Europe,8.69,5.727920455,0.496
+Belize,Americas,1.5,2.771885579,2.19
+Benin,Africa,0.623,1.678071905,3.89
+Bhutan,Asia,1.61,3.40599236,2.97
+Bolivia,Americas,1.96,3.112700133,1.92
+Bosnia and Herzegovina,Europe,6.53,3.887525271,-0.0592
+Botswana,Africa,2.96,4.061776198,3.28
+Brazil,Americas,2.18,3.867896464,1.08
+Brunei,Asia,18.5,5.958842675,1.46
+Bulgaria,Europe,6.32,4.478971805,-0.269
+Burkina Faso,Africa,0.198,1.070389328,4.98
+Burundi,Africa,0.0467,-0.358453971,5.7
+Cambodia,Asia,0.64,1.989139007,3.25
+Cameroon,Africa,0.323,1.89917563,3.68
+Canada,Americas,15.3,5.617651119,1.49
+Cape Verde,Africa,1.16,2.778208576,1.88
+Central African Republic,Africa,0.0651,0.042644337,2.45
+Chad,Africa,0.0656,0.669026766,3.9
+Chile,Americas,4.59,4.62058641,1.48
+China,Asia,7.06,3.944858446,2.5
+Colombia,Americas,1.96,3.87774425,1.94
+Comoros,Africa,0.263,1.650764559,2.87
+"Congo, Dem. Rep.",Africa,0.0243,0.111031312,4.54
+"Congo, Rep.",Africa,0.617,1.778208576,3.27
+Costa Rica,Americas,1.61,4.336283388,1.98
+Cote d'Ivoire,Africa,0.335,2.310340121,3.45
+Croatia,Europe,4.48,4.832890014,-0.401
+Cuba,Americas,2.53,,0.0681
+Cyprus,Europe,6.3,5.289096702,0.77
+Czech Republic,Europe,9.94,5.28169825,0.493
+Denmark,Europe,6.06,5.885086225,0.629
+Djibouti,Africa,0.672,2.347665656,1.72
+Dominican Republic,Americas,2.34,4.121015401,2.07
+Ecuador,Americas,2.46,3.523561956,2
+Egypt,Africa,2.43,3.498250868,2.03
+El Salvador,Americas,1.11,3.056583528,1.55
+Equatorial Guinea,Africa,4.35,4,4.34
+Eritrea,Africa,0.215,0.943358763,
+Estonia,Europe,14.8,5.157852169,0.585
+Eswatini,Africa,1.06,3.023255352,1.75
+Ethiopia,Africa,0.137,1.097610797,4.83
+Fiji,Asia,2.41,3.733354341,1.59
+Finland,Europe,8.52,5.638073837,0.199
+France,Europe,5.2,5.575917361,0.603
+Gabon,Africa,2.53,3.817623258,3.05
+Gambia,Africa,0.268,1.117695043,4.05
+Georgia,Europe,2.64,3.807354922,0.647
+Germany,Europe,9.14,5.832890014,0.367
+Ghana,Africa,0.615,2.378511623,3.36
+Greece,Europe,7.03,4.87282876,0.221
+Grenada,Americas,2.43,3.963474124,0.817
+Guatemala,Americas,1.07,3.085764554,2.34
+Guinea,Africa,0.256,1.304511042,3.8
+Guinea-Bissau,Africa,0.181,0.910732662,3.46
+Guyana,Americas,3.12,3.666756592,0.744
+Haiti,Americas,0.27,1.700439718,2.97
+Honduras,Americas,1.04,2.422233001,2.79
+"Hong Kong, China",Asia,5.86,6.033423002,0.799
+Hungary,Europe,5.14,4.94016675,0.279
+Iceland,Europe,10.8,5.762880293,2.72
+India,Asia,1.96,2.722466024,2.31
+Indonesia,Asia,2.3,3.498250868,2.35
+Iran,Asia,8.81,3.797012978,2.06
+Iraq,Asia,5.32,3.419538892,2.6
+Ireland,Europe,8.09,6.033423002,1.59
+Israel,Asia,7.67,5.318316841,2.02
+Italy,Europe,5.58,5.442943496,0.228
+Jamaica,Americas,2.79,3.261530815,1.01
+Japan,Asia,9.14,5.452858965,-0.114
+Jordan,Asia,2.42,3.350497247,2.07
+Kazakhstan,Asia,17.6,4.517275693,1.47
+Kenya,Africa,0.36,2.13093087,4.05
+Kiribati,Asia,0.601,2.100977648,2.95
+Kuwait,Asia,23.7,5.87036472,1.98
+Kyrgyzstan,Asia,1.6,2.350497247,2.59
+Lao,Asia,2.74,2.889473543,3.38
+Latvia,Europe,3.73,4.925999419,-0.681
+Lebanon,Asia,3.53,4,0.771
+Lesotho,Africa,1.26,1.608809243,2.31
+Liberia,Africa,0.324,0.464668267,3.34
+Libya,Africa,8.09,3.972692654,1.83
+Lithuania,Europe,4.84,5.141596278,-0.713
+Luxembourg,Europe,15.9,6.371558863,2.21
+Madagascar,Africa,0.163,0.669026766,4.48
+Malawi,Africa,0.0762,0.565597176,3.97
+Malaysia,Asia,8.08,4.776103988,2.13
+Maldives,Asia,2.96,4.129283017,4.9
+Mali,Africa,0.187,1.182692298,4.88
+Malta,Europe,3.61,5.357552005,3.56
+Marshall Islands,Oceania,2.58,2.319039816,1.13
+Mauritania,Africa,0.605,2.403267722,4.37
+Mauritius,Africa,3.83,4.672425342,-0.0631
+Mexico,Americas,3.79,4.292781749,1.49
+Micronesia,Asia,1.34,1.859969548,1.47
+Moldova,Europe,1.27,3.733354341,-1.55
+Mongolia,Asia,8.88,3.485426827,1.92
+Montenegro,Europe,3.2,4.44625623,0.481
+Morocco,Africa,1.84,2.90303827,2.13
+Mozambique,Africa,0.281,0.367371066,4.41
+Myanmar,Asia,0.491,2.150559677,1.45
+Namibia,Africa,1.75,3.314696526,3.96
+Nauru,Oceania,4.71,4.224966365,0.95
+Nepal,Asia,0.337,1.959770155,3.73
+Netherlands,Europe,9.48,5.87036472,1.04
+New Zealand,Oceania,7.34,5.357552005,1.87
+Nicaragua,Americas,0.862,2.477677328,1.64
+Niger,Africa,0.103,0.367371066,4.27
+Nigeria,Africa,0.65,2.333423734,4.24
+North Korea,Asia,,,0.828
+North Macedonia,Europe,3.49,4.008988783,0.689
+Norway,Europe,8.31,6.177917792,1.12
+Oman,Asia,13.9,4.972692654,4.61
+Pakistan,Asia,1.05,2.253989266,2.67
+Palau,Oceania,13.2,4.277984747,1.28
+Palestine,Asia,0.661,2.922197848,2.89
+Panama,Americas,2.62,4.887525271,2.2
+Papua New Guinea,Asia,0.911,2.063502942,2.48
+Paraguay,Americas,1.07,3.666756592,1.75
+Peru,Americas,1.74,3.632268215,1.96
+Philippines,Asia,1.27,3.270528942,1.88
+Poland,Europe,9.07,4.935459748,-0.0784
+Portugal,Europe,4.97,5.091699834,0.701
+Qatar,Asia,38,6.512542955,2.13
+Romania,Europe,3.8,4.847996907,-0.473
+Russia,Europe,11.7,4.812498225,0.177
+Rwanda,Africa,0.0913,1.042644337,3.15
+Samoa,Asia,1.32,2.657640005,-0.743
+Sao Tome and Principe,Africa,0.587,2.032100843,3.04
+Saudi Arabia,Asia,18.4,5.62058641,2.07
+Senegal,Africa,0.739,1.722466024,3.74
+Serbia,Europe,5.17,4.070389328,-0.279
+Seychelles,Africa,6.75,4.781359714,1.72
+Sierra Leone,Africa,0.141,0.659924558,3.14
+Singapore,Asia,7.1,6.474111514,0.47
+Slovak Republic,Europe,6.61,4.944858446,0.092
+Slovenia,Europe,6.95,5.263034406,0.855
+Solomon Islands,Asia,0.273,1.448900951,4.58
+Somalia,Africa,0.0466,0.201633861,4.13
+South Africa,Africa,8.1,3.786596362,2.13
+South Korea,Asia,12.9,5.432959407,0.38
+Spain,Europe,5.75,5.350497247,0.738
+Sri Lanka,Asia,1.1,3.678071905,1.55
+St. Lucia,Americas,2.31,3.887525271,0.869
+St. Vincent and the Grenadines,Americas,2.03,3.666756592,1.15
+Sudan,Africa,0.504,2.073820233,3.18
+Suriname,Americas,3.1,4.137503524,0.986
+Sweden,Europe,4.12,5.768184325,1.49
+Switzerland,Europe,4.33,6.10433666,0.785
+Syria,Asia,1.67,2.227741076,0.345
+Taiwan,Asia,11.6,5.970301497,
+Tajikistan,Asia,0.603,2.017921908,3.02
+Tanzania,Africa,0.222,1.389566812,5.14
+Thailand,Asia,4.15,4.137503524,1.83
+Timor-Leste,Asia,0.412,2.17951105,3.17
+Togo,Africa,0.434,1.084064265,3.75
+Tonga,Asia,1.31,2.799087306,1
+Trinidad and Tobago,Americas,31.3,4.705977902,0.377
+Tunisia,Africa,2.73,3.498250868,1.59
+Turkey,Europe,5.2,4.781359714,2.16
+Turkmenistan,Asia,13.7,3.867896464,2.46
+Tuvalu,Oceania,1.01,2.604071324,2.61
+Uganda,Africa,0.135,1.077242999,6.19
+Ukraine,Europe,5.09,3.678071905,-0.313
+United Arab Emirates,Asia,21.4,6.10433666,1.82
+United Kingdom,Europe,5.65,5.551516018,0.912
+United States,Americas,16.6,6.002252452,0.767
+Uruguay,Americas,2.01,4.478971805,0.466
+Uzbekistan,Asia,2.81,2.89917563,1.59
+Vanuatu,Asia,0.529,1.704871964,2.92
+Venezuela,Americas,4.81,2.61022759,-1.74
+Vietnam,Asia,2.16,2.861955364,2.98
+Yemen,Asia,0.356,0.997834333,4.08
+Zambia,Africa,0.302,1.827819025,4.17
+Zimbabwe,Africa,0.85,1.981852653,1.32
