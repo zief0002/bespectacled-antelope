@@ -186,6 +186,8 @@ Pay attention to the spacing in the YAML!!!!
 Create another Level-1 header in your document called "Scatterplot". Then create a code chunk in which you create a scatterplot of infant mortality rates (*y*-axis) versus female education level (*x*-axis).
 :::
 
+<br />
+
 It is a good idea to include a label in the chunk options for each plot you create. A label is the name of this code chunk. (Any code chunk, even if it is not a plot, can have a label.) In the plot below, the chunk's label is `fig-scatterplot`.
 
 ```{r}
@@ -254,7 +256,7 @@ ggplot(data = fertility, aes(x = educ_female, y = infant_mortality)) +
 
 :::protip
 If you set the aspect ratio of the figure, you need only set `out-width:` or `out-height:`. You don't need to set both as the other will be determined by the aspect ratio.
-::
+:::
 
 <br />
 
