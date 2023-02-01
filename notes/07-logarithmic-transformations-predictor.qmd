@@ -1,69 +1,48 @@
 ---
 title: "Log-Transforming the Predictor"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 
 
 # Preparation
 
-In this set of notes, you will learn another method of dealing with nonlinearity. Specifically, we will look at log-transforming the predictor in a linear model. To do so, we will use the *mn-schools.csv* dataset (see the [data codebook](http://zief0002.github.io/epsy-8252/codebooks/mn-schools.html)) to examine if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate.
+In this set of notes, you will learn another method of dealing with nonlinearity. Specifically, we will look at log-transforming the predictor in a linear model. To do so, we will use the *mn-schools.csv* dataset: 
+
+- [CSV File](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv)
+- [Data Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html)
+
+Our goal will be to re-visit if (and how) academic "quality" of the student-body (measured by SAT score) is related to institutional graduation rate. Within this work, we will use information theoretic approcaches (namely the AICc and related measures) to evaluate any fitted models.
 
 
-```{r preparation, warning=FALSE, message=FALSE}
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
 # Load libraries
 library(AICcmodavg)
 library(broom)
 library(educate)
+library(gt)
 library(patchwork)
 library(tidyverse)
 
 # Read in data
-mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv")
+mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
 
 # View data
 mn
@@ -74,9 +53,18 @@ mn
 
 # Relationship between Graduation Rate and SAT Scores
 
-In the previous set of notes, we determined that the relationship between SAT scores and graduation rates was curvilinear. We initially saw evidence of this curvilinearity in the scatterplot of graduation rates versus median SAT scores. After fitting a model assuming a linear relationship (syntax not shown), the plot of the standardized residuals versus the fitted values also suggests that the linearity assumption is not tenable.
+In a previous set of notes, we determined that the relationship between SAT scores and graduation rates was curvilinear. We initially saw evidence of this curvilinearity in the scatterplot of graduation rates versus median SAT scores. After fitting a model assuming a linear relationship (syntax not shown), the plot of the standardized residuals versus the fitted values also suggests that the linearity assumption is not tenable.
 
-```{r fig.cap="LEFT: Six-year graduation rate as a function of median SAT score. The loess smoother  (blue, dashed line) is also displayed. RIGHT: Scatterplot of the standardized residuals versus the fitted values for a model using median SAT scores to predict variation in six-year graduation rates. The loess smoother (solid, blue line) is displayed along with the 95% confidence envelope (grey shaded area). The reference line of Y=0 is also displayed.", fig.width=8, fig.height=4, out.width="80%"}
+
+
+
+```{r}
+#| label: fig-scatterplot
+#| fig-cap: "LEFT: Six-year graduation rate as a function of median SAT score. The loess smoother (blue line) is also displayed. RIGHT: Scatterplot of the standardized residuals versus the fitted values for a model using median SAT scores to predict variation in six-year graduation rates. The reference line of Y=0 is also displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) shows the empirical relationship betwen the residuals and fitted values."
+#| code-fold: true
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "80%"
 # Scatterplot
 p1 = ggplot(data = mn, aes(x = sat, y = grad)) +
 	geom_point() +
@@ -93,9 +81,10 @@ out_raw = augment(lm_raw)
 
 # Check linearity assumptions
 p2 = ggplot(data = out_raw, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
+  geom_smooth(method = "lm", se = TRUE, color = "lightgrey") +
   geom_hline(yintercept = 0) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
   theme_light() +
   xlab("Fitted values") +
   ylab("Standardized residual")
@@ -108,10 +97,16 @@ One way to model this nonlinearity is to fit a model that included a quadratic p
 
 We do not have to use a quadratic function to model curvilinear relationships. We can use any mathematical function that mimics the curvilinear pattern observed in the data.^[So long as we can ultimately write this function as a linear model, namely, $Y_i=\beta_0+\beta_1(x_i) + \epsilon_i$.] One mathematical function that is useful for modeling curvilinearity is the logarithmic function. The logarithmic function is shown in the right-hand side of the figure below.
 
-```{r fig.width=8, fig.height=4, out.width='80%', fig.cap='LEFT: Negative quadratic function of x. RIGHT: Logarithmic function of x.'}
+```{r}
+#| label: fig-quadratic-log
+#| fig-cap: "LEFT: Negative quadratic function of *X*. RIGHT: Logarithmic function of *X*."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "80%"
+#| code-fold: true
 fig_01 = data.frame(
   x = seq(from = -5, to = 3, by = 0.1)
-  ) %>%
+  ) |>
   mutate(y =  -(x^2))
 
 p1 = ggplot(data = fig_01, aes(x = x, y = y)) +
@@ -124,7 +119,7 @@ p1 = ggplot(data = fig_01, aes(x = x, y = y)) +
 
 fig_02 = data.frame(
   x = seq(from = 0.1, to = 5, by = 0.1)
-  ) %>%
+  ) |>
   mutate(y =  log2(x))
 
 p2 = ggplot(data = fig_02, aes(x = x, y = y)) +
@@ -188,11 +183,11 @@ log2(32)
 
 ## Log-Transforming Variables
 
-For our purposes, we need to log-transform each value in a particular variable. Here, we will log-transform the SAT predictor (using base-2). To do this we create a new column called `l2sat` using the `mutate()` function. 
+For our purposes, we need to log-transform each value in a particular variable. Here, we will log-transform the SAT predictor (using base-2). To do this we create a new column called `l2sat` using the `mutate()` function.
 
-```{r, paged.print=FALSE}
+```{r}
 # Create base-2 log-transformed median SAT scores
-mn = mn %>%
+mn = mn |>
   mutate(
     l2sat = log(sat, base = 2)
     )
@@ -203,7 +198,13 @@ mn
 
 How does the distribution of the log-transformed variable compare to the distribution of raw SAT values? We can examine the density plot of both the original and log-transformed variables to answer this.
 
-```{r fig.width=8, fig.height=4, out.width='80%', fig.cap="Density plot of the median SAT scores (LEFT) and the base-2 log-transformed median SAT scores (RIGHT).", class.source = 'fold-hide'}
+```{r}
+#| label: fig-log-dist
+#| fig-cap: "Density plot of the median SAT scores (LEFT) and the base-2 log-transformed median SAT scores (RIGHT)."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "80%"
+#| code-fold: true
 p1 = ggplot(data = mn, aes(x = sat)) +
   stat_density(geom = "line") +
   theme_light() +
@@ -223,10 +224,12 @@ p1 | p2
 ```
 
 
-- Comparing the shapes of the two distributions, we see that the original median SAT variable was right-skewed. The log-transformed variable is also right-skewed, although it is LESS right-skewed than the original.
+Comparing the shapes of the two distributions, we see that:
+
+-  The original median SAT variable was right-skewed. The log-transformed variable is also right-skewed, although it is LESS right-skewed than the original.
 - The scale is quite different between the two variables (one is, after all, log-transformed). This has greatly affected the center (mean) and the variation. After log-transforming, the center and variation are both much smaller.
 
-:::note
+:::fyi
 Logarithmic transformations change the shape, center, and variation of a distribution!
 :::
 
@@ -238,7 +241,10 @@ Logarithmic transformations change the shape, center, and variation of a distrib
 
 Let's examine the relationship between graduation rates and the log-transformed SAT scores.
 
-```{r out.width='40%', fig.cap='Scatterplot of six-year graduation rate versus base-2 log-transformed median SAT scores. The loess smoother (blue, solid line) is also displayed.'}
+```{r}
+#| label: fig-scatterplot-log
+#| fig-cap: "Scatterplot of six-year graduation rate versus base-2 log-transformed median SAT scores. The loess smoother (blue, solid line) is also displayed."
+#| out-width: "60%" 
 ggplot(data = mn, aes(x = l2sat, y = grad)) +
   geom_point() +
   geom_smooth(se = FALSE) +
@@ -267,8 +273,10 @@ lm.log = lm(grad ~ 1 + l2sat, data = mn)
 
 Before examining the coefficients, we can scrutinize the residuals to see whether the log-transformation helped us meet the assumption of linearity. Remember that the linearity assumption implies that the average residual is 0 at each fitted ($\hat{Y}$) value. To evaluate this, we will examine a scatterplot of the standardized residuals versus the fitted values. We will do this for a model fitted using the base-2 log-transformed predictor and another fitted using the untransformed (raw) predictor so that we can compare the fit.
 
-```{r out.width='40%', fig.cap="Plot of the standardized residuals versus the fitted values for a model fitted using the base-2 log-transformed median SAT scores. The loess smoother (solid, blue line) is displayed along with the 95% confidence envelope (grey shaded area). The reference line of Y=0 is also displayed.", class.source = 'fold-hide'}
-
+```{r}
+#| label: fig-residuals
+#| fig-cap: "Plot of the standardized residuals versus the fitted values for a model fitted using the base-2 log-transformed median SAT scores. The reference line of Y=0 is displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) showing the empirical relationship is also displayed."
+#| out-width: "60%"
 # Obtain residuals for log-transformed SAT
 out_log = augment(lm.log)
 
@@ -296,11 +304,10 @@ We can now look at the regression output and interpret the results.
 
 ```{r}
 # Model-level output
-glance(lm.log) %>%
-  print(width = Inf)
+glance(lm.log)
 ```
 
-Examining the model-level output, we see that differences in $\log_2(\mathrm{SAT})$ explain 81.13\% of the variation in graduation rates. Since differences in $\log_2(\mathrm{SAT})$ imply that there are differences in the raw SAT scores, we would typically just say that "differences in SAT scores explain 81.13\% of the variation in graduation rates."
+Examining the model-level output, we see that differences in $\log_2(\mathrm{SAT})$ explain 81.13% of the variation in graduation rates. Since differences in $\log_2(\mathrm{SAT})$ imply that there are differences in the raw SAT scores, we would typically just say that "differences in SAT scores explain 81.13% of the variation in graduation rates."
 
 Moving to the coefficient-level output,
 
@@ -415,7 +422,10 @@ $$
 We can implement this into the `geom_function()` layer of our `ggplot()` syntax.
 
 
-```{r fig.cap='Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates.'}
+```{r}
+#| label: plot-model-01
+#| fig-cap: "Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates."
+#| out-width: "60%"
 # Plot
 ggplot(data = mn, aes(x = sat, y = grad)) +
 	geom_point(alpha = 0.3) +
@@ -440,7 +450,7 @@ $$
 \hat{Y}_i = \log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg)
 $$
 
-Notice that the right-hand side of this expression is a log function; it has the general form of $Y=\log($`r emo::ji("giraffe")`$)$.^[Here `r emo::ji("giraffe")` is simply a placeholder for the expression $2^{\hat\beta_0} \times X_i^{\hat\beta_1}$.] Remember that this is the continuous decay function we were interested in using to model the curvilinearity shown in the data. The important thing is that this non-linear decay function is mathematically the same as using a the log-transformed predictor to model the outcome with linear model. 
+Notice that the right-hand side of this expression is a log function; it has the general form of $Y=\log($`r emo::ji("giraffe")`$)$.^[Here `r emo::ji("giraffe")` is simply a placeholder for the expression $2^{\hat\beta_0} \times X_i^{\hat\beta_1}$.] Remember that this is the continuous decay function we were interested in using to model the curvilinearity shown in the data. The important thing is that this non-linear decay function is mathematically the same as using a the log-transformed predictor to model the outcome with linear model.
 
 $$
 \log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg) \equiv \beta_0 + \beta_1\bigg[\log_2(X_i)\bigg]
@@ -449,7 +459,7 @@ $$
 Practically speaking, this means we can model non-linearity using a linear model. Which means we can use the `lm()` function and all the other ideas you have learned about linear models (e.g., including covariates, adding interaction effects, assumption checking).
 
 
-:::math_note
+:::mathnote
 To understand how we re-express in this alternative form, consider the general mathematical expression of the fitted equation:
 
 $$
@@ -478,7 +488,7 @@ $$
 \log_2\bigg(2^{\hat{Y}_i}\bigg) = \log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg)
 $$
 
-This gives us an expression of the curve that relates the outcome to the predictor. 
+This gives us an expression of the curve that relates the outcome to the predictor.
 :::
 
 
@@ -495,10 +505,13 @@ $$
 \hat{\mathrm{Graduation~Rate}_i} = \log_2\bigg(2^{-306.7} \times \mathrm{SAT}_i^{106.4}\bigg)
 $$
 
-We can also use this alternative expression in the `geom_function()` layer of our `ggplot()` syntax. 
+We can also use this alternative expression in the `geom_function()` layer of our `ggplot()` syntax.
 
 
-```{r fig.cap='Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates.'}
+```{r}
+#| label: fig-alt-model
+#| fig-cap: "Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates."
+#| out-width: "60%"
 # Plot
 ggplot(data = mn, aes(x = sat, y = grad)) +
 	geom_point(alpha = 0.3) +
@@ -518,14 +531,15 @@ ggplot(data = mn, aes(x = sat, y = grad)) +
 
 The base value we used in the `log()` function in the previous example was base-2. Using a base value of 2 was an arbitrary choice. We can use any base value we want. For example, how do things change if we use base-10?
 
-```{r, paged.print=FALSE}
-mn = mn %>%
+```{r}
+# Create base-10 log SAT scores
+mn = mn |>
   mutate(
     l10sat = log(sat, base = 10)
   )
 
 # Examine data
-head(mn)
+mn
 ```
 
 Comparing the logarithms of the SAT attribute using base-10 to those using base-2 we see that the base-10 logarithms are smaller. This is because now we are using the base of 10 in our exponent (rather than 2). For example, for Augsburg,
@@ -540,11 +554,10 @@ If we fit a model using the base-10 logarithm^[There is also a helper function, 
 lm.log10 = lm(grad ~ 1 + log(sat, base = 10), data = mn)
 
 # Model-level output
-glance(lm.log10) %>%
-  print(width = Inf)
+glance(lm.log10)
 ```
 
-Examining the model-level output, we see that differences in $\log_{10}(\mathrm{SAT})$ explain 81.13\% of the variation in graduation rates. Or simply, that differences in SAT scores explain 81.13\% of the variation in graduation rates. These model-level results are the same as when we used the base-2 logarithm.
+Examining the model-level output, we see that differences in $\log_{10}(\mathrm{SAT})$ explain 81.13% of the variation in graduation rates. Or simply, that differences in SAT scores explain 81.13% of the variation in graduation rates. These model-level results are the same as when we used the base-2 logarithm.
 
 ```{r}
 # Coefficient-level output
@@ -586,7 +599,9 @@ The model-level information is all the same. Furthermore, the intercepts (and SE
 
 What if we look at the residual fit?
 
-```{r fig.width=8, fig.height=4, out.width='80%', fig.cap="Scatterplot of the standardized residuals versus the fitted values for the model fitted using the base-2 log-transformed median SAT values (LEFT) and the base-10 log-transformed median SAT values (RIGHT). In both plots the loess smoother (solid, blue line) is displayed along with the 95% confidence envelope (grey shaded area). The reference line of Y=0 is also displayed.", class.source = 'fold-hide'}
+```{r fig.width=8, fig.height=4, out.width='80%', fig.cap=, class.source = 'fold-hide'}
+#| label: fig-resid-compare
+#| fig-cap: "Scatterplot of the standardized residuals versus the fitted values for the model fitted using the base-2 log-transformed median SAT values (LEFT) and the base-10 log-transformed median SAT values (RIGHT). In both plots the reference line of Y=0 is displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) showing the empirical relationship is also displayed."
 p1 = ggplot(data = out_log, aes(x = .fitted, y = .std.resid)) +
   geom_point() +
   geom_smooth() +
@@ -632,14 +647,16 @@ $$
 
 Augsburg's predicted graduation rate is *exactly the same* in the two models. This implies that Augsburg's residual would also be the same in the two models. This is true for every college. Because of this, increasing (or decreasing) the base used in the logarithm does not help improve the fit of the model. The fit is exactly the same no matter which base you choose.
 
+:::protip
 The only thing that changes when you choose a different base is the interpretation of the slope. You should choose the base to facilitate interpretation. For example, does it make more sense to talk about a *two-fold* difference in the predictor? A *five-fold* difference in the predictor? A *ten-fold* difference in the predictor?
+:::
 
 <br />
 
 
 # The Natural Logarithm: Base-*e*
 
-In our example, neither of the bases we examined is satisfactory in terms of interpreting the effect of median SAT score on graduation rate. Two-fold differences in median SAT scores are very unlikely, to say anything of ten-fold differences. 
+In our example, neither of the bases we examined is satisfactory in terms of interpreting the effect of median SAT score on graduation rate. Two-fold differences in median SAT scores are very unlikely, to say anything of ten-fold differences.
 
 One base that is commonly used for log-transformations because it offers a reasonable interpretation is base-*e*. *e* is a mathematical constant (Euler's number) that is approximately equal to 2.71828.^[Fun Fact: *e* also happens to be Andy's favorite number. Google founders might also enjoy *e*, as their IPO indicated they were going to raise *e*-billion dollars (see this [Forbes article](https://www.forbes.com/sites/jayritter/2014/08/07/googles-ipo-10-years-later/?sh=13a7d532e6ca)).] We can obtain this by using the `exp()` function in R. This function takes *e* to some exponent that is given as the argument. So to obtain the approximation of *e* we use
 
@@ -671,8 +688,7 @@ Below we regress graduation rates on the log-transformed SAT scores, using the n
 lm.ln = lm(grad ~ 1 + log(sat), data = mn)
 
 # Model-level output
-glance(lm.ln) %>%
-  print(width = Inf)
+glance(lm.ln)
 ```
 
 As with any base, using base-*e* results in the same model-level evidence ($R^2=.811$, *F*- and *p*-values, AIC values).
@@ -710,7 +726,11 @@ $$
 
 The SAT values and predicted graduation rates for these schools are given below:
 
-```{r echo=FALSE, class.source = 'fold-hide'}
+```{r}
+#| code-fold: true
+#| label: tbl-pred-grad
+#| tbl-cap: "Median SAT Values and Graduation Rates for Three Hypothetical Schools that have Median SAT Values that Differ by One Percent."
+# Create data
 tab_05 = data.frame(
   sat = c(10, 10.1, 10.201)
   ) %>%
@@ -718,16 +738,21 @@ tab_05 = data.frame(
     grad = predict(lm.ln, newdata = .)
   )
 
-kable(
-  tab_05,
-  col.names = c("SAT", "Predicted Graduation Rate"),
-  caption = "Median SAT Values and Graduation Rates for Three Hypothetical Schools that have Median SAT Values that Differ by One Percent.",
-  digits = 4,
-  format = "html",
-  table.attr = "style='width:40%;'"
-  )  %>%
-  kable_styling() %>%
-  row_spec(row = 0, align = "c")
+# Create table
+tab_05 |>
+  gt() |>
+  cols_align(
+    columns = c(sat, grad),
+    align = "center"
+  ) |>
+  cols_label(
+    sat = md("*SAT*"),
+    grad = md("Predicted Graduation Rate")
+  ) |>
+  tab_options(
+    table.width = pct(40)
+  )
+
 ```
 
 The difference between each subsequent predicted graduation rate is 1.53.
@@ -742,7 +767,7 @@ The difference between each subsequent predicted graduation rate is 1.53.
 
 In other words, schools that have a SAT value that differ by 1%, have predicted graduation rates that differ by 1.53, on average.
 
-:::note
+:::fyi
 Be very careful when you are using "percent difference" and "percentage points difference". These are two very different things. For example, increasing a graduation rate from 50% to 60% represents a difference of 10 percentage points, but it is a 20% increase!
 :::
 
@@ -764,10 +789,10 @@ The difference in their predicted values is:
 
 $$
 \begin{split}
-\hat{y}_2 - \hat{y}_1 &= \hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \left(\hat\beta_0 + \hat\beta_1\left[\ln(x)\right]\right) \\
-&=\hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_0 - \hat\beta_1\left[\ln(x)\right] \\
-&=\hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_1\left[\ln(x)\right] \\
-&=\hat\beta_1\left[\ln(1.01x) - \ln(x)\right]\\
+\hat{y}_2 - \hat{y}_1 &= \hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \left(\hat\beta_0 + \hat\beta_1\left[\ln(x)\right]\right) \\[1ex]
+&=\hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_0 - \hat\beta_1\left[\ln(x)\right] \\[1ex]
+&=\hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_1\left[\ln(x)\right] \\[1ex]
+&=\hat\beta_1\left[\ln(1.01x) - \ln(x)\right]\\[1ex]
 &=\hat\beta_1\left[\ln(\frac{1.01x}{1x})\right]
 \end{split}
 $$
@@ -800,7 +825,7 @@ This gives you the constant difference exactly. So you can interpret the effect 
 
 ## Approximating the Size of the Effect
 
-We can get an approximatation for the size of the effect by using the mathematical shortcut of:
+We can get an approximation for the size of the effect by using the mathematical shortcut of:
 
 $$
 \mathrm{Effect} \approx \frac{\hat\beta_1}{100}
@@ -827,8 +852,7 @@ We can also include covariates in the model. Below we examine the nonlinear effe
 lm.me = lm(grad ~ 1 + public + log(sat), data = mn)
 
 # Model-level output
-glance(lm.me) %>%
-  print(width = Inf)
+glance(lm.me)
 ```
 
 The model explains 86.5% of the variation in graduation rates.
@@ -880,7 +904,10 @@ $$
 We can input each of these fitted equations into a `geom_function()` layer of our `ggplot()` syntax.
 
 
-```{r fig.cap='Plot of predicted graduation rate as a function of median SAT score for public (blue, solid line) and private (red, dashed line) institutions.'}
+```{r}
+#| label: fig-model-02
+#| fig-cap: "Plot of predicted graduation rate as a function of median SAT score for public (blue, solid line) and private (red, dashed line) institutions."
+#| out-width: "60%"
 # Plot
 ggplot(data = mn, aes(x = sat, y = grad)) +
 	geom_point(alpha = 0) +
@@ -915,15 +942,16 @@ $$
 \mathbf{Model~1:~}\mathrm{Graduation~Rate}_i &= \beta_0 + \epsilon_i \\[2ex]
 \mathbf{Model~2:~}\mathrm{Graduation~Rate}_i &= \beta_0 + \beta_1\bigg[\ln(\mathrm{SAT}_i)\bigg] + \epsilon_i \\[2ex]
 \mathbf{Model~3:~}\mathrm{Graduation~Rate}_i &= \beta_0 + \beta_1(\mathrm{Public}_i) + \epsilon_i \\[2ex]
-\mathbf{Model~4:~}\mathrm{Graduation~Rate}_i &= \beta_0 + \beta_1\bigg[\ln(\mathrm{SAT}_i)\bigg] + \beta_2(\mathrm{Public}_i) + \epsilon_i 
+\mathbf{Model~4:~}\mathrm{Graduation~Rate}_i &= \beta_0 + \beta_1\bigg[\ln(\mathrm{SAT}_i)\bigg] + \beta_2(\mathrm{Public}_i) + \epsilon_i
 \end{split}
 $$
+
 where each model has the assumptions that $\epsilon_i\overset{i.i.d.}{\sim}\mathcal{N}(0,\sigma^2_{\epsilon})$.^[You could also fit an interaction model for completeness to evaluate whether the SAT effect on graduation rates differs by sector (although we do not do that here).]
 
 ```{r}
 # Fit models (use natural log of SAT)
-lm.1 = lm(grad ~ 1,                     data = mn)
-lm.2 = lm(grad ~ 1 + log(sat),          data = mn)
+lm.1 = lm(grad ~ 1, data = mn)
+lm.2 = lm(grad ~ 1 + log(sat), data = mn)
 lm.3 = lm(grad ~ 1 + public, data = mn)
 lm.4 = lm(grad ~ 1 + log(sat) + public, data = mn)
 
@@ -934,10 +962,10 @@ aictab(
 )
 ```
 
-The empirical evidence, given the models fitted and the data, overwhelmingly supports Model 4 (the model that includes the effects of median SAT and sector on graduation rates). 
+The empirical evidence, given the models fitted and the data, overwhelmingly supports Model 4 (the model that includes the effects of median SAT and sector on graduation rates).
 
 :::fyi
-Note that this test can help us evaluate whether there is an effect, but CANNOT tell us whether that effect is nonlinear, nor whether a log function is appropriate to model the effect; for that you are reliant on the residuals! 
+Note that this test can help us evaluate whether there is an effect, but CANNOT tell us whether that effect is nonlinear, nor whether a log function is appropriate to model the effect; for that you are reliant on the residuals!
 :::
 
 
@@ -950,7 +978,11 @@ The inclusion of polynomial effects and the use of a log-transformation was to m
 
 The first consideration is one of substantive theory. The plot below shows the mathematical function for a log-transformed *X* (solid, black line) and for a quadratic polynomial of *X* (dashed, red line).
 
-```{r fig.cap='Comparison of the quadratic polynomial (blue, dashed line) and logarithmic (red, solid line) functions of X.', class.source = 'fold-hide'}
+```{r}
+#| label: fig-quad-02
+#| fig-cap: "Comparison of the quadratic polynomial (blue, dashed line) and logarithmic (red, solid line) functions of *X*."
+#| out-width: "60%"
+#| code-fold: true
 new = data.frame(x = seq(from = 1, to = 15, by = 0.01))
 new$y = log(new$x)
 new$quad =  -0.21717 + 0.48782*new$x  - 0.02453*new$x^2
@@ -991,51 +1023,24 @@ As with all decisions from statistical evidence, you must also rely on substanti
 
 We can also examine the residuals for the two models:
 
-```{r fig.width=8, fig.height=8, out.width='80%', fig.cap="Residual plots for the log model and quadratic model.", class.source = 'fold-hide'}
+```{r }
+#| label: fig-resid-compare-02
+#| fig-cap: "Residual plots for the log model (TOP) and quadratic model (BOTTOM)."
+#| fig-width: 8
+#| fig-height: 8
+#| out-width: "80%"
+#| code-fold: true
 # Augment the model
-out_log = augment(lm.log)
 out_quad = augment(lm.quad)
 
 # Evaluate normality
-p1 = ggplot(data = out_log, aes(x = .std.resid)) +
-  stat_density_confidence(model = "normal") +
-  stat_density(geom = "line") +
-  theme_light() +
-  xlab("Standardized residuals") +
-  ylab("Probability density") +
-  ggtitle("Log Model")
-
-p2 = ggplot(data = out_quad, aes(x = .std.resid)) +
-  stat_density_confidence(model = "normal") +
-  stat_density(geom = "line") +
-  theme_light() +
-  xlab("Standardized residuals") +
-  ylab("Probability density") +
-  ggtitle("Quadratic Model")
-
-# Evaluate avg resid = 0, homoskedasticity
-p3 = ggplot(data = out_log, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0) +
-  theme_light() +
-  xlab("Fitted values") +
-  ylab("Standardized residuals") +
-  ggtitle("Log Model")
-
-p4 = ggplot(data = out_quad, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0) +
-  theme_light() +
-  xlab("Fitted values") +
-  ylab("Standardized residuals") +
-  ggtitle("Quadratic Model")
+p1 = residual_plots(lm.log)
+p2 = residual_plots(lm.quad)
 
 # Layout
-(p1 | p2) / (p3 | p4)
+p1 / p2
 ```
 
 Both models seem tenable based on the residual fit to the assumptions. Given this, the substantive argument, and the parsimony argument (the log model is simpler), I would likely adopt the log model over the quadratic model. You could also make this decision later, after adding other covariates and re-checking the model evidence and residuals for the updated models.
 
-
+<br />

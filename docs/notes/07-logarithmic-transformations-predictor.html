@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-01-30">
+
+<title>EPsy 8252 - Log-Transforming the Predictor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable/js/pagedtable.js"></script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-01-introduction-to-quarto.html">
+ <span class="dropdown-text">Assignment 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-02-polynomial-effects.html">
+ <span class="dropdown-text">Assignment 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-03-evidence-and-model-selection.html">
+ <span class="dropdown-text">Assignment 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-04-logarithmic-transformations.html">
+ <span class="dropdown-text">Assignment 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-05-logistic-regression.html">
+ <span class="dropdown-text">Assignment 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-06-lmer-unconditional-longitudinal-models.html">
+ <span class="dropdown-text">Assignment 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-07-longitudinal-analysis-ii.html">
+ <span class="dropdown-text">Assignment 07</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#relationship-between-graduation-rate-and-sat-scores" id="toc-relationship-between-graduation-rate-and-sat-scores" class="nav-link" data-scroll-target="#relationship-between-graduation-rate-and-sat-scores">Relationship between Graduation Rate and SAT Scores</a>
+  <ul class="collapse">
+  <li><a href="#quick-refresher-on-logarithms" id="toc-quick-refresher-on-logarithms" class="nav-link" data-scroll-target="#quick-refresher-on-logarithms">Quick Refresher on Logarithms</a></li>
+  <li><a href="#log-transforming-variables" id="toc-log-transforming-variables" class="nav-link" data-scroll-target="#log-transforming-variables">Log-Transforming Variables</a></li>
+  <li><a href="#relationship-between-graduation-rate-and-log-transformed-sat-scores" id="toc-relationship-between-graduation-rate-and-log-transformed-sat-scores" class="nav-link" data-scroll-target="#relationship-between-graduation-rate-and-log-transformed-sat-scores">Relationship between Graduation Rate and Log-Transformed SAT Scores</a></li>
+  <li><a href="#fitting-the-regression-model" id="toc-fitting-the-regression-model" class="nav-link" data-scroll-target="#fitting-the-regression-model">Fitting the Regression Model</a>
+  <ul class="collapse">
+  <li><a href="#examine-the-assumption-of-linearity" id="toc-examine-the-assumption-of-linearity" class="nav-link" data-scroll-target="#examine-the-assumption-of-linearity">Examine the Assumption of “Linearity”</a></li>
+  </ul></li>
+  <li><a href="#interpret-the-regression-results" id="toc-interpret-the-regression-results" class="nav-link" data-scroll-target="#interpret-the-regression-results">Interpret the Regression Results</a>
+  <ul class="collapse">
+  <li><a href="#better-interpretations-back-transforming-to-the-raw-metric" id="toc-better-interpretations-back-transforming-to-the-raw-metric" class="nav-link" data-scroll-target="#better-interpretations-back-transforming-to-the-raw-metric">Better Interpretations: Back-transforming to the Raw Metric</a></li>
+  <li><a href="#alternative-method-of-fitting-the-model" id="toc-alternative-method-of-fitting-the-model" class="nav-link" data-scroll-target="#alternative-method-of-fitting-the-model">Alternative Method of Fitting the Model</a></li>
+  </ul></li>
+  <li><a href="#plotting-the-fitted-curve" id="toc-plotting-the-fitted-curve" class="nav-link" data-scroll-target="#plotting-the-fitted-curve">Plotting the Fitted Curve</a>
+  <ul class="collapse">
+  <li><a href="#alternative-form-of-the-fitted-equation" id="toc-alternative-form-of-the-fitted-equation" class="nav-link" data-scroll-target="#alternative-form-of-the-fitted-equation">Alternative Form of the Fitted Equation</a></li>
+  <li><a href="#using-the-alternative-form-of-the-fitted-equation-with-the-example" id="toc-using-the-alternative-form-of-the-fitted-equation-with-the-example" class="nav-link" data-scroll-target="#using-the-alternative-form-of-the-fitted-equation-with-the-example">Using the Alternative Form of the Fitted Equation with the Example</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#different-base-values-in-the-logarithm" id="toc-different-base-values-in-the-logarithm" class="nav-link" data-scroll-target="#different-base-values-in-the-logarithm">Different Base Values in the Logarithm</a>
+  <ul class="collapse">
+  <li><a href="#comparing-the-output-from-the-two-bases" id="toc-comparing-the-output-from-the-two-bases" class="nav-link" data-scroll-target="#comparing-the-output-from-the-two-bases">Comparing the Output from the Two Bases</a></li>
+  </ul></li>
+  <li><a href="#the-natural-logarithm-base-e" id="toc-the-natural-logarithm-base-e" class="nav-link" data-scroll-target="#the-natural-logarithm-base-e">The Natural Logarithm: Base-<em>e</em></a>
+  <ul class="collapse">
+  <li><a href="#using-the-natural-logarithm-in-a-regression-model" id="toc-using-the-natural-logarithm-in-a-regression-model" class="nav-link" data-scroll-target="#using-the-natural-logarithm-in-a-regression-model">Using the Natural Logarithm in a Regression Model</a></li>
+  <li><a href="#interpretation-using-percent-change" id="toc-interpretation-using-percent-change" class="nav-link" data-scroll-target="#interpretation-using-percent-change">Interpretation Using Percent Change</a></li>
+  <li><a href="#mathematically-calculating-the-size-of-the-effect" id="toc-mathematically-calculating-the-size-of-the-effect" class="nav-link" data-scroll-target="#mathematically-calculating-the-size-of-the-effect">Mathematically Calculating the Size of the Effect</a></li>
+  <li><a href="#approximating-the-size-of-the-effect" id="toc-approximating-the-size-of-the-effect" class="nav-link" data-scroll-target="#approximating-the-size-of-the-effect">Approximating the Size of the Effect</a></li>
+  </ul></li>
+  <li><a href="#including-covariates" id="toc-including-covariates" class="nav-link" data-scroll-target="#including-covariates">Including Covariates</a>
+  <ul class="collapse">
+  <li><a href="#plot-of-the-fitted-equation" id="toc-plot-of-the-fitted-equation" class="nav-link" data-scroll-target="#plot-of-the-fitted-equation">Plot of the Fitted Equation</a></li>
+  </ul></li>
+  <li><a href="#using-information-criteria-to-adopt-a-model" id="toc-using-information-criteria-to-adopt-a-model" class="nav-link" data-scroll-target="#using-information-criteria-to-adopt-a-model">Using Information Criteria to Adopt a Model</a></li>
+  <li><a href="#polynomial-effects-vs.-log-transformations" id="toc-polynomial-effects-vs.-log-transformations" class="nav-link" data-scroll-target="#polynomial-effects-vs.-log-transformations">Polynomial Effects vs.&nbsp;Log-Transformations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Log-Transforming the Predictor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 30, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="preparation" class="level1">
+<h1>Preparation</h1>
+<p>In this set of notes, you will learn another method of dealing with nonlinearity. Specifically, we will look at log-transforming the predictor in a linear model. To do so, we will use the <em>mn-schools.csv</em> dataset:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv">CSV File</a></li>
+<li><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/mn-schools.html">Data Codebook</a></li>
+</ul>
+<p>Our goal will be to re-visit if (and how) academic “quality” of the student-body (measured by SAT score) is related to institutional graduation rate. Within this work, we will use information theoretic approcaches (namely the AICc and related measures) to evaluate any fitted models.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educate)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Augsburg College","3":"65.2","4":"0","5":"10.30","6":"39.294"},{"1":"3","2":"Bethany Lutheran College","3":"52.6","4":"0","5":"10.65","6":"30.480"},{"1":"4","2":"Bethel University, Saint Paul, MN","3":"73.3","4":"0","5":"11.45","6":"39.400"},{"1":"5","2":"Carleton College","3":"92.6","4":"0","5":"14.00","6":"54.265"},{"1":"6","2":"College of Saint Benedict","3":"81.1","4":"0","5":"11.85","6":"43.198"},{"1":"7","2":"Concordia College at Moorhead","3":"69.4","4":"0","5":"11.45","6":"36.590"},{"1":"8","2":"Concordia University-Saint Paul","3":"47.9","4":"0","5":"9.90","6":"37.795"},{"1":"9","2":"Crossroads College","3":"26.9","4":"0","5":"9.70","6":"25.345"},{"1":"10","2":"Crown College","3":"51.3","4":"0","5":"10.30","6":"33.210"},{"1":"11","2":"Gustavus Adolphus College","3":"81.7","4":"0","5":"12.25","6":"43.800"},{"1":"12","2":"Hamline University","3":"67.8","4":"0","5":"10.90","6":"41.085"},{"1":"13","2":"Macalester College","3":"87.2","4":"0","5":"13.55","6":"50.984"},{"1":"14","2":"Martin Luther College","3":"72.8","4":"0","5":"11.25","6":"19.450"},{"1":"15","2":"Minneapolis College of Art and Design","3":"69.6","4":"0","5":"11.05","6":"41.420"},{"1":"18","2":"North Central University","3":"40.4","4":"0","5":"10.10","6":"25.698"},{"1":"19","2":"Northwestern College, Saint Paul, MN","3":"63.6","4":"0","5":"11.05","6":"35.400"},{"1":"20","2":"Oak Hills Christian College","3":"27.3","4":"0","5":"8.90","6":"24.805"},{"1":"22","2":"Saint Johns University","3":"79.9","4":"0","5":"11.85","6":"41.920"},{"1":"23","2":"Saint Mary's University of Minnesota","3":"62.4","4":"0","5":"10.70","6":"35.700"},{"1":"25","2":"St Catherine University","3":"65.4","4":"0","5":"10.50","6":"41.876"},{"1":"26","2":"St Olaf College","3":"84.9","4":"0","5":"12.85","6":"47.200"},{"1":"27","2":"The College of Saint Scholastica","3":"63.5","4":"0","5":"10.30","6":"38.756"},{"1":"32","2":"University of St Thomas, Saint Paul, MN","3":"74.3","4":"0","5":"11.65","6":"44.630"},{"1":"2","2":"Bemidji State University","3":"42.3","4":"1","5":"10.10","6":"18.057"},{"1":"16","2":"Minnesota State University Moorhead","3":"44.7","4":"1","5":"10.30","6":"16.800"},{"1":"17","2":"Minnesota State University-Mankato","3":"49.6","4":"1","5":"10.30","6":"16.294"},{"1":"21","2":"Saint Cloud State University","3":"48.5","4":"1","5":"10.10","6":"17.050"},{"1":"24","2":"Southwest Minnesota State University","3":"39.5","4":"1","5":"10.10","6":"18.102"},{"1":"28","2":"University of Minnesota-Crookston","3":"46.4","4":"1","5":"10.10","6":"19.897"},{"1":"29","2":"University of Minnesota-Duluth","3":"54.8","4":"1","5":"11.10","6":"21.404"},{"1":"30","2":"University of Minnesota-Morris","3":"60.3","4":"1","5":"11.65","6":"21.722"},{"1":"31","2":"University of Minnesota-Twin Cities","3":"70.2","4":"1","5":"12.45","6":"23.058"},{"1":"33","2":"Winona State University","3":"54.0","4":"1","5":"10.70","6":"19.670"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="relationship-between-graduation-rate-and-sat-scores" class="level1">
+<h1>Relationship between Graduation Rate and SAT Scores</h1>
+<p>In a previous set of notes, we determined that the relationship between SAT scores and graduation rates was curvilinear. We initially saw evidence of this curvilinearity in the scatterplot of graduation rates versus median SAT scores. After fitting a model assuming a linear relationship (syntax not shown), the plot of the standardized residuals versus the fitted values also suggests that the linearity assumption is not tenable.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>lm_raw <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat, <span class="at">data =</span> mn)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain residuals and fitted values</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>out_raw <span class="ot">=</span> <span class="fu">augment</span>(lm_raw)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Check linearity assumptions</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_raw, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residual"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plot</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-scatterplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-scatterplot-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: LEFT: Six-year graduation rate as a function of median SAT score. The loess smoother (blue line) is also displayed. RIGHT: Scatterplot of the standardized residuals versus the fitted values for a model using median SAT scores to predict variation in six-year graduation rates. The reference line of Y=0 is also displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) shows the empirical relationship betwen the residuals and fitted values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>One way to model this nonlinearity is to fit a model that included a quadratic polynomial effect. Remember that the quadratic function is ‘U’-shaped. In our example, the quadratic term was negative, which creates an upside-down ‘U’-shape. This negative quadratic function is shown in the left-had side of the figure below.</p>
+<p>We do not have to use a quadratic function to model curvilinear relationships. We can use any mathematical function that mimics the curvilinear pattern observed in the data.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> One mathematical function that is useful for modeling curvilinearity is the logarithmic function. The logarithmic function is shown in the right-hand side of the figure below.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig_01 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span>  <span class="sc">-</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fig_01, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"X"</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Y"</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Quadratic Function"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>fig_02 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span>  <span class="fu">log2</span>(x))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fig_02, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"X"</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Y"</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Logarithmic Function"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout the plots</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-quadratic-log" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-quadratic-log-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: LEFT: Negative quadratic function of <em>X</em>. RIGHT: Logarithmic function of <em>X</em>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These two functions have some similarities. They both model non-linear growth (continuous and diminishing growth). However, in the quadratic function, this growth eventually peaks and then is followed by continuous and increasing loss (parabola; the function changes direction). The logarithmic function, on the other hand, does not change direction—it continues to grow, albeit ever diminishing in the amount of growth.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>As you consider different mathematical functions, it is important to consider the substantive knowledge in an area. For example, while empirically both the quadratic polynomial model and the logarithmic model might both suggest reasonable fit to the data, in this context, the logarithmic model might be a more substantively sound model than the quadratic polynomial model. We would probably expect that the effect of SAT on graduation rate would diminish for schools with higher median SAT scores, but that it wouldn’t actually change direction. (This would mean that at some value, an increase in SAT would be asociated with a lower graduation rate!)</p>
+<p><br></p>
+<section id="quick-refresher-on-logarithms" class="level2">
+<h2 class="anchored" data-anchor-id="quick-refresher-on-logarithms">Quick Refresher on Logarithms</h2>
+<p>The logarithm is an inverse function of an exponent. Consider this example,</p>
+<p><span class="math display">\[
+\log_2 (32)
+\]</span></p>
+<p>The base-2 logarithm of 32 is the exponent to which the base, 2 in our example, must be raised to produce 32. Mathematically it is equivalent to solving the following equation for <em>x</em>:</p>
+<p><span class="math display">\[
+\begin{split}
+2^{x} &amp;= 32 \\
+x &amp;= 5
+\end{split}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\log_2 (32) = 5
+\]</span></p>
+<p>To compute a logarithm using R, we use the <code>log()</code> function. We also specify the argument <code>base=</code>, since logarithms are unique to a particular base. For example, to compute the mathematical expression <span class="math inline">\(\log_2 (32)\)</span>, we use</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">32</span>, <span class="at">base =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>There is also a shortcut function to use base-2.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="log-transforming-variables" class="level2">
+<h2 class="anchored" data-anchor-id="log-transforming-variables">Log-Transforming Variables</h2>
+<p>For our purposes, we need to log-transform each value in a particular variable. Here, we will log-transform the SAT predictor (using base-2). To do this we create a new column called <code>l2sat</code> using the <code>mutate()</code> function.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create base-2 log-transformed median SAT scores</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">l2sat =</span> <span class="fu">log</span>(sat, <span class="at">base =</span> <span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["l2sat"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Augsburg College","3":"65.2","4":"0","5":"10.30","6":"39.294","7":"3.364572"},{"1":"3","2":"Bethany Lutheran College","3":"52.6","4":"0","5":"10.65","6":"30.480","7":"3.412782"},{"1":"4","2":"Bethel University, Saint Paul, MN","3":"73.3","4":"0","5":"11.45","6":"39.400","7":"3.517276"},{"1":"5","2":"Carleton College","3":"92.6","4":"0","5":"14.00","6":"54.265","7":"3.807355"},{"1":"6","2":"College of Saint Benedict","3":"81.1","4":"0","5":"11.85","6":"43.198","7":"3.566815"},{"1":"7","2":"Concordia College at Moorhead","3":"69.4","4":"0","5":"11.45","6":"36.590","7":"3.517276"},{"1":"8","2":"Concordia University-Saint Paul","3":"47.9","4":"0","5":"9.90","6":"37.795","7":"3.307429"},{"1":"9","2":"Crossroads College","3":"26.9","4":"0","5":"9.70","6":"25.345","7":"3.277985"},{"1":"10","2":"Crown College","3":"51.3","4":"0","5":"10.30","6":"33.210","7":"3.364572"},{"1":"11","2":"Gustavus Adolphus College","3":"81.7","4":"0","5":"12.25","6":"43.800","7":"3.614710"},{"1":"12","2":"Hamline University","3":"67.8","4":"0","5":"10.90","6":"41.085","7":"3.446256"},{"1":"13","2":"Macalester College","3":"87.2","4":"0","5":"13.55","6":"50.984","7":"3.760221"},{"1":"14","2":"Martin Luther College","3":"72.8","4":"0","5":"11.25","6":"19.450","7":"3.491853"},{"1":"15","2":"Minneapolis College of Art and Design","3":"69.6","4":"0","5":"11.05","6":"41.420","7":"3.465974"},{"1":"18","2":"North Central University","3":"40.4","4":"0","5":"10.10","6":"25.698","7":"3.336283"},{"1":"19","2":"Northwestern College, Saint Paul, MN","3":"63.6","4":"0","5":"11.05","6":"35.400","7":"3.465974"},{"1":"20","2":"Oak Hills Christian College","3":"27.3","4":"0","5":"8.90","6":"24.805","7":"3.153805"},{"1":"22","2":"Saint Johns University","3":"79.9","4":"0","5":"11.85","6":"41.920","7":"3.566815"},{"1":"23","2":"Saint Mary's University of Minnesota","3":"62.4","4":"0","5":"10.70","6":"35.700","7":"3.419539"},{"1":"25","2":"St Catherine University","3":"65.4","4":"0","5":"10.50","6":"41.876","7":"3.392317"},{"1":"26","2":"St Olaf College","3":"84.9","4":"0","5":"12.85","6":"47.200","7":"3.683696"},{"1":"27","2":"The College of Saint Scholastica","3":"63.5","4":"0","5":"10.30","6":"38.756","7":"3.364572"},{"1":"32","2":"University of St Thomas, Saint Paul, MN","3":"74.3","4":"0","5":"11.65","6":"44.630","7":"3.542258"},{"1":"2","2":"Bemidji State University","3":"42.3","4":"1","5":"10.10","6":"18.057","7":"3.336283"},{"1":"16","2":"Minnesota State University Moorhead","3":"44.7","4":"1","5":"10.30","6":"16.800","7":"3.364572"},{"1":"17","2":"Minnesota State University-Mankato","3":"49.6","4":"1","5":"10.30","6":"16.294","7":"3.364572"},{"1":"21","2":"Saint Cloud State University","3":"48.5","4":"1","5":"10.10","6":"17.050","7":"3.336283"},{"1":"24","2":"Southwest Minnesota State University","3":"39.5","4":"1","5":"10.10","6":"18.102","7":"3.336283"},{"1":"28","2":"University of Minnesota-Crookston","3":"46.4","4":"1","5":"10.10","6":"19.897","7":"3.336283"},{"1":"29","2":"University of Minnesota-Duluth","3":"54.8","4":"1","5":"11.10","6":"21.404","7":"3.472488"},{"1":"30","2":"University of Minnesota-Morris","3":"60.3","4":"1","5":"11.65","6":"21.722","7":"3.542258"},{"1":"31","2":"University of Minnesota-Twin Cities","3":"70.2","4":"1","5":"12.45","6":"23.058","7":"3.638074"},{"1":"33","2":"Winona State University","3":"54.0","4":"1","5":"10.70","6":"19.670","7":"3.419539"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>How does the distribution of the log-transformed variable compare to the distribution of raw SAT values? We can examine the density plot of both the original and log-transformed variables to answer this.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Raw values of predictor"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> l2sat)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Log2 (Median SAT score)"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Probability density"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Log-2 transformed values of predictor"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout the plots</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-log-dist" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-log-dist-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Density plot of the median SAT scores (LEFT) and the base-2 log-transformed median SAT scores (RIGHT).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Comparing the shapes of the two distributions, we see that:</p>
+<ul>
+<li>The original median SAT variable was right-skewed. The log-transformed variable is also right-skewed, although it is LESS right-skewed than the original.</li>
+<li>The scale is quite different between the two variables (one is, after all, log-transformed). This has greatly affected the center (mean) and the variation. After log-transforming, the center and variation are both much smaller.</li>
+</ul>
+<div class="fyi">
+<p>Logarithmic transformations change the shape, center, and variation of a distribution!</p>
+</div>
+<p><br></p>
+</section>
+<section id="relationship-between-graduation-rate-and-log-transformed-sat-scores" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-between-graduation-rate-and-log-transformed-sat-scores">Relationship between Graduation Rate and Log-Transformed SAT Scores</h2>
+<p>Let’s examine the relationship between graduation rates and the log-transformed SAT scores.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> l2sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Base-2 log-transformed median SAT score"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot-log" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-scatterplot-log-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Scatterplot of six-year graduation rate versus base-2 log-transformed median SAT scores. The loess smoother (blue, solid line) is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The loess smoother suggests that the relationship between graduation rate and the log-transformed SAT scores is roughly linear. By transforming the SAT variable using a nonlinear transformation (log) we have “linearized” its relationship with graduation rates. As such, we can fit a linear model to predict graduation rates using the base-2 log-transformed SAT scores as a predictor.</p>
+<p><br></p>
+</section>
+<section id="fitting-the-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-the-regression-model">Fitting the Regression Model</h2>
+<p>To fit the model, we use the <code>lm()</code> function and input the log-transformed SAT scores as the predictor.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lm.log <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> l2sat, <span class="at">data =</span> mn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<section id="examine-the-assumption-of-linearity" class="level3">
+<h3 class="anchored" data-anchor-id="examine-the-assumption-of-linearity">Examine the Assumption of “Linearity”</h3>
+<p>Before examining the coefficients, we can scrutinize the residuals to see whether the log-transformation helped us meet the assumption of linearity. Remember that the linearity assumption implies that the average residual is 0 at each fitted (<span class="math inline">\(\hat{Y}\)</span>) value. To evaluate this, we will examine a scatterplot of the standardized residuals versus the fitted values. We will do this for a model fitted using the base-2 log-transformed predictor and another fitted using the untransformed (raw) predictor so that we can compare the fit.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain residuals for log-transformed SAT</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>out_log <span class="ot">=</span> <span class="fu">augment</span>(lm.log)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check linearity assumptions</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> out_log, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuals" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-residuals-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Plot of the standardized residuals versus the fitted values for a model fitted using the base-2 log-transformed median SAT scores. The reference line of Y=0 is displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) showing the empirical relationship is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>While the smoother shows the same overall pattern as it did when we used the untransformed predictor, the line <span class="math inline">\(Y=0\)</span> is completely encompassed in the confidence envelope for the model using the log-transformed predictor. In the case of the model with the untransformed predictor, the <span class="math inline">\(Y=0\)</span> reference line was not completely encompassed in the confidence envelope. Because of this, we are more satisfied with the tenability of the assumption that the average residual is 0 at each fitted value for the log-transformed model than with the untransformed model.</p>
+<p>When we are trying to decide empirically whether to use a transformed predictor/outcome in our model, it is examination of the residuals that will help us make this decision, not a statistical test.</p>
+<p><br></p>
+</section>
+</section>
+<section id="interpret-the-regression-results" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-the-regression-results">Interpret the Regression Results</h2>
+<p>We can now look at the regression output and interpret the results.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8113365","2":"0.8052506","3":"7.386362","4":"133.3137","5":"9.296264e-13","6":"1","7":"-111.7814","8":"229.5627","9":"234.0522","10":"1691.309","11":"31","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Examining the model-level output, we see that differences in <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> explain 81.13% of the variation in graduation rates. Since differences in <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> imply that there are differences in the raw SAT scores, we would typically just say that “differences in SAT scores explain 81.13% of the variation in graduation rates.”</p>
+<p>Moving to the coefficient-level output,</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-306.7055","3":"31.868325","4":"-9.624148","5":"7.936748e-11"},{"1":"l2sat","2":"106.4392","3":"9.218583","4":"11.546155","5":"9.296264e-13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>We can write the fitted equation as,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -306.7 + 106.4\bigg[\log_2(\mathrm{SAT}_i)\bigg]
+\]</span></p>
+<p>We can interpret the coefficients as we always do, recognizing that these interpretation are based on the log-transformed predictor.</p>
+<ul>
+<li>The intercept value of <span class="math inline">\(-306.7\)</span> is the predicted average graduation rate for all colleges/universities with a <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> value of 0.</li>
+<li>The slope value of 106.4 indicates that each one-unit difference in <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> is associated with a 106.4-unit difference in graduation rate, on average.</li>
+</ul>
+<p><br></p>
+<section id="better-interpretations-back-transforming-to-the-raw-metric" class="level3">
+<h3 class="anchored" data-anchor-id="better-interpretations-back-transforming-to-the-raw-metric">Better Interpretations: Back-transforming to the Raw Metric</h3>
+<p>While these interpretations are technically correct, it is more helpful to your readers (and more conventional) to interpret any regression results in the raw metric of the variable rather than log-transformed metric. This means we have to <em>back-transform the interpretations</em>. To back-transform a logarithm, we use its inverse function; exponentiation.</p>
+<p>We interpreted the intercept as, “the predicted average graduation rate for all colleges/universities with a <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> value of 0”. To interpret this using the raw metric of our SAT attribute, we have to understand what <span class="math inline">\(\log_2(\mathrm{SAT}) = 0\)</span> is equivalent to in the original SAT variable’s scale. Mathematically,</p>
+<p><span class="math display">\[
+\log_2 (\mathrm{SAT}) = 0 \quad \mathrm{is~equivalent~to} \quad 2^{0} = \mathrm{SAT} \\
+\]</span></p>
+<p>In this computation, <span class="math inline">\(\mathrm{SAT}=1\)</span>. Thus, rather than using the log-transformed interpretation, we can, instead, interpret the intercept as,</p>
+<blockquote class="blockquote">
+<p>The predicted average graduation rate for all colleges/universities with a median SAT value of 1 (which since this is measures in hundreds corresponds to a median SAT of 100) is <span class="math inline">\(-306.7\)</span>. Since there are no colleges/universities in our data that have a median SAT value of 1, this is extrapolation.</p>
+</blockquote>
+<p>What about the slope? Our interpretation was that “each one-unit difference in <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> is associated with a 106.4-unit difference in graduation rate, on average.” Working with the same idea of back-transformation, we need to understand what a one-unit difference in <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> means. Consider four values of <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> that are each one-unit apart:</p>
+<p><span class="math display">\[
+\begin{split}
+\log_2(\mathrm{SAT}) &amp;= 1\\
+\log_2(\mathrm{SAT}) &amp;= 2\\
+\log_2(\mathrm{SAT}) &amp;= 3\\
+\log_2(\mathrm{SAT}) &amp;= 4
+\end{split}
+\]</span></p>
+<p>If we back-transform each of these, then we can see how the four values of the raw SAT variable would differ.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{SAT} &amp;= 2^1 = 2\\
+\mathrm{SAT} &amp;= 2^2 = 4\\
+\mathrm{SAT} &amp;= 2^3 = 8\\
+\mathrm{SAT} &amp;= 2^4 = 16
+\end{split}
+\]</span></p>
+<p>When <span class="math inline">\(\log_2(\mathrm{SAT})\)</span> is increased by one-unit, the raw SAT value is doubled. We can use this in our interpretation of slope:</p>
+<blockquote class="blockquote">
+<p>A doubling of the SAT value is associated with a 106.4 percentage point difference in graduation rate, on average.</p>
+</blockquote>
+<p>The technical language for doubling is a “two-fold difference”. So we would conventionally interpret this as:</p>
+<blockquote class="blockquote">
+<p>Each two-fold difference in SAT value is associated with a 106.4 percentage point difference in graduation rate, on average.</p>
+</blockquote>
+<p>To understand this further, consider a specific school, say Augsburg. Their measurement on the raw SAT variable is 10.3, and their log-transformed SAT score is 3.36. Using the fitted regression equation (which employs the log-transformed SAT),</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">306.7</span> <span class="sc">+</span> <span class="fl">106.4</span> <span class="sc">*</span> <span class="fl">3.36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.804</code></pre>
+</div>
+</div>
+<p>Augsburg’s predicted graduation rate would be 50.8. If we increase the <code>l2sat</code> score by 1 to 4.36 (which is equivalent to a raw SAT measurement of 20.6; double 10.3), their predicted graduation rate would be,</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">306.7</span> <span class="sc">+</span> <span class="fl">106.4</span> <span class="sc">*</span> <span class="fl">4.36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 157.204</code></pre>
+</div>
+</div>
+<p>This is an increase of 106.4 percentage points from the predicted value of 50.8 when the <code>l2sat</code> value was 3.36.</p>
+<p><br></p>
+</section>
+<section id="alternative-method-of-fitting-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="alternative-method-of-fitting-the-model">Alternative Method of Fitting the Model</h3>
+<p>Rather that create the log-transformed SAT score as a new column in the data and then using this column in the model, we can use the <code>log()</code> function directly on the SAT predictor in the <code>lm()</code> computation.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lm.log <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat, <span class="at">base =</span> <span class="dv">2</span>), <span class="at">data =</span> mn)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8113365","2":"0.8052506","3":"7.386362","4":"133.3137","5":"9.296264e-13","6":"1","7":"-111.7814","8":"229.5627","9":"234.0522","10":"1691.309","11":"31","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-306.7055","3":"31.868325","4":"-9.624148","5":"7.936748e-11"},{"1":"log(sat, base = 2)","2":"106.4392","3":"9.218583","4":"11.546155","5":"9.296264e-13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="plotting-the-fitted-curve" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-the-fitted-curve">Plotting the Fitted Curve</h2>
+<p>To aid interpretation of the effect of median SAT score on graduation rate, we can plot the fitted curve. Recall that our fitted equation was:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -306.7 + 106.4\bigg[\log_2(\mathrm{SAT}_i)\bigg]
+\]</span></p>
+<p>We can implement this into the <code>geom_function()</code> layer of our <code>ggplot()</code> syntax.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">306.7</span> <span class="sc">+</span> <span class="fl">106.4</span><span class="sc">*</span><span class="fu">log</span>(x, <span class="at">base =</span> <span class="dv">2</span>)}</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/plot-model-01-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="alternative-form-of-the-fitted-equation" class="level3">
+<h3 class="anchored" data-anchor-id="alternative-form-of-the-fitted-equation">Alternative Form of the Fitted Equation</h3>
+<p>The fitted equation expresses graduation rates as a function of base-2 log-transformed median SAT scores. Alternatively, we can re-write this equation to express graduation rates as a function of raw median SAT scores. Namely,</p>
+<p><span class="math display">\[
+\hat{Y}_i = \log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg)
+\]</span></p>
+<p>Notice that the right-hand side of this expression is a log function; it has the general form of <span class="math inline">\(Y=\log(\)</span>🦒<span class="math inline">\()\)</span>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Remember that this is the continuous decay function we were interested in using to model the curvilinearity shown in the data. The important thing is that this non-linear decay function is mathematically the same as using a the log-transformed predictor to model the outcome with linear model.</p>
+<p><span class="math display">\[
+\log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg) \equiv \beta_0 + \beta_1\bigg[\log_2(X_i)\bigg]
+\]</span></p>
+<p>Practically speaking, this means we can model non-linearity using a linear model. Which means we can use the <code>lm()</code> function and all the other ideas you have learned about linear models (e.g., including covariates, adding interaction effects, assumption checking).</p>
+<div class="mathnote">
+<p>To understand how we re-express in this alternative form, consider the general mathematical expression of the fitted equation:</p>
+<p><span class="math display">\[
+\hat{Y}_i = \hat\beta_0 + \hat\beta_1\bigg[\log_2(X_i)\bigg]
+\]</span></p>
+<p>Now we will work through the algebra to relate <span class="math inline">\(\hat{Y}_i\)</span> to <span class="math inline">\(X_i\)</span>. Because there is a log of X we need to exponentiate both sides of the equation to get back to the raw X.</p>
+<p><span class="math display">\[
+2^{\hat{Y}_i} = 2^{\hat\beta_0 + \hat\beta_1\bigg[\log_2(X_i)\bigg]}
+\]</span></p>
+<p>Then we can use the algebraic rules of exponents and logarithms to re-express this equation.</p>
+<p><span class="math display">\[
+\begin{split}
+2^{\hat{Y}_i} &amp;= 2^{\hat\beta_0} \times 2^{\hat\beta_1\bigg[\log_2(X_i)\bigg]} \\[1ex]
+2^{\hat{Y}_i} &amp;= 2^{\hat\beta_0} \times \bigg[2^{\log_2(X_i)}\bigg]^{\hat\beta_1} \\[1ex]
+2^{\hat{Y}_i} &amp;= 2^{\hat\beta_0} \times X_i^{\hat\beta_1}
+\end{split}
+\]</span></p>
+<p>Now the only problem is that the left-hand side is <span class="math inline">\(2^{\hat{Y}_i}\)</span> and not <span class="math inline">\(Y_i\)</span>. To fix this we take the logarithm (base-2) of both sides of the equation.</p>
+<p><span class="math display">\[
+\log_2\bigg(2^{\hat{Y}_i}\bigg) = \log_2\bigg(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\bigg)
+\]</span></p>
+<p>This gives us an expression of the curve that relates the outcome to the predictor.</p>
+</div>
+<p><br></p>
+</section>
+<section id="using-the-alternative-form-of-the-fitted-equation-with-the-example" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-alternative-form-of-the-fitted-equation-with-the-example">Using the Alternative Form of the Fitted Equation with the Example</h3>
+<p>In our example, the fitted equation can be re-expressed as:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = \log_2\bigg(2^{-306.7} \times \mathrm{SAT}_i^{106.4}\bigg)
+\]</span></p>
+<p>We can also use this alternative expression in the <code>geom_function()</code> layer of our <code>ggplot()</code> syntax.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="fu">log</span>(<span class="dv">2</span><span class="sc">^-</span><span class="fl">306.7</span> <span class="sc">*</span> x<span class="sc">^</span><span class="fl">106.4</span> , <span class="at">base =</span> <span class="dv">2</span>)}</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-alt-model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-alt-model-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Plot of the predicted graduation rate as a function of median SAT score. The non-linearity in the plot indicates that there is a diminishing positive effect of SAT on graduation rates.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="different-base-values-in-the-logarithm" class="level1">
+<h1>Different Base Values in the Logarithm</h1>
+<p>The base value we used in the <code>log()</code> function in the previous example was base-2. Using a base value of 2 was an arbitrary choice. We can use any base value we want. For example, how do things change if we use base-10?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create base-10 log SAT scores</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> mn <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">l10sat =</span> <span class="fu">log</span>(sat, <span class="at">base =</span> <span class="dv">10</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine data</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>mn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["grad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["public"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["tuition"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["l2sat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["l10sat"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Augsburg College","3":"65.2","4":"0","5":"10.30","6":"39.294","7":"3.364572","8":"1.0128372"},{"1":"3","2":"Bethany Lutheran College","3":"52.6","4":"0","5":"10.65","6":"30.480","7":"3.412782","8":"1.0273496"},{"1":"4","2":"Bethel University, Saint Paul, MN","3":"73.3","4":"0","5":"11.45","6":"39.400","7":"3.517276","8":"1.0588055"},{"1":"5","2":"Carleton College","3":"92.6","4":"0","5":"14.00","6":"54.265","7":"3.807355","8":"1.1461280"},{"1":"6","2":"College of Saint Benedict","3":"81.1","4":"0","5":"11.85","6":"43.198","7":"3.566815","8":"1.0737184"},{"1":"7","2":"Concordia College at Moorhead","3":"69.4","4":"0","5":"11.45","6":"36.590","7":"3.517276","8":"1.0588055"},{"1":"8","2":"Concordia University-Saint Paul","3":"47.9","4":"0","5":"9.90","6":"37.795","7":"3.307429","8":"0.9956352"},{"1":"9","2":"Crossroads College","3":"26.9","4":"0","5":"9.70","6":"25.345","7":"3.277985","8":"0.9867717"},{"1":"10","2":"Crown College","3":"51.3","4":"0","5":"10.30","6":"33.210","7":"3.364572","8":"1.0128372"},{"1":"11","2":"Gustavus Adolphus College","3":"81.7","4":"0","5":"12.25","6":"43.800","7":"3.614710","8":"1.0881361"},{"1":"12","2":"Hamline University","3":"67.8","4":"0","5":"10.90","6":"41.085","7":"3.446256","8":"1.0374265"},{"1":"13","2":"Macalester College","3":"87.2","4":"0","5":"13.55","6":"50.984","7":"3.760221","8":"1.1319393"},{"1":"14","2":"Martin Luther College","3":"72.8","4":"0","5":"11.25","6":"19.450","7":"3.491853","8":"1.0511525"},{"1":"15","2":"Minneapolis College of Art and Design","3":"69.6","4":"0","5":"11.05","6":"41.420","7":"3.465974","8":"1.0433623"},{"1":"18","2":"North Central University","3":"40.4","4":"0","5":"10.10","6":"25.698","7":"3.336283","8":"1.0043214"},{"1":"19","2":"Northwestern College, Saint Paul, MN","3":"63.6","4":"0","5":"11.05","6":"35.400","7":"3.465974","8":"1.0433623"},{"1":"20","2":"Oak Hills Christian College","3":"27.3","4":"0","5":"8.90","6":"24.805","7":"3.153805","8":"0.9493900"},{"1":"22","2":"Saint Johns University","3":"79.9","4":"0","5":"11.85","6":"41.920","7":"3.566815","8":"1.0737184"},{"1":"23","2":"Saint Mary's University of Minnesota","3":"62.4","4":"0","5":"10.70","6":"35.700","7":"3.419539","8":"1.0293838"},{"1":"25","2":"St Catherine University","3":"65.4","4":"0","5":"10.50","6":"41.876","7":"3.392317","8":"1.0211893"},{"1":"26","2":"St Olaf College","3":"84.9","4":"0","5":"12.85","6":"47.200","7":"3.683696","8":"1.1089031"},{"1":"27","2":"The College of Saint Scholastica","3":"63.5","4":"0","5":"10.30","6":"38.756","7":"3.364572","8":"1.0128372"},{"1":"32","2":"University of St Thomas, Saint Paul, MN","3":"74.3","4":"0","5":"11.65","6":"44.630","7":"3.542258","8":"1.0663259"},{"1":"2","2":"Bemidji State University","3":"42.3","4":"1","5":"10.10","6":"18.057","7":"3.336283","8":"1.0043214"},{"1":"16","2":"Minnesota State University Moorhead","3":"44.7","4":"1","5":"10.30","6":"16.800","7":"3.364572","8":"1.0128372"},{"1":"17","2":"Minnesota State University-Mankato","3":"49.6","4":"1","5":"10.30","6":"16.294","7":"3.364572","8":"1.0128372"},{"1":"21","2":"Saint Cloud State University","3":"48.5","4":"1","5":"10.10","6":"17.050","7":"3.336283","8":"1.0043214"},{"1":"24","2":"Southwest Minnesota State University","3":"39.5","4":"1","5":"10.10","6":"18.102","7":"3.336283","8":"1.0043214"},{"1":"28","2":"University of Minnesota-Crookston","3":"46.4","4":"1","5":"10.10","6":"19.897","7":"3.336283","8":"1.0043214"},{"1":"29","2":"University of Minnesota-Duluth","3":"54.8","4":"1","5":"11.10","6":"21.404","7":"3.472488","8":"1.0453230"},{"1":"30","2":"University of Minnesota-Morris","3":"60.3","4":"1","5":"11.65","6":"21.722","7":"3.542258","8":"1.0663259"},{"1":"31","2":"University of Minnesota-Twin Cities","3":"70.2","4":"1","5":"12.45","6":"23.058","7":"3.638074","8":"1.0951694"},{"1":"33","2":"Winona State University","3":"54.0","4":"1","5":"10.70","6":"19.670","7":"3.419539","8":"1.0293838"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Comparing the logarithms of the SAT attribute using base-10 to those using base-2 we see that the base-10 logarithms are smaller. This is because now we are using the base of 10 in our exponent (rather than 2). For example, for Augsburg,</p>
+<p><span class="math display">\[
+10^{1.013} = 10.3
+\]</span></p>
+<p>If we fit a model using the base-10 logarithm<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>,</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lm.log10 <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat, <span class="at">base =</span> <span class="dv">10</span>), <span class="at">data =</span> mn)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.log10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8113365","2":"0.8052506","3":"7.386362","4":"133.3137","5":"9.296264e-13","6":"1","7":"-111.7814","8":"229.5627","9":"234.0522","10":"1691.309","11":"31","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Examining the model-level output, we see that differences in <span class="math inline">\(\log_{10}(\mathrm{SAT})\)</span> explain 81.13% of the variation in graduation rates. Or simply, that differences in SAT scores explain 81.13% of the variation in graduation rates. These model-level results are the same as when we used the base-2 logarithm.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.log10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-306.7055","3":"31.86833","4":"-9.624148","5":"7.936748e-11"},{"1":"log(sat, base = 10)","2":"353.5833","3":"30.62347","4":"11.546155","5":"9.296264e-13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The linear form of the fitted equation is,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -306.7 + 353.6\bigg[\log_{10}(\mathrm{SAT}_i)\bigg]
+\]</span></p>
+<p>We could also, alternatively, express the fitted equation in its nonlinear form as:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = \log_{10}\bigg(10^{-306.7} \times \mathrm{SAT}_i^{353.6}\bigg)
+\]</span></p>
+<p>While the nonlinear form is useful for understanding that log-transforming the predictor results in a nonlinear function, the linear form of the model is what is most useful for interpreting the effects of SAT on graduation rates. Using the linear form of the fitted equation, we can interpret the coefficients using the base-10 logarithm of SAT scores as:</p>
+<ul>
+<li>The intercept value of <span class="math inline">\(-306.7\)</span> is the predicted average graduation rate for all colleges/universities with a <span class="math inline">\(\log_{10}(\mathrm{SAT})\)</span> value of 0.</li>
+<li>The slope value of 353.6 indicates that each one-unit difference in <span class="math inline">\(\log_{10}(\mathrm{SAT})\)</span> is associated with a 353.6-unit difference in graduation rate, on average.</li>
+</ul>
+<p>Better yet, we can <em>back-transform the interpretations</em> so that we are using raw median SAT scores rather than <span class="math inline">\(\log_{10}(\mathrm{SAT})\)</span> scores.</p>
+<ul>
+<li>The predicted average graduation rate for all colleges/universities with a SAT value of 1 (median SAT score = 100) is <span class="math inline">\(-306.7\)</span>.</li>
+<li>Each <em>ten-fold</em> difference in SAT is associated with a 353.6 percentage point difference in graduation rate, on average.</li>
+</ul>
+<p>To further think about the effect of SAT, if Augsburg improved its median SAT score ten-fold (i.e., going from a SAT value of 10.3 to a value of 103) we would predict its graduation rate to go up by 353.6 percentage points!</p>
+<p><br></p>
+<section id="comparing-the-output-from-the-two-bases" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-output-from-the-two-bases">Comparing the Output from the Two Bases</h2>
+<p>The model-level information is all the same. Furthermore, the intercepts (and SE and <em>p</em>-value) was the same across both models. The slope estimates and SEs were different in the two models, reflecting the change in scale and interpretation. However, the inferential results (<em>t</em>-value and <em>p</em>-value) are the same for both transformations.</p>
+<p>What if we look at the residual fit?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r fold-hide code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_log, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residuals"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Log(SAT): Base-2"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">=</span> <span class="fu">augment</span>(lm.log10)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out2, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardized residuals"</span>) <span class="sc">+</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Log(SAT): Base-10"</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-resid-compare" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-resid-compare-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Scatterplot of the standardized residuals versus the fitted values for the model fitted using the base-2 log-transformed median SAT values (LEFT) and the base-10 log-transformed median SAT values (RIGHT). In both plots the reference line of Y=0 is displayed along with the 95% confidence envelope (grey shaded area). The loess smoother (solid, blue line) showing the empirical relationship is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The residuals fit EXACTLY the same. Why is this? Let’s again use Augsburg as an example. Using the fitted model that employed the base-2 logarithm, we found that Augsburg’s predicted graduation rate was,</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}} &amp;= -306.7 + 106.4\bigg[\log_2(10.3)\bigg] \\
+&amp;= -306.7 + 106.4\bigg[3.36\bigg] \\
+&amp;= 50.8
+\end{split}
+\]</span></p>
+<p>Using the model that employed the base-10 logarithm, Augsburg’s predicted graduation rate would be</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}} &amp;= -306.7 + 353.6\bigg[\log_{10}(10.3)\bigg] \\
+&amp;= -306.7 + 353.6\bigg[1.01\bigg] \\
+&amp;= 50.8
+\end{split}
+\]</span></p>
+<p>Augsburg’s predicted graduation rate is <em>exactly the same</em> in the two models. This implies that Augsburg’s residual would also be the same in the two models. This is true for every college. Because of this, increasing (or decreasing) the base used in the logarithm does not help improve the fit of the model. The fit is exactly the same no matter which base you choose.</p>
+<div class="protip">
+<p>The only thing that changes when you choose a different base is the interpretation of the slope. You should choose the base to facilitate interpretation. For example, does it make more sense to talk about a <em>two-fold</em> difference in the predictor? A <em>five-fold</em> difference in the predictor? A <em>ten-fold</em> difference in the predictor?</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="the-natural-logarithm-base-e" class="level1">
+<h1>The Natural Logarithm: Base-<em>e</em></h1>
+<p>In our example, neither of the bases we examined is satisfactory in terms of interpreting the effect of median SAT score on graduation rate. Two-fold differences in median SAT scores are very unlikely, to say anything of ten-fold differences.</p>
+<p>One base that is commonly used for log-transformations because it offers a reasonable interpretation is base-<em>e</em>. <em>e</em> is a mathematical constant (Euler’s number) that is approximately equal to 2.71828.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> We can obtain this by using the <code>exp()</code> function in R. This function takes <em>e</em> to some exponent that is given as the argument. So to obtain the approximation of <em>e</em> we use</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.718282</code></pre>
+</div>
+</div>
+<p>The base-<em>e</em> logarithm for a number, referred to as the <em>natural logarithm</em>, can be obtained using the <code>log()</code> function with the argument <code>base=exp(1)</code>. However, this base is so commonly used that it is the default value for the <code>base=</code> argument. So, if we use the <code>log()</code> function without defining the <code>base=</code> argument, it will automatically use base-<em>e</em>. For example, the natural logarithm of Augsburg’s median SAT score of 1030 can be computed as</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fl">10.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.332144</code></pre>
+</div>
+</div>
+<p>If we took <span class="math inline">\(e^{2.332}\)</span> we would obtain 10.3. The natural logarithm even has its own mathematical notation; <span class="math inline">\(\ln\)</span>. For example, we would mathematically express the natural logarithm of 10.3 as</p>
+<p><span class="math display">\[
+\ln (10.3) = 2.332.
+\]</span></p>
+<p><br></p>
+<section id="using-the-natural-logarithm-in-a-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-natural-logarithm-in-a-regression-model">Using the Natural Logarithm in a Regression Model</h2>
+<p>Below we regress graduation rates on the log-transformed SAT scores, using the natural logarithm.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>lm.ln <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat), <span class="at">data =</span> mn)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.ln)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8113365","2":"0.8052506","3":"7.386362","4":"133.3137","5":"9.296264e-13","6":"1","7":"-111.7814","8":"229.5627","9":"234.0522","10":"1691.309","11":"31","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>As with any base, using base-<em>e</em> results in the same model-level evidence (<span class="math inline">\(R^2=.811\)</span>, <em>F</em>- and <em>p</em>-values, AIC values).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.ln)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-306.7055","3":"31.86833","4":"-9.624148","5":"7.936748e-11"},{"1":"log(sat)","2":"153.5593","3":"13.29960","4":"11.546155","5":"9.296264e-13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The fitted equation is,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -306.7 + 153.6\bigg[\ln(\mathrm{SAT}_i)\bigg]
+\]</span></p>
+<p>The intercept has the same coefficient (<span class="math inline">\(\hat\beta_0=-306.7\)</span>), SE, <em>t</em>-value, and <em>p</em>-value as the intercept from the models using base-2 and base-10 log-transformations of SAT. (This is, again, because <span class="math inline">\(2^0=10^0=e^0=1\)</span>.) And, although the coefficient and SE for the effect of SAT is again different (a one-unit change in the three different log-scales does not correspond to the same amount of change in raw SAT for the three models).</p>
+<p>So how can we interpret the model’s coefficients?</p>
+<ul>
+<li>The intercept can be interpreted exactly the same as in the previous models in which we used base-2 or base-10; namely that the predicted average graduation rate for colleges/universities with a SAT value of one (median SAT score of 100) is <span class="math inline">\(-306.7\)</span>.</li>
+<li>Interpreting the slope, we could say that an <em>e</em>-fold difference in SAT value is associated with a 153.6-unit difference in graduation rates, on average.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="interpretation-using-percent-change" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-using-percent-change">Interpretation Using Percent Change</h2>
+<p>Consider three schools, each having a median SAT values that differs by 1%; say these schools have median SAT values of 10, 10.1, 10.201. Using the fitted equation, we can compute the predicted graduation rate for each of these hypothetical schools:</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}} = -306.7 + 153.6 \bigg[\ln (\mathrm{SAT})\bigg]
+\]</span></p>
+<p>The SAT values and predicted graduation rates for these schools are given below:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tab_05 <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sat =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="fl">10.1</span>, <span class="fl">10.201</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grad =</span> <span class="fu">predict</span>(lm.ln, <span class="at">newdata =</span> .)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create table</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>tab_05 <span class="sc">|&gt;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(sat, grad),</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"center"</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sat =</span> <span class="fu">md</span>(<span class="st">"*SAT*"</span>),</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">grad =</span> <span class="fu">md</span>(<span class="st">"Predicted Graduation Rate"</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">40</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-pred-grad" class="anchored">
+
+<div id="kfrbitmrlf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#kfrbitmrlf) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 40%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#kfrbitmrlf) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#kfrbitmrlf) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#kfrbitmrlf) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#kfrbitmrlf) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#kfrbitmrlf) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#kfrbitmrlf) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#kfrbitmrlf) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#kfrbitmrlf) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#kfrbitmrlf) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#kfrbitmrlf) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#kfrbitmrlf) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#kfrbitmrlf) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#kfrbitmrlf) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#kfrbitmrlf) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#kfrbitmrlf) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#kfrbitmrlf) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#kfrbitmrlf) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#kfrbitmrlf) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_left {
+  text-align: left;
+}
+
+:where(#kfrbitmrlf) .gt_center {
+  text-align: center;
+}
+
+:where(#kfrbitmrlf) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#kfrbitmrlf) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#kfrbitmrlf) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#kfrbitmrlf) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#kfrbitmrlf) .gt_super {
+  font-size: 65%;
+}
+
+:where(#kfrbitmrlf) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#kfrbitmrlf) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#kfrbitmrlf) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#kfrbitmrlf) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#kfrbitmrlf) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#kfrbitmrlf) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#kfrbitmrlf) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table"><caption>Table&nbsp;1:  Median SAT Values and Graduation Rates for Three Hypothetical Schools that have Median SAT Values that Differ by One Percent. </caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<em>SAT</em>"><em>SAT</em></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Predicted Graduation Rate">Predicted Graduation Rate</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="sat" class="gt_row gt_center">10.000</td>
+<td headers="grad" class="gt_row gt_center">46.87784</td></tr>
+    <tr><td headers="sat" class="gt_row gt_center">10.100</td>
+<td headers="grad" class="gt_row gt_center">48.40581</td></tr>
+    <tr><td headers="sat" class="gt_row gt_center">10.201</td>
+<td headers="grad" class="gt_row gt_center">49.93378</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>The difference between each subsequent predicted graduation rate is 1.53.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference between predicted value for 10.1 and 10</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fl">48.4058</span> <span class="sc">-</span> <span class="fl">46.8778</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.528</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference between predicted value for 10.201 and 10.1</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fl">49.9338</span> <span class="sc">-</span> <span class="fl">48.4058</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.528</code></pre>
+</div>
+</div>
+<p>In other words, schools that have a SAT value that differ by 1%, have predicted graduation rates that differ by 1.53, on average.</p>
+<div class="fyi">
+<p>Be very careful when you are using “percent difference” and “percentage points difference”. These are two very different things. For example, increasing a graduation rate from 50% to 60% represents a difference of 10 percentage points, but it is a 20% increase!</p>
+</div>
+<p><br></p>
+</section>
+<section id="mathematically-calculating-the-size-of-the-effect" class="level2">
+<h2 class="anchored" data-anchor-id="mathematically-calculating-the-size-of-the-effect">Mathematically Calculating the Size of the Effect</h2>
+<p>To understand how we can directly compute the effect for a 1% change in <em>X</em>, consider the predicted values for two <em>x</em>-values that differ by 1%, if we use symbolic notation:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{y}_1 &amp;= \hat\beta_0 + \hat\beta_1\left[\ln(x)\right] \\
+\hat{y}_2 &amp;= \hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right]
+\end{split}
+\]</span></p>
+<p>The difference in their predicted values is:</p>
+<p><span class="math display">\[
+\begin{split}
+\hat{y}_2 - \hat{y}_1 &amp;= \hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \left(\hat\beta_0 + \hat\beta_1\left[\ln(x)\right]\right) \\[1ex]
+&amp;=\hat\beta_0 + \hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_0 - \hat\beta_1\left[\ln(x)\right] \\[1ex]
+&amp;=\hat\beta_1\left[\ln(1.01x)\right] - \hat\beta_1\left[\ln(x)\right] \\[1ex]
+&amp;=\hat\beta_1\left[\ln(1.01x) - \ln(x)\right]\\[1ex]
+&amp;=\hat\beta_1\left[\ln(\frac{1.01x}{1x})\right]
+\end{split}
+\]</span></p>
+<p>If we substitute in any value for <span class="math inline">\(x\)</span>, we can now directly compute this constant difference. Note that a convenient value for <em>X</em> is 1. Then this reduces to:</p>
+<p><span class="math display">\[
+\hat\beta_1\left[\ln(1.01)\right]
+\]</span></p>
+<p>So now, we can interpret this as: a 1% difference in <em>X</em> is associated with a <span class="math inline">\(\hat\beta_1\left[\ln(1.01)\right]\)</span>-unit difference in <em>Y</em>, on average.</p>
+<p>In our model, we can compute this difference using the fitted coefficient <span class="math inline">\(\hat\beta_1=153.6\)</span> as</p>
+<p><span class="math display">\[
+153.6\left[\ln(1.01)\right] = 1.528371
+\]</span></p>
+<p>The same computation using R is</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fl">153.6</span> <span class="sc">*</span> <span class="fu">log</span>(<span class="fl">1.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.528371</code></pre>
+</div>
+</div>
+<p>This gives you the constant difference exactly. So you can interpret the effect of SAT as, each 1% difference in SAT score is associated with a difference in graduation rates of 1.53 percentage points, on average.</p>
+<p><br></p>
+</section>
+<section id="approximating-the-size-of-the-effect" class="level2">
+<h2 class="anchored" data-anchor-id="approximating-the-size-of-the-effect">Approximating the Size of the Effect</h2>
+<p>We can get an approximation for the size of the effect by using the mathematical shortcut of:</p>
+<p><span class="math display">\[
+\mathrm{Effect} \approx \frac{\hat\beta_1}{100}
+\]</span></p>
+<p>Using our fitted results, we could approximate the size of the effect as,</p>
+<p><span class="math display">\[
+\frac{153.6}{100} = 1.536
+\]</span></p>
+<p>We could then interpret the effect of SAT by saying a 1% difference in median SAT score is associated with a 1.53 percentage point difference in predicted graduation rate, on average.</p>
+<p><br></p>
+</section>
+</section>
+<section id="including-covariates" class="level1">
+<h1>Including Covariates</h1>
+<p>We can also include covariates in the model. Below we examine the nonlinear effect of SAT on graduation controlling for differences in sector. To do this, we include a main effect of sector (<code>public</code>) in the model along with the natural log-transformed median SAT scores.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>lm.me <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> public <span class="sc">+</span> <span class="fu">log</span>(sat), <span class="at">data =</span> mn)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.me)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.8655648","2":"0.8566025","3":"6.338162","4":"96.57793","5":"8.466311e-14","6":"2","7":"-106.1898","8":"220.3796","9":"226.3656","10":"1205.169","11":"30","12":"33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The model explains 86.5% of the variation in graduation rates.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.me)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-286.068526","3":"27.981966","4":"-10.223318","5":"2.728587e-11"},{"1":"public","2":"-8.501108","3":"2.443758","4":"-3.478703","5":"1.562637e-03"},{"1":"log(sat)","2":"146.015808","3":"11.616447","4":"12.569748","5":"1.735682e-13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The linear form of the fitted equation is,</p>
+<p><span class="math display">\[
+\hat{\mathrm{Graduation~Rate}_i} = -286.1 - 8.5(\mathrm{Public}_i) + 146.0\bigg[\ln(\mathrm{SAT}_i)\bigg]
+\]</span></p>
+<p>Interpreting each of the coefficients using the raw metric of median SAT value:</p>
+<ul>
+<li>The intercept value of <span class="math inline">\(-286.1\)</span> is the predicted average graduation rate for all <em>public</em> colleges/universities with a SAT value of 1 (extrapolation).</li>
+<li>Public schools have a predicted graduation rate that is 8.5 percentage points lower, on average, than private schools controlling for differences in median SAT scores.</li>
+<li>Each 1% difference in median SAT value is associated with a 1.46 percentage point difference in predicted graduation rate, on average, after controlling for differences in sector.</li>
+</ul>
+<p><br></p>
+<section id="plot-of-the-fitted-equation" class="level2">
+<h2 class="anchored" data-anchor-id="plot-of-the-fitted-equation">Plot of the Fitted Equation</h2>
+<p>To further help interpret these effects, we can plot the curves resulting from this fitted equation. Now we will have two curves one for public schools and one for private schools. To determine the exact equations for these curves, we will substitute either 0 (for private schools) or 1 (for public schools) into the fitted equation for the <code>public</code> variable.</p>
+<p><strong>Private</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} &amp;= -286.1 - 8.5(0) + 146.0\bigg[\ln(\mathrm{SAT}_i)\bigg] \\
+&amp;= -286.1 + 146.0\bigg[\ln(\mathrm{SAT}_i)\bigg] \\
+\end{split}
+\]</span></p>
+<p><strong>Public</strong></p>
+<p><span class="math display">\[
+\begin{split}
+\hat{\mathrm{Graduation~Rate}_i} &amp;= -286.1 - 8.5(1) + 146.0\bigg[\ln(\mathrm{SAT}_i)\bigg] \\
+&amp;= -294.6 + 146.0\bigg[\ln(\mathrm{SAT}_i)\bigg] \\
+\end{split}
+\]</span></p>
+<p>We can input each of these fitted equations into a <code>geom_function()</code> layer of our <code>ggplot()</code> syntax.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>( <span class="co"># Private schools</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">286.1</span> <span class="sc">+</span> <span class="fl">146.0</span><span class="sc">*</span><span class="fu">log</span>(x)},</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="st">"solid"</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>( <span class="co"># Public schools</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) {<span class="sc">-</span><span class="fl">294.6</span> <span class="sc">+</span> <span class="fl">146.0</span><span class="sc">*</span><span class="fu">log</span>(x)},</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-model-02" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-model-02-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Plot of predicted graduation rate as a function of median SAT score for public (blue, solid line) and private (red, dashed line) institutions.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows the nonlinear, diminishing positive effect of median SAT score on graduation rate for both public and private schools. For schools with lower median SAT scores, there is a larger effect on graduation rates than for schools with higher median SAT scores (for both private and public schools). Note that the curves are parallel (the result of fitting a main effects model) suggesting that the effect of median SAT score on graduation rates is the same for both public and private institutions.</p>
+<p>The plot also shows the controlled effect of sector. For schools with the same median SAT score, private schools have a higher predicted graduation rate than public schools, on average. This difference is the same, regardless of median SAT score; again a result of fitting the main effects model.</p>
+<p><br></p>
+</section>
+</section>
+<section id="using-information-criteria-to-adopt-a-model" class="level1">
+<h1>Using Information Criteria to Adopt a Model</h1>
+<p>We could use evidence from the information criteria to evaluate the evidence among a set of candidate models, so long as they were fitted with the same data and use the same outcome. For example, consider the following candidate models:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Model~1:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \epsilon_i \\[2ex]
+\mathbf{Model~2:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1\bigg[\ln(\mathrm{SAT}_i)\bigg] + \epsilon_i \\[2ex]
+\mathbf{Model~3:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1(\mathrm{Public}_i) + \epsilon_i \\[2ex]
+\mathbf{Model~4:~}\mathrm{Graduation~Rate}_i &amp;= \beta_0 + \beta_1\bigg[\ln(\mathrm{SAT}_i)\bigg] + \beta_2(\mathrm{Public}_i) + \epsilon_i
+\end{split}
+\]</span></p>
+<p>where each model has the assumptions that <span class="math inline">\(\epsilon_i\overset{i.i.d.}{\sim}\mathcal{N}(0,\sigma^2_{\epsilon})\)</span>.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models (use natural log of SAT)</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> mn)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat), <span class="at">data =</span> mn)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> public, <span class="at">data =</span> mn)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.4</span> <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat) <span class="sc">+</span> public, <span class="at">data =</span> mn)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of model evidence</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">aictab</span>(</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cand.set =</span> <span class="fu">list</span>(lm<span class="fl">.1</span>, lm<span class="fl">.2</span>, lm<span class="fl">.3</span>, lm<span class="fl">.4</span>),</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">modnames =</span> <span class="fu">c</span>(<span class="st">"Intercept-only"</span>, <span class="st">"Ln(SAT)"</span>, <span class="st">"Sector"</span>, <span class="st">"Ln(SAT) and Sector"</span>)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Modnames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["K"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["AICc"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Delta_AICc"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ModelLik"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["AICcWt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["LL"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Cum.Wt"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Ln(SAT) and Sector","2":"4","3":"221.8081","4":"0.000000","5":"1.000000e+00","6":"9.864947e-01","7":"-106.1898","8":"0.9864947","_rn_":"4"},{"1":"Ln(SAT)","2":"3","3":"230.3903","4":"8.582152","5":"1.369019e-02","6":"1.350530e-02","7":"-111.7814","8":"1.0000000","_rn_":"2"},{"1":"Sector","2":"3","3":"279.7700","4":"57.961834","5":"2.592672e-13","6":"2.557657e-13","7":"-136.4712","8":"1.0000000","_rn_":"3"},{"1":"Intercept-only","2":"2","3":"282.9998","4":"61.191641","5":"5.157082e-14","6":"5.087434e-14","7":"-139.2999","8":"1.0000000","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The empirical evidence, given the models fitted and the data, overwhelmingly supports Model 4 (the model that includes the effects of median SAT and sector on graduation rates).</p>
+<div class="fyi">
+<p>Note that this test can help us evaluate whether there is an effect, but CANNOT tell us whether that effect is nonlinear, nor whether a log function is appropriate to model the effect; for that you are reliant on the residuals!</p>
+</div>
+<p><br></p>
+</section>
+<section id="polynomial-effects-vs.-log-transformations" class="level1">
+<h1>Polynomial Effects vs.&nbsp;Log-Transformations</h1>
+<p>The inclusion of polynomial effects and the use of a log-transformation was to model the nonlinearity observed in the relationship between SAT scores and graduation rates. Both methods were successful in this endeavor. While either method could be used in practice to model nonlinearity, there are some considerations when making the choice of which may be more appropriate for a given modeling situation.</p>
+<p>The first consideration is one of substantive theory. The plot below shows the mathematical function for a log-transformed <em>X</em> (solid, black line) and for a quadratic polynomial of <em>X</em> (dashed, red line).</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>new <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">15</span>, <span class="at">by =</span> <span class="fl">0.01</span>))</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>new<span class="sc">$</span>y <span class="ot">=</span> <span class="fu">log</span>(new<span class="sc">$</span>x)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>new<span class="sc">$</span>quad <span class="ot">=</span>  <span class="sc">-</span><span class="fl">0.21717</span> <span class="sc">+</span> <span class="fl">0.48782</span><span class="sc">*</span>new<span class="sc">$</span>x  <span class="sc">-</span> <span class="fl">0.02453</span><span class="sc">*</span>new<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">data =</span> new, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(quad <span class="sc">~</span> x, <span class="at">data =</span> new, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-quad-02" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-quad-02-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Comparison of the quadratic polynomial (blue, dashed line) and logarithmic (red, solid line) functions of <em>X</em>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both functions are nonlinear, however the polynomial function changes direction. For low <em>x</em>-values, the function has a large positive effect. This effect diminishes as the values of <em>X</em> gets bigger, and around <span class="math inline">\(x=9\)</span> the effect is zero. For larger values of <em>X</em>, the effect is actually negative. For the logarithmic function, the effect is always positive, but it diminishes as <em>X</em> gets larger. (Functions that constantly increase, or constantly decrease, are referred to as <em>monotonic functions</em>.) Theoretically, these are very different ideas, and if substantive literature suggests one or the other, you should probably acknowledge that in the underlying statistical model that is fitted.</p>
+<p>Empirically, the two functions are very similar especially within certain ranges of <em>X</em>. For example, although the predictions from these models would be quite different for really high values of <em>X</em>, if we only had data from the range of 2 to 8 (<span class="math inline">\(2\leq X \leq 8\)</span>) both functions would produce similar residuals. In this case, the residuals would likely not suggest better fit for either of the two models. In this case, it might be prudent to think about <a href="https://en.wikipedia.org/wiki/Occam%27s_razor">Occam’s Razor</a>—if two competing models produce similar predictions, adopt the simpler model. Between these two functions, the <strong>log-transformed model is simpler</strong>; it has one predictor compared to the two predictors in the quadratic model. The mathematical models make this clear:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Quadratic~Polynomial:~}Y_i &amp;= \beta_0 + \beta_1(X_i) + \beta_2(X_i^2) +\epsilon_i \\
+\mathbf{Log\mbox{-}Transform:~}Y_i &amp;= \beta_0 + \beta_1\bigg[\ln(X_i)\bigg] + \epsilon_i
+\end{split}
+\]</span></p>
+<p>In the polynomial model, we need to estimate three parameters: an intercept, a slope for the linear term of <em>X</em>, and a slope for the quadratic term of <em>X</em>.(Remember, the quadratic polynomial model is an interaction model.) While the log model only requires us to estimate two parameters (<span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>). If there is no theory to guide your model’s functional form, and the residuals from the polynomial and log-transformed models seem to fit equally well, then the log-transformed model saves you a degree of freedom, and better achieves the goal of parsimony.</p>
+<p>From the two models, it is also possible to see that the these are not nested models; by setting one (or more) of the effects in either model to zero, we do not end up with the other model. This means we CANNOT use the likelihood ratio test to compare whether the quadratic model or the logarithmic model is more appropriate. However, we could use information criteria to choose from among these models:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>lm.quad <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> sat <span class="sc">+</span> <span class="fu">I</span>(sat <span class="sc">^</span> <span class="dv">2</span>), <span class="at">data =</span> mn)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>lm.log <span class="ot">=</span> <span class="fu">lm</span>(grad <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(sat), <span class="at">data =</span> mn)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of model evidence</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">aictab</span>(</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cand.set =</span> <span class="fu">list</span>(lm.quad, lm.log),</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modnames =</span> <span class="fu">c</span>(<span class="st">"Quadratic polynomial"</span>, <span class="st">"Log-transformed SAT"</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Modnames"],"name":[1],"type":["chr"],"align":["left"]},{"label":["K"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["AICc"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Delta_AICc"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ModelLik"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["AICcWt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["LL"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Cum.Wt"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Quadratic polynomial","2":"4","3":"228.5452","4":"0.000000","5":"1.0000000","6":"0.7155643","7":"-109.5583","8":"0.7155643","_rn_":"1"},{"1":"Log-transformed SAT","2":"3","3":"230.3903","4":"1.845128","5":"0.3974985","6":"0.2844357","7":"-111.7814","8":"1.0000000","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Here the quadartic model seems more empirically supported, but there is a fair amount of support for the log-model as well. Given this evidence, we probably cannot discern which model is better. (There is a fair amount of model selection uncertainty.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>)</p>
+<p>As with all decisions from statistical evidence, you must also rely on substantive knowledge and an evaluation of the residuals. Substantively, the quadratic model is less defensible, since it seems unlikely that we would see the graduation rate decreasing for institutions with high SAT scores. It is more likely that the effect of SAT score has less and less impact on graduation rates as it gets larger. In this scenario, the substantive knowledge points to the log model rather than the quadratic model.</p>
+<p>We can also examine the residuals for the two models:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Augment the model</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>out_quad <span class="ot">=</span> <span class="fu">augment</span>(lm.quad)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate normality</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">residual_plots</span>(lm.log)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">residual_plots</span>(lm.quad)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-resid-compare-02" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="07-logarithmic-transformations-predictor_files/figure-html/fig-resid-compare-02-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10: Residual plots for the log model (TOP) and quadratic model (BOTTOM).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both models seem tenable based on the residual fit to the assumptions. Given this, the substantive argument, and the parsimony argument (the log model is simpler), I would likely adopt the log model over the quadratic model. You could also make this decision later, after adding other covariates and re-checking the model evidence and residuals for the updated models.</p>
+<p><br></p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>So long as we can ultimately write this function as a linear model, namely, <span class="math inline">\(Y_i=\beta_0+\beta_1(x_i) + \epsilon_i\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Mathematically, the instantaneous derivative of the logarithmic function is is always positive, but it approaches 0 for larger values of <em>x</em>, while that for the quadratic function eventually becomes negative.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>There is also a helper function, <code>log2()</code>, which is equivalent to using the <code>log()</code> function with the argument <code>base=2</code>. The same model could be fitted using this helper function: <code>lm.log = lm(grad ~ 1 + log2(sat), data = mn)</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Here 🦒 is simply a placeholder for the expression <span class="math inline">\(2^{\hat\beta_0} \times X_i^{\hat\beta_1}\)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>There is also a helper function, <code>log10()</code>, which is equivalent to using the <code>log()</code> function with the argument <code>base=10</code>. The same model could be fitted using this helper function: <code>lm.log10 = lm(grad ~ 1 + log10(sat), data = mn)</code>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Fun Fact: <em>e</em> also happens to be Andy’s favorite number. Google founders might also enjoy <em>e</em>, as their IPO indicated they were going to raise <em>e</em>-billion dollars (see this <a href="https://www.forbes.com/sites/jayritter/2014/08/07/googles-ipo-10-years-later/?sh=13a7d532e6ca">Forbes article</a>).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>You could also fit an interaction model for completeness to evaluate whether the SAT effect on graduation rates differs by sector (although we do not do that here).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>In order to determine this we would need more data at higher values of SAT to determine if the graduation rate gets lower or essentially planes off. The lack of data in this range is why we have this model selection uncertainty.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

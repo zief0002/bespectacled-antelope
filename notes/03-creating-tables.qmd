@@ -8,6 +8,10 @@ format:
     df-print: paged
     css: ["../assets/sticky-notes.css"]
 date: "`r format(Sys.Date(), '%B %d %Y')`"
+crossref:
+  tbl-title: "**Table**"
+  tbl-labels: arabic
+  title-delim: "."
 ---
 
 ```{r}
@@ -213,7 +217,68 @@ tab_01 |>
 
 <br />
 
-## Adding a Title and Subtitle
+
+## Adding a Title and Subtitle (Using Quarto)
+
+If you are creating a table within a QMD document, we will use the code chunk options to add a table number, title, and subtitle. To create these use the following code chunks:
+
+- The `label:` field is used to label the table and give it a table number. The key here is that the lable name must start with`tbl-`. In the example below, the label name I gave the table is `tbl-summary-measures`.
+- The `tbl-cap:` field is used to provide a table caption, similar to how `fig-cap:` is used to give a figure caption.
+- The `tbl-subcap:` field is used to provide a table subcaption. Not all tables need a subcaption!
+- The `tbl-cap-location:` field can be use to change the table caption location from `top` to `bottom`, or even have it placed in the `margin`.
+
+
+Here we show the R code chunk and chunk options to produce the table numbering and caption. (I do not use a subcaption on this table.) The resulting table, along with its numbering (which is autopopulated by Quarto), and caption is shown below.
+
+```{r}
+#| echo: fenced
+#| label: tbl-summary-measures
+#| tbl-cap: "Summary statistics for the unstandardized outcome, focal predictor, and five covariates."
+tab_01 |>
+  gt() |>
+  cols_label(
+    variable = md("*Variable*"),
+    m = md("*M*"),
+    sd = md("*SD*"),
+    min = md("*Min.*"),
+    max = md("*Max.*")
+  ) |>
+  cols_align(
+    columns = c(variable),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(m, sd, min, max),
+    align = "center"
+  ) |>
+  opt_align_table_header("left")
+```
+
+The advantage to including a `label:` and naming it with a `tbl-` prefix is that it makes your tables cross-referenceable in the document. In the document's text you can link to that table using the `@` and giving the table name. For example, see @tbl-summary-measures. To do this I wrote the following in my Quarto document:
+
+```
+For example, see @tbl-summary-measures.
+```
+
+See [here](https://quarto.org/docs/authoring/cross-references.html) for more detail about cross-referencing tables, substables, figures, equations, and more!
+
+
+### Changing the Formatting of the Table Numbering
+
+We can change how Quarto formats the table labeling in the YAML part of the document. The default is: "Table X: Table Caption". Here we make "Table X." bold with a period after it, where "X" is an arabic number.
+
+
+
+```
+crossref:
+  tbl-title: "**Table**"
+  tbl-labels: arabic
+  title-delim: "."
+```
+
+
+
+## Adding a Title and Subtitle (Not Using Quarto)
 
 The `tab_header()` function can be used to add a title or subtitle to your table. Here we again use the `md()` function to allow us to use Markdown syntax directly in the title. I also use the `opt_align_table_header()` function to left align the title and subtitle per APA.
 
@@ -278,6 +343,7 @@ Since the title and subtitle appear on separate lines, you can take advantage of
 :::
 
 <br />
+
 
 ## Fine-Tuning the Table
 
