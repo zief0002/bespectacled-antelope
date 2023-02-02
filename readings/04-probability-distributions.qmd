@@ -710,7 +710,7 @@ shade_09 = fig_09 %>%
   filter(X >= 2)
 
 # View data
-head(shade_01)
+head(shade_09)
 ```
 
 We re-draw the PDF and then use `geom_ribbon()` to add shading. This layer requires us to define the area we want shaded. Here we want to shade from $Y=0$ to $Y=$ the probability density for each of the *X* values in the shading data. To carry this out we need to define `x=`, `ymin=` and `ymax=`. 
@@ -723,7 +723,7 @@ Since the *X* values are in a column called `X` and the probability densities ar
 #| fig-cap: "Plot of the probability density function (PDF) for the $F(5,25)$-distribution. The cumulative density representing the *p*-value associated with an *F*-statistic of 2 is shaded in grey."
 # Create plot
 ggplot(data = fig_09, aes(x = X, y = Y))  +
-  geom_ribbon(data = shade_01, ymin = 0, aes(x = X, ymax = Y), 
+  geom_ribbon(data = shade_09, ymin = 0, aes(x = X, ymax = Y), 
               color = "#bbbbbb", alpha = 0.4) +
   geom_line() +
   xlab("F") +
