@@ -1,0 +1,26 @@
+---
+title: "📖 Log-Transforming the Outcome"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Read the following:
+
+- Osborne, Jason (2002). [Notes on the use of data transformations](https://scholarworks.umass.edu/pare/vol8/iss1/6/). *Practical Assessment, Research &amp; Evaluation, 8*(6).
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about log-transformations. Here are some resources that may be helpful in that endeavor:
+
+
+- [UCLA IDRE: Interpreting Log-Transformed Variables in Regression ](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faqhow-do-i-interpret-a-regression-model-when-some-variables-are-log-transformed/)
+- [Interpret Regression Coefficient Estimates](http://www.cazaar.com/ta/econ113/interpreting-beta)
+

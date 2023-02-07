@@ -1,0 +1,24 @@
+---
+title: "📖 Log-Transforming the Predictor"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Refresh your knowledge about logarithms:
+
+- [Khan Academy Intro to Logarithms Tutorial](https://www.khanacademy.org/math/algebra2/exponential-and-logarithmic-functions/introduction-to-logarithms/v/logarithms)
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about log-transformations. Here are some resources that may be helpful in that endeavor:
+
+- [Math with Bad Drawings: ABC Book of e](https://mathwithbaddrawings.com/2018/02/05/the-abc-book-of-e/)
+

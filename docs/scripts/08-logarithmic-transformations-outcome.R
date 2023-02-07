@@ -243,90 +243,73 @@ glance(lm.3) |> # Model-level output
 tidy(lm.3)   # Coefficient-level output
 
 
-# PLot fitted curves
-ggplot(data = carbon, aes(x = wealth, y = co2)) +
-  geom_point(alpha = 0) +
-  geom_function(fun = function(x) {.0634 * exp(1.34*x) * exp(-0.08*x^2)}, color = "#56b4e9") + #Low urbanization
-  geom_function(fun = function(x) {.054 * exp(1.34*x) * exp(-0.08*x^2)}, color = "#0072b2") +  #High urbanization
-  theme_bw() +
-  xlab("Wealth") +
-  ylab("Predicted CO2 (in metric tons per person)")
+
+##################################################
+### Model interpretation
+##################################################
+
+# b-fold difference
+exp(coef(lm.3))
+
+# Untrustworthy interpretation of percent change
+coef(lm.3)
+
+# Actual percent change
+abs(1 - exp(1.002587))
 
 
 
 ##################################################
-### RQ3: Do effects vary by world region
+### Include effects of running time and genre
 ##################################################
 
-# Create dummy variables for world region
-carbon = carbon |>
-  mutate(
-    africa = if_else(region == "Africa", 1, 0),
-    asia = if_else(region == "Asia", 1, 0),
-    americas = if_else(region == "Americas", 1, 0),
-    europe = if_else(region == "Europe", 1, 0),
-    oceania = if_else(region == "Oceania", 1, 0),
-  )
+# Fit the model (non-action is reference group)
+lm.4 = lm(Lbudget ~ 1 + length + I(length^2) + action, data = movies)
 
-# View data
-carbon
+# Likelihood ratio test (partial effect of genre)
+lrtest(lm.3, lm.4)
+
+# Likelihood ratio test (partial quadratic effect of running time)
+lm.5 = lm(Lbudget ~ 1 + length + action, data = movies)
+lrtest(lm.5, lm.4)
 
 
-# Fit model
-lm.4 = lm(log(co2) ~ 1 + wealth + I(wealth^2) + urbanization + 
-            asia + africa + americas + europe, 
-          data = carbon)
-
-
-# Fit model
-lm.5 = lm(log(co2) ~ 1 + wealth + I(wealth^2) + urbanization + 
-            asia + africa + americas + europe +
-            asia:wealth + africa:wealth + americas:wealth + europe:wealth +
-            asia:I(wealth^2) + africa:I(wealth^2) + americas:I(wealth^2) + europe:I(wealth^2), 
-          data = carbon)
-
-
-# Table of model evidence
-aictab(
-  cand.set = list(lm.3, lm.4, lm.5),
-  modnames = c("No world region", "Main effect of region", "Interaction between region and wealth")
-)
-
-
-
-
-
-
-##################################################
-### 
-##################################################
-
-glance(lm.4) |> # Model-level output
+glance(lm.4) %>% # Model-level output
   print(width = Inf)
 
 tidy(lm.4)   # Coefficient-level output
 
+# Exponentiate coefficients
+exp(coef(lm.4))
 
-# Load library to include color in caption
-library(ggtext)
 
-# Plot
-ggplot(data = carbon, aes(x = wealth, y = co2)) +
+##################################################
+### Plot the fitted curves
+##################################################
+
+ggplot(data = movies, aes(x = length, y = budget)) +
   geom_point(alpha = 0) +
-  geom_function(fun = function(x) {.082 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#1b2a41") + #Asia
-  geom_function(fun = function(x) {.067 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#99c24d") + #Africa
-  geom_function(fun = function(x) {.053 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#d30c7b") + #Americas
-  geom_function(fun = function(x) {.047 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#adcad6") + #Europe
-  geom_function(fun = function(x) {.096 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#bc69aa") + #Oceania
+  geom_function(fun = function(x) {exp(-5.56) * exp(0.12*x) * exp(-0.0004*x^2)}, 
+                color = "black", linetype = "dashed") +
+  geom_function(fun = function(x) {exp(-4.75) * exp(0.12*x) * exp(-0.0004*x^2)}, 
+                color = "red", linetype = "solid") +
   theme_bw() +
-  xlab("Wealth") +
-  ylab("Predicted CO2 (in metric tons per person)") +
-  labs(
-    title = "Region: <b style = 'color:#1b2a41;'>Asia</b>, <b style = 'color:#99c24d;'>Africa</b>, <b style = 'color:#d30c7b;'>Americas</b>, <b style = 'color:#adcad6;'>Europe</b>, and <b style = 'color:#bc69aa;'>Oceania</b>. "
-  ) +
-  theme(
-    plot.title = element_textbox_simple()
-  )
+  xlab("Running time (in minutes)") +
+  ylab("Predicted budget (in millions of dollars)") 
 
+
+
+##################################################
+### Evaluate interaction effects b/w running time and genre
+##################################################
+
+# Fit the first interaction model
+lm.6 = lm(Lbudget ~ 1 + length + I(length^2) + action + length:action, data = movies)
+
+# Fit the second interaction model
+lm.7 = lm(Lbudget ~ 1 + length + I(length^2) + action + length:action + I(length^2):action, data = movies)
+
+# Likelihood ratio tests
+lrtest(lm.4, lm.6, lm.7)
 
 

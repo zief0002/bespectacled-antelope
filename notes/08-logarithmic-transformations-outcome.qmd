@@ -702,12 +702,12 @@ Asia's carbon emissions are 14.7% lower than Oceania's carbon emissions, on aver
 :::
 
 
+
+In this analysis, we are most interested in the effect of wealth on carbon emisssions. So I will again create a plot of this model's results. After creating this plot we can describe any regional differences, but we will not make inferences about regional differences. To create this plot I will set urbanization to its mean level (2.00) and then produce a fitted equation for each world region. I will do this with the back-transformed outcome.
+
 :::protip
 If the goal of the analysis was to compare different regions, you would have to fit other models to make the different comparisons. If we were using *p*-values for variable selection, you would also have to adjust based on the total number of pairwise (region-to-region) comparisons using something like the Boferroni or Benjamini-Hochberg adjustments. However, it is less clear how to view multiple comparisons when using information criteria. @Dayton:1998 laid out a framework for using measures such as AIC for the multiple comparisons problem.
 :::
-
-
-Since I am only interested in the results at the model level, I will create a plot of this model's results and interpret regional differences descriptively rather than inferentially. To create this plot I will set urbanization to its mean level (2.00) and then produce a fitted equation for each world region. I will do this with the back-transformed outcome.
 
 **Asia**
 
@@ -768,7 +768,7 @@ Then we will create our plot by adding one `geom_function()` layer for each regi
 #| label: fig-rq3
 #| fig-cap: "Plot of predicted carbon emisssions as a function of wealth for the quadratic polynomial model shown for countries from different regions of the world. Urbanization has been adjusted for by setting it to its mean value."
 #| out-width: "60%"
-# Set up plotting range
+# Load library for color in caption
 library(ggtext)
 
 # Plot
@@ -789,6 +789,13 @@ ggplot(data = carbon, aes(x = wealth, y = co2)) +
     plot.title = element_textbox_simple()
   )
 ```
+
+:::interpret
+**Answering the Research Question**
+
+Here we see that in general wealthier countries have exponentially increasing CO2 emissions that begins to diminish for countries with exceptionally high wealth levels. This pattern is true for countries with both low and high urbanization, although the countries with higher urbanization have lower exponentially increasing carbon emissions.
+:::
+
 
 
 <br />

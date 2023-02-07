@@ -1,0 +1,31 @@
+---
+title: "📖 Logistic Regression Model"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Watch the following::
+
+- 
+3Blue1Brown. [Exponential growth and epidemics](https://www.youtube.com/watch?v=Kas0tIxDvrg). YouTube video.
+
+When you watch this video, focus on the ideas and not the equations.
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about logistic regression models. Here are some resources that may be helpful in that endeavor:
+
+- Fox, J. (2009). The Binomial and Bernoulli distributions (Section 3.2.1). In *A mathematical primer for social statistics.* Sage. [Required Textbook]
+- Dunteman, G. H., &amp; Ho, M.-H. R. (2005). [An introduction to generalized linear models.](https://primo.lib.umn.edu/permalink/f/11uk8fo/UMN_ALMA51699489010001701) Sage.
+- Fox, J. (2015). *Applied regression analysis and generalized linear models* (3rd ed.). Sage
+
+
+

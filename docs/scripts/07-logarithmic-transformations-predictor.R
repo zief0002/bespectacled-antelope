@@ -50,7 +50,7 @@ log2(32)
 ##################################################
 
 # Create base-2 log-transformed median SAT scores
-mn = mn |>
+mn = mn %>%
   mutate(
     l2sat = log(sat, base = 2)
   )
