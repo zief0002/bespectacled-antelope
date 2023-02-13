@@ -16,7 +16,7 @@ library(tidyverse)
 ##################################################
 
 # Read in data and create dummy variable for outcome
-grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv") %>%
+grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv") |>
   mutate(
     got_degree = if_else(degree == "Yes", 1, 0)
   )
@@ -32,13 +32,13 @@ grad
 ##################################################
 
 # Obtain the proportion who obtain a degree for each ACT score
-prop_grad = grad %>% 
-  group_by(act, degree) %>% 
-  summarize(N = n()) %>% 
+prop_grad = grad |> 
+  group_by(act, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
-  ) %>%
-  ungroup() %>%
+  ) |>
+  ungroup() |>
   filter(degree == "Yes")
 
 
@@ -63,7 +63,7 @@ ggplot(data = prop_grad, aes(x = act, y = Prop)) +
 # Create w values and transformed values
 example = tibble(
   x = seq(from = -4, to = 4, by = 0.01)  # Set up values
-) %>%
+) |>
   mutate(
     Lambda = 1 / (1 + exp(-x))  # Transform using logistic function
   )
@@ -104,7 +104,7 @@ log(0.02 / 0.98)
 ##################################################
 
 # Create odds and logit values
-example = example %>%
+example = example |>
   mutate(
     Odds = Lambda / (1 - Lambda),  # Transform to odds
     Logits = log(Odds)
@@ -258,7 +258,8 @@ out.1
 
 
 # Residual plot
-print(out.1)
+plot(out.1)
+
 
 
 
@@ -267,8 +268,8 @@ print(out.1)
 ##################################################
 
 # Counts of students by degree and first gen status
-grad %>%
-  group_by(degree, first_gen) %>%
+grad |>
+  group_by(degree, first_gen) |>
   summarize(
     N = n()
   )
@@ -280,41 +281,41 @@ grad %>%
 ##################################################
 
 # Use first generations status totals in proportion
-grad %>% 
-  group_by(first_gen, degree) %>% 
-  summarize(N = n()) %>% 
+grad |> 
+  group_by(first_gen, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
   ) 
 
 
 # Use degree status totals in proportion
-grad %>% 
-  group_by(degree, first_gen) %>% 
-  summarize(N = n()) %>% 
+grad |> 
+  group_by(degree, first_gen) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
   ) 
 
 
 # Use grand total in proportion
-grad %>% 
-  group_by(degree, first_gen) %>% 
-  summarize(N = n()) %>% 
-  ungroup() %>%
+grad |> 
+  group_by(degree, first_gen) |> 
+  summarize(N = n()) |> 
+  ungroup() |>
   mutate(
     Prop = N / sum (N)
   ) 
 
 
 # Proportions to answer our RQ
-grad %>% 
-  group_by(first_gen, degree) %>% 
-  summarize(N = n()) %>% 
+grad |> 
+  group_by(first_gen, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
-  ) %>%
-  ungroup() %>%
+  ) |>
+  ungroup() |>
   filter(degree == "Yes")
 
 
@@ -324,13 +325,13 @@ grad %>%
 ##################################################
 
 # Side-by-side bar chart
-grad %>% 
-  group_by(first_gen, degree) %>% 
-  summarize(N = n()) %>% 
+grad |> 
+  group_by(first_gen, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
-  ) %>%
-  ungroup() %>%
+  ) |>
+  ungroup() |>
   ggplot(aes(x = first_gen, y = Prop, fill = degree)) +
   geom_bar(stat = "Identity", position = position_dodge()) +
   theme_light() +
@@ -348,7 +349,7 @@ grad %>%
 ##################################################
 
 # Dummy code first_gen
-grad = grad %>%
+grad = grad |>
   mutate(
     is_firstgen = if_else(first_gen == "Yes", 1, 0)
   )
@@ -399,6 +400,9 @@ out.2 = binned_residuals(glm.2)
 # View data frame
 out.2
 
+
+# PLot
+plot(out.2)
 
 
 

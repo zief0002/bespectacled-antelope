@@ -17,7 +17,7 @@ library(tidyverse)
 ##################################################
 
 # Read in data and create dummy variable for categorical variables
-grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv") %>%
+grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv") |>
   mutate(
     got_degree = if_else(degree == "Yes", 1, 0),
     is_firstgen = if_else(first_gen == "Yes", 1, 0),
@@ -39,8 +39,8 @@ glm.2 = glm(got_degree ~ 1 + is_firstgen, data = grad, family = binomial(link = 
 ### Determine importance of covariates
 ##################################################
 
-grad %>%
-  select(got_degree, act, scholarship, ap_courses,is_nontrad) %>%
+grad |>
+  select(got_degree, act, scholarship, ap_courses,is_nontrad) |>
   correlate()
 
 
@@ -50,14 +50,14 @@ grad %>%
 ##################################################
 
 # Obtain the log-odds who obtain a degree for each ACT score
-prop_grad = grad %>% 
-  group_by(act, degree) %>% 
-  summarize(N = n()) %>% 
+prop_grad = grad |> 
+  group_by(act, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
-  ) %>%
-  ungroup() %>%
-  filter(degree == "Yes") %>%
+  ) |>
+  ungroup() |>
+  filter(degree == "Yes") |>
   mutate(
     Odds = Prop / (1 - Prop),
     Logits = log(Odds)
@@ -83,8 +83,8 @@ out.1_log = binned_residuals(glm.1_log)
 
 
 # Binned residual plots
-print(out.1_quad)
-print(out.1_log)
+plot(out.1_quad)
+plot(out.1_log)
 
 
 # Model evidence
@@ -295,6 +295,11 @@ aictab(
 ### Adopted model
 ##################################################
 
+# CHeck residuals
+out.7 = binned_residuals(glm.7)
+plot(out.7)
+
+
 # Coefficients
 tidy(glm.7)
 
@@ -324,6 +329,10 @@ ggplot(data = grad, aes(x = act, y = got_degree)) +
 ##################################################
 ### Presenting a Table of Logistic Regression Results
 ##################################################
+
+# NOTE: If you are using quarto, set your caption in the chunk options with tbl-cap:
+# In that case, set caption=NULL in the htmlreg() function below.
+
 
 htmlreg(
   l = list(glm.0, glm.2, glm.3, glm.6, glm.7),

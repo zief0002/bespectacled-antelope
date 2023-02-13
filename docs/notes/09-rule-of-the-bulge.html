@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-02-08">
+
+<title>EPsy 8252 - Rule of the Bulge—An Example</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable/js/pagedtable.js"></script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-01-introduction-to-quarto.html">
+ <span class="dropdown-text">Assignment 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-02-polynomial-effects.html">
+ <span class="dropdown-text">Assignment 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-03-evidence-and-model-selection.html">
+ <span class="dropdown-text">Assignment 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-04-logarithmic-transformations.html">
+ <span class="dropdown-text">Assignment 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-05-logistic-regression.html">
+ <span class="dropdown-text">Assignment 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-06-lmer-unconditional-longitudinal-models.html">
+ <span class="dropdown-text">Assignment 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-07-longitudinal-analysis-ii.html">
+ <span class="dropdown-text">Assignment 07</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#power-transformations" id="toc-power-transformations" class="nav-link active" data-scroll-target="#power-transformations">Power Transformations</a></li>
+  <li><a href="#rule-of-the-bulge" id="toc-rule-of-the-bulge" class="nav-link" data-scroll-target="#rule-of-the-bulge">Rule of the Bulge</a>
+  <ul class="collapse">
+  <li><a href="#caution" id="toc-caution" class="nav-link" data-scroll-target="#caution">Caution ⚠️</a></li>
+  </ul></li>
+  <li><a href="#empirical-example" id="toc-empirical-example" class="nav-link" data-scroll-target="#empirical-example">Empirical Example</a>
+  <ul class="collapse">
+  <li><a href="#fit-linear-model" id="toc-fit-linear-model" class="nav-link" data-scroll-target="#fit-linear-model">Fit Linear Model</a></li>
+  </ul></li>
+  <li><a href="#interpreting-log-transformed-models" id="toc-interpreting-log-transformed-models" class="nav-link" data-scroll-target="#interpreting-log-transformed-models">Interpreting Log-Transformed Models</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Rule of the Bulge—An Example</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>In this set of notes you will learn about power transformations, how to use power transformations to re-express data so that the re-expressed data meet the assumption of “linearity” (i.e., straighten” curvilinear data), and see this in an empirical example.</p>
+<p><br></p>
+<section id="power-transformations" class="level1">
+<h1>Power Transformations</h1>
+<p>All of the transformations, or re-expressions, of data we have seen in this course are power transformations. Power transformations essentially transform some variable <em>X</em> using the function:</p>
+<p><span class="math display">\[
+X \rightarrow X^{(p)}
+\]</span></p>
+<p>where <em>p</em> is some power. Here are some important ideas about power transformations:</p>
+<ul>
+<li>If we let <span class="math inline">\(p=1\)</span>, this transformation maps <em>X</em> to <em>X</em> (no transformation).’</li>
+<li>We refer to transformations where <span class="math inline">\(p&gt;1\)</span> as <em>upward transformations</em>.</li>
+<li>We refer to transformations where <span class="math inline">\(p&lt;1\)</span> as <em>downward transformations</em>.</li>
+<li>Since the transformation using <span class="math inline">\(p=0\)</span> would be pointless (it would transform all the <em>X</em>-values to 1), we attribute <span class="math inline">\(p=0\)</span> as the log-transformation.</li>
+</ul>
+<p>This is called the <em>ladder of transformations</em>, since we can think about these different power transformations as a ladders going up or down from the <span class="math inline">\(p=1\)</span> (no transformation) starting point.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-ladder" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/ladder-of-transformations.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Ladder of transformations indicating upward (up-the-ladder) power transformations and downward (down-the-ladder) power transformations.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="rule-of-the-bulge" class="level1">
+<h1>Rule of the Bulge</h1>
+<p>The <em>Rule of the Bulge</em> is a technique introduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity. Note that the following figure shows the four monotonic curves; one in each of the four quadrants:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-bulge" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/rule-of-the-bulge.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Rule of the Bulge: Visual mneumonic for choosing power transformations to ‘straighten’ each of the four monotonic curves.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Rule of the Bulge tells us:</p>
+<ul>
+<li>If the data have a shape similar to that shown in the <strong>Quadrant 1</strong>, then the data analyst can try to re-express the variables by using an upward transformation of <em>X</em> (up-the-ladder), an upward transformation of <em>Y</em>, or both.</li>
+<li>If the data have a shape similar to that shown in the <strong>Quadrant 2</strong>, then the data analyst can try to re-express the variables by using a downward transformation of <em>X</em> (down-the-ladder), an upward transformation of <em>Y</em> (up-the-ladder), or both.</li>
+<li>If the data have a shape similar to that shown in the <strong>Quadrant 3</strong>, then the data analyst can try to re-express the variables by using a downward transformation of <em>X</em> (down-the-ladder), a downward transformation of <em>Y</em>, or both.</li>
+<li>If the data have a shape similar to that shown in the <strong>Quadrant 4</strong>, then the data analyst can try to re-express the variables by using an upward transformation of <em>X</em> (up-the-ladder), a downward transformation of <em>Y</em> (down-the-ladder), or both.</li>
+</ul>
+<div class="fyi">
+<p>The relationships in Quadrants 1 and 4 depict <em>exponential growth</em>. These relationships both have a growing rate-of-change for larger <em>x</em>-values, albeit in different directions. The model in Quadrant 1 is a negative exponential growth model while that in Quadrant 4 is a positive exponential growth model.</p>
+<p>The relationships in Quadrants 1 and 4 are referred to as <em>exponential decay</em> models, since they both have a decaying rate-of-change for larger <em>x</em>-values (again in different directions). The model in Quadrant 2 is a positive exponential decay model while that in Quadrant 3 is a negative exponential decay model.</p>
+</div>
+<p>To illustrate, consider the the non-linear relationships depicted in the following two scatterplots.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mn <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fert <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fertility.csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatterplot of graduation data</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mn, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> grad)) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Estimated median SAT score (in hundreds)"</span>) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Six-year graduation rate"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatterplot of fertility data</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fert, <span class="fu">aes</span>(<span class="at">x =</span> educ_female, <span class="at">y =</span> infant_mortality)) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"Average female education level"</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Infant mortality rate (per 1,000 live births"</span>) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout plots</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-examples" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-rule-of-the-bulge_files/figure-html/fig-examples-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: LEFT: The relationship between graduation rates and SAT scores is depicted by the monotonic curve in Quadrant 2 (positive, decreasing change). RIGHT: The relationship between infant mortality rates and female education level is depicted by the monotonic curve shown in Quadrant 3 (negative, decreasing change).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The scatterplot of the relationship between median SAT scores and graduation rate indicates a relationship similar to that in Quadrant 2 (positive exponential decay). This suggests that we could try to: (1) Re-express <em>X</em> using a downward transformation; (2) re-express <em>Y</em> using an upward transformation, or (3) both. In the notes, we fitted a model in which we log-transformed the median SAT scores (downward transformation of <em>X</em>) to “straighten” the relationship,</p>
+<pre><code>Y ~ 1 + ln(X)</code></pre>
+<p>The scatterplot of the relationship between female education level and infant mortality rate indicates a relationship similar to that in Quadrant 3 (negative exponential decay). This suggests that we could try to: (1) Re-express <em>X</em> using a downward transformation; (2) re-express <em>Y</em> using a downward transformation, or (3) both. Below is the plot in which we re-expressed infant mortality rate using a log-transform (downward transformation.)</p>
+<pre><code>ln(Y) ~ 1 + X</code></pre>
+<p><br></p>
+<section id="caution" class="level2">
+<h2 class="anchored" data-anchor-id="caution">Caution ⚠️</h2>
+<p>Sometimes these re-expressions will not be adequate. In some cases, you might not be able to “straighten” the data enough to meet the assumption. This is because these transformations “deteriorate” or “spuriously increase” the information contained in the data. As you use re-expressions further down-the-ladder, the variation in the re-expressed data decreases (Less variation = less information). Eventually, the variation in the re-expressed data will be so small that the values become indistinguishable (no information).</p>
+<p>In the other direction, as you use re-expressions further up-the-ladder, the variation in the re-expressed data increases (more variation = more information), albeit spuriously. Essentially, we are adding information that is not truly in the data. This might lead us to finding results that aren’t really there, or over-emphasizing relationships.</p>
+<div class="fyi">
+<p>Re-expressions that only go a little way up- or down-the-ladder are fine. Just beware if you need to go too far up- or down-the-ladder to straighten your data. In those cases you may want to use a different method of estimating the model than OLS (e.g., non-linear least squares).</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="empirical-example" class="level1">
+<h1>Empirical Example</h1>
+<p>We will use the <em>mammals.csv</em> data to predict variation in body weight for mammals using their brain weight as a predictor.</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv">CSV File</a></li>
+<li><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/mammals.html">Data Codebook</a></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mammal <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mammal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-mammals-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div data-pagedtable="false">
+
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["body_weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["brain_weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["slow_wave"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["paradox"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["total_sleep"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["lifespan"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["gestation"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["predation"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["exposure"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["danger"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"African elephant","2":"6654.000","3":"5712.00","4":"NA","5":"NA","6":"3.3","7":"38.6","8":"645.0","9":"3","10":"5","11":"3"},{"1":"African giant pouched rat","2":"1.000","3":"6.60","4":"6.3","5":"2.0","6":"8.3","7":"4.5","8":"42.0","9":"3","10":"1","11":"3"},{"1":"Arctic fox","2":"3.385","3":"44.50","4":"NA","5":"NA","6":"12.5","7":"14.0","8":"60.0","9":"1","10":"1","11":"1"},{"1":"Arctic ground squirrel","2":"0.920","3":"5.70","4":"NA","5":"NA","6":"16.5","7":"NA","8":"25.0","9":"5","10":"2","11":"3"},{"1":"Asian elephant","2":"2547.000","3":"4603.00","4":"2.1","5":"1.8","6":"3.9","7":"69.0","8":"624.0","9":"3","10":"5","11":"4"},{"1":"Baboon","2":"10.550","3":"179.50","4":"9.1","5":"0.7","6":"9.8","7":"27.0","8":"180.0","9":"4","10":"4","11":"4"},{"1":"Big brown bat","2":"0.023","3":"0.30","4":"15.8","5":"3.9","6":"19.7","7":"19.0","8":"35.0","9":"1","10":"1","11":"1"},{"1":"Brazilian tapir","2":"160.000","3":"169.00","4":"5.2","5":"1.0","6":"6.2","7":"30.4","8":"392.0","9":"4","10":"5","11":"4"},{"1":"Cat","2":"3.300","3":"25.60","4":"10.9","5":"3.6","6":"14.5","7":"28.0","8":"63.0","9":"1","10":"2","11":"1"},{"1":"Chimpanzee","2":"52.160","3":"440.00","4":"8.3","5":"1.4","6":"9.7","7":"50.0","8":"230.0","9":"1","10":"1","11":"1"},{"1":"Chinchilla","2":"0.425","3":"6.40","4":"11.0","5":"1.5","6":"12.5","7":"7.0","8":"112.0","9":"5","10":"4","11":"4"},{"1":"Cow","2":"465.000","3":"423.00","4":"3.2","5":"0.7","6":"3.9","7":"30.0","8":"281.0","9":"5","10":"5","11":"5"},{"1":"Desert hedgehog","2":"0.550","3":"2.40","4":"7.6","5":"2.7","6":"10.3","7":"NA","8":"NA","9":"2","10":"1","11":"2"},{"1":"Donkey","2":"187.100","3":"419.00","4":"NA","5":"NA","6":"3.1","7":"40.0","8":"365.0","9":"5","10":"5","11":"5"},{"1":"Eastern American mole","2":"0.075","3":"1.20","4":"6.3","5":"2.1","6":"8.4","7":"3.5","8":"42.0","9":"1","10":"1","11":"1"},{"1":"Echidna","2":"3.000","3":"25.00","4":"8.6","5":"0.0","6":"8.6","7":"50.0","8":"28.0","9":"2","10":"2","11":"2"},{"1":"European hedgehog","2":"0.785","3":"3.50","4":"6.6","5":"4.1","6":"10.7","7":"6.0","8":"42.0","9":"2","10":"2","11":"2"},{"1":"Galago","2":"0.200","3":"5.00","4":"9.5","5":"1.2","6":"10.7","7":"10.4","8":"120.0","9":"2","10":"2","11":"2"},{"1":"Genet","2":"1.410","3":"17.50","4":"4.8","5":"1.3","6":"6.1","7":"34.0","8":"NA","9":"1","10":"2","11":"1"},{"1":"Giant armadillo","2":"60.000","3":"81.00","4":"12.0","5":"6.1","6":"18.1","7":"7.0","8":"NA","9":"1","10":"1","11":"1"},{"1":"Giraffe","2":"529.000","3":"680.00","4":"NA","5":"0.3","6":"NA","7":"28.0","8":"400.0","9":"5","10":"5","11":"5"},{"1":"Goat","2":"27.660","3":"115.00","4":"3.3","5":"0.5","6":"3.8","7":"20.0","8":"148.0","9":"5","10":"5","11":"5"},{"1":"Golden hamster","2":"0.120","3":"1.00","4":"11.0","5":"3.4","6":"14.4","7":"3.9","8":"16.0","9":"3","10":"1","11":"2"},{"1":"Gorilla","2":"207.000","3":"406.00","4":"NA","5":"NA","6":"12.0","7":"39.3","8":"252.0","9":"1","10":"4","11":"1"},{"1":"Gray seal","2":"85.000","3":"325.00","4":"4.7","5":"1.5","6":"6.2","7":"41.0","8":"310.0","9":"1","10":"3","11":"1"},{"1":"Gray wolf","2":"36.330","3":"119.50","4":"NA","5":"NA","6":"13.0","7":"16.2","8":"63.0","9":"1","10":"1","11":"1"},{"1":"Ground squirrel","2":"0.101","3":"4.00","4":"10.4","5":"3.4","6":"13.8","7":"9.0","8":"28.0","9":"5","10":"1","11":"3"},{"1":"Guinea pig","2":"1.040","3":"5.50","4":"7.4","5":"0.8","6":"8.2","7":"7.6","8":"68.0","9":"5","10":"3","11":"4"},{"1":"Horse","2":"521.000","3":"655.00","4":"2.1","5":"0.8","6":"2.9","7":"46.0","8":"336.0","9":"5","10":"5","11":"5"},{"1":"Jaguar","2":"100.000","3":"157.00","4":"NA","5":"NA","6":"10.8","7":"22.4","8":"100.0","9":"1","10":"1","11":"1"},{"1":"Kangaroo","2":"35.000","3":"56.00","4":"NA","5":"NA","6":"NA","7":"16.3","8":"33.0","9":"3","10":"5","11":"4"},{"1":"Lesser short-tailed shrew","2":"0.005","3":"0.14","4":"7.7","5":"1.4","6":"9.1","7":"2.6","8":"21.5","9":"5","10":"2","11":"4"},{"1":"Little brown bat","2":"0.010","3":"0.25","4":"17.9","5":"2.0","6":"19.9","7":"24.0","8":"50.0","9":"1","10":"1","11":"1"},{"1":"Man","2":"62.000","3":"1320.00","4":"6.1","5":"1.9","6":"8.0","7":"100.0","8":"267.0","9":"1","10":"1","11":"1"},{"1":"Mole rat","2":"0.122","3":"3.00","4":"8.2","5":"2.4","6":"10.6","7":"NA","8":"30.0","9":"2","10":"1","11":"1"},{"1":"Mountain beaver","2":"1.350","3":"8.10","4":"8.4","5":"2.8","6":"11.2","7":"NA","8":"45.0","9":"3","10":"1","11":"3"},{"1":"Mouse","2":"0.023","3":"0.40","4":"11.9","5":"1.3","6":"13.2","7":"3.2","8":"19.0","9":"4","10":"1","11":"3"},{"1":"Musk shrew","2":"0.048","3":"0.33","4":"10.8","5":"2.0","6":"12.8","7":"2.0","8":"30.0","9":"4","10":"1","11":"3"},{"1":"N. American opossum","2":"1.700","3":"6.30","4":"13.8","5":"5.6","6":"19.4","7":"5.0","8":"12.0","9":"2","10":"1","11":"1"},{"1":"Nine-banded armadillo","2":"3.500","3":"10.80","4":"14.3","5":"3.1","6":"17.4","7":"6.5","8":"120.0","9":"2","10":"1","11":"1"},{"1":"Okapi","2":"250.000","3":"490.00","4":"NA","5":"1.0","6":"NA","7":"23.6","8":"440.0","9":"5","10":"5","11":"5"},{"1":"Owl monkey","2":"0.480","3":"15.50","4":"15.2","5":"1.8","6":"17.0","7":"12.0","8":"140.0","9":"2","10":"2","11":"2"},{"1":"Patas monkey","2":"10.000","3":"115.00","4":"10.0","5":"0.9","6":"10.9","7":"20.2","8":"170.0","9":"4","10":"4","11":"4"},{"1":"Phanlanger","2":"1.620","3":"11.40","4":"11.9","5":"1.8","6":"13.7","7":"13.0","8":"17.0","9":"2","10":"1","11":"2"},{"1":"Pig","2":"192.000","3":"180.00","4":"6.5","5":"1.9","6":"8.4","7":"27.0","8":"115.0","9":"4","10":"4","11":"4"},{"1":"Rabbit","2":"2.500","3":"12.10","4":"7.5","5":"0.9","6":"8.4","7":"18.0","8":"31.0","9":"5","10":"5","11":"5"},{"1":"Raccoon","2":"4.288","3":"39.20","4":"NA","5":"NA","6":"12.5","7":"13.7","8":"63.0","9":"2","10":"2","11":"2"},{"1":"Rat","2":"0.280","3":"1.90","4":"10.6","5":"2.6","6":"13.2","7":"4.7","8":"21.0","9":"3","10":"1","11":"3"},{"1":"Red fox","2":"4.235","3":"50.40","4":"7.4","5":"2.4","6":"9.8","7":"9.8","8":"52.0","9":"1","10":"1","11":"1"},{"1":"Rhesus monkey","2":"6.800","3":"179.00","4":"8.4","5":"1.2","6":"9.6","7":"29.0","8":"164.0","9":"2","10":"3","11":"2"},{"1":"Rock hyrax (Hetero. b)","2":"0.750","3":"12.30","4":"5.7","5":"0.9","6":"6.6","7":"7.0","8":"225.0","9":"2","10":"2","11":"2"},{"1":"Rock hyrax (Procavia hab)","2":"3.600","3":"21.00","4":"4.9","5":"0.5","6":"5.4","7":"6.0","8":"225.0","9":"3","10":"2","11":"3"},{"1":"Roe deer","2":"14.830","3":"98.20","4":"NA","5":"NA","6":"2.6","7":"17.0","8":"150.0","9":"5","10":"5","11":"5"},{"1":"Sheep","2":"55.500","3":"175.00","4":"3.2","5":"0.6","6":"3.8","7":"20.0","8":"151.0","9":"5","10":"5","11":"5"},{"1":"Slow loris","2":"1.400","3":"12.50","4":"NA","5":"NA","6":"11.0","7":"12.7","8":"90.0","9":"2","10":"2","11":"2"},{"1":"Star nosed mole","2":"0.060","3":"1.00","4":"8.1","5":"2.2","6":"10.3","7":"3.5","8":"NA","9":"3","10":"1","11":"2"},{"1":"Tenrec","2":"0.900","3":"2.60","4":"11.0","5":"2.3","6":"13.3","7":"4.5","8":"60.0","9":"2","10":"1","11":"2"},{"1":"Tree hyrax","2":"2.000","3":"12.30","4":"4.9","5":"0.5","6":"5.4","7":"7.5","8":"200.0","9":"3","10":"1","11":"3"},{"1":"Tree shrew","2":"0.104","3":"2.50","4":"13.2","5":"2.6","6":"15.8","7":"2.3","8":"46.0","9":"3","10":"2","11":"2"},{"1":"Vervet","2":"4.190","3":"58.00","4":"9.7","5":"0.6","6":"10.3","7":"24.0","8":"210.0","9":"4","10":"3","11":"4"},{"1":"Water opossum","2":"3.500","3":"3.90","4":"12.8","5":"6.6","6":"19.4","7":"3.0","8":"14.0","9":"2","10":"1","11":"1"},{"1":"Yellow-bellied marmot","2":"4.050","3":"17.00","4":"NA","5":"NA","6":"NA","7":"13.0","8":"38.0","9":"3","10":"1","11":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Scatterplot showing the relationship between body weight and brain weight for 62 mammals.</figcaption><p></p>
+</figure>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine relationship</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mammal, <span class="fu">aes</span>(<span class="at">x =</span> brain_weight, <span class="at">y =</span> body_weight)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Brain weight (in g)"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Body weight (in kg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mammals-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-rule-of-the-bulge_files/figure-html/fig-mammals-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Scatterplot showing the relationship between body weight and brain weight for 62 mammals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The relationship is non-linear, and shows a positive exponential growth curve. Using the <em>Rule of the Bulge</em> mnemonic, we identify this curve in the lower right-hand quadrant. To help straighten this curve we can either:</p>
+<ul>
+<li>Transform <em>X</em> using an upward transformation; or</li>
+<li>Transform <em>Y</em> using a downward transformation</li>
+</ul>
+<p>Since there is only a single predictor, transforming <em>Y</em> is low-cost (it doesn’t affect the relationship between <em>Y</em> and other predictors), whereas transforming <em>X</em> with an upward transformation means we would have to include more than one effect in the model (e.g., <span class="math inline">\(X\)</span> and <span class="math inline">\(X^2\)</span>).</p>
+<p>Because of this I will transform <em>Y</em> using the log-transformation. Looking at the relationship between ln(body weight) and brain weight, we will see if this “straightened” the relationship.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mammal, <span class="fu">aes</span>(<span class="at">x =</span> brain_weight, <span class="at">y =</span> <span class="fu">log</span>(body_weight))) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Brain weight (in g)"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"ln(Body weight)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mammals-logx" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-rule-of-the-bulge_files/figure-html/fig-mammals-logx-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Scatterplot showing the relationship between the natural logarithm of body weight and brain weight for 62 mammals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The transformed relationship is still non-linear, and shows positive exponential decay. Again, using the <em>Rule of the Bulge</em> mnemonic, we identify this curve in the upper left-hand quadrant. To help straighten this curve we can either:</p>
+<ul>
+<li>Transform <em>X</em> using an downward transformation; or</li>
+<li>Transform <em>Y</em> using an upward transformation</li>
+</ul>
+<p>Since we just used a downward transformation on <em>Y</em> to fix the last relationship, using an upward transformation now would just re-introduce the initial problem. Because of this I will transform <em>X</em> using the log-transformation. Looking at the relationship between ln(body weight) and ln(brain weight), we will see if this “straightened” the relationship.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mammal, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(brain_weight), <span class="at">y =</span> <span class="fu">log</span>(body_weight))) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"ln(Brain weight)"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"ln(Body weight)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mammals-log-log" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-rule-of-the-bulge_files/figure-html/fig-mammals-log-log-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Scatterplot showing the relationship between the natural logarithm of body weight and the natural logarithm of brain weight for 62 mammals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This relationship looks linear! So we can fit a linear model that uses ln(brain weight) to predict variation in ln(body weight). We can then use back-transformations and a plot of the fitted equation to interpret the coefficients in the model.</p>
+<p><br></p>
+<section id="fit-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-linear-model">Fit Linear Model</h2>
+<p>Fitting the linear model and looking at it’s output:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lm<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">lm</span>(<span class="fu">log</span>(body_weight) <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log</span>(brain_weight), <span class="at">data =</span> mammal)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model-level output</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.9207837","2":"0.9194634","3":"0.8863112","4":"697.42","5":"9.835792e-35","6":"1","7":"-79.4751","8":"164.9502","9":"171.3316","10":"47.13286","11":"60","12":"62"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient-level output</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm<span class="fl">.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-2.509072","3":"0.18408164","4":"-13.63021","5":"4.984183e-20"},{"1":"log(brain_weight)","2":"1.224958","3":"0.04638462","4":"26.40871","5":"9.835792e-35"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Interpreting this output:</p>
+<ul>
+<li>Differences in mammals’ brain weight explain 92.1% of the variation in body weight.</li>
+</ul>
+<p>The fitted equation is:</p>
+<p><span class="math display">\[
+\hat{\ln(\mathrm{Body~Weight})}_i = -2.51 + 1.22\bigg[\ln(\mathrm{Brain~Weight}_i)\bigg]
+\]</span></p>
+<ul>
+<li>Mammals with a log(brain weight) of 0 have a predicted log(body weight) of <span class="math inline">\(-2.51\)</span>, on average.</li>
+<li>Each one-unit change in log(brain weight) is associated with a change in log(body weight) of 1.22-units, on average.</li>
+</ul>
+<p>We can also back-transform these log entities to get a better interpretation of the coefficients. For the intercept, when log(brain weight) is 0, actual brain weight = 1. Thus, mammals with a 1-gram brain weight have a predicted log(body weight) of <span class="math inline">\(-2.51\)</span>, on average. Exponentiating this (<span class="math inline">\(e^{-2.51}=0.081\)</span>), so we can interpret the intercept as:</p>
+<ul>
+<li>Mammals with a brain weight of 1 gram have a predicted body weight of 0.081 kg, on average.</li>
+</ul>
+<p>To consider the interpretation of the slope, we utilize the fact that log-transforming <em>X</em> (using the natural logarithm) results in an interpretation that can be interpreted as a 1% change in <em>X</em>. As such, we choose a series of brain weights that differ by 1% and plug them into our fitted equation to get predicted log(body weights):</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose brain weights that differ by 1%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>body <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">101</span>, <span class="fl">102.01</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get predicted ln(body weight) values</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">2.51</span> <span class="sc">+</span> <span class="fl">1.22</span> <span class="sc">*</span> <span class="fu">log</span>(body)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.108308 3.120447 3.132586</code></pre>
+</div>
+</div>
+<p>The interpretation is:</p>
+<ul>
+<li>Each 1% difference in brain weight is associated with a difference of 0.012 in log(body weight), on average.</li>
+</ul>
+<p>Here 0.012 is the slope coefficient divided by 100. Now let’s transform the log(body weight) values to raw body weights. To do this, we exponentiate these predicted values:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exponentiate the predicted values</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">2.51</span> <span class="sc">+</span> <span class="fl">1.22</span> <span class="sc">*</span> <span class="fu">log</span>(body))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22.38313 22.65651 22.93322</code></pre>
+</div>
+</div>
+<p>This results in a constant multiplicative difference of 1.0122, Namely,</p>
+<ul>
+<li>Each 1% difference in brain weight is associated with a 1.012-fold difference in body weight, on average.</li>
+</ul>
+<p>Or, interpreting this as a percent change:</p>
+<ul>
+<li>Each 1% difference in brain weight is associated with a 1.22% difference in body weight, on average.</li>
+</ul>
+<p>This 1.22% change is essentially the slope coefficient from the fitted equation. Thus when we log-transform both <em>X</em> and <em>Y</em> using the natural logarithm, we can interpret both the change in <em>X</em> and change in <em>Y</em> as a percent change. In general:</p>
+<ul>
+<li>Each 1% difference in <em>X</em> is associated with a <span class="math inline">\(\hat\beta_1\)</span>% difference in <em>Y</em>, on average.</li>
+</ul>
+<p>We can also plot the fitted curve to facilitate a graphical interpretation.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fitted curve</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mammal, <span class="fu">aes</span>(<span class="at">x =</span> brain_weight, <span class="at">y =</span> body_weight)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x){<span class="fu">exp</span>(<span class="sc">-</span><span class="fl">2.509</span> <span class="sc">+</span> <span class="fl">1.225</span><span class="sc">*</span><span class="fu">log</span>(x))}) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Brain weight (in g)"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Body weight (in kg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mammals-fitted-curve" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="09-rule-of-the-bulge_files/figure-html/fig-mammals-fitted-curve-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Fitted regression curve showing the relationship between body weight and brain weight for 62 mammals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fyi">
+<p>Note that the relationship between brain weight and body weight is referred to as a proportional growth model. (If the relationship was negative we would call it a proportional decay model.) To “linearize” a proportional growth model, we fit a log–log model.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="interpreting-log-transformed-models" class="level1">
+<h1>Interpreting Log-Transformed Models</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-interpret" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figs/interpreting-log-models.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Log-transformations for different curvilinear relationship and interpretation of the slope coefficients from these models.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -8,7 +8,7 @@ library(corrr)        #Correlations
 library(educate)      #Evaluate residual plots; NEED VERSION 0.3.01 (or higher)
 library(ggrepel)      #For nice plot labels
 library(patchwork)    #For layout with more than one plot
-#library(texreg)       #Creating table of regression results
+
 
 
 

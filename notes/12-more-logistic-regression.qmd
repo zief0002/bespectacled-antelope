@@ -1,61 +1,34 @@
 ---
-title: "Logistic Regression II"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+title: "More Logistic Regression"
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
-
 
 # Preparation
 
-In this set of notes, you will learn expand our knowledge of the logistic regression model to include non-linear predictor effects, covariates, and interaction terms. We will use data from the file *graduation.csv* (see the [data codebook](http://zief0002.github.io/epsy-8252/codebooks/graduation.html)) to explore predictors of college graduation. 
+In this set of notes, you will expand your knowledge of the logistic regression model to include non-linear predictor effects, covariates, and interaction terms. We will again use data from the file *graduation.csv* to explore predictors of college graduation. 
+
+- [CSV File](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv)
+- [Data Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/graduation.html)
+
 
 Within the analysis, we will focus on the research question of whether the probability of obtaining a degree differs for first and non-first generation students. We will use information criteria as the framework of evidence to adopt different models, along with an evaluation of the models' residuals.
 
 
-```{r message=FALSE}
+```{r}
 # Load libraries
 library(AICcmodavg)
 library(broom)
@@ -66,7 +39,7 @@ library(texreg)
 library(tidyverse)
 
 # Read in data and create dummy variable for categorical variables
-grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv") %>%
+grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv") |>
   mutate(
     got_degree = if_else(degree == "Yes", 1, 0),
     is_firstgen = if_else(first_gen == "Yes", 1, 0),
@@ -89,8 +62,8 @@ To examine this, we want to fit a set of models that systematically include pote
 To determine the order of importance, we can compute the correlations between each covariate and the dummy-coded outcome.
 
 ```{r}
-grad %>%
-  select(got_degree, act, scholarship, ap_courses,is_nontrad) %>%
+grad |>
+  select(got_degree, act, scholarship, ap_courses,is_nontrad) |>
   correlate()
 ```
 
@@ -104,21 +77,27 @@ The rank ordering of covariates (based on the absolute value of the correlation 
 <br />
 
 
-# Including the Effect of ACT
+# Non-Linear Effect of ACT
 
 To begin the analysis, we will include ACT scores as a covariate in the model. Since the `act` variable is continuous, we need to use the "correct" functional form when we include it in the model. In the previous set of notes, we saw some misfit when we examined the binned residual plot for the logistic regression model that included ACT as a predictor of the probability of obtaining a degree. One possibility is that this may be because the effect of ACT on these probabilities is non-linear. To examine this, we can plot the empirical log-odds of obtaining a degree versus ACT scores, and examine the functional form of the relationship.
 
 
-```{r fig.cap='Log-odds of obtaining a degree conditional on ACT score. Size of the dot is proportional to sample size. The loess smoother is also weighted based on the sample size.'}
+```{r}
+#| label: fig-ln-odds-act
+#| fig-cap: "Log-odds of obtaining a degree conditional on ACT score. Size of the dot is proportional to sample size. The loess smoother is also weighted based on the sample size."
+#| fig-width: 8
+#| fig-height: 6
+#| out-width: "60%"
+#| code-fold: true
 # Obtain the log-odds who obtain a degree for each ACT score
-prop_grad = grad %>% 
-  group_by(act, degree) %>% 
-  summarize(N = n()) %>% 
+prop_grad = grad |> 
+  group_by(act, degree) |> 
+  summarize(N = n()) |> 
   mutate(
     Prop = N / sum (N)
-    ) %>%
-  ungroup() %>%
-  filter(degree == "Yes") %>%
+    ) |>
+  ungroup() |>
+  filter(degree == "Yes") |>
   mutate(
     Odds = Prop / (1 - Prop),
     Logits = log(Odds)
@@ -138,7 +117,12 @@ This suggests a non-linear relationship between ACT score and the log-odds of ob
 - Including a quadratic effect of ACT; or
 - Log-transforming the ACT variable.
 
-```{r fig.show='hold', out.width="45%", fig.cap="Binned residual plots for two models that include non-linear effects of ACT. The quadratic model (LEFT) and the log-linear model (RIGHT)."}
+```{r}
+#| label: fig-residuals
+#| fig-cap: "Binned residual plots for two models that include non-linear effects of ACT. The quadratic model (LEFT) and the log-linear model (RIGHT)."
+#| fig-width: 10
+#| fig-height: 4
+#| out-width: "100%"
 # Fit non-linear models
 glm.1_quad = glm(got_degree ~ 1 + act + I(act^2), data = grad, family = binomial(link = "logit"))
 glm.1_log = glm(got_degree ~ 1 + log(act), data = grad, family = binomial(link = "logit"))
@@ -148,11 +132,10 @@ out.1_quad = binned_residuals(glm.1_quad)
 out.1_log = binned_residuals(glm.1_log)
 
 # Binned residual plots
-print(out.1_quad)
-print(out.1_log)
+plot(out.1_quad) | plot(out.1_log)
 ```
 
-The binned resdiuals show slightly better fit to the log-linear model than to the quadratic model. We also examine the empirical evidence via information criteria.
+The binned residuals show slight misfit to both the log-linear model and the quadratic model. We also examine the empirical support via information criteria.
 
 ```{r}
 aictab(
@@ -160,9 +143,11 @@ aictab(
   modnames = c("Linear Effect", "Quadratic Effect", "Log-Linear Effect")
 )
 ```
-Here the most empirically supported model (given the data and the candidate models) is the quadratic model, although there is also a great deal of support for the log-linear model. I would probably adopt the log-linear model based on its better residual fit and the theoretical rationale that I would not expect the probability of graduating to be smaller for high ACT values. But, for pedagogical purposes, we will look at and interpret the output for both models.
+
+Here the most empirically supported model (given the data and the candidate models) is the quadratic model, although there is also a great deal of support for the log-linear model. I would probably adopt the log-linear model based on its simplicity and the theoretical rationale that I would not expect the probability of graduating to be smaller for high ACT values. But, for pedagogical purposes, we will look at and interpret the output for both models.
 
 <br />
+
 
 ## Quadratic Effect of ACT
 
@@ -178,7 +163,7 @@ $$
 \ln \bigg( \frac{\hat\pi_i}{1 - \hat\pi_i}\bigg) = -4.57 + 0.37(\mathrm{ACT}_i) - 0.005(\mathrm{ACT}_i^2)
 $$
 
-Since this is an interaction model, we interpret the effect of ACT as: The effect of ACT on the log-odds of obtaining a degree depends on ACT. (We could also graph this effect if we were interested in the effect of ACT on the log-odds of obtaining a degree.) 
+Since this is an interaction model, we interpret the effect of ACT as: The effect of ACT on the log-odds of obtaining a degree depends on ACT. (We could also graph this effect if we were interested in the effect of ACT on the log-odds of obtaining a degree.)
 
 Transforming the fitted equation to the odds metric:
 
@@ -188,7 +173,9 @@ $$
 
 Because changing ACT now impacts two exponent terms, one of which includes the quadratic of ACT, it is super essential that we create a plot to interpret the effects of ACT on the odds of obtaining a degree.
 
-```{r fig.cap='Predicted odds of obtaining a degree as a function of ACT score.'}
+```{r}
+#| label: fig-quad-fitted
+#| fig-cap: "Predicted odds of obtaining a degree as a function of ACT score."
 # Plot the fitted equation
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -200,16 +187,19 @@ ggplot(data = grad, aes(x = act, y = got_degree)) +
   ylab("Predicted odds of obtaining a degree")
 ```
 
-The odds curve is somewhat "S"-shaped (although it is not constrained between 0 and 1 like the probability curve). This is because of the quadratic effect of ACT. The overall trend is one of exponential growth, although the rate-of-change is not constant within this curve. The most rapid change in the odds of obtaining a degree occurs at ACT scores between 20 and 30. 
+The odds curve is somewhat "S"-shaped (although it is not constrained between 0 and 1 like the probability curve). This is because of the quadratic effect of ACT. The overall trend is one of exponential growth, although the rate-of-change is not constant within this curve. The most rapid change in the odds of obtaining a degree occurs at ACT scores between 20 and 30.
 
 Finally, we could also transform the equation into the probability metric. The fitted equation is:
 
 $$
 \hat\pi_i = \frac{e^{-4.57 + 0.37(\mathrm{ACT}_i) - 0.005(\mathrm{ACT}_i^2)}}{1 + e^{-4.57 + 0.37(\mathrm{ACT}_i) - 0.005(\mathrm{ACT}_i^2)}}
 $$
+
 Again, it is worthwhile to create a plot to interpret the effects of ACT on the probability of obtaining a degree.
 
-```{r fig.cap='Predicted probability of obtaining a degree as a function of ACT score.'}
+```{r}
+#| label: fig-quad-fitted-prob
+#| fig-cap: "Predicted probability of obtaining a degree as a function of ACT score."
 # Plot the fitted equation
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -226,6 +216,7 @@ The probability curve is "S"-shaped and constrained between 0 and 1. The left-ha
 
 <br />
 
+
 ## Log-Linear Effect of ACT
 
 We will again start our interpretation by examining the `tidy()` output.
@@ -240,7 +231,7 @@ $$
 \ln \bigg( \frac{\hat\pi_i}{1 - \hat\pi_i}\bigg) = -6.94 + 2.50\bigg[\ln(\mathrm{ACT}_i)\bigg]
 $$
 
-We interpret the effect of ACT as: Each 1% difference in ACT score is associated with a .025-unit change in the log-odds of obtaining a degree. 
+We interpret the effect of ACT as: Each 1% difference in ACT score is associated with a .025-unit change in the log-odds of obtaining a degree.
 
 Transforming the fitted equation to the odds metric:
 
@@ -250,7 +241,9 @@ $$
 
 It is again easier to interpret the effects of ACT on the odds of obtaining a degree by creating a plot .
 
-```{r fig.cap='Predicted odds of obtaining a degree as a function of ACT score.'}
+```{r}
+#| label: fig-ln-fitted
+#| fig-cap: "Predicted odds of obtaining a degree as a function of ACT score."
 # Plot the fitted equation
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -262,7 +255,7 @@ ggplot(data = grad, aes(x = act, y = got_degree)) +
   ylab("Predicted odds of obtaining a degree")
 ```
 
-The effect of ACT on the probability of obtaining a degree is positive and non-linear (exponential growth). The predicted odds of obtaining a degree increases exponentially for higher ACT scores. 
+The effect of ACT on the probability of obtaining a degree is positive and non-linear (exponential growth). The predicted odds of obtaining a degree increases exponentially for higher ACT scores.
 
 Finally, we could also transform the equation into the probability metric. The fitted equation is:
 
@@ -272,7 +265,9 @@ $$
 
 Again, it is worthwhile to create a plot to interpret the effects of ACT on the probability of obtaining a degree.
 
-```{r fig.cap='Predicted probability of obtaining a degree as a function of ACT score.'}
+```{r}
+#| label: fig-ln-fitted-prob
+#| fig-cap: "Predicted probability of obtaining a degree as a function of ACT score."
 # Plot the fitted equation
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -284,7 +279,7 @@ ggplot(data = grad, aes(x = act, y = got_degree)) +
   ylab("Predicted probability of obtaining a degree")
 ```
 
-The effect of ACT on the probability of obtaining a degree is positive and non-linear. ACT has a larger effect on the probability of obtaining a degree for smaller ACT scores and this effect, while still positive, diminishes for higher ACT scores. 
+The effect of ACT on the probability of obtaining a degree is positive and non-linear. ACT has a larger effect on the probability of obtaining a degree for smaller ACT scores and this effect, while still positive, diminishes for higher ACT scores.
 
 :::protip
 Once you include non-linear effects in the model, always create a plot of the fitted equation to try and interpret odds or probabilities.
@@ -294,7 +289,7 @@ Once you include non-linear effects in the model, always create a plot of the fi
 <br />
 
 
-# Main Effects Models: Adding Covariates
+# Adding Covariates: Main Effects Models
 
 Now that we have settled on a functional form for the effect of ACT, we can include it as a covariate in a model with first generation status. Including covariates in the logistic model is done the same way as for `lm()` models. We fit that model with the following syntax:
 
@@ -324,7 +319,7 @@ tidy(glm.3)
 The fitted equation is:
 
 $$
-\ln \bigg( \frac{\hat\pi_i}{1 - \hat\pi_i}\bigg) = -5.91 + 0.51(\mathrm{First~Generation}_i) + 2.07\bigg[\ln(\mathrm{ACT~Score}_i)\bigg] 
+\ln \bigg( \frac{\hat\pi_i}{1 - \hat\pi_i}\bigg) = -5.91 + 0.51(\mathrm{First~Generation}_i) + 2.07\bigg[\ln(\mathrm{ACT~Score}_i)\bigg]
 $$
 
 Using the logit/log-odds metric, we interpret the coefficients as:
@@ -355,7 +350,7 @@ We can interpret the intercept and the effect of first generation status directl
 - Each one-point difference in ACT score is associated with improving the odds of graduating 1.09 times, on average, after controlling for whether or not the students are first generation college students.
 
 
-While it is not germain to the research question, if you wanted to interpret the effect of ACT, you could plot the fitted model. As always with main effects models, we find the fitted equation for first genertation and non-first generation students, and plot the two curves separately using multiple `geom_function()` layers.
+While it is not pertinent to the research question, if you wanted to interpret the effect of ACT, you could plot the fitted model. As always with main effects models, we find the fitted equation for first generation and non-first generation students, and plot the two curves separately using multiple `geom_function()` layers.
 
 $$
 \begin{split}
@@ -367,7 +362,11 @@ $$
 $$
 
 
-```{r fig.cap='Predicted odds of obtaining a degree as a function of ACT score first generation (solid, red line) and non-first generation (dashed, blue line) students.'}
+```{r}
+#| label: fig-main-effects-fitted
+#| fig-cap: "Predicted odds of obtaining a degree as a function of ACT score first generation (solid, red line) and non-first generation (dashed, blue line) students."
+#| fig-width: 8
+#| fig-height: 6
 # Plot the fitted equation
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -424,7 +423,11 @@ $$
 We can include each of these in a `geom_function()` layer in our plot.
 
 
-```{r fig.width=8, fig.height=6, fig.cap='Predicted probability of obtaining a degree as a function of ACT score for first generation (solid, red line) and non-first generation (dashed, blue line) students.'}
+```{r}
+#| label: fig-main-effects-fitted-prob
+#| fig-cap: "Predicted probabilities of obtaining a degree as a function of ACT score first generation (solid, red line) and non-first generation (dashed, blue line) students."
+#| fig-width: 8
+#| fig-height: 6
 # Plot the fitted equations
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -453,7 +456,7 @@ Here we see that the probability of graduatingobtaining a degree is positively a
 
 # Including Other Covariates in the Model
 
-We will now fit a series of models that systematically include the remainder of the potential covariates based on their importance. We will have to adopt the correct functional form for ALL continuous variables by examining the plots of the data and residuals from potential transformations. NOTE: This work is not shown here, but you should undertake it.
+We will now fit a series of models that systematically include the remainder of the potential covariates based on their importance. We will have to adopt the correct functional form for ALL continuous variables by examining the plots of the data and residuals from potential transformations. (NOTE: This work is not shown here, but you should undertake it.)
 
 The second covariate we will include is the number of AP courses taken. We use a log-transformation of this variable given its curvilinear status with the empirical log-odds of obtaining a degree. Because it has values of 0, we also add 1 before log-transforming.
 
@@ -462,7 +465,7 @@ The second covariate we will include is the number of AP courses taken. We use a
 glm.4 = glm(got_degree ~ 1 + is_firstgen + log(act) + log(ap_courses + 1), data = grad, family = binomial(link = "logit"))
 ```
 
-Next, we include scholarship amount into the model. An examination of the empirical log-odds of obtaining a degree versus scholarship amount also suggested a curvilinear relationship. We adopt a log-linear model, again adding 1 prior to transfomring using the logarithm since there are 0s in the variable.
+Next, we include scholarship amount into the model. An examination of the empirical log-odds of obtaining a degree versus scholarship amount also suggested a curvilinear relationship. We adopt a log-linear model, again adding 1 prior to transforming using the logarithm since there are 0s in the variable.
 
 
 ```{r}
@@ -491,6 +494,8 @@ aictab(
 
 Here the empirical evidence supports the model that includes all the covariates. Examining the binned residuals (not shown), the model does not seem adequate. Next we turn to evaluating potential interaction terms to see if that improves the residual fit.
 
+<br />
+
 
 # Interaction Between ACT Score and First Generation Status
 
@@ -502,18 +507,18 @@ glm.7 = glm(got_degree ~ 1 + is_firstgen + log(act) + log(ap_courses + 1) + log(
               is_nontrad + is_firstgen:log(act), data = grad, family = binomial(link = "logit"))
 
 glm.8 = glm(got_degree ~ 1 + is_firstgen + log(act) + log(ap_courses + 1) + log(scholarship + 1) +
-              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1), 
+              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1),
             data = grad, family = binomial(link = "logit"))
 
 glm.9 = glm(got_degree ~ 1 + is_firstgen + log(act) + log(ap_courses + 1) + log(scholarship + 1) +
-              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1) + 
-              is_firstgen:log(scholarship + 1), 
+              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1) +
+              is_firstgen:log(scholarship + 1),
             data = grad, family = binomial(link = "logit"))
 
 
 glm.10 = glm(got_degree ~ 1 + is_firstgen + log(act) + log(ap_courses + 1) + log(scholarship + 1) +
-              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1) + 
-              is_firstgen:log(scholarship + 1) + is_firstgen:is_nontrad, 
+              is_nontrad + is_firstgen:log(act) + is_firstgen:log(ap_courses + 1) +
+              is_firstgen:log(scholarship + 1) + is_firstgen:is_nontrad,
             data = grad, family = binomial(link = "logit"))
 
 # Evaluate
@@ -539,6 +544,7 @@ $$
 $$
 
 <br />
+
 
 # Interpreting the Results from the Adopted Model
 
@@ -574,7 +580,11 @@ $$
 
 We will plot these two equations using the probability metric.
 
-```{r fig.cap='Predicted probability of obtaining a degree as a function of ACT score for first generation (solid, red line) and non-first generation (dashed, blue line) who ar 18 years old at the time of enrollment. The effects for the number of AP credits and scholarship amount (in thousands of dollars) were controlled by setting them to their mean values of 3.28 and 0.18, respectively.'}
+```{r fig.cap=''}
+#| label: fig-interaction-fitted-prob
+#| fig-cap: "Predicted probability of obtaining a degree as a function of ACT score for first generation (solid, red line) and non-first generation (dashed, blue line) who ar 18 years old at the time of enrollment. The effects for the number of AP credits and scholarship amount (in thousands of dollars) were controlled by setting them to their mean values of 3.28 and 0.18, respectively."
+#| fig-width: 8
+#| fig-height: 6
 # Plot the fitted equations
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point(alpha = 0) +
@@ -613,16 +623,20 @@ We can present selected fitted models from the analysis in a table similar to th
 
 Here is a table I might present for this analysis.
 
-```{r message=FALSE, results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: tbl-model-results
+#| tbl-cap: "Five candidate models predicting variation in the log-odds of obtaining a degree. The first generation and non-traditional student predictors were dummy-coded."
+#| code-fold: true
+#| results: asis
 # Create the table
 htmlreg(
   l = list(glm.0, glm.2, glm.3, glm.6, glm.7),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20,          #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E"), 
-  custom.coef.names = c("Intercept", "First Generation", "ln(ACT Score)", 
-                        "ln(AP Courses + 1)", "ln(Scholarship Amount + 1)", "Non-Traditional Student", 
+  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E"),
+  custom.coef.names = c("Intercept", "First Generation", "ln(ACT Score)",
+                        "ln(AP Courses + 1)", "ln(Scholarship Amount + 1)", "Non-Traditional Student",
                         "First Generation x ln(ACT Score)"),
   reorder.coef = c(2:7, 1), #Put intercept at bottom of table
   include.aic = FALSE, #Omit AIC
@@ -634,7 +648,7 @@ htmlreg(
     R2 = (2722.5 - c(NA, 2662.09, 2605.00, 2540.35, 2536.67)) /  2722.5
     ), # Add AICc values
   reorder.gof = c(3, 1, 2),
-  caption = "Five candidate models predicting variation in the log-odds of obtaining a degree. The first generation and non-traditional student predictors were dummy-coded.",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table

@@ -16,7 +16,7 @@ library(tidyverse)
 ##################################################
 
 mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
-head(mn)
+mn
 
 
 

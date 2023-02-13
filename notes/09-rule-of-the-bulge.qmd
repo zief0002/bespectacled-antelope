@@ -1,59 +1,28 @@
 ---
 title: "Rule of the Bulge---An Example"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-library(patchwork)
-library(tidyverse)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 In this set of notes you will learn about power transformations, how to use power transformations to re-express data so that the re-expressed data meet the assumption of "linearity" (i.e., straighten" curvilinear data), and see this in an empirical example.
 
 <br />
 
-## Power Transformations
+
+# Power Transformations
 
 All of the transformations, or re-expressions, of data we have seen in this course are power transformations. Power transformations essentially transform some variable *X* using the function:
 
@@ -70,17 +39,26 @@ where *p* is some power. Here are some important ideas about power transformatio
 
 This is called the *ladder of transformations*, since we can think about these different power transformations as a ladders going up or down from the $p=1$ (no transformation) starting point.
 
-```{r out.width='70%', fig.cap="Ladder of transformations indicating upward (up-the-ladder) power transformations and downward (down-the-ladder) power transformations.", echo=FALSE}
+```{r}
+#| label: fig-ladder
+#| fig-cap: "Ladder of transformations indicating upward (up-the-ladder) power transformations and downward (down-the-ladder) power transformations."
+#| echo: false
+#| out-width: "70%"
 include_graphics("figs/ladder-of-transformations.png")
 ```
 
+<br />
 
 
-## Rule of the Bulge
+# Rule of the Bulge
 
 The *Rule of the Bulge* is a technique introduced by John Tukey and Frederick Mosteller for "straightening" data to better meet the assumption of linearity. Note that the following figure shows the four monotonic curves; one in each of the four quadrants:
 
-```{r out.width='70%', fig.cap="Ladder of transformations indicating upward (up-the-ladder) power transformations and downward (down-the-ladder) power transformations.", echo=FALSE}
+```{r}
+#| label: fig-bulge
+#| fig-cap: "Rule of the Bulge: Visual mneumonic for choosing power transformations to 'straighten' each of the four monotonic curves."
+#| echo: false
+#| out-width: "70%"
 include_graphics("figs/rule-of-the-bulge.png")
 ```
 
@@ -93,12 +71,31 @@ The Rule of the Bulge tells us:
 - If the data have a shape similar to that shown in the **Quadrant 3**, then the data analyst can try to re-express the variables by using a downward transformation of *X* (down-the-ladder), a downward transformation of *Y*, or both.
 - If the data have a shape similar to that shown in the **Quadrant 4**, then the data analyst can try to re-express the variables by using an upward transformation of *X* (up-the-ladder), a downward transformation of *Y* (down-the-ladder), or both.
 
+
+:::fyi
+The relationships in Quadrants 1 and 4 depict *exponential growth*. These relationships both have a growing rate-of-change for larger *x*-values, albeit in different directions. The model in Quadrant 1 is a negative exponential growth model while that in Quadrant 4 is a positive exponential growth model. 
+
+The relationships in Quadrants 1 and 4 are referred to as *exponential decay* models, since they both have a decaying rate-of-change for larger *x*-values (again in different directions). The model in Quadrant 2 is a positive exponential decay model while that in Quadrant 3 is a negative exponential decay model.
+:::
+
+
+
 To illustrate, consider the the non-linear relationships depicted in the following two scatterplots. 
 
-```{r fig.width=8, fig.height=4, out.width="80%", class.source = 'fold-hide'}
+```{r}
+#| label: fig-examples
+#| fig-cap: "LEFT: The relationship between graduation rates and SAT scores is depicted by the monotonic curve in Quadrant 2 (positive, decreasing change). RIGHT: The relationship between infant mortality rates and female education level is depicted by the monotonic curve shown in Quadrant 3 (negative, decreasing change)."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "80%"
+#| code-fold: true
+# Load libraries
+library(tidyverse)
+library(patchwork)
+
 # Import data
-mn = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mn-schools.csv")
-fert = readr::read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/fertility.csv")
+mn = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mn-schools.csv")
+fert = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fertility.csv")
 
 # Create scatterplot of graduation data
 p1 = ggplot(data = mn, aes(x = sat, y = grad)) +
@@ -122,28 +119,17 @@ p1 | p2
 
 
 
-The scatterplot of the relationship between median SAT scores and graduation rate indicates a relationship similar to that in Quadrant 2. This suggests that we could try to: (1) Re-express *X* using a downward transformation; (2) re-express *Y* using an upward transformation, or (3) both. In the notes, we fitted a model in which we log-transformed the median SAT scores (downward transformation of *X*) to "straighten" the relationship,
+The scatterplot of the relationship between median SAT scores and graduation rate indicates a relationship similar to that in Quadrant 2 (positive exponential decay). This suggests that we could try to: (1) Re-express *X* using a downward transformation; (2) re-express *Y* using an upward transformation, or (3) both. In the notes, we fitted a model in which we log-transformed the median SAT scores (downward transformation of *X*) to "straighten" the relationship,
 
 ```
 Y ~ 1 + ln(X)
 ```
 
-The scatterplot of the relationship between female education level and infant mortality rate indicates a relationship similar to that in Quadrant 3. This suggests that we could try to: (1) Re-express *X* using a downward transformation; (2) re-express *Y* using a downward transformation, or (3) both. Below is the plot in which we re-expressed infant mortality rate using a log-teansform (downward transformation.)
+The scatterplot of the relationship between female education level and infant mortality rate indicates a relationship similar to that in Quadrant 3 (negative exponential decay). This suggests that we could try to: (1) Re-express *X* using a downward transformation; (2) re-express *Y* using a downward transformation, or (3) both. Below is the plot in which we re-expressed infant mortality rate using a log-transform (downward transformation.)
 
 ```
 ln(Y) ~ 1 + X
 ```
-
-
-```{r class.source = 'fold-hide'}
-ggplot(data = fert, aes(x = educ_female, y = log(infant_mortality))) +
-    geom_point() +
-    geom_smooth(se = FALSE) +
-    xlab("Average female education level") +
-    ylab("ln(Infant mortality rate)") +
-    theme_light()
-```
-
 
 
 <br />
@@ -151,7 +137,7 @@ ggplot(data = fert, aes(x = educ_female, y = log(infant_mortality))) +
 
 ## Caution `r emo::ji("warning")`
 
-Sometimes these re-expressions will not be adequate. In some cases, you might not be able to "straighten" the data enough to meet the assumption. This is because these transformations "deteriorate" or "spuriously increase" the information contained in the data. As you use re-expressions further down-the-ladder, the variation in the re-expressed data decreases (Less variation = less information). Eventually, the variation in the re-epressed data will be so small that the values become indistinguishable (no information). 
+Sometimes these re-expressions will not be adequate. In some cases, you might not be able to "straighten" the data enough to meet the assumption. This is because these transformations "deteriorate" or "spuriously increase" the information contained in the data. As you use re-expressions further down-the-ladder, the variation in the re-expressed data decreases (Less variation = less information). Eventually, the variation in the re-expressed data will be so small that the values become indistinguishable (no information).
 
 In the other direction, as you use re-expressions further up-the-ladder, the variation in the re-expressed data increases (more variation = more information), albeit spuriously. Essentially, we are adding information that is not truly in the data. This might lead us to finding results that aren't really there, or over-emphasizing relationships.
 
@@ -161,18 +147,28 @@ Re-expressions that only go a little way up- or down-the-ladder are fine. Just b
 
 <br />
 
-## Empirical Example
+
+# Empirical Example
 
 We will use the *mammals.csv* data to predict variation in body weight for mammals using their brain weight as a predictor.
 
-```{r setup}
+- [CSV File](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv)
+- [Data Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/mammals.html)
+
+
+
+```{r}
+#| label: fig-mammals
+#| fig-cap: "Scatterplot showing the relationship between body weight and brain weight for 62 mammals."
 # Load libraries
 library(broom)
 library(tidyverse)
 
 # Import data
-mammal = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/mammal.csv")
-head(mammal)
+mammal = read_csv("https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/mammals.csv")
+
+# View data
+mammal
 
 # Examine relationship
 ggplot(data = mammal, aes(x = brain_weight, y = body_weight)) +
@@ -183,16 +179,18 @@ ggplot(data = mammal, aes(x = brain_weight, y = body_weight)) +
   ylab("Body weight (in kg)")
 ```
 
-The relationship is non-linear, and shows an exponential growth curve. Use the Rule of the Bulge mnemonic, we identify this curve in the lower right-hand quadrant. To help straighten this curve we can either:
+The relationship is non-linear, and shows a positive exponential growth curve. Using the *Rule of the Bulge* mnemonic, we identify this curve in the lower right-hand quadrant. To help straighten this curve we can either:
 
 - Transform *X* using an upward transformation; or
 - Transform *Y* using a downward transformation
 
-Since there is only a single predictor, transforming *Y* is low-cost (it doesn't affect the relationship between *Y* and other predictors), whereas transforming *X* with an upward transformation means we would have to include more than one effect in the model (e.g., $X$ and $X^2$). 
+Since there is only a single predictor, transforming *Y* is low-cost (it doesn't affect the relationship between *Y* and other predictors), whereas transforming *X* with an upward transformation means we would have to include more than one effect in the model (e.g., $X$ and $X^2$).
 
 Because of this I will transform *Y* using the log-transformation. Looking at the relationship between ln(body weight) and brain weight, we will see if this "straightened" the relationship.
 
 ```{r}
+#| label: fig-mammals-logx
+#| fig-cap: "Scatterplot showing the relationship between the natural logarithm of body weight and brain weight for 62 mammals."
 ggplot(data = mammal, aes(x = brain_weight, y = log(body_weight))) +
   geom_point() +
   geom_smooth(se = FALSE) +
@@ -201,7 +199,7 @@ ggplot(data = mammal, aes(x = brain_weight, y = log(body_weight))) +
   ylab("ln(Body weight)")
 ```
 
-The relationship is non-linear, and shows a decay version of the exponential growth curve. Use the Rule of the Bulge mnemonic, we identify this curve in the upper left-hand quadrant. To help straighten this curve we can either:
+The transformed relationship is still non-linear, and shows positive exponential decay. Again, using the *Rule of the Bulge* mnemonic, we identify this curve in the upper left-hand quadrant. To help straighten this curve we can either:
 
 - Transform *X* using an downward transformation; or
 - Transform *Y* using an upward transformation
@@ -209,6 +207,8 @@ The relationship is non-linear, and shows a decay version of the exponential gro
 Since we just used a downward transformation on *Y* to fix the last relationship, using an upward transformation now would just re-introduce the initial problem. Because of this I will transform *X* using the log-transformation. Looking at the relationship between ln(body weight) and ln(brain weight), we will see if this "straightened" the relationship.
 
 ```{r}
+#| label: fig-mammals-log-log
+#| fig-cap: "Scatterplot showing the relationship between the natural logarithm of body weight and the natural logarithm of brain weight for 62 mammals."
 ggplot(data = mammal, aes(x = log(brain_weight), y = log(body_weight))) +
   geom_point() +
   geom_smooth(se = FALSE) +
@@ -290,6 +290,8 @@ This 1.22% change is essentially the slope coefficient from the fitted equation.
 We can also plot the fitted curve to facilitate a graphical interpretation.
 
 ```{r}
+#| label: fig-mammals-fitted-curve
+#| fig-cap: "Fitted regression curve showing the relationship between body weight and brain weight for 62 mammals."
 # Plot fitted curve
 ggplot(data = mammal, aes(x = brain_weight, y = body_weight)) +
   geom_point(alpha = 0.2) +
@@ -300,8 +302,21 @@ ggplot(data = mammal, aes(x = brain_weight, y = body_weight)) +
 ```
 
 
+:::fyi
+Note that the relationship between brain weight and body weight is referred to as a proportional growth model. (If the relationship was negative we would call it a proportional decay model.) To "linearize" a proportional growth model, we fit a log--log model.   
+:::
 
+<br />
 
+# Interpreting Log-Transformed Models
+
+```{r}
+#| label: fig-interpret
+#| fig-cap: "Log-transformations for different curvilinear relationship and interpretation of the slope coefficients from these models."
+#| echo: false
+#| out-width: "100%"
+include_graphics("figs/interpreting-log-models.png")
+```
 
 
 

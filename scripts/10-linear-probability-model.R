@@ -29,8 +29,8 @@ nrow(grad)
 
 
 # Compute counts/proportions by outcome level
-graduated = grad %>% 
-  group_by(degree) %>% 
+graduated = grad |> 
+  group_by(degree) |> 
   summarize(
     Count = n(), 
     Prop = n() / 2344
@@ -47,7 +47,7 @@ graduated
 ##################################################
 
 # New column with text to add to bars
-graduated = graduated %>%
+graduated = graduated |>
   mutate(
     count_prop = paste0(Count, "\n(", round(Prop, 3), ")")
   )
@@ -67,7 +67,7 @@ ggplot(data = graduated, aes(x = degree, y = Count)) +
 ##################################################
 
 # Create dummy-coded degree variable
-grad = grad %>%
+grad = grad |>
   mutate(
     got_degree = if_else(degree == "Yes", 1, 0)
   )
@@ -90,7 +90,7 @@ ggplot(data = grad, aes(x = act)) +
 
 
 # Summary measures
-grad %>%
+grad |>
   summarize(
     M = mean(act),
     SD = sd(act)
@@ -103,19 +103,19 @@ grad %>%
 ##################################################
 
 # Compute 
-prop_grad = grad %>% 
-  group_by(act, degree) %>% 
+prop_grad = grad |> 
+  group_by(act, degree) |> 
   summarize(
     N = n()  # Compute sample sizes by degree for each ACT score
-  ) %>% 
+  ) |> 
   mutate(
     Prop = N / sum (N) #Compute proportion by degree for each ACT score
-  ) %>%
-  filter(degree == "Yes") %>% # Only use the "Yes" responses
+  ) |>
+  filter(degree == "Yes") |> # Only use the "Yes" responses
   ungroup() #Makes the resulting tibble regular
 
 # View data
-prop_grad %>%
+prop_grad |>
   print(n = Inf) #Print all the rows
 
 
@@ -141,8 +141,8 @@ ggplot(data = grad, aes(x = act, y = got_degree)) +
 
 
 # Correlation
-grad %>%
-  select(degree, act) %>%
+grad |>
+  select(degree, act) |>
   correlate()
 
 
@@ -168,27 +168,5 @@ tidy(lm.1)
 ### Evaluate assumptions
 ##################################################
 
-out = augment(lm.1)
-head(out)
-
-
-# Examine normality assumption
-ggplot(data = out, aes(x = .std.resid)) +
-  stat_density_confidence(model = "normal") +
-  geom_density() +
-  theme_bw() +
-  xlab("Standardized residuals") +
-  ylab("Probability density")
-
-
-# Examine linearity and homoskedasticity
-ggplot(data = out, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0) +
-  theme_bw() +
-  xlab("Fitted values") +
-  ylab("Standardized residuals")
-
-
+residual_plots(lm.1)
 

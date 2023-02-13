@@ -1,50 +1,20 @@
 ---
-title: "Linear Probability Models"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+title: "Linear Probability Model"
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 
@@ -52,14 +22,14 @@ opts_knit$set(width = 85)
 
 In this set of notes, you will learn how about linear probability models, and why they are not typically used to model dichotomous categorical outcome variables (e.g., dummy coded outcome). We will use data from the file *graduation.csv*.
 
-- [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv)
-- [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/graduation.html)
+- [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv)
+- [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/graduation.html)
 
 In particular, we will explore predictors of college graduation. 
 
 
 
-```{r message=FALSE}
+```{r}
 # Load libraries
 library(broom)
 library(corrr)
@@ -68,7 +38,7 @@ library(patchwork)
 library(tidyverse)
 
 # Read in data
-grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv")
+grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv")
 
 # View data
 grad
@@ -88,8 +58,8 @@ To begin the analysis, we will explore the outcome variable `degree`. Since this
 nrow(grad)
 
 # Compute counts/proportions by outcome level
-graduated = grad %>% 
-  group_by(degree) %>% 
+graduated = grad |>
+  group_by(degree) |>
   summarize(
     Count = n(), 
     Prop = n() / 2344
@@ -101,9 +71,11 @@ graduated
 
 These counts or proportions could also be used to create a bar plot of the distribution. To do this we use the `stat="Identity")` argument to `geom_bar()` since the height of the bar (`Count`) is given in the data. (We aren't computing it from raw data; rather from a summary measure that has already been computed.^[We could also have used the original `grad` data set in our `data=` argument of `ggplot()`. In that case we would not use `stat="Identity")` in the `geom_bar()` layer since the counts would be computed for us from the raw data.]) We also include the counts/proportions as text in the plot. To do this, we create a new column that includes the text we want to include.^[Note that `\n` creates a newline to put the proportions on a separate line from the counts.] 
 
-```{r fig.cap='Barplot showing graduation status for the sample.'}
+```{r}
+#| label: fig-barplot
+#| fig-cap: "Barplot showing graduation status for the sample."
 # New column with text to add to bars
-graduated = graduated %>%
+graduated = graduated |>
   mutate(
     count_prop = paste0(Count, "\n(", round(Prop, 3), ")")
       )
@@ -121,7 +93,7 @@ The analysis suggests that most students in the sample (73%) tend to graduate. B
 
 ```{r}
 # Create dummy-coded degree variable
-grad = grad %>%
+grad = grad |>
   mutate(
     got_degree = if_else(degree == "Yes", 1, 0)
   )
@@ -133,7 +105,9 @@ grad
 
 We will also explore the `act` variable, which we will use as a predictor in the analysis. 
 
-```{r fig.cap='Density plot of the ACT scores.'}
+```{r}
+#| label: fig-act-scores
+#| fig-cap: "Density plot of the ACT scores."
 # Density plot
 ggplot(data = grad, aes(x = act)) +
   geom_density() +
@@ -142,7 +116,7 @@ ggplot(data = grad, aes(x = act)) +
   ylab("Probability density")
 
 # Summary measures
-grad %>% 
+grad |> 
   summarize( 
     M = mean(act), 
     SD = sd(act) 
@@ -150,8 +124,6 @@ grad %>%
 ```
 
 The distribution of ACT scores is unimodal and symmetric. It indicates that the sample of students have a mean ACT score near 25. While there is a great deal of variation in ACT scores (scores range from 10 to 36), most students have a score between 21 and 29. 
-
-
 
 <br />
 
@@ -163,25 +135,27 @@ Recall that the regression model predicts the average *Y* at each *X*. Since our
 
 ```{r}
 # Compute 
-prop_grad = grad %>% 
-  group_by(act, degree) %>% 
+prop_grad = grad |>
+  group_by(act, degree) |>
   summarize(
     N = n()  # Compute sample sizes by degree for each ACT score
-    ) %>% 
+    ) |>
   mutate(
     Prop = N / sum (N) #Compute proportion by degree for each ACT score
-    ) %>%
-  filter(degree == "Yes") %>% # Only use the "Yes" responses
+    ) |>
+  filter(degree == "Yes") |> # Only use the "Yes" responses
   ungroup() #Makes the resulting tibble regular
 
 # View data
-prop_grad %>%
+prop_grad |>
   print(n = Inf) #Print all the rows
 ```
 
 In general, the proportion of students who obtain their degree is higher for higher SAT values. We can also see this same relationship by plotting the proportion of students who graduate versus ACT score.
 
-```{r fig.cap='Proportion of students who graduate conditional on ACT score. Size of the dot is proportional to sample size. The regression smoother (solid, blue line) and loess smoother (dashed, red line) are based on the raw data.'}
+```{r}
+#| label: fig-scatterplot-proportion
+#| fig-cap: "Proportion of students who graduate conditional on ACT score. Size of the dot is proportional to sample size. The regression smoother (solid, blue line) and loess smoother (dashed, red line) are based on the raw data."
 # Scatterplot
 ggplot(data = prop_grad, aes(x = act, y = Prop)) +
   geom_point(aes(size = N)) +
@@ -202,7 +176,9 @@ There are a few things to note here:
 :::fyi
 Because the regression is about the proportion of students who obtain their degree, the scatterplot we show should also indicate the proportion of students who graduate. Thus, when the outcome is categorical, we tend not to look at a scatterplot of the raw data in practice. 
 
-```{r fig.cap='Scatterplot of whether a student graduated versus ACT score. The regression smoother (blue, solid line) and loess smoother (red, dashed line) shows the positive relationship between ACT score and the proportion of students who obtain their degree.'}
+```{r}
+#| label: fig-scatterplot-raw-data
+#| fig-cap: "Scatterplot of whether a student graduated versus ACT score. The regression smoother (blue, solid line) and loess smoother (red, dashed line) shows the positive relationship between ACT score and the proportion of students who obtain their degree."
 # Scatterplot
 ggplot(data = grad, aes(x = act, y = got_degree)) +
   geom_point() +
@@ -221,8 +197,8 @@ We can also see the positive relationship between ACT score and the proportion o
 
 ```{r}
 # Correlation
-grad %>% 
-  select(got_degree, act) %>% 
+grad |> 
+  select(got_degree, act) |> 
   correlate()
 ```
 
@@ -265,29 +241,14 @@ where $\hat{\pi}_i$ is the predicted proportion of students who graduate. (Note 
 Let's examine the model assumptions.
 
 
-```{r out.width='40%', fig.cap='LEFT: Density plot of the standardized residuals from the linear probability model. The confidence envelope shows where we might expect the density to be if the population of residuals were normally distributed. RIGHT: Scatterplot of the standardized residuals versus the fitted values from the linear probability model. The loess smoother along with the confidence envelope is also displayed.', fig.show='hold'}
-# Augment the model
-out = augment(lm.1)
-
-# View augmented data
-out
-
-# Examine normality assumption
-ggplot(data = out, aes(x = .std.resid)) +
-  stat_density_confidence(model = "normal") +
-  geom_density() +
-  theme_bw() +
-  xlab("Standardized residuals") +
-  ylab("Probability density")
-
-# Examine linearity and homoskedasticity
-ggplot(data = out, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0) +
-  theme_bw() +
-  xlab("Fitted values") +
-  ylab("Standardized residuals")
+```{r}
+#| label: fig-assumptions
+#| fig-cap: "LEFT: Density plot of the standardized residuals from the linear probability model. The confidence envelope shows where we might expect the density to be if the population of residuals were normally distributed. RIGHT: Scatterplot of the standardized residuals versus the fitted values from the linear probability model. The loess smoother along with the confidence envelope is also displayed."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "80%"
+# Examine residual plots
+residual_plots(lm.1)
 ```
 
 
