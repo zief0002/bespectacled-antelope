@@ -140,7 +140,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 <td align="center" style="vertical-align:middle;">
   <span class="fa fa-book" style="color: #f1f1f1; font-size: 17px;"></span>
 </td>
-<td style="vertical-align:middle;">Creating Tables with `{gt}`</td>
+<td style="vertical-align:middle;">Creating Tables with `{gt}` <br /><span style="margin-left:5px; color:#5a067d;font-size:12px;">*[Updated 02-13-2023]*</span></td>
 <td align="center" style="vertical-align:middle;">
   [<span class="fas fa-link" style="font-size: 17px;"></span>](notes/03-creating-tables.html)
 </td>

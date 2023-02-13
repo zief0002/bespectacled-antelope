@@ -431,6 +431,159 @@ tab_01 |>
 <br />
 
 
+# Another Example
+
+Here we will format the `tidy()` output from a fitted regression model to create a table using `gt()`. Rather than enter in the cell contents, these will be produced by the `tidy()` output, and we will then format this output using `gt()`.
+
+```{r}
+# Load libraries
+library(broom)
+library(tidyverse)
+
+# Import data
+woods = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/woods.csv")
+
+# Fit model
+lm.1 = lm(env_prog_str ~ 1 + corrupt + toxic_waste, data = woods)
+
+# Look at tidy output
+tidy(lm.1)
+```
+
+The `tidy()` output has columns named `term`, `estimate`, `std.error`, `statistic`, and `p.value`. Here is the initial syntax I use to begin formatting this table. Because I am using Quarto, I set the table caption in the `tbl-cap:` chunk option rather than in the `gt()` syntax.
+
+```{r}
+#| label: tbl-tidy-1
+#| tbl-cap: "Unstandardized regression coefficients for a model to predict variation in environmental program strength."
+tidy(lm.1) |>
+  gt() |>
+  cols_label(
+    term = md("*Variable*"),
+    estimate = md("*B*"),
+    std.error = md("*SE*"),
+    statistic = md("*t*"),
+    p.value = md("*p*")
+  ) |>
+  cols_align(
+    columns = c(term),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(estimate, std.error, statistic, p.value),
+    align = "center"
+  )
+```
+
+
+## Formatting Decimal Places
+
+In these tables it is typical to format the number of decimal places to 2 for coefficients, standard errors, and *t*-values and to three decimal places for *p*-values. To do this, we will use the `fmt_number()` function from `{gt}`.
+
+```{r}
+#| label: tbl-tidy-2
+#| tbl-cap: "Unstandardized regression coefficients for a model to predict variation in environmental program strength."
+tidy(lm.1) |>
+  gt() |>
+  cols_label(
+    term = md("*Variable*"),
+    estimate = md("*B*"),
+    std.error = md("*SE*"),
+    statistic = md("*t*"),
+    p.value = md("*p*")
+  ) |>
+  cols_align(
+    columns = c(term),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(estimate, std.error, statistic, p.value),
+    align = "center"
+  ) |>
+    fmt_number(
+    columns = c(estimate, std.error, statistic),
+    decimals = 2
+  ) |>
+    fmt_number(
+    columns = p.value,
+    decimals = 3
+  )
+```
+
+
+The *p*-value for the intercept is now "0.000" after rounding to three decimal places. It is conventional in this case to report it as "<0.001" rather than "0.000". To do this we will use the `sub_values()` function from `{gt}` to search the `p.value` column for any value less than .001 and replace it with the text "<.001".
+
+```{r}
+#| label: tbl-tidy-3
+#| tbl-cap: "Unstandardized regression coefficients for a model to predict variation in environmental program strength."
+tidy(lm.1) |>
+  gt() |>
+  cols_label(
+    term = md("*Variable*"),
+    estimate = md("*B*"),
+    std.error = md("*SE*"),
+    statistic = md("*t*"),
+    p.value = md("*p*")
+  ) |>
+  cols_align(
+    columns = c(term),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(estimate, std.error, statistic, p.value),
+    align = "center"
+  ) |>
+    fmt_number(
+    columns = c(estimate, std.error, statistic),
+    decimals = 2
+  ) |>
+    fmt_number(
+    columns = p.value,
+    decimals = 3
+  ) |>
+  sub_values(columns = p.value, fn = function(x) x < .001, replacement = "<.001")
+```
+
+We can also use the `sub_values()` function to change the text in the `term` column to make our vasriable names more human-friendly. To do this we again specify the column name, and then indicate the values we want to replace along with the replacement text.
+
+
+```{r}
+#| label: tbl-tidy-4
+#| tbl-cap: "Unstandardized regression coefficients for a model to predict variation in environmental program strength."
+tidy(lm.1) |>
+  gt() |>
+  cols_label(
+    term = md("*Variable*"),
+    estimate = md("*B*"),
+    std.error = md("*SE*"),
+    statistic = md("*t*"),
+    p.value = md("*p*")
+  ) |>
+  cols_align(
+    columns = c(term),
+    align = "left"
+  ) |>
+  cols_align(
+    columns = c(estimate, std.error, statistic, p.value),
+    align = "center"
+  ) |>
+    fmt_number(
+    columns = c(estimate, std.error, statistic),
+    decimals = 2
+  ) |>
+    fmt_number(
+    columns = p.value,
+    decimals = 3
+  ) |>
+  sub_values(columns = p.value, fn = function(x) x < .001, replacement = "<.001") |>
+  sub_values(columns = term, values = "(Intercept)", replacement = "Constant") |>
+  sub_values(columns = term, values = "corrupt", replacement = "Political Corruption") |>
+  sub_values(columns = term, values = "toxic_waste", replacement = "Toxic Waste")
+```
+
+
+<br />
+
+
 # Learn More
 
 Like `{ggplot2}` there are many other functions to the `{gt}` package that you can use to create and beautify your tables. You should definitely read through the article [Introduction to Creating gt Tables](https://gt.rstudio.com/articles/intro-creating-gt-tables.html) on the `{gt}` documentation website. There are also several other articles available on the site. 
