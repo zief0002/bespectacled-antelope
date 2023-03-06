@@ -558,7 +558,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
 <td>Apr. 25</td>
-<td>May 06</td>
+<td>Apr. 26</td>
 </tr>
 
 <tr>
