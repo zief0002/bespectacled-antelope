@@ -147,11 +147,6 @@ tab_01 = model_evidence %>%
 tab_01
 
 
-# Load libraries for formatting
-library(knitr)
-library(kableExtra)
-
-
 # Create table with gt()
 tab_01 |>
   gt() |>

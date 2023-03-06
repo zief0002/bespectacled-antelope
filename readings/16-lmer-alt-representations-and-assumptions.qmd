@@ -1,0 +1,26 @@
+---
+title: "📖 LMER: Alternative Representations and Assumptions"
+format:
+  html:
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+
+**Required**
+
+Read the following::
+
+- Leyland, A. H., &amp; Groenewegen, P. P. (2020). [Reading and writing](https://www.ncbi.nlm.nih.gov/books/NBK565717/pdf/Bookshelf_NBK565717.pdf) In *Multilevel modelling for public health and health services research: Health in context* (pp. 151--169). Springer. doi: 10.1007/978-3-030-34801-4_10
+
+<br />
+
+
+**Additional Resources**
+
+In addition to the notes and what we cover in class, there are many other resources for learning about mixed-effects regression models. Here are some resources that may be helpful in that endeavor:
+
+- Section on **Residual Analysis** in: Loy, A. (2014). [HLMdiag: A suite of diagnostics for hierarchical linear models in R.](https://www.jstatsoft.org/article/view/v056i05/v56i05.pdf) *Journal of Statistical Software, 56*(5), 1&ndash;28.
+
+
+

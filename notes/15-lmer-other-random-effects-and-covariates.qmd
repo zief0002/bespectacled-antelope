@@ -1,66 +1,32 @@
 ---
 title: "LMER: Other Random-Effects and Covariates"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-```{=html}
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
 
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
+In this set of notes, you will continue to learn how to use the linear mixed-effects model to examine the mean change over time in a set of longitudinal/repeated measurements. You will also learn how to expand the model to allow cases to have different growth rates. Lastly, you will learn how to include covariates to evaluate whether the average growth rates vary for different groups. To do so, we will use data from the file *minneapolis.csv*.
 
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
-```
-
-In this set of notes, you will continue to learn how to use the linear mixed-effects model to examine the mean change over time in a set of longitudinal/repeated measurements. You will also learn how to expand the model to allow cases to have different growth rates. Lastly, you will learn how to include covariates to evaluate whether the average growth rates vary for different groups.
-
-<br />
-
-# Dataset and Research Question
-
-In this set of notes, we will use data from the file *minneapolis.csv* to analyze change in students' reading scores over time.
-
--   [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv)
--   [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/minneapolis.html)
+-   [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv)
+-   [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/minneapolis.html)
 
 We will use these data to explore the change in students' reading scores over time (i.e., is there longitudinal variation in students' reading scores). As in most longitudinal analyses, our primary goal is to examine the mean change (i.e., pattern of growth) of the outcome over time.
 
-```{r message=FALSE}
+```{r}
+#| message: false
 # Load libraries
 library(AICcmodavg)
 library(broom.mixed) #for tidy, glance, and augment functions for lme4 models
@@ -71,8 +37,8 @@ library(patchwork)
 library(texreg)
 library(tidyverse)
 
-# Read in data
-mpls = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv")
+# Import data
+mpls = read_csv("https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
 
 # View data
 mpls
@@ -80,7 +46,12 @@ mpls
 
 The data are already in the long/tidy format, so we do not need to re-structure them. We will start the analysis by examining the average and individual growth profiles.
 
-```{r fig.width=8, fig.height=6, fig.cap='Plot showing the change in reading score over time for 22 students. The average growth profile is displayed as a thicker line.', out.width="70%"}
+```{r}
+#| label: fig-growth-profile
+#| fig-cap: "Plot showing the change in reading score over time for 22 students. The average growth profile is displayed as a thicker line."
+#| fig-width: 8
+#| fig-height: 6
+#| out-width: "70%"
 ggplot(data = mpls, aes(x = grade, y = reading_score)) +
   geom_line(aes(group = student_id), alpha = 0.3) +  #Add individual profiles
   stat_summary(fun = mean, geom = "line", size = 2, group = 1, color = "#FF2D21") + #Add mean profile line
@@ -107,7 +78,11 @@ lmer.b = lmer(reading_score ~ 1 + I(grade-5) + (1 | student_id), data = mpls, RE
 # tidy(lmer.b, effects = "ran_pars") 
 ```
 
-```{r results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: model-table-01
+#| tbl-cap: "Taxonomy of models predicting longitudinal variation in students' reading scores."
+#| results: asis
+#| code-fold: true
 htmlreg(
   l = list(lmer.a, lmer.b),
   stars = numeric(0),    #No p-value stars
@@ -122,17 +97,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 Variance (Intercept)", "Level-1 Variance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b))  # Add AICc values
-    #R2 = (2722.5 - c(NA, 2662.09, 2605.00, 2540.35, 2536.67)) /  2722.5
   ), 
   reorder.gof = c(3, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores.",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade."
 )
 
 ```
@@ -158,18 +132,24 @@ Another reason that students might have a higher (or lower) reading score than a
 
 <br />
 
+
 ## Plots of the Individual Student Profiles
 
 Although we included the student profiles in the spaghetti plot we created earlier, in cases with a larger number of students it would be difficult to see the individual profiles in the spaghetti plot. To remedy this, you could facet on student so that each individual profile appears in a separate panel of the plot. (Note: If you have a lot of cases, rather than looking at all profiles, you could select a random sample of the cases and view those profiles.)
 
-```{r fig.width=8, fig.height=8, out.width="90%", fig.cap='Plot showing the change in reading score over time for 22 students. The average growth profile is displayed as a thicker, red line.'}
+```{r}
+#| label: fig-ind-profiles-facet
+#| fig-cap: "Plot showing the change in reading score over time for 22 students. The average growth profile is displayed as a thicker, red line."
+#| fig-width: 8
+#| fig-height: 8
+#| out-width: "90%"
 # Get the mean reading score at each grade
 # Need to use this to add the average profile in each facet
-global = mpls %>%
-  group_by(grade) %>%
+global = mpls |>
+  group_by(grade) |>
   summarize(
     reading_score = mean(reading_score)
-    ) %>%
+    ) |>
   ungroup()
 
 # Plot individual profiles in different panels
@@ -187,6 +167,7 @@ The different slopes seen in the individual profiles indicate that students have
 
 <br />
 
+
 # Unconditional Growth Model with Random-Effects of Intercept and Grade-Level
 
 The statistical model that includes random-effects for intercepts and grade-level can be expressed as:
@@ -197,12 +178,12 @@ $$
 
 where,
 
--   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student $j$ at time point $i$;
+-   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student *j* at time point *i*;
 -   $\beta_0$ is the fixed-effect of intercept;
--   $b_{0j}$ is the random-effect of intercept for Student $j$;
+-   $b_{0j}$ is the random-effect of intercept for Student *j*;
 -   $\beta_1$ is the fixed-effect of grade-level;
--   $b_{1j}$ is the random-effect of grade-level for Student $j$; and
--   $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
+-   $b_{1j}$ is the random-effect of grade-level for Student *j*; and
+-   $\epsilon_{ij}$ is the error for Student *j* at time point *i*.
 
 We fit the model and display the output below. We it the model using ML estimation.
 
@@ -232,7 +213,7 @@ The fixed-effects did not change much as a result of allowing individual student
 tidy(lmer.c, effects = "ran_vals")
 
 # Obtain random effects for Student 1
-tidy(lmer.c, effects = "ran_vals") %>%
+tidy(lmer.c, effects = "ran_vals") |>
   filter(level == 1)
 ```
 
@@ -245,14 +226,14 @@ $$
 \end{split}
 $$
 
--   The predicted reading score for Student 1 at the initial measurement occasion is 174.2 (31.8 points lower than the average student at that grade).
--   For Student 1, each subsequent grade is associated with a 5.69-point change in reading score, on average (a growth rate that is 1.33 points per grade higher than average).
+- The predicted reading score for Student 1 at the initial measurement occasion is 174.2 (31.8 points lower than the average student at that grade).
+- For Student 1, each subsequent grade is associated with a 5.69-point change in reading score, on average (a growth rate that is 1.33 points per grade higher than average).
 
 Recall the argument `effects="ran_coefs"` in the `tidy()` function gives the student-specific effects directly.
 
 ```{r}
 # Obtain student-specific coefficients for Student 2
-tidy(lmer.c, effects = "ran_coefs") %>%
+tidy(lmer.c, effects = "ran_coefs") |>
   filter(level == 2)
 ```
 
@@ -269,6 +250,7 @@ From the two students' fitted equations we see that by including a random-effect
 
 <br />
 
+
 ## Variance Estimates
 
 We can also examine the variance components for the fitted model:
@@ -280,10 +262,16 @@ tidy(lmer.c, effects = "ran_pars")
 
 We now have four total variance components:
 
--   **Between-Student Variance (Intercept):** $\mathrm{Var}(b_0) = 19.5^2 = 380.25$
--   **Between-Student Variance (Rate-of-Change):** $\mathrm{Var}(b_1) = 2.72^2 = 7.40$
--   **Between-Student Correlation (between Intercepts and Rate-of-Change):** $\mathrm{Corr}(b_0,b_1) = -0.36$
--   **Within-Student Variance:** $\mathrm{Var}(e) = 4.19^2 = 17.56$
+- **Between-Student Variance (Intercept):** $\mathrm{Var}(b_0) = 19.5^2 = 380.25$
+- **Between-Student Variance (Rate-of-Change):** $\mathrm{Var}(b_1) = 2.72^2 = 7.40$
+- **Between-Student Correlation (between Intercepts and Rate-of-Change):** $\mathrm{Corr}(b_0,b_1) = -0.36$
+- **Within-Student Variance:** $\mathrm{Var}(e) = 4.19^2 = 17.56$
+
+
+:::fyi
+Between-student variance components are Level-2 variance components and the within-student variance component is the Level-1 variance component.
+:::
+
 
 Adding a random-effect resulted in two additional variance components. We now have split the between-student variance into two parts: (1) variation in students' intercepts, and (2) variation in students growth rates. That is we are saying that variation in reading scores is due to student differences in reading scores at the initial measurement occasion, differences in students' growth rates, and within-student variation (random error).
 
@@ -291,13 +279,17 @@ The correlation indicates the relationship between the student-specific random e
 
 Below, we add Model C to our table of regression results.
 
-```{r results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: model-table-02
+#| tbl-cap: "Taxonomy of models predicting longitudinal variation in students' reading scores."
+#| results: asis
+#| code-fold: true
 htmlreg(
   l = list(lmer.a, lmer.b, lmer.c),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20, #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C"), 
+  custom.model.names = c("Model A", "Model B", "Model C"),
   custom.coef.names = c("Intercept", "Grade"),
   reorder.coef = c(2, 1), #Put intercept at bottom of table
   include.loglik = FALSE, #Omit log-likelihood
@@ -306,16 +298,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 Variance (Intercept)", "Level-1 Variance", "Level-2 Variance (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c))  # Add AICc values
-  ), 
+  ),
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade."
 )
 
 ```
@@ -323,7 +315,7 @@ htmlreg(
 Notice that the `htmlreg()` function produces the covariance between the intercept and slope random effects rather than the correlation that is produced from `tidy()`. There is a direct relationship between the correlation and covariance:
 
 $$
-\mathrm{Cov}(b_0,b_1) = \mathrm{Corr}(b_0,b_1) \times \sqrt{\mathrm{Var}(b_0)} \times \sqrt{\mathrm{Var}(b_1)} 
+\mathrm{Cov}(b_0,b_1) = \mathrm{Corr}(b_0,b_1) \times \sqrt{\mathrm{Var}(b_0)} \times \sqrt{\mathrm{Var}(b_1)}
 $$
 
 In our example,
@@ -347,6 +339,7 @@ $$
 
 <br />
 
+
 ## Explained Variation and Pseudo-$R^2$ Values
 
 It is difficult to compare the variance components for Model C to those from the unconditional random intercepts model to get pseudo-$R^2$ values, like we did for Model B. This is because Model C includes an additional source of unexplained variation, namely $Var(b_1)$ that the unconditional random intercepts model did not include.
@@ -355,11 +348,17 @@ As we add other fixed-effects predictors to the model, the variance components f
 
 <br />
 
+
 # Group Differences in the Average Growth Profiles
 
 One question we might have is whether the average growth profile varies across different groups. For example, we might wonder if (and how) the average growth profile is different for special education and non-special education students. To explore this, we will again create a spaghetti plot, but this time we will facet on special education status.
 
-```{r fig.width=12, fig.height=6, fig.cap='Plot showing the change in reading scores over time conditioned on special education status. The average growth profile is displayed as a thicker line.', out.width="70%"}
+```{r}
+#| label: growth-profiles-special-ed
+#| fig-cap: "Plot showing the change in reading scores over time conditioned on special education status. The average growth profile is displayed as a thicker line."
+#| fig-width: 12
+#| fig-height: 6
+#| out-width: "70%"
 ggplot(data = mpls, aes(x = grade, y = reading_score)) +
   geom_line(aes(group = student_id), alpha = 0.3) +  #Add individual profiles
   stat_summary(fun = mean, geom = "line", size = 2, group = 1, color = "#FF2D21") + #Add mean profile line
@@ -377,19 +376,19 @@ $$
 
 where,
 
--   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student $j$ at time point $i$;
--   $\beta_0$ is the fixed-effect of intercept;
--   $b_{0j}$ is the random-effect of intercept for Student $j$;
--   $\beta_1$ is the fixed-effect of grade-level;
--   $b_{1j}$ is the random-effect of grade-level for Student $j$;
--   $\beta_2$ is the fixed-effect of special education status; and
--   $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
+- $\mathrm{Reading~Score}_{ij}$ is the reading score for Student *j* at time point *i*;
+- $\beta_0$ is the fixed-effect of intercept;
+- $b_{0j}$ is the random-effect of intercept for Student *j*;
+- $\beta_1$ is the fixed-effect of grade-level;
+- $b_{1j}$ is the random-effect of grade-level for Student *j*;
+- $\beta_2$ is the fixed-effect of special education status; and
+- $\epsilon_{ij}$ is the error for Student *j* at time point *i*.
 
 Notice that th special education predictor only includes a *j* subscript. That is because it only varies between students. In our data, a single student has the same special education status at every time point. Therefore we do not put an *i* subscript on this predictor. We fit the model and display the output below. We again fit the model using ML estimation. We obtain both the fixed-effect estimates and estimated variance components for the fitted model and add these results to our table of regression results.
 
 ```{r}
 # Create dummy-coded special education status
-mpls = mpls %>%
+mpls = mpls |>
   mutate(
     sped = if_else(special_ed == "Yes", 1, 0)
     )
@@ -404,13 +403,17 @@ tidy(lmer.d, effects = "fixed")
 tidy(lmer.d, effects = "ran_pars")
 ```
 
-```{r results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: model-table-03
+#| tbl-cap: "Taxonomy of models predicting longitudinal variation in students' reading scores."
+#| results: asis
+#| code-fold: true
 htmlreg(
   l = list(lmer.a, lmer.b, lmer.c, lmer.d),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20, #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C", "Model D"), 
+  custom.model.names = c("Model A", "Model B", "Model C", "Model D"),
   custom.coef.names = c("Intercept", "Grade", "Special Education Status"),
   reorder.coef = c(2, 3, 1), #Put intercept at bottom of table
   include.loglik = FALSE, #Omit log-likelihood
@@ -419,16 +422,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 Variance (Intercept)", "Level-1 Variance", "Level-2 Variance (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c), AICc(lmer.d))  # Add AICc values
-  ), 
+  ),
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group."
 )
 
 ```
@@ -441,38 +444,39 @@ $$
 
 The coefficient interpretations are:
 
--   The predicted average reading score for non-special education students at the initial measurement occasion (in the 5th grade) is 208.
--   Each subsequent grade-level is associated with a 4.36-point change in reading score, on average, controlling for special education status.
--   Special education students have a reading score that is 15.8 points lower than non-special education students, on average, at every grade level.
+- The predicted average reading score for non-special education students at the initial measurement occasion (in the 5th grade) is 208.
+- Each subsequent grade-level is associated with a 4.36-point change in reading score, on average, controlling for special education status.
+- Special education students have a reading score that is 15.8 points lower than non-special education students, on average, at every grade level.
 
 We again have four total variance components:
 
--   **Between-Student Variance (Intercept):** $\mathrm{Var}(b_0) = 18.4^2 = 338.56$
--   **Between-Student Variance (Rate-of-Change):** $\mathrm{Var}(b_1) = 2.72^2 = 7.40$
--   **Between-Student Correlation (between Intercepts and Rate-of-Change):** $\mathrm{Corr}(b_0,b_1) = -0.312$
--   **Within-Student Variance:** $\mathrm{Var}(e) = 4.19^2 = 17.56$
+- **Between-Student Variance (Intercept):** $\mathrm{Var}(b_0) = 18.4^2 = 338.56$
+- **Between-Student Variance (Rate-of-Change):** $\mathrm{Var}(b_1) = 2.72^2 = 7.40$
+- **Between-Student Correlation (between Intercepts and Rate-of-Change):** $\mathrm{Corr}(b_0,b_1) = -0.312$
+- **Within-Student Variance:** $\mathrm{Var}(e) = 4.19^2 = 17.56$
 
-Since this model includes the same set of random effects as Model C (unconditional growth model), we can use Model C as a baseline to consider the variation explained by special education status.
+Since this model includes the same set of random effects as Model C (unconditional growth model), we can use Model C as a baseline to consider the variation explained by special education status. Here we compute pseudo-$R^2$ values based on using Model C as the comparison model.
 
--   **Between-Student Variance (Intercept):** $(380.25 - 338.56)/380.25 = 0.110$
--   **Between-Student Variance (Rate-of-Change):** $(7.40 - 7.40)/7.40 = 0$
--   **Within-Student Variance:** $(17.56 - 17.56)/17.56=0$
+- **Between-Student Variance (Intercept):** $(380.25 - 338.56)/380.25 = 0.110$
+- **Between-Student Variance (Rate-of-Change):** $(7.40 - 7.40)/7.40 = 0$
+- **Within-Student Variance:** $(17.56 - 17.56)/17.56=0$
 
 Including special education status explained 11% of the between-student variation in intercepts. This means it is helping to explain why students reading scores are different at the initial measurement occasion. It does not explain variation in students' growth rates, nor does it explain within-student variation.
 
 <br />
 
+
 ## Student-Specific Fitted Equations
 
-We again need to obtain the estimated random-effects for students in order to write their fitted equations. Moreover, we will also need their special education status. FOr example, we obtain Student 1's random-effects using:
+We again need to obtain the estimated random-effects for students in order to write their fitted equations. Moreover, we will also need their special education status. For example, we obtain Student 1's random-effects using:
 
 ```{r}
 # Obtain student-specific coefficients for Student 2
-tidy(lmer.d, effects = "ran_vals") %>%
+tidy(lmer.d, effects = "ran_vals") |>
   filter(level == 1)
 ```
 
-We also note that Student 1 is a non-special education student. Writing this students fitted equation:
+We also note that Student 1 is a non-special education student. Writing this student's fitted equation:
 
 $$
 \begin{split}
@@ -490,9 +494,12 @@ $$
 \end{split}
 $$
 
-We could also plot the average profiles and also any student profiles that we wanted to. Here I will plot the two average profiles (one for each special education status), along with the profile for Student 8. Since STudent 8 is a special education student, I will use the same color for that student's profile and the average profile for special education students.
+We could also plot the average profiles and also any student profiles that we wanted to. Here I will plot the two average profiles (one for each special education status), along with the profile for Student 8. Since Student 8 is a special education student, I will use the same color for that student's profile and the average profile for special education students.
 
-```{r fig.width=6, fig.height=6, fig.cap='Plot showing the average growth profile of reading scores over time for special education (blue) and non-special education (vermillion) students. The individual growth profile for STudent 8 (dotted line) is also displayed.', out.width="70%"}
+```{r}
+#| label: fig-fitted-model-d
+#| fig-cap: "Plot showing the average growth profile of reading scores over time for special education (blue) and non-special education (vermillion) students based on Model D. The individual growth profile for Student 8 (dotted line) is also displayed."
+#| out-width: "70%"
 ggplot(data = mpls, aes(x = grade-5, y = reading_score)) +
   geom_point(alpha = 0) +  #Add individual profiles
   geom_abline(intercept = 208, slope = 4.36, color = "#D55E00") + #Non-Sped
@@ -507,19 +514,18 @@ ggplot(data = mpls, aes(x = grade-5, y = reading_score)) +
   ylab("Reading Score")
 ```
 
-::: note
-Since the model was based on grade level being centered at the initial measurement occasion, we need to use the centered grade in the `x=` argument of the `ggplot()` aesthetic mapping. Then we can re-label the *x*-scale to our original grade levels.
+:::protip
+Since the model was based on grade level being centered at the initial measurement occasion, we need to use the centered grade in the `x=` argument of the `ggplot()` aesthetic mapping. Then we can re-label the *x*-scale to our original grade levels for easier interpretation for readers.
 :::
 
 <br />
+
 
 # Interaction Between Grade and Special Education Status
 
 Model D included grade-level and special education status as fixed-effects. This produces average growth profiles that have the same rate-of-growth for special education students and non-special education students. Substantively, the reason those students have different average reading scores is that they have different averages at the initial measurement occasion.
 
-The model presumes that special education and non-special education students have, on average, the same growth rate over the duration of the study (5th through 8th grade).[^1] This is probably not a realistic assumption. We can allow different rates-of-growth by including an interaction between grade-level and special education status in addition to the main effects. The statistical model can be expressed as:
-
-[^1]: Note that the random effects we included in Model D allow individual students to have different growth rates from the average growth rate.
+The model presumes that special education and non-special education students have, on average, the same growth rate over the duration of the study (5th through 8th grade).^[Note that the random effects we included in Model D allow individual students to have different growth rates from the average growth rate.] This is probably not a realistic assumption. We can allow different rates-of-growth by including an interaction between grade-level and special education status in addition to the main effects. The statistical model can be expressed as:
 
 $$
 \mathrm{Reading~Score}_{ij} = \big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
@@ -527,20 +533,20 @@ $$
 
 where,
 
--   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student $j$ at time point $i$;
--   $\beta_0$ is the fixed-effect of intercept;
--   $b_{0j}$ is the random-effect of intercept for Student $j$;
--   $\beta_1$ is the fixed-effect of grade-level;
--   $b_{1j}$ is the random-effect of grade-level for Student $j$;
--   $\beta_2$ is the fixed-effect of special education status;
--   $\beta_3$ is the interaction-effect (fixed-effect) between special education status grade-level; and
--   $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
+- $\mathrm{Reading~Score}_{ij}$ is the reading score for Student *j* at time point *i*;
+- $\beta_0$ is the fixed-effect of intercept;
+- $b_{0j}$ is the random-effect of intercept for Student *j*;
+- $\beta_1$ is the fixed-effect of grade-level;
+- $b_{1j}$ is the random-effect of grade-level for Student *j*;
+- $\beta_2$ is the fixed-effect of special education status;
+- $\beta_3$ is the interaction-effect (fixed-effect) between special education status grade-level; and
+- $\epsilon_{ij}$ is the error for Student *j* at time point *i*.
 
 We fit the model using ML estimation, obtain both the fixed-effect estimates and estimated variance components, and add these results to our table of regression results.
 
 ```{r}
 # Fit model
-lmer.e = lmer(reading_score ~ 1 + I(grade-5) + sped + I(grade-5):sped + 
+lmer.e = lmer(reading_score ~ 1 + I(grade-5) + sped + I(grade-5):sped +
                 (1 + I(grade-5) | student_id), data = mpls, REML = FALSE)
 
 # Coefficient-level output
@@ -550,13 +556,17 @@ tidy(lmer.e, effects = "fixed")
 tidy(lmer.e, effects = "ran_pars")
 ```
 
-```{r results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: model-table-04
+#| tbl-cap: "Taxonomy of models predicting longitudinal variation in students' reading scores."
+#| results: asis
+#| code-fold: true
 htmlreg(
   l = list(lmer.a, lmer.b, lmer.c, lmer.d, lmer.e),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20, #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E"), 
+  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E"),
   custom.coef.names = c("Intercept", "Grade", "Special Education Status", "Grade x Special Education Status"),
   reorder.coef = c(2:4, 1), #Put intercept at bottom of table
   include.loglik = FALSE, #Omit log-likelihood
@@ -565,16 +575,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 Variance (Intercept)", "Level-1 Variance", "Level-2 Variance (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c), AICc(lmer.d), AICc(lmer.e))  # Add AICc values
-  ), 
+  ),
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group."
 )
 
 ```
@@ -587,8 +597,8 @@ $$
 
 The interaction effect is interpreted like any other interaction effect, either
 
--   The effect of grade-level on reading scores varies by special education status. OR
--   The effect of special education status on reading scores varies by grade-level.
+- The effect of grade-level on reading scores varies by special education status. OR
+- The effect of special education status on reading scores varies by grade-level.
 
 To better understand this interaction, we can write out and then plot the average fitted equation for special education students and that for non-special education students.
 
@@ -601,7 +611,10 @@ $$
 \end{split}
 $$
 
-```{r fig.width=6, fig.height=6, fig.cap='Plot showing the average growth profile of reading scores over time for special education (blue) and non-special education (vermillion) students.', out.width="70%"}
+```{r}
+#| label: fig-fitted-model-e
+#| fig-cap: "Plot showing the average growth profile of reading scores over time for special education (blue) and non-special education (vermillion) students based on Model E."
+#| out-width: "70%"
 ggplot(data = mpls, aes(x = grade-5, y = reading_score)) +
   geom_point(alpha = 0) +  #Add individual profiles
   geom_abline(intercept = 209, slope = 4.11, color = "#D55E00") + #Non-Sped
@@ -615,11 +628,12 @@ ggplot(data = mpls, aes(x = grade-5, y = reading_score)) +
   ylab("Reading Score")
 ```
 
-::: interpret
+:::interpret
 Non-special education students have a higher average reading score in the 5th grade than special education students. Moreover, they continue to have a higher average reading score than their special education peers throughout the duration of the study. However, the gap in reading scores gets smaller over time since the growth rate for special education students is higher than that for non-special education students.
 :::
 
 <br />
+
 
 ## Controlling for Attendance
 
@@ -634,24 +648,24 @@ $$
 
 where,
 
--   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student $j$ at time point $i$;
--   $\beta_0$ is the fixed-effect of intercept;
--   $b_{0j}$ is the random-effect of intercept for Student $j$;
--   $\beta_1$ is the fixed-effect of grade-level;
--   $\mathrm{Grade}_{ij}$ is the grade-level for Student $j$ at time point $i$;
--   $b_{1j}$ is the random-effect of grade-level for Student $j$;
--   $\beta_2$ is the fixed-effect of special education status;
--   $\mathrm{Special~Education}_{j}$ is the dummy-coded special education status for Student $j$
--   $\beta_3$ is the fixed-effect of attendance;
--   $\mathrm{Attendance}_{j}$ is the attendance for Student $j$
--   $\beta_4$ is the interaction-effect (fixed-effect) between special education status grade-level; and
--   $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
+- $\mathrm{Reading~Score}_{ij}$ is the reading score for Student *j* at time point *i*;
+- $\beta_0$ is the fixed-effect of intercept;
+- $b_{0j}$ is the random-effect of intercept for Student *j*;
+- $\beta_1$ is the fixed-effect of grade-level;
+- $\mathrm{Grade}_{ij}$ is the grade-level for Student *j* at time point *i*;
+- $b_{1j}$ is the random-effect of grade-level for Student *j*;
+- $\beta_2$ is the fixed-effect of special education status;
+- $\mathrm{Special~Education}_{j}$ is the dummy-coded special education status for Student *j*
+- $\beta_3$ is the fixed-effect of attendance;
+- $\mathrm{Attendance}_{j}$ is the attendance for Student *j*
+- $\beta_4$ is the interaction-effect (fixed-effect) between special education status grade-level; and
+- $\epsilon_{ij}$ is the error for Student *j* at time point *i*.
 
 We fit the model using ML estimation, obtain both the fixed-effect estimates and estimated variance components, and add these results to our table of regression results. To facilitate better interpretation of the intercept, we will mean center the attendance variable.
 
 ```{r}
 # Fit model
-lmer.f = lmer(reading_score ~ 1 + I(grade-5) + sped + I(attendance - 0.9564) + I(grade-5):sped + 
+lmer.f = lmer(reading_score ~ 1 + I(grade-5) + sped + I(attendance - 0.9564) + I(grade-5):sped +
                 (1 + I(grade-5) | student_id), data = mpls, REML = FALSE)
 
 # Coefficient-level output
@@ -661,14 +675,18 @@ tidy(lmer.f, effects = "fixed")
 tidy(lmer.f, effects = "ran_pars")
 ```
 
-```{r results='asis', class.source = 'fold-hide'}
+```{r}
+#| label: model-table-05
+#| tbl-cap: "Taxonomy of models predicting longitudinal variation in students' reading scores."
+#| results: asis
+#| code-fold: true
 htmlreg(
   l = list(lmer.a, lmer.b, lmer.c, lmer.d, lmer.e, lmer.f),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20, #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E", "Model F"), 
-  custom.coef.names = c("Intercept", "Grade", "Special Education Status", "Attendance", 
+  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E", "Model F"),
+  custom.coef.names = c("Intercept", "Grade", "Special Education Status", "Attendance",
                         "Grade x Special Education Status"),
   reorder.coef = c(2:5, 1), #Put intercept at bottom of table
   include.loglik = FALSE, #Omit log-likelihood
@@ -677,16 +695,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 Variance (Intercept)", "Level-1 Variance", "Level-2 Variance (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c), AICc(lmer.d), AICc(lmer.e), AICc(lmer.f))  # Add AICc values
-  ), 
+  ),
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores. The estimated fixed-effects (standard errors), variance components, and model-level summaries are presented for each model.",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
 )
 
 ```
@@ -701,8 +719,8 @@ $$
 
 Interpreting the interaction effect:
 
--   The effect of grade-level on reading scores varies by special education status after controlling for differences in attendance. OR
--   The effect of special education status on reading scores varies by grade-level after controlling for differences in attendance.
+- The effect of grade-level on reading scores varies by special education status after controlling for differences in attendance. OR
+- The effect of special education status on reading scores varies by grade-level after controlling for differences in attendance.
 
 To better understand this interaction, we can write out and then plot the average fitted equation for special education students and that for non-special education students. We will control for attendance by setting it to its mean value. Note that since we mean centered attendance, this will drop the attendance term from the fitted equation.
 
@@ -719,6 +737,7 @@ This results in essentially the same plot as Model E (the special education stud
 
 <br />
 
+
 # Adopting a Model
 
 We can use information criteria to select from out six candidate models since each model has the same outcome and has used the same data.
@@ -731,7 +750,7 @@ aictab(
 )
 ```
 
-Given the data and candidate set of models, Model F hs the most empirical evidence. However, there also seems to be a fair amount of evidence for Models C, D, and E. All of these models included random-effects of both intercept and slope.
+Given the data and candidate set of models, Model F has the most empirical evidence. However, there also seems to be a fair amount of evidence for Models C, D, and E. All of these models included random-effects of both intercept and slope.
 
 <br />
 
@@ -743,9 +762,9 @@ While the table of regression results produced by `htmlreg()` is fine, there are
 - Rows indicating the fixed-effects, variance components, and model-level summaries
 - Some horizontal guide lines to separate these sections
 
-When you run the `htmlreg()` syntax, it produces the HTML syntax that is used to create the table. Embedding this in a code chunk with the option `results='asis'` will actually render the HTML syntax and produce the table in the resulting HTML file. 
+When you run the `htmlreg()` syntax, it produces the HTML syntax that is used to create the table. Embedding this in a code chunk with the option `results='asis'` will actually render the HTML syntax and produce the table in the resulting HTML file.
 
-One way of customizing the output is to modify the HTML syntax. To do this we run the `htmlreg()` in the Console and copy and paste it into our RMD file. (Paste this syntax outside of a code chunk!) 
+One way of customizing the output is to modify the HTML syntax. To do this we run the `htmlreg()` in the Console and copy and paste it into our RMD file. (Paste this syntax outside of a code chunk!)
 
 
 ```{r}
@@ -755,8 +774,8 @@ htmlreg(
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20, #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E", "Model F"), 
-  custom.coef.names = c("Intercept", "Grade", "Special Education Status", "Attendance", 
+  custom.model.names = c("Model A", "Model B", "Model C", "Model D", "Model E", "Model F"),
+  custom.coef.names = c("Intercept", "Grade", "Special Education Status", "Attendance",
                         "Grade x Special Education Status"),
   reorder.coef = c(2:5, 1), #Put intercept at bottom of table
   include.loglik = FALSE, #Omit log-likelihood
@@ -765,18 +784,22 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 (Intercept)", "Level-1", "Level-2 (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c), AICc(lmer.d), AICc(lmer.e), AICc(lmer.f))  # Add AICc values
-  ), 
+  ),
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores. The estimated fixed-effects (standard errors), variance components, and model-level summaries are presented for each model.",
+  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores.",
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
 )
 ```
+
+:::fyi
+If you are going to create the table by modifying the HTML, you should set the `caption=` argument in `htmlreg()` to the caption you want. 
+:::
 
 HTML code consists of tags that define certain features. There is typically an opening tag `<tag>` and a closing tag `</tag>`. The tags in the syntax produced by `htmlreg()` are all related to producing different features of a table:
 
@@ -790,7 +813,7 @@ HTML code consists of tags that define certain features. There is typically an o
 
 Within these tags their are certain arguments (called attributes in the HTML nomenclature). The most common is the `style=` attribute. This conisists of CSS syntax that styles the contents of the tag. For example, the syntax:
 
-```
+```{html}
 <td style="padding-left: 20px;padding-right: 20px;">Grade</td>
 ```
 
@@ -798,21 +821,22 @@ produces a cell in the table that includes the content 'Grade'. The CSS syntax i
 
 We will manually include additional HTML and CSS syntax to the existing table syntax to customize our output. For example to add a row that includes the text `Fixed-effects` and also includes a top border (horizontal guide line), we use:
 
-```
+```{html}
 <tr style="border-top: 1px solid #000000;">
   <td style="text-align: center; padding-top:5px; padding-bottom:10px;" colspan="7">Fixed-effects
 </tr>
 ```
 
-This adds a row with top border that is 1 pixel thick, solid, and black. The text in th cell will be centered and have some padding space above and below the text (this allows the content of the row to breathe). The `colspan="7"` attribute spans the cell content across all seven columns of the table. 
+This adds a row with top border that is 1 pixel thick, solid, and black. The text in th cell will be centered and have some padding space above and below the text (this allows the content of the row to breathe). The `colspan="7"` attribute spans the cell content across all seven columns of the table.
 
 I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects (Variance components)', and 'Model-level summaries'. (You can view the syntax used in the RMD file. I have included comments to indicate where these rows are added.)
 
-
+```{html}
+#| code-fold: true
 <!-- MODIFIED TABLE -->
 
 <table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 1px solid #000000;">
-<caption>Taxonomy of models predicting longitudinal variation in students' reading scores. The estimated fixed-effects (standard errors), variance components, and model-level summaries are presented for each model.</caption>
+<caption>Taxonomy of models predicting longitudinal variation in students' reading scores.</caption>
 <thead>
   <tr>
     <th style="padding-left: 20px;padding-right: 20px;">&nbsp;</th>
@@ -926,7 +950,7 @@ I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects 
 </tr>
 <!-- In the next row, we remove the border that was there so we don't get a double border -->
 <tr>
-  <td style="padding-left: 20px;padding-right: 20px;">$\mathrm{Var}(b_0)$</td>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 (Intercept)</td>
   <td style="padding-left: 20px;padding-right: 20px;">329.66</td>
   <td style="padding-left: 20px;padding-right: 20px;">337.57</td>
   <td style="padding-left: 20px;padding-right: 20px;">381.44</td>
@@ -935,7 +959,7 @@ I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects 
   <td style="padding-left: 20px;padding-right: 20px;">320.00</td>
 </tr>
 <tr>
-  <td style="padding-left: 20px;padding-right: 20px;">$\mathrm{Var}(b_1)$</td>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 (Slope)</td>
   <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
   <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
   <td style="padding-left: 20px;padding-right: 20px;">7.38</td>
@@ -944,7 +968,7 @@ I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects 
   <td style="padding-left: 20px;padding-right: 20px;">6.96</td>
 </tr>
 <tr>
-  <td style="padding-left: 20px;padding-right: 20px;">$\mathrm{Cov}(b_0,b_1)$</td>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 Covariance</td>
   <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
   <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
   <td style="padding-left: 20px;padding-right: 20px;">-19.12</td>
@@ -953,7 +977,7 @@ I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects 
   <td style="padding-left: 20px;padding-right: 20px;">-23.85</td>
 </tr>
 <tr>
-  <td style="padding-left: 20px;padding-right: 20px;">$\mathrm{Var}(e_{ij})$</td>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-1</td>
   <td style="padding-left: 20px;padding-right: 20px;">61.62</td>
   <td style="padding-left: 20px;padding-right: 20px;">29.89</td>
   <td style="padding-left: 20px;padding-right: 20px;">17.59</td>
@@ -986,10 +1010,200 @@ I have added this to include a row to indicate 'Fixed-effects'. 'Random-effects 
 </tbody>
 <tfoot>
 <tr>
-  <td style="font-size: 0.8em;" colspan="7">The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered.</td>
+  <td style="font-size: 0.8em;" colspan="7"><i>Note.</i> The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered.</td>
 </tr>
 </tfoot>
 </table>
+```
+
+<!-- MODIFIED TABLE -->
+
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 1px solid #000000;">
+<caption>Taxonomy of models predicting longitudinal variation in students' reading scores.</caption>
+<thead>
+  <tr>
+    <th style="padding-left: 20px;padding-right: 20px;">&nbsp;</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model A</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model B</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model C</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model D</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model E</th>
+    <th style="padding-left: 20px;padding-right: 20px;">Model F</th>
+  </tr>
+</thead>
+<tbody>
+<!-- Add row indicating fixed-effects -->
+<tr style="border-top: 1px solid #000000;">
+  <td style="text-align: center; padding-top:5px; padding-bottom:10px;" colspan="7">Fixed-effects
+</tr>
+<!-- In the next row, we remove the border that was there so we don't get a double border -->
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Grade</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">4.36</td>
+  <td style="padding-left: 20px;padding-right: 20px;">4.36</td>
+  <td style="padding-left: 20px;padding-right: 20px;">4.36</td>
+  <td style="padding-left: 20px;padding-right: 20px;">4.11</td>
+  <td style="padding-left: 20px;padding-right: 20px;">4.11</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(0.52)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(0.70)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(0.70)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(0.74)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(0.74)</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Special Education Status</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-15.77</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-19.40</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-22.01</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(10.96)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(11.61)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(11.38)</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Attendance</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">1.89</td>
+  <td style="padding-left: 20px;padding-right: 20px;">1.89</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(2.01)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(2.01)</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Grade x Special Education Status</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">218.39</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(89.83)</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Intercept</td>
+  <td style="padding-left: 20px;padding-right: 20px;">212.64</td>
+  <td style="padding-left: 20px;padding-right: 20px;">206.09</td>
+  <td style="padding-left: 20px;padding-right: 20px;">206.09</td>
+  <td style="padding-left: 20px;padding-right: 20px;">208.24</td>
+  <td style="padding-left: 20px;padding-right: 20px;">208.74</td>
+  <td style="padding-left: 20px;padding-right: 20px;">209.10</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(3.96)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(4.04)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(4.23)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(4.26)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(4.29)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">(4.18)</td>
+</tr>
+<!-- Add row indicating random-effects -->
+<tr style="border-top: 1px solid #000000;">
+  <td style="text-align: center; padding-top:5px; padding-bottom:10px;" colspan="7">Random-effects (Variance Components)
+</tr>
+<!-- In the next row, we remove the border that was there so we don't get a double border -->
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 (Intercept)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">329.66</td>
+  <td style="padding-left: 20px;padding-right: 20px;">337.57</td>
+  <td style="padding-left: 20px;padding-right: 20px;">381.44</td>
+  <td style="padding-left: 20px;padding-right: 20px;">338.62</td>
+  <td style="padding-left: 20px;padding-right: 20px;">337.07</td>
+  <td style="padding-left: 20px;padding-right: 20px;">320.00</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 (Slope)</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">7.38</td>
+  <td style="padding-left: 20px;padding-right: 20px;">7.38</td>
+  <td style="padding-left: 20px;padding-right: 20px;">6.96</td>
+  <td style="padding-left: 20px;padding-right: 20px;">6.96</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-2 Covariance</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">&nbsp;</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-19.12</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-15.60</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-14.79</td>
+  <td style="padding-left: 20px;padding-right: 20px;">-23.85</td>
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Level-1</td>
+  <td style="padding-left: 20px;padding-right: 20px;">61.62</td>
+  <td style="padding-left: 20px;padding-right: 20px;">29.89</td>
+  <td style="padding-left: 20px;padding-right: 20px;">17.59</td>
+  <td style="padding-left: 20px;padding-right: 20px;">17.59</td>
+  <td style="padding-left: 20px;padding-right: 20px;">17.59</td>
+  <td style="padding-left: 20px;padding-right: 20px;">17.59</td>
+</tr>
+<!-- Add row indicating model-level summaries-->
+<tr style="border-top: 1px solid #000000;">
+  <td style="text-align: center; padding-top:5px; padding-bottom:10px;" colspan="7">Model-level summaries
+</tr>
+<tr>
+  <td style="padding-left: 20px;padding-right: 20px;">Deviance</td>
+  <td style="padding-left: 20px;padding-right: 20px;">680.78</td>
+  <td style="padding-left: 20px;padding-right: 20px;">633.02</td>
+  <td style="padding-left: 20px;padding-right: 20px;">622.52</td>
+  <td style="padding-left: 20px;padding-right: 20px;">620.61</td>
+  <td style="padding-left: 20px;padding-right: 20px;">619.74</td>
+  <td style="padding-left: 20px;padding-right: 20px;">615.05</td>
+</tr>
+<tr style="border-bottom: 1px solid #000000;">
+  <td style="padding-left: 20px;padding-right: 20px;">AICc</td>
+  <td style="padding-left: 20px;padding-right: 20px;">687.07</td>
+  <td style="padding-left: 20px;padding-right: 20px;">641.50</td>
+  <td style="padding-left: 20px;padding-right: 20px;">635.56</td>
+  <td style="padding-left: 20px;padding-right: 20px;">636.01</td>
+  <td style="padding-left: 20px;padding-right: 20px;">637.56</td>
+  <td style="padding-left: 20px;padding-right: 20px;">635.36</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+  <td style="font-size: 0.8em;" colspan="7"><i>Note.</i> The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered.</td>
+</tr>
+</tfoot>
+</table>
+
+
+
+<br />
+
+
+
 
 
 

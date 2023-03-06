@@ -15,7 +15,7 @@ library(tidyverse)
 ##################################################
 
 # Import data
-mpls = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv")
+mpls = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
 
 # View data
 mpls
@@ -47,7 +47,7 @@ out = augment(lm.1)
 # Scatterplot of standardized residuals vs. fitted values
 p1 = ggplot(data = out, aes(x = .std.resid)) +
   stat_density_confidence(model = "normal") +
-  stat_density(geom = "line") +
+  geom_density() +
   theme_bw() +
   xlab("Standardized residuals") +
   ylab("Probability density")
@@ -72,7 +72,7 @@ p1 | p2
 ##################################################
 
 # Mutate on student ID and draw random sample
-out = out %>%
+out = out |>
   mutate(student_id = mpls$student_id) 
 
 ### Show residuals by student
@@ -91,11 +91,11 @@ ggplot(data = out, aes(x = .fitted, y = .std.resid)) +
 ##################################################
 
 # Fit student models
-student_models = mpls %>%
-  group_by(student_id) %>%
+student_models = mpls |>
+  group_by(student_id) |>
   summarize(
     tidy(lm(reading_score  ~ 1 + grade))
-  ) %>%
+  ) |>
   ungroup()
 
 
@@ -135,14 +135,16 @@ tidy(lmer.2, effects = "fixed")
 
 
 # Display random-effects (arrange by ID)
-tidy(lmer.2, effects = "ran_vals") %>%
+tidy(lmer.2, effects = "ran_vals") |>
   arrange(level)
 
-tidy(lmer.2, effects = "ran_vals") %>%
+# Display random-effects for Student 13
+tidy(lmer.2, effects = "ran_vals") |>
   filter(level == 13)
 
 
-tidy(lmer.2, effects = "ran_vals") %>%
+# Display random-effects for all students
+tidy(lmer.2, effects = "ran_vals") |>
   print(n = Inf)
 
 

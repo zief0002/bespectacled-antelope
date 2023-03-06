@@ -25,12 +25,15 @@ mn
 
 ggplot(data = mn, aes(x = sat, y = grad)) +
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed") +
+  #geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed") +
   geom_smooth(method = "loess", se = FALSE) +
   theme_bw() +
   xlab("Estimated median SAT score (in hundreds)") +
   ylab("Six-year graduation rate")
 
+
+lm.1 = lm(grad ~ 1 + sat, data = mn)
+residual_plots(lm.1)
 
 
 ##################################################
@@ -87,16 +90,7 @@ lm.log = lm(grad ~ 1 + l2sat, data = mn)
 ##################################################
 
 # Obtain residuals for log-transformed SAT
-out_log = augment(lm.log)
-
-# Check linearity assumptions
-ggplot(data = out_log, aes(x = .fitted, y = .std.resid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0) +
-  theme_light() +
-  xlab("Fitted values") +
-  ylab("Standardized residuals")
+residual_plots(lm.log)
 
 
 

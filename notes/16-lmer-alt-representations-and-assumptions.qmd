@@ -1,67 +1,29 @@
 ---
 title: "Linear Mixed-Effects Models: Alternative Representations and Assumptions"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-```{=html}
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
+In this set of notes, you will learn alternative ways of representing the linear mixed-effects model. You will also learn about the underlying assumptions for the linear mixed-effects model, as well as how to evaluate them empirically. To do this, we will use data from the file *minneapolis.csv* to analyze change in students' reading scores over time.
 
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
-```
-
-In this set of notes, you will learn alternative ways of representing the linear mixed-effects model. You will also learn about the underlying assumptions for the linear mixed-effects model, as well as how to evaluate them empirically.
-
-<br />
+-   [[CSV]](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv)
+-   [[Data Codebook]](http://zief0002.github.io/bespectacled-antelope/codebooks/minneapolis.html)
 
 
-# Dataset and Research Question
-
-In this set of notes, we will use data from the file *minneapolis.csv* to analyze change in students' reading scores over time.
-
--   [[CSV]](https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv)
--   [[Data Codebook]](http://zief0002.github.io/epsy-8252/codebooks/minneapolis.html)
-
-
-```{r message=FALSE}
+```{r}
 # Load libraries
 library(broom.mixed) #for tidy, glance, and augment functions for lme4 models
 library(educate)
@@ -70,7 +32,7 @@ library(patchwork)
 library(tidyverse)
 
 # Read in data
-mpls = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv")
+mpls = read_csv("https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
 
 # View data
 mpls
@@ -80,25 +42,30 @@ To illustrate some the concepts in this set of notes, we will consider the follo
 
 $$
 \begin{split}
-\mathbf{Model~1:~~}\mathrm{Reading~Score}_{ij} &= \big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j)+ \epsilon_{ij}\\[2em]
-\mathbf{Model~2:~~}\mathrm{Reading~Score}_{ij} &= \big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}\\[2em]
-\mathbf{Model~3:~~}\mathrm{Reading~Score}_{ij} &= \big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\mathbf{Model~1:~~}\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \\
+&~~\beta_2(\mathrm{Special~Education}_j)+ \epsilon_{ij}\\[2em]
+\mathbf{Model~2:~~}\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\ &~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}\\[2em]
+\mathbf{Model~3:~~}\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\ &~~\beta_2(\mathrm{Special~Education}_j) + \\
+&~~\beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
 \end{split}
 $$
 
 where,
 
--   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student $j$ at time point $i$;
+-   $\mathrm{Reading~Score}_{ij}$ is the reading score for Student *j* at time point *i*;
 -   $\beta_0$ is the fixed-effect of intercept;
--   $b_{0j}$ is the random-effect of intercept for Student $j$;
+-   $b_{0j}$ is the random-effect of intercept for Student *j*;
 -   $\beta_1$ is the fixed-effect of grade-level;
--   $b_{1j}$ is the random-effect of grade-level for Student $j$;
+-   $b_{1j}$ is the random-effect of grade-level for Student *j*;
 -   $\beta_2$ is the fixed-effect of special education status;
 -   $\beta_3$ is the interaction-effect (fixed-effect) between special education status grade-level; and
--   $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
+-   $\epsilon_{ij}$ is the error for Student *j* at time point *i*.
 
+<br />
 
+:::fyi
 This representation of the models is referred to as the **composite model** or the **mixed-effects model** since they include both the fixed- and random-effects in the same equation.
+:::
 
 <br />
 
@@ -108,10 +75,13 @@ This representation of the models is referred to as the **composite model** or t
 Another way we can express the model is by separating the mixed-effects model equation into multiple equations; one for each level of variation. For example, each of the mixed-effects models listed above could be separated into two equations: a Level-1 equation that includes effects and residuals that explain the within-student variation and a set of Level-2 equations that include the effects and residuals that explain the between-student variation. As an example, take the equation for Model 1:
 
 $$
-\mathrm{Reading~Score}_{ij} = \big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \\ 
+&~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
 $$
 
-We initially write the Level-1 equation which includes the fixed effect for the intercept, all the fixed-effects associated with within-student predictors, and the within-student error term from the mixed-effects model. When writing the Level-1 model, we add a *j* subscript to each of the fixed-effects to indicate that the particular effect may be unique to a particular student. The Level-1 equation for Model 2 is:
+We initially write the Level-1 equation which includes the effect for the intercept, an effect for each of the within-student predictors, and the within-student error term from the mixed-effects model. When writing the Level-1 model, we add a *j* subscript to the intercept and predictor effects to indicate that the particular effect may be unique to a particular student. The Level-1 equation for Model 1 is:
 
 $$
 \mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}
@@ -137,7 +107,7 @@ $$
 &\mathbf{Level\mbox{-}1:}\\
 &\qquad\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}\\
 &\mathbf{Level\mbox{-}2:}\\
-&\qquad\beta_{0j} = \beta_0 + b_{0j}\\
+&\qquad\beta_{0j} = \beta_0 + \beta_2(\mathrm{Special~Education}_j) b_{0j}\\
 &\qquad\beta_{1j} = \beta_1\\
 \end{split}
 $$
@@ -147,10 +117,13 @@ $$
 
 ## Multilevel Equation for Model 2
 
-As a second example, consider Model 2:
+As a second example, consider the composite (mixed-effects) model for Model 2:
 
 $$
-\mathrm{Reading~Score}_{ij} = \big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) +\\
+&~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
 $$
 
 The Level-1 equation is again:
@@ -185,7 +158,10 @@ $$
 Re-arranging this:
 
 $$
-\mathrm{Reading~Score}_{ij} = \bigg[\beta_0 + b_{0j}\bigg] + \bigg[\beta_1 + b_{1j}\bigg](\mathrm{Grade~Level}_{ij}) + \beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\bigg[\beta_0 + b_{0j}\bigg] + \bigg[\beta_1 + b_{1j}\bigg](\mathrm{Grade~Level}_{ij}) + \\
+&~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
 $$
 
 
@@ -195,19 +171,29 @@ $$
 Recall the composite (a.k.a., mixed-effects) expression of Model 3 was:
 
 $$
-\mathrm{Reading~Score}_{ij} = \big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\
+&~~\beta_2(\mathrm{Special~Education}_j) + \\
+&~~\beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
 $$
 
 This model includes an interaction effect between the time predictor (grade-level) and the special education status predictor. Let's dRe-express this model by distributing the time predictor across the fixed- and random-effects of slope, and move all the terms with a time predictor so they are together in the equation, and all the terms without a time predictor together. (I will use large square brackets to show this grouping.) The within-student residual will stay at the end of the equation.
 
 $$
-\mathrm{Reading~Score}_{ij} = \bigg[\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\bigg] + \bigg[\beta_1(\mathrm{Grade}_{ij}-5) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + b_{1j}(\mathrm{Grade}_{ij}-5)\bigg] + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\bigg[\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\bigg] + \\
+&\bigg[\beta_1(\mathrm{Grade}_{ij}-5) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + b_{1j}(\mathrm{Grade}_{ij}-5)\bigg] + \epsilon_{ij}
+\end{split}
 $$
 
 Extracting the time predictor from the second group:
 
 $$
-\mathrm{Reading~Score}_{ij} = \bigg[\underbrace{\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}}_{\beta_{0j}}\bigg] + \bigg[\underbrace{\beta_1 +\beta_3(\mathrm{Special~Education}_j) + b_{1j}}_{\beta_{1j}}\bigg](\mathrm{Grade}_{ij}-5) + \epsilon_{ij}
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &\bigg[\underbrace{\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}}_{\beta_{0j}}\bigg] + \\
+&\bigg[\underbrace{\beta_1 +\beta_3(\mathrm{Special~Education}_j) + b_{1j}}_{\beta_{1j}}\bigg](\mathrm{Grade}_{ij}-5) + \epsilon_{ij}
+\end{split}
 $$
 
 This helps us write the multilevel equations:
@@ -223,10 +209,10 @@ $$
 $$
 
 
-You can substitute the Level-2 equations back into the Level-1 equation and that should give you the initial composite equation. 
+You can substitute the Level-2 equations back into the Level-1 equation and that should give you the initial composite equation.
 
 
-:::note
+:::fyi
 Notice that between-student predictors that are main-effects appear in the Level-2 intercept equation, and between-student predictors that are included in an interaction-effect with a within-student predictor appear in the Level-2 slope equation. Because we need to include the main-effects of any predictor that is also a part of an interaction term, any predictors included in the Level-2 slope equation also need to be included in the Level-2 intercept equation.
 :::
 
@@ -274,9 +260,9 @@ $$
 
 Expressing the model as a set of multilevel equations can be helpful for readers. First, it explicitly separates the sources of variation and the predictors of these sources of variation into different levels. In our example there are two sources of variation: within-student variation and between-student variation. The Level-1 model attempts to describe the within-student variation and, hence, only includes within-student predictors. The Level-2 models attempts to describe the between-student variation and only includes between-student predictors.
 
-Secondly, the multilevel expression of the model helps us think aboout what the predictors at each level are actually doing. Level-1 predictors explain variation in the outcome. In our example, they are explaining variation in students' reading scores. The Level-2 predictors are explaining variation in the student-specific intercepts and slopes---they explain Level-2 variation.
+Secondly, the multilevel expression of the model helps us think about what the predictors at each level are actually doing. Level-1 predictors explain variation in the outcome. In our example, they are explaining variation in students' reading scores. The Level-2 predictors are explaining variation in the student-specific intercepts and slopes---they explain Level-2 variation.
 
-Thirdly, the multilevel expression of the model helps us see that the random-effects are residuals; they are residuals of the Level-2 models. This helps us think about the more general statistical model. For example, the general statistial model for a model that includes fixed-effects of two predictors and a random-effect of intercept is:
+Thirdly, the multilevel expression of the model helps us see that the random-effects are residuals; they are residuals of the Level-2 models. This helps us think about the more general statistical model. For example, the general statistical model for a model that includes fixed-effects of two predictors and a random-effect of intercept is:
 
 $$
 \begin{split}
@@ -303,7 +289,7 @@ In the mixed-effects model we put distributional assumptions on both the Level-1
 <br />
 
 
-## Evaluating the Assumptions: An Example
+# Evaluating the Assumptions: An Example
 
 Evaluating the assumptions in a mixed-effects model is a bit more complicated than it is in a fixed-effects model since the mixed-effects model includes multiple residuals; Level-1 residuals and the Level-2 residuals. There are also potential assumptions bout the covariances between the Level-2 residuals, depending on the model that was fitted. To simplify things, in this course, we will evaluate the distributional assumptions placed on the Level-1 residuals, and we will also evaluate the normality assumption on the random-effects.
 
@@ -357,10 +343,14 @@ out_2 = augment(lmer.2)
 out_2
 ```
 
-
 The Level-1 residuals are found in the `.resid` column, and the `.fitted` column contains the $\hat{Y}$ values. As with LM residual analysis, we want to examine the normality of the residuals in a density plot (or some other plot that allows you to evaluate this), and the other assumptions by plotting the residuals against the fitted values in a scatterplot.
 
-```{r fig.width=8, fig.height=4, out.width='90%', fig.cap='Plots to evaluate the level-1 residuals.'}
+```{r}
+#| label: fig-residuals-level-1
+#| fig-cap: "Plots to evaluate the level-1 residuals."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "90%"
 # Density plot of the level-1 residuals
 p1 = ggplot(data = out_2, aes(x = .resid)) +
   stat_density_confidence(model = "normal") +
@@ -401,10 +391,13 @@ level_2
 ```
 
 
-Recall that this tibble includes both the intercept and the grade-level random-effects. We will `facet_wrap()` on the `term` column to plot each of these distributions separately. 
+Recall that this tibble includes both the intercept and the grade-level random-effects. We will `facet_wrap()` on the `term` column to plot each of these distributions separately.
 
 
-```{r fig.cap='Density plot of the estimated random-effects for intercept (left) and grade-level (right). The confidence envelope is based on the expected variation in a normal distribution.'}
+```{r}
+#| label: fig-residuals-level-2
+#| fig-cap: "Density plot of the estimated random-effects for intercept (left) and grade-level (right). The confidence envelope is based on the expected variation in a normal distribution."
+#| out-width: "70%"
 # Density plot of the RE for intercept
 ggplot(data = level_2, aes(x = estimate)) +
   stat_density_confidence(model = "normal") +
@@ -424,7 +417,7 @@ Neither distribution of random-effects seem consistent with the assumption of no
 
 Given the incredibly small amount of variation in the random-effects of grade-level, we will only include a random-effect for intercept in the model. Examination of the assumptions for this model (not shown) results in good fit to the Level-1 residual assumptions and some slight mis-fit to the normality assumption of the Level-2 residuals, with the resulting distribution being slightly right-skewed.
 
-:::note
+:::fyi
 Note that, in practice, the violation of the normality assumption would not be a deal breaker since the remaining assumptions were met in this model. However, to facilitate understanding of log-transformations in these models, we will fit and interpret a log-transformed model.
 :::
 
@@ -432,18 +425,21 @@ Note that, in practice, the violation of the normality assumption would not be a
 Similar to fixed-effects models, we can apply transformations to the outcome or any of the continuous predictors. Here the log-transform can be applied to the outcome to help alleviate the non-normality we observed in the Level-2 residuals. (There are no 0 values or negative values in the outcome, so we can directly apply the log-transformation.)
 
 
-```{r fig.width=12, fig.height=4, out.width='100%', fig.cap='Plots to evaluate the level-1 and level-2 residuals.'}
+```{r}
+#| label: fig-residuals-log-model
+#| fig-cap: "Plots to evaluate the level-1 and level-2 residuals."
+#| fig-width: 12
+#| fig-height: 4
+#| out-width: "100%"
 # Fit model
-lmer.3 = lmer(log(reading_score) ~ 1 + I(grade-5) + special_ed + 
+lmer.3 = lmer(log(reading_score) ~ 1 + I(grade-5) + special_ed +
                 (1  | student_id), data = mpls, REML = FALSE)
 
 # Augment model
 out_3 = augment(lmer.3)
 
-
 # Obtain a data frame of the random-effects
 level_2 = tidy(lmer.3, effects = "ran_vals")
-
 
 # Density plot of the level-1 residuals
 p1 = ggplot(data = out_3, aes(x = .resid)) +
@@ -452,7 +448,6 @@ p1 = ggplot(data = out_3, aes(x = .resid)) +
   theme_bw() +
   xlab("Level-1 residuals")
 
-
 # Scatterplot of the Level-1 residuals versus the fitted values
 p2 = ggplot(data = out_3, aes(x = .fitted, y = .resid)) +
   geom_point() +
@@ -460,7 +455,6 @@ p2 = ggplot(data = out_3, aes(x = .fitted, y = .resid)) +
   theme_bw() +
   xlab("Fitted values") +
   ylab("Level-1 residuals")
-
 
 # Density plot of the level-2 residuals (RE of intercept)
 p3 = ggplot(data = level_2, aes(x = estimate)) +
@@ -488,13 +482,14 @@ tidy(lmer.3, effects = "fixed")
 
 - The intercept is the average log-transformed reading score for non-special education students in the 5th grade. Back-transforming this, we find the average reading score for these students is $e^{5.34} = 208.52$.
 - Back-transforming the grade-level effect, we find that each one grade difference is associated with a 2% ($e^{0.021} = 1.02$) increase in reading scores, on average, after controlling for differences in special education status.
-- Back-transforming the special education status effect, we find that special education students have reading scores that are $e^{-0.0905} = 0.91$ times those for non-special education students, on avewrage, after controlling for differences in grade-level.
+- Back-transforming the special education status effect, we find that special education students have reading scores that are $e^{-0.0905} = 0.91$ times those for non-special education students, on average, after controlling for differences in grade-level.
 
 We can also plot the average growth trajectory and any individual students' growth trajectories for the back-transformed models to aid in the interpretation.
 
 ```{r}
+#| label: fig-fitted-log-model
 #| fig.cap: Change in reading scores over time for the average special education (solid, blue line) and non-special education student (solid, orange line). Student 1's growth trajectory (dashed line) is also displayed.
-
+#| out-width: "60%"
 ggplot(data = mpls, aes(x = (grade-5), y = reading_score)) +
   geom_function(fun = function(x){exp(5.34 - 0.0905 + 0.0210*x)}, color = "#0072B2") + #SpEd (Avg)
   geom_function(fun = function(x){exp(5.34 + 0.0210*x)}, color = "#E69F00") + #Non-SpEd (Avg)
@@ -506,7 +501,6 @@ ggplot(data = mpls, aes(x = (grade-5), y = reading_score)) +
     labels = c("5th", "6th", "7th", "8th")
   ) +
   ylab("Reading Score")
-  
 ```
 
 

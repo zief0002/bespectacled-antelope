@@ -1,63 +1,31 @@
 ---
 title: "LMER: Average Change Over Time"
-author: "Andrew Zieffler"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
-output: 
-  html_document:
-    highlight: zenburn
-    css: ['style/style.css', 'style/table-styles.css', 'style/notes.css']
-    df_print: paged
-    code_folding: show
-bibliography: ['epsy8251.bib', 'epsy8252.bib']
-csl: 'style/apa-single-spaced.csl'
+format:
+  html:
+    code-copy: true
+    code-fold: false
+    highlight-style: zenburn
+    df-print: paged
+    css: ["../assets/sticky-notes.css"]
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+bibliography: "../assets/epsy8252.bib"
+csl: "../assets/apa-single-spaced.csl"
 ---
 
-
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/es5/tex-mml-chtml.js">
-</script>
-
-
-```{r knitr_init, echo=FALSE, cache=FALSE, message=FALSE}
-library(knitr)
-library(kableExtra)
-library(rmdformats)
-
-## Global options
-options(
-  max.print = "75",
-  scipen = 5,
-  knitr.kable.NA = '' #Make NAs blank in kable() output
-  )
-
-## knitr document chunk options
-opts_chunk$set(
-  prompt = FALSE, 
-  comment = NA, 
-  message = FALSE, 
-  warning = FALSE, 
-  tidy = FALSE, 
-  fig.width = 6, 
-  fig.height = 6,
-  fig.align = 'center', 
-  out.width='40%'
-  )
-
-## Set output width for printing
-opts_knit$set(width = 85)
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
 ```
 
 
-In this set of notes, you will learn how to use the linear mixed-effects model to examine the mean change over time in a set of longitudinal/repeated measurements.
+In this set of notes, you will learn how to use the linear mixed-effects model to examine the mean change over time in a set of longitudinal/repeated measurements. To do this, we will use data from the file *vocabulary.csv*.
 
-<br />
+- [vocabulary.csv](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv)
+- [Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/vocabulary.html)
 
+These data include repeated measurements of scaled vocabulary scores for $n=64$ students.
 
-# Dataset and Research Question
-
-In this set of notes, we will use data from the file *vocabulary.csv* (see the [data codebook](http://zief0002.github.io/epsy-8252/codebooks/vocabulary.html) here). These data include repeated measurements of scaled vocabulary scores for $n=64$ students.
-
-```{r message=FALSE}
+```{r}
 # Load libraries
 library(AICcmodavg)
 library(broom.mixed) #for tidy, glance, and augment functions for lme4 models
@@ -69,7 +37,7 @@ library(texreg)
 library(tidyverse)
 
 # Read in data
-vocabulary = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/vocabulary.csv")
+vocabulary = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv")
 
 # View data
 vocabulary
@@ -89,18 +57,11 @@ Before doing any analysis of the data, it is worth understanding the structure o
 
 The vocabulary data is currently structured as wide data; the vocabulary scores are organized into four separate columns and the information about grade-level (the time predictor) is embedded in the variable names (e.g., `vocab_08` indicates 8th-grade). The same data are presented below in the tidy/long structure.
 
-```{r echo=FALSE}
-vocabulary %>%
-  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") %>%
-  arrange(id, grade) %>%
-  head(12) %>%
-  kable(
-    caption = "Vocabulary Data Presented in the Tidy/Long Format",
-    format = "latex",
-    booktabs = TRUE,
-    align = "c"
-    ) %>%
-  kable_styling(full_width = FALSE, latex_options = "HOLD_position")
+```{r}
+#| echo: false
+vocabulary |>
+  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") |>
+  arrange(id, grade)
 ```
 
 Notice that in the tidy/long structured data that the vocabulary scores (outcome) are now organized into a single column. Grade-level (the time predictor) is also now explicitly included in the data and is also organized as a single column in the data. Note that in the long structure, each row now represents a particular student at a particular grade-level, and that each student's data now encompasses several rows.
@@ -118,8 +79,8 @@ The library `{tidyr}` (loaded as part of the `{tidyverse}` metapackage) has two 
 
 ```{r}
 # Convert from wide to long structured data
-vocabulary_long = vocabulary %>%
-  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") %>%
+vocabulary_long = vocabulary |>
+  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") |>
   arrange(id, grade)
 
 # View data
@@ -137,7 +98,9 @@ There are two plots that are particularly useful in exploring longitudinal data.
 
 Another plot that is often examined is a plot of the individual patterns or profiles, referred to as a *spaghetti plot*. A spaghetti plot is useful for determining whether there is variation from the average profile. This helps us to consider the set of random-effects to include in the model. Below we examine both the mean profile and individual profiles simultaneously.
 
-```{r fig.width=6, fig.height=6, fig.cap='Plot showing the change in vocabulary score over time for 64 students. The average growth profile is displayed as a thicker line.'}
+```{r}
+#| label: fig-ind-profiles
+#| fig-cap: "Plot showing the change in vocabulary score over time for 64 students. The average growth profile is displayed as a thicker line."
 ggplot(data = vocabulary_long, aes(x = grade, y = vocab_score)) +
   geom_line(aes(group = id), alpha = 0.3) +                      #Add individual profiles
   stat_summary(fun = mean, geom = "line", size = 2, group = 1) + #Add mean profile line
@@ -154,15 +117,12 @@ Because our research question is focused on examining the average change of voca
 
 - The average profile displays change over time that is positive (growth) and linear (or perhaps log-linear).
 
-
-
 <br />
-
 
 
 # Unconditional Random Intercepts Model
 
-As in a conventional fixed-effects regression analysis we begin a mixed-effects analysis by fitting the intercept-only model. This model is referred to as the *unconditional random intercepts model* or the *unconditional means model*. The model posits that there is *no change over time* in the average vocabulary score. 
+As in a conventional fixed-effects regression analysis we begin a mixed-effects analysis by fitting the intercept-only model. This model is referred to as the *unconditional random intercepts model* or the *unconditional means model*. The model posits that there is *no change over time* in the average vocabulary score.
 
 This model includes a fixed-effect of intercept and a random-effect of intercept, and no other predictors. This is the simplest model we can fit while still accounting for the dependence in the data (e.g., including a random-effect). The statistical model in this example can be expressed as:
 
@@ -173,9 +133,9 @@ $$
 where,
 
 - $\mathrm{Vocabulary~Score}_{ij}$ is the vocabulary score for Student $j$ at time point $i$;
-- $\beta_0$ is the fixed-effect of intercept; 
+- $\beta_0$ is the fixed-effect of intercept;
 - $b_{0j}$ is the random-effect of intercept for Student $j$; and
-- $\epsilon_{ij}$ is the error for Student $j$ at time point $i$. 
+- $\epsilon_{ij}$ is the error for Student $j$ at time point $i$.
 
 
 <br />
@@ -183,7 +143,7 @@ where,
 
 ## Fitting and Interpreting the Model
 
-We fit the  model and display the output below. We include the argument `REML=FALSE` to force the `lmer()` function to produce maximum likelihood estimates (rather than restricted maximum likelihood estimates). In practice, we will generally want to fit these models using ML estimation. 
+We fit the  model and display the output below. We include the argument `REML=FALSE` to force the `lmer()` function to produce maximum likelihood estimates (rather than restricted maximum likelihood estimates). In practice, we will generally want to fit these models using ML estimation.
 
 ```{r}
 # Fit model
@@ -245,9 +205,12 @@ $$
 
 The predicted average vocabulary language score for Student 2 (at all time points) is 2.34. From the two students' fitted equations we see that Student 1's "growth" curve is higher than the average "growth" curve and Student 2's "growth" curve is lower than the average "growth" curve. Here is a plot of those three "growth" curves.
 
-```{r echo=FALSE, fig.cap="Predicted change in vocabulary score over time based on the unconditional random intercepts model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line)."}
+```{r}
+#| label: fig-fitted-1
+#| fig-cap: "Predicted change in vocabulary score over time based on the unconditional random intercepts model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line)."
+#| code-fold: true
 ggplot(data = vocabulary_long, aes(x = grade, y = vocab_score)) +
-  geom_point(alpha = 0) + 
+  geom_point(alpha = 0) +
   geom_hline(yintercept = 2.53) + #Global 'growth' curve
   geom_hline(yintercept = 2.89, linetype = "dashed", color = "#0072B2") + #Student 1 'growth' curve
   geom_hline(yintercept = 2.34, linetype = "dashed", color = "#E69F00") + #Student 1 'growth' curve
@@ -260,7 +223,6 @@ ggplot(data = vocabulary_long, aes(x = grade, y = vocab_score)) +
   ylim(0, 4)
 ```
 
-
 <br />
 
 
@@ -270,12 +232,16 @@ This model is not very informative for applied researchers in terms of character
 
 To see this graphically, we show Student 1's data along with the global "growth" curve and Student 1's specific "growth" curves. The between-student variation is akin to the average of the squared deviations between each student-specific "growth" curve and the global "growth" curve. The left-hand plot below shows these residuals for Student 1, referred to as *Level-2 residuals*. The within-student variation is akin to the average of the squared deviations between each student's outcome (vocabulary scores) and that student's specific "growth" curve. The right-hand plot below shows these residuals for Student 1, referred to as *Level-1 residuals*.
 
-```{r echo=FALSE, fig.cap="Student 1's vocabulary scores at each time point along with the predicted change in vocabulary score over time based on the unconditional random intercepts model for all students (solid, black line) and Student 1 (blue, dashed line). The between-student variation (LEFT) and within-student variation (RIGHT) based on the residuals for Student 1 are also displayed.", out.width="90%"}
-# vocabulary_long %>%
-#   filter(id == 1) %>%
+```{r}
+#| label: fig-between-and-within-variation
+#| fig-cap: "Student 1's vocabulary scores at each time point along with the predicted change in vocabulary score over time based on the unconditional random intercepts model for all students (solid, black line) and Student 1 (blue, dashed line). The between-student variation (LEFT) and within-student variation (RIGHT) based on the residuals for Student 1 are also displayed."
+#| out-width: "90%"
+#| echo: false
+# vocabulary_long |>
+#   filter(id == 1) |>
 #   ggplot(aes(x = grade, y = vocab_score)) +
 #   geom_hline(yintercept = 2.53) + #Global 'growth' curve
-#   geom_point(shape = 21, color = "black", fill = "#0072B2", size = 5) + 
+#   geom_point(shape = 21, color = "black", fill = "#0072B2", size = 5) +
 #   geom_hline(yintercept = 2.89, linetype = "dashed", color = "#0072B2") + #Student 1 'growth' curve
 #   theme_light() +
 #   scale_x_discrete(
@@ -286,7 +252,7 @@ To see this graphically, we show Student 1's data along with the global "growth"
 #   ylim(0, 4) +
 #   theme(
 #     text = element_text(size = 20)
-#     ) 
+#     )
 
 include_graphics("figs/lmer-sources-of-variation.png")
 ```
@@ -300,8 +266,18 @@ tidy(lmer.0, effects = "ran_pars")
 
 Note that the output is in the standard deviation metric. We need to square these values to get the actual variance estimates.
 
-- **Between-Student Variance:** $\hat\sigma^2_0 = 1.72^2 = 2.96$
-- **Within-Student Variance:** $\hat\sigma^2_{\epsilon} = 1.35^2 =  = 1.82$
+**Between-Student Variance:**
+
+$$
+\hat\sigma^2_0 = 1.72^2 = 2.96
+$$
+
+
+**Within-Student Variance:** 
+
+$$
+\hat\sigma^2_{\epsilon} = 1.35^2 = 1.82
+$$
 
 These values represent the unexplained variation at each level. The total unexplained variation is the sum of these two terms.
 
@@ -327,7 +303,7 @@ Interpreting these values:
 
 Based on this partitioning from the unconditional random intercepts model we have evidence that it may be fortuitous to include both between-student and within-student predictors; there is unaccounted for variation at both levels. To explain the unaccounted for between-student variation, include between-student-level predictors (e.g., `female`) in the model. To explain the unaccounted for within-student variation, include within-student predictors (e.g., `grade`) in the model.
 
-Since the larger proportion of unexplained variation is between-student variation, we might ultimately focus on between-student predictors more than within-student predictors. However, because this is a longitudinal analysis, our primary focus is on the `grade` predictor, which is a within-subjects predictor. It is here that we turn next. 
+Since the larger proportion of unexplained variation is between-student variation, we might ultimately focus on between-student predictors more than within-student predictors. However, because this is a longitudinal analysis, our primary focus is on the `grade` predictor, which is a within-subjects predictor. It is here that we turn next.
 
 
 :::fyi
@@ -393,8 +369,14 @@ tidy(lmer.1, effects = "ran_pars")
 
 Comparing the variances to those from the unconditional random intercepts model:
 
-- **Within-Student Variance ($\hat\sigma^2_{\epsilon}$):** The unexplained variance that is within-students has decreased from 1.82 to 0.81. Including grade-level in the model has explained 55.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
-- **Between-Student Variance ($\hat\sigma^2_{0}$):** The unexplained variance that is between-students has increased from 2.96 to 3.21. This means that by including grade in the model we have increased the amount of unexplained variation that is between students! (The model explained $-8.7$% of the between-student variance.) This is a mathematical artifact of the estimation process. 
+**Within-Student Variance ($\hat\sigma^2_{\epsilon}$)** 
+
+The unexplained variance that is within-students has decreased from 1.82 to 0.81. Including grade-level in the model has explained 55.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
+
+
+**Between-Student Variance ($\hat\sigma^2_{0}$)** 
+
+The unexplained variance that is between-students has increased from 2.96 to 3.21. This means that by including grade in the model we have increased the amount of unexplained variation that is between students! (The model explained $-8.7$% of the between-student variance.) This is a mathematical artifact of the estimation process.
 
 <br />
 
@@ -408,8 +390,8 @@ You should not use RM-ANOVA to analyze longitudinal data. It requires a conditio
 
 ```{r}
 # Compute correlations between repeated measures
-vocabulary %>%
-  select(vocab_08:vocab_11) %>%
+vocabulary |>
+  select(vocab_08:vocab_11) |>
   correlate()
 ```
 
@@ -464,7 +446,7 @@ Then, we join (or merge) the tidy/long data with the lookup table. This adds the
 
 ```{r message=FALSE, warning=FALSE}
 # Join the data with the lookup table
-vocabulary_long = vocabulary_long %>%
+vocabulary_long = vocabulary_long |>
   left_join(lookup_table, by = "grade")
 
 # View data
@@ -479,7 +461,7 @@ The `{tidyverse}` package includes six different join functions. You can read ab
 <br />
 
 
-## Fitting the Unconditional Growth Model with a Quantitative Time Predictor
+# Fitting the Unconditional Growth Model with a Quantitative Time Predictor
 
 Below we fit the linear mixed-effects model using the `grade_quant` predictor.
 
@@ -519,8 +501,13 @@ tidy(lmer.2, effects = "ran_pars")
 
 Comparing these values to the unconditional random intercepts model:
 
-- **Within-Student Variance ($\hat\sigma^2_{\epsilon}$):** The unexplained variance that is within-students has decreased from 1.82 to 0.90. Including grade-level in the model has explained 50.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
-- **Between-Student Variance ($\hat\sigma^2_{0}$):** The unexplained variance that is between-students has increased from 2.96 to 3.18. This means that by including grade in the model we have increased the amount of unexplained variation that is between students by 7.8%; a mathematical artifact of the estimation process. 
+**Within-Student Variance ($\hat\sigma^2_{\epsilon}$)** 
+
+The unexplained variance that is within-students has decreased from 1.82 to 0.90. Including grade-level in the model has explained 50.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
+
+**Between-Student Variance ($\hat\sigma^2_{0}$)**
+
+The unexplained variance that is between-students has increased from 2.96 to 3.18. This means that by including grade in the model we have increased the amount of unexplained variation that is between students by 7.8%; a mathematical artifact of the estimation process.
 
 These are similar to the variance components obtained from the model using the categorical predictors of grade level.
 
@@ -566,19 +553,25 @@ Interpreting the coefficients,
 
 We can see why the intercepts are different and the slopes are the same by comparing the plots of the individual growth profiles and the fitted fixed-effects models for the uncentered and centered predictors.
 
-```{r fig.width=8, fig.height=4, fig.cap='Plot showing the change in vocabulary score over time for 64 students. The average growth profile is also displayed. This is shown for the non-centered (left) and 8th-grade centered (right) grade-level. A large blue point is shown at the intercept value in both plots.', out.width='90%', echo=FALSE}
+```{r}
+#| label: fig-fitted-lmer
+#| fig-cap: "Plot showing the change in vocabulary score over time for 64 students. The average growth profile is also displayed. This is shown for the non-centered (left) and 8th-grade centered (right) grade-level. A large blue point is shown at the intercept value in both plots."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "90%"
+#| code-fold: true
 p1 = ggplot(data = vocabulary_long, aes(x = grade_quant, y = vocab_score)) +
   geom_line(aes(group = id), alpha = 0.3) +
   geom_abline(intercept = -4.56, slope = 0.75, color = "blue") +
   geom_point(x = 0, y = -4.56, size = 1.5, color = "blue") +
   theme_light() +
   scale_x_continuous(
-    name = "Grade-level", 
-    limits = c(0, 11), 
+    name = "Grade-level",
+    limits = c(0, 11),
     breaks = c(0, 2, 4, 6, 8, 10)
     ) +
   scale_y_continuous(
-    name = "Vocabulary score", 
+    name = "Vocabulary score",
     limits = c(-5, 10)
     )
 
@@ -588,12 +581,12 @@ p2 = ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) 
   geom_point(x = 0, y = 1.41, size = 1.5, color = "blue") +
   theme_light() +
   scale_x_continuous(
-    name = "Centered grade-level (0 = 8th grade)", 
-    limits = c(0, 11), 
+    name = "Centered grade-level (0 = 8th grade)",
+    limits = c(0, 11),
     breaks = c(0, 2, 4, 6, 8, 10)
     ) +
   scale_y_continuous(
-    name = "Vocabulary score", 
+    name = "Vocabulary score",
     limits = c(-5, 10)
     )
 
@@ -616,21 +609,27 @@ tidy(lmer.3, effects = "ran_pars")
 
 Comparing them to the unconditional random intercepts model:
 
-- **Within-Student Variance ($\hat\sigma^2_{\epsilon}$):** The unexplained variance that is within-students has decreased from 1.82 to 0.90. Including grade-level in the model has explained 50.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
-- **Between-Student Variance ($\hat\sigma^2_{0}$):** The unexplained variance that is between-students has increased from 2.96 to 3.18. This means that by including grade in the model we have increased the amount of unexplained variation that is between students by 7.8%; a mathematical artifact of the estimation process. 
+**Within-Student Variance ($\hat\sigma^2_{\epsilon}$)** 
+
+The unexplained variance that is within-students has decreased from 1.82 to 0.90. Including grade-level in the model has explained 50.8% of the within-student variation. This is because grade is a within-student predictor (it has values that vary within each student).
+
+**Between-Student Variance ($\hat\sigma^2_{0}$)** 
+
+The unexplained variance that is between-students has increased from 2.96 to 3.18. This means that by including grade in the model we have increased the amount of unexplained variation that is between students by 7.8%; a mathematical artifact of the estimation process.
 
 
 These values are **identical** to the variance components obtained from the previous model. That is because the model we fitted is mostly identical to the uncentered quantitative model. The only difference is in the intercept value, which now is interpretable since a grade of 0 on the centered scale corresponds to the initial time point in the data; it is no longer extrapolation.
 
 <br />
 
-### Student-Specific Profiles
+
+## Student-Specific Profiles
 
 Obtaining the coefficients for the student specific growth curves we get:
 
 ```{r}
 # Get student estimated parameters
-tidy(lmer.3, effects = "ran_coefs") %>%
+tidy(lmer.3, effects = "ran_coefs") |>
   arrange(as.numeric(level))
 ```
 
@@ -648,7 +647,9 @@ The student-specific growth rates are identical for all students (i.e., the slop
 
 We can see these same things by plotting these student specific growth curves along with the global average growth curve.
 
-```{r fig.width=6, fig.height=6, fig.cap='Predicted change in vocabulary score over time based on the linear (centered) unconditional growth model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line).'}
+```{r}
+#| label: fig-lmer-students
+#| fig-cap: "Predicted change in vocabulary score over time based on the linear (centered) unconditional growth model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line)."
 # Create plot
 ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) +
   geom_point(alpha = 0) +
@@ -721,7 +722,7 @@ lmer.5 = lmer(vocab_score ~ 1 + log((grade_quant-8) + 1) + (1|id),
 
 ## Evaluating the Three Functional Forms
 
-As with any model, we want to examine the evidence to determine the correct functional form. In practice, you would also want to evaluate the residuals to see which of the potential candidate models meets the assumptions. (We will look at residuals in an upcoming set of notes.) Suffice it to say, the residual plots look similar across all three models indicating that all the models seem to meet the assumptions equally well. Since we are using the same outcome and data in all three models, we can also evaluate the models using information criteria and their related metrics. 
+As with any model, we want to examine the evidence to determine the correct functional form. In practice, you would also want to evaluate the residuals to see which of the potential candidate models meets the assumptions. (We will look at residuals in an upcoming set of notes.) Suffice it to say, the residual plots look similar across all three models indicating that all the models seem to meet the assumptions equally well. Since we are using the same outcome and data in all three models, we can also evaluate the models using information criteria and their related metrics.
 
 ```{r}
 # Model-evidence
@@ -771,8 +772,13 @@ tidy(lmer.5, effects = "ran_pars")
 
 Comparing them to the unconditional random intercepts model:
 
-- **Within-Student Variance ($\hat\sigma^2_{\epsilon}$):** The unexplained variance that is within-students has decreased from 1.82 to 0.82, a 54.9% explanation of the within-student variation. 
-- **Between-Student Variance ($\hat\sigma^2_{0}$):** The unexplained variance that is between-students has increased from 2.96 to 3.20, an increase of 8.1% in the unexplained between-students variation. 
+**Within-Student Variance ($\hat\sigma^2_{\epsilon}$)** 
+
+The unexplained variance that is within-students has decreased from 1.82 to 0.82, a 54.9% explanation of the within-student variation.
+
+**Between-Student Variance ($\hat\sigma^2_{0}$)** 
+
+The unexplained variance that is between-students has increased from 2.96 to 3.20, an increase of 8.1% in the unexplained between-students variation.
 
 These values are quite similar to the variance components obtained from the other unconditional growth models since time (grade level) is the only effect included in the model.
 
@@ -783,7 +789,9 @@ These values are quite similar to the variance components obtained from the othe
 
 To better understand the relationship between grade-level and vocabulary score represented in the adopted unconditional growth model, we can plot the predicted mean profile based on the model's fixed-effects.
 
-```{r fig.width=6, fig.height=6, fig.cap='Predicted change in vocabulary score as a function of grade-level.'}
+```{r}
+#| label: fig-lmer-log
+#| fig-cap: "Predicted change in vocabulary score as a function of grade-level."
 # Create plot
 ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) +
   geom_point(alpha = 0) +
@@ -803,13 +811,14 @@ ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) +
 
 <br />
 
-### Student-Specific Profiles
+
+## Student-Specific Profiles
 
 Obtaining the coefficients for the student specific growth curves we get:
 
 ```{r}
 # Get student estimated parameters
-tidy(lmer.5, effects = "ran_coefs") %>%
+tidy(lmer.5, effects = "ran_coefs") |>
   arrange(as.numeric(level))
 ```
 
@@ -827,7 +836,9 @@ Again, because we only included a random-effect of intercept the student-specifi
 
 We can see these same things by plotting these student specific growth curves along with the global average growth curve.
 
-```{r fig.width=6, fig.height=6, fig.cap='Predicted change in vocabulary score over time based on the log-linear unconditional growth model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line).'}
+```{r}
+#| label: fig-lmer-log-students
+#| fig-cap: "Predicted change in vocabulary score over time based on the log-linear unconditional growth model for all students (solid, black line), Student 1 (blue, dashed line), and Student 2 (orange, dashed line)."
 # Create plot
 ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) +
   geom_point(alpha = 0) +
@@ -865,17 +876,24 @@ The parallel curves suggest the same rate-of-growth across students.
 Here we present the rersults of our analysis in prose. We also presented a table of results from the fitted candidate models. For mixed-effects models, it is important to present coefficients and standard errors, estimated variance components, and any model-level summaries.
 
 :::interpret
-We set out to answer the following research question: What is the growth pattern in the average vocabulary score over time? We fitted four potential models corresponding to different growth patterns: no change over time, linear growth, quadratic growth, and log-linear growth. These models were evaluated using the AICc. 
+We set out to answer the following research question: What is the growth pattern in the average vocabulary score over time? We fitted four potential models corresponding to different growth patterns: no change over time, linear growth, quadratic growth, and log-linear growth. These models were evaluated using the AICc.
 
-The evidence indicated that there was no empirical support for either the no change over time model. This indicates that students' vocabulary scores are changing over time, on average. There was also no empirical support for the linear growth model indicating that the change over timeis non-linear in nature. The log-linear growth model had the most empirical support, although there was also some support for the quadratic growth model. These models both suggest that students' vocabulary scores, on average, are growing over time, but that growth diminishes over time.
+The evidence indicated that there was no empirical support for either the no change over time model. This indicates that students' vocabulary scores are changing over time, on average. There was also no empirical support for the linear growth model indicating that the change over time is non-linear in nature. The log-linear growth model had the most empirical support, although there was also some support for the quadratic growth model. These models both suggest that students' vocabulary scores, on average, are growing over time, but that growth diminishes over time.
+:::
 
-```{r results='asis', class.source = 'fold-hide'}
+We can also provide a table of the fitted model results. This table is similar to the table we create for fixed-effects regression models. However, we now need to include multiple variance components.
+
+```{r}
+#| label: tbl-models
+#| tbl-cap: "Four candidate models predicting longitudinal variation in students' vocabulary scores."
+#| code-fold: true
+#| results: asis
 htmlreg(
   l = list(lmer.0, lmer.3, lmer.4, lmer.5),
   stars = numeric(0),    #No p-value stars
   digits = 2,
   padding = 20,          #Add space around columns (you may need to adjust this via trial-and-error)
-  custom.model.names = c("Model 1", "Model 2", "Model 3", "Model 4"), 
+  custom.model.names = c("Model 1", "Model 2", "Model 3", "Model 4"),
   custom.coef.names = c("Intercept", "Grade", "Grade$^2$", "ln(Grade)"),
   reorder.coef = c(2:4, 1), #Put intercept at bottom of table
   include.loglik = FALSE,   #Omit log-likelihood
@@ -887,9 +905,9 @@ htmlreg(
   custom.gof.rows = list(
     AICc = c(AICc(lmer.0), AICc(lmer.3), AICc(lmer.4), AICc(lmer.5))  # Add AICc values
     #R2 = (2722.5 - c(NA, 2662.09, 2605.00, 2540.35, 2536.67)) /  2722.5
-  ), 
+  ),
   reorder.gof = c(2, 3, 1),
-  caption = "Four candidate models predicting longitudinal variation in students' vocabulary scores.",
+  caption = NULL,
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
@@ -897,6 +915,6 @@ htmlreg(
 )
 
 ```
-:::
+
 
 

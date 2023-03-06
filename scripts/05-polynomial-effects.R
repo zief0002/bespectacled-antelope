@@ -71,10 +71,12 @@ tidy(lm.2)
 # Likelihood ratio test to compare linear and quadratic models
 lrtest(lm.1, lm.2)
 
-aictab(
-  cand.set = list(lm.1, lm.2), 
-  modnames = c("Linear", "Quadratic")
-)
+lm.3 = lm(grad ~ 1 + sat_quadratic, data = mn)
+lrtest(lm.3, lm.2)
+
+lm.4 = lm(grad ~ 0 + sat + sat_quadratic, data = mn)
+lrtest(lm.4, lm.2)
+
 
 # Model-level output
 glance(lm.2) %>%
@@ -136,6 +138,9 @@ ggplot(data = mn, aes(x = sat, y = grad)) +
 
 # Fit model using I() function
 lm.2 = lm(grad ~ 1 + sat + I(sat ^ 2), data = mn)
+lm.2 = lm(grad ~ 1 + sat + sat ^ 2, data = mn)
+tidy(lm.2)
+
 
 glance(lm.2) # Model-level output
 tidy(lm.2)   # Coefficient-level output
@@ -147,12 +152,13 @@ tidy(lm.2)   # Coefficient-level output
 ##################################################
 
 # Fit model
+lm.2 = lm(grad ~ 1 + sat + I(sat^2),         data = mn)
 lm.3 = lm(grad ~ 1 + sat + I(sat^2) + public, data = mn)
-
+lm.4 = lm(grad ~ 1 + sat +            public, data = mn)
 
 # Compare Model 2 and Model 3
 lrtest(lm.2, lm.3)
-
+lrtest(lm.4, lm.3)
 
 # Model-level output
 glance(lm.3)
@@ -169,13 +175,13 @@ tidy(lm.3)
 
 ggplot(data = mn, aes(x = sat, y = grad)) +
   geom_point(alpha = 0) +
-  # Public schools
+  # Private schools
   geom_function(
     fun = function(x) {-384.16 + 67.04*x - 2.37 * x^2},
     color = "#2ec4b6",
     linetype = "dashed"
   ) +
-  # Private schools
+  # Public schools
   geom_function( 
     fun = function(x) {-393.29 + 67.04*x - 2.37 * x^2},
     color = "#ff9f1c",

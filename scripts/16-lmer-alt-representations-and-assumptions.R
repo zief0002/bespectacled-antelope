@@ -14,7 +14,7 @@ library(tidyverse)
 ### Import data
 ##################################################
 
-mpls = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv")
+mpls = read_csv("https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
 mpls
 
 

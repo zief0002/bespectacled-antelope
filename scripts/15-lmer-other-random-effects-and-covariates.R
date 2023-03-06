@@ -17,7 +17,7 @@ library(tidyverse)
 ### Read in data
 ##################################################
 
-mpls = read_csv("https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/minneapolis.csv")
+mpls = read_csv("https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv")
 mpls
 
 
@@ -63,11 +63,11 @@ tidy(lmer.b, effects = "ran_pars")
 
 # Get the mean reading score at each grade
 # Need to use this to add the average profile in each facet
-global = mpls %>%
-  group_by(grade) %>%
+global = mpls |>
+  group_by(grade) |>
   summarize(
     reading_score = mean(reading_score)
-  ) %>%
+  ) |>
   ungroup()
 
 # Plot individual profiles in different panels
@@ -99,12 +99,12 @@ tidy(lmer.c, effects = "ran_vals")
 
 
 # Obtain random effects for Student 1
-tidy(lmer.c, effects = "ran_vals") %>%
+tidy(lmer.c, effects = "ran_vals") |>
   filter(level == 1)
 
 
 # Obtain student-specific coefficients for Student 2
-tidy(lmer.c, effects = "ran_coefs") %>%
+tidy(lmer.c, effects = "ran_coefs") |>
   filter(level == 2)
 
 
@@ -134,7 +134,7 @@ ggplot(data = mpls, aes(x = grade, y = reading_score)) +
 ##################################################
 
 # Create dummy-coded special education status
-mpls = mpls %>%
+mpls = mpls |>
   mutate(
     sped = if_else(special_ed == "Yes", 1, 0)
   )
@@ -153,7 +153,7 @@ tidy(lmer.d, effects = "ran_pars")
 
 
 # Obtain student-specific coefficients for Student 2
-tidy(lmer.d, effects = "ran_vals") %>%
+tidy(lmer.d, effects = "ran_vals") |>
   filter(level == 1)
 
 
@@ -259,18 +259,16 @@ htmlreg(
   include.nobs = FALSE,   #Omit sample size
   include.groups = FALSE, #Omit group size
   include.deviance = TRUE,
-  custom.gof.names = c("Deviance", "$\\mathrm{Var}(b_0)$", 
-                       "$\\mathrm{Var}(e_{ij})$", "$\\mathrm{Var}(b_1)$", 
-                       "$\\mathrm{Cov}(b_0,b_1)$"), # Rename variance component rows
+  custom.gof.names = c("Deviance", "Level-2 (Intercept)", "Level-1", "Level-2 (Slope)", "Level-2 Covariance"), # Rename variance component rows
   custom.gof.rows = list(
     AICc = c(AICc(lmer.a), AICc(lmer.b), AICc(lmer.c), AICc(lmer.d), AICc(lmer.e), AICc(lmer.f))  # Add AICc values
   ), 
   reorder.gof = c(3, 5, 6, 4, 2, 1),
-  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores. The estimated fixed-effects (standard errors), variance components, and model-level summaries are presented for each model.",
+  caption = "Taxonomy of models predicting longitudinal variation in students' reading scores.",
   caption.above = TRUE, #Move caption above table
   inner.rules = 1, #Include line rule before model-level output
   outer.rules = 1 , #Include line rules around table
-  custom.note = "The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
+  custom.note = "*Note.* The grade predictor was centered at the initial measurement occasion of 5th-grade. Special education status was dummy-coded using non-special education students as the reference group. The attendance variable was mean centered."
 )
 
 

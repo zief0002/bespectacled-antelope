@@ -17,7 +17,7 @@ library(tidyverse)
 ### Read in data
 ##################################################
 
-vocabulary = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/vocabulary.csv")
+vocabulary = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/vocabulary.csv")
 
 vocabulary
 
@@ -28,15 +28,15 @@ vocabulary
 ##################################################
 
 # Convert from wide to long structured data
-vocabulary_long = vocabulary %>%
-  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") %>%
+vocabulary_long = vocabulary |>
+  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") |>
   arrange(id, grade)
 
 # View data
 vocabulary_long
 
-vocabulary %>%
-  select(vocab_08:vocab_11) %>%
+vocabulary |>
+  select(vocab_08:vocab_11) |>
   correlate()
 
 
@@ -135,8 +135,8 @@ tidy(lmer.1, effects = "ran_pars")
 
 # RM-ANOVA violates sphericity in practice
 # Compute correlations between repeated measures
-vocabulary %>%
-  select(vocab_08:vocab_11) %>%
+vocabulary |>
+  select(vocab_08:vocab_11) |>
   correlate()
 
 
@@ -161,7 +161,7 @@ lookup_table
 ##################################################
 
 # Join the data with the lookup table
-vocabulary_long = vocabulary_long %>%
+vocabulary_long = vocabulary_long |>
   left_join(lookup_table, by = "grade")
 
 # View data
@@ -230,7 +230,7 @@ tidy(lmer.3, effects = "ran_pars")
 ##################################################
 
 # Get student estimated parameters
-tidy(lmer.3, effects = "ran_coefs") %>%
+tidy(lmer.3, effects = "ran_coefs") |>
   arrange(as.numeric(level))
 
 
@@ -325,7 +325,7 @@ ggplot(data = vocabulary_long, aes(x = I(grade_quant-8), y = vocab_score)) +
 ##################################################
 
 # Get student estimated parameters
-tidy(lmer.5, effects = "ran_coefs") %>%
+tidy(lmer.5, effects = "ran_coefs") |>
   arrange(as.numeric(level))
 
 

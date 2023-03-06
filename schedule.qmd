@@ -448,119 +448,124 @@ The calendar below lists the tentative course topics. The dates listed are subje
 <!-- Unit 05: Linear Mixed-Effects Regression Models -->
 <!-- ----------------------------------------------- -->
 
-<!-- <tr> -->
-<!-- <td colspan="8"><b>Unit 05: Linear Mixed-Effects Regression Models</b></td> -->
-<!-- </tr> -->
+<tr>
+<td colspan="8"><b>Unit 05: Linear Mixed-Effects Regression Models</b></td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 07</td> -->
-<!-- <td>Apr. 11</td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fa fa-book" style="color: #ff2600; font-size: 17px;"></span>](#readings) -->
-<!-- </td> -->
-<!-- <td style="vertical-align:middle;">Introduction to Mixed-Effects Regression Models</td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fas fa-link" style="color: #ff2600; font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/16-introduction-to-mixed-effects-models.html) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fab fa-markdown" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/16-introduction-to-mixed-effects-models.Rmd) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;"> -->
-<!--   [<span class="fa fa-code" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/16-introduction-to-mixed-effects-models.R) -->
-<!-- </td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Mar. 30</td>
+<td>Apr. 03</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/13-introduction-to-mixed-effects-models.html)
+</td>
+<td style="vertical-align:middle;" rowspan="2">Introduction to Mixed-Effects Regression Models</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/13-introduction-to-mixed-effects-models.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/13-introduction-to-mixed-effects-models.Rmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/13-introduction-to-mixed-effects-models.R)
+</td>
+</tr>
 
 
-<!-- <!-- <tr> -->
-<!-- <!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <!-- <td>Apr. 12</td> -->
-<!-- <!-- <td>Apr. 13</td> -->
-<!-- <!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 04</td>
+<td>Apr. 05</td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 12</td> -->
-<!-- <td>Apr. 13</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-book" style="color: #ff2600; font-size: 17px;"></span>](#readings) -->
-<!-- </td> -->
-<!-- <td style="vertical-align:middle;" rowspan="2">LMER: Average Change Over Time</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fas fa-link" style="color: #ff2600; font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/17-lmer-average-change-over-time.html) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fab fa-markdown" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/17-lmer-average-change-over-time.Rmd) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-code" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/17-lmer-average-change-over-time.R) -->
-<!-- </td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 06</td>
+<td>Apr. 10</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  <span class="fa fa-book" style="color: #f1f1f1; font-size: 17px;"></span>
+</td>
+<td style="vertical-align:middle;" rowspan="2">LMER: Average Change Over Time</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/14-lmer-average-change-over-time.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/14-lmer-average-change-over-time.Rmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/14-lmer-average-change-over-time.R)
+</td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 14</td> -->
-<!-- <td>Apr. 18</td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 11</td>
+<td>Apr. 12</td>
+</tr>
 
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 19</td> -->
-<!-- <td>Apr. 20</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-book" style="color: #ff2600; font-size: 17px;"></span>](#readings) -->
-<!-- </td> -->
-<!-- <td style="vertical-align:middle;" rowspan="2">LMER: Other Random-Effects and Covariates</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fas fa-link" style="color: #ff2600; font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/18-lmer-other-random-effects-and-covariates.html) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fab fa-markdown" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/18-lmer-other-random-effects-and-covariates.Rmd) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-code" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/18-lmer-other-random-effects-and-covariates.R) -->
-<!-- </td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 13</td>
+<td>Apr. 17</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/15-lmer-other-random-effects-and-covariates.html)
+</td>
+<td style="vertical-align:middle;" rowspan="2">LMER: Other Random-Effects and Covariates</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/15-lmer-other-random-effects-and-covariates.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/15-lmer-other-random-effects-and-covariates.Rmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/15-lmer-other-random-effects-and-covariates.R)
+</td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 21</td> -->
-<!-- <td>Apr. 25</td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 18</td>
+<td>Apr. 19</td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 26</td> -->
-<!-- <td>Apr. 27</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-book" style="color: #ff2600; font-size: 17px;"></span>](#readings) -->
-<!-- </td> -->
-<!-- <td style="vertical-align:middle;" rowspan="2">LMER: Alternative Representations and Assumptions</td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fas fa-link" style="color: #ff2600; font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/19-lmer-alt-representations-and-assumptions.html) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fab fa-markdown" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/19-lmer-alt-representations-and-assumptions.Rmd) -->
-<!-- </td> -->
-<!-- <td align="center" style="vertical-align:middle;" rowspan="2"> -->
-<!--   [<span class="fa fa-code" style="color: #ff2600; font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/19-lmer-alt-representations-and-assumptions.R) -->
-<!-- </td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 20</td>
+<td>Apr. 24</td>
+<td align="center" style="vertical-align:middle;" rowspan="3">
+  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings.16-lmer-alt-representations-and-assumptions.html)
+</td>
+<td style="vertical-align:middle;" rowspan="3">LMER: Alternative Representations and Assumptions</td>
+<td align="center" style="vertical-align:middle;" rowspan="3">
+  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/16-lmer-alt-representations-and-assumptions.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="3">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/docs/notes/16-lmer-alt-representations-and-assumptions.Rmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="3">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/16-lmer-alt-representations-and-assumptions.R)
+</td>
+</tr>
 
 
-<!-- <tr> -->
-<!-- <td align="center" style="vertical-align:middle;">&nbsp;</td> -->
-<!-- <td>Apr. 28</td> -->
-<!-- <td>May 02</td> -->
-<!-- </tr> -->
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 25</td>
+<td>May 06</td>
+</tr>
 
+<tr>
+<td align="center" style="vertical-align:middle;">&nbsp;</td>
+<td>Apr. 27</td>
+<td>May 01</td>
+</tr>
 
 
 </tbody>

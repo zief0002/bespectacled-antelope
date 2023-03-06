@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-03-05">
+
+<title>EPsy 8252 - Linear Mixed-Effects Models: Alternative Representations and Assumptions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable/js/pagedtable.js"></script>
+<script src="https://kit.fontawesome.com/e5da75ca36.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../assets/sticky-notes.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EPsy 8252</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments.html">
+ <span class="dropdown-text">Assignment Due Dates</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-01-introduction-to-quarto.html">
+ <span class="dropdown-text">Assignment 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-02-polynomial-effects.html">
+ <span class="dropdown-text">Assignment 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-03-evidence-and-model-selection.html">
+ <span class="dropdown-text">Assignment 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-04-logarithmic-transformations.html">
+ <span class="dropdown-text">Assignment 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-05-logistic-regression.html">
+ <span class="dropdown-text">Assignment 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-06-lmer-unconditional-longitudinal-models.html">
+ <span class="dropdown-text">Assignment 06</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/assignment-07-longitudinal-analysis-ii.html">
+ <span class="dropdown-text">Assignment 07</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../data.html">
+ <span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Instructor &amp; TA</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#writing-the-statistical-model-as-a-set-of-multilevel-equations" id="toc-writing-the-statistical-model-as-a-set-of-multilevel-equations" class="nav-link active" data-scroll-target="#writing-the-statistical-model-as-a-set-of-multilevel-equations">Writing the Statistical Model as a Set of Multilevel Equations</a>
+  <ul class="collapse">
+  <li><a href="#multilevel-equation-for-model-2" id="toc-multilevel-equation-for-model-2" class="nav-link" data-scroll-target="#multilevel-equation-for-model-2">Multilevel Equation for Model 2</a></li>
+  <li><a href="#going-from-multilevel-equations-to-the-mixed-effects-model" id="toc-going-from-multilevel-equations-to-the-mixed-effects-model" class="nav-link" data-scroll-target="#going-from-multilevel-equations-to-the-mixed-effects-model">Going from Multilevel Equations to the Mixed-Effects Model</a></li>
+  </ul></li>
+  <li><a href="#model-3-interaction-effect-with-time-predictor" id="toc-model-3-interaction-effect-with-time-predictor" class="nav-link" data-scroll-target="#model-3-interaction-effect-with-time-predictor">Model 3: Interaction Effect with Time Predictor</a>
+  <ul class="collapse">
+  <li><a href="#guidelines-for-writing-the-multilevel-equations" id="toc-guidelines-for-writing-the-multilevel-equations" class="nav-link" data-scroll-target="#guidelines-for-writing-the-multilevel-equations">Guidelines for Writing the Multilevel Equations</a></li>
+  </ul></li>
+  <li><a href="#multilevel-equations-for-fixed-effects-models" id="toc-multilevel-equations-for-fixed-effects-models" class="nav-link" data-scroll-target="#multilevel-equations-for-fixed-effects-models">Multilevel Equations for Fixed-Effects Models</a></li>
+  <li><a href="#why-are-multilevel-expressions-helpful" id="toc-why-are-multilevel-expressions-helpful" class="nav-link" data-scroll-target="#why-are-multilevel-expressions-helpful">Why are Multilevel Expressions Helpful?</a></li>
+  <li><a href="#evaluating-the-assumptions-an-example" id="toc-evaluating-the-assumptions-an-example" class="nav-link" data-scroll-target="#evaluating-the-assumptions-an-example">Evaluating the Assumptions: An Example</a>
+  <ul class="collapse">
+  <li><a href="#evaluate-assumptions-about-the-level-1-residuals" id="toc-evaluate-assumptions-about-the-level-1-residuals" class="nav-link" data-scroll-target="#evaluate-assumptions-about-the-level-1-residuals">Evaluate Assumptions about the Level-1 Residuals</a></li>
+  <li><a href="#assumptions-about-the-random-effects" id="toc-assumptions-about-the-random-effects" class="nav-link" data-scroll-target="#assumptions-about-the-random-effects">Assumptions about the Random-Effects</a></li>
+  </ul></li>
+  <li><a href="#fixing-the-model-to-better-meet-the-assumptions" id="toc-fixing-the-model-to-better-meet-the-assumptions" class="nav-link" data-scroll-target="#fixing-the-model-to-better-meet-the-assumptions">Fixing the Model to Better Meet the Assumptions</a>
+  <ul class="collapse">
+  <li><a href="#interpreting-the-output-from-the-log-transformed-model" id="toc-interpreting-the-output-from-the-log-transformed-model" class="nav-link" data-scroll-target="#interpreting-the-output-from-the-log-transformed-model">Interpreting the Output from the Log-Transformed Model</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Linear Mixed-Effects Models: Alternative Representations and Assumptions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 5, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>In this set of notes, you will learn alternative ways of representing the linear mixed-effects model. You will also learn about the underlying assumptions for the linear mixed-effects model, as well as how to evaluate them empirically. To do this, we will use data from the file <em>minneapolis.csv</em> to analyze change in students’ reading scores over time.</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv">[CSV]</a></li>
+<li><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/minneapolis.html">[Data Codebook]</a></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.mixed) <span class="co">#for tidy, glance, and augment functions for lme4 models</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4) <span class="co">#for fitting mixed-effects models</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mpls <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/minneapolis.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mpls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["student_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["reading_score"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["grade"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["special_ed"],"name":[4],"type":["chr"],"align":["left"]},{"label":["attendance"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"172","3":"5","4":"No","5":"0.94"},{"1":"1","2":"185","3":"6","4":"No","5":"0.94"},{"1":"1","2":"179","3":"7","4":"No","5":"0.94"},{"1":"1","2":"194","3":"8","4":"No","5":"0.94"},{"1":"2","2":"200","3":"5","4":"No","5":"0.91"},{"1":"2","2":"210","3":"6","4":"No","5":"0.91"},{"1":"2","2":"209","3":"7","4":"No","5":"0.91"},{"1":"2","2":"210","3":"8","4":"No","5":"0.91"},{"1":"3","2":"191","3":"5","4":"No","5":"0.97"},{"1":"3","2":"199","3":"6","4":"No","5":"0.97"},{"1":"3","2":"203","3":"7","4":"No","5":"0.97"},{"1":"3","2":"215","3":"8","4":"No","5":"0.97"},{"1":"4","2":"200","3":"5","4":"No","5":"0.88"},{"1":"4","2":"195","3":"6","4":"No","5":"0.88"},{"1":"4","2":"194","3":"7","4":"No","5":"0.88"},{"1":"4","2":"195","3":"8","4":"No","5":"0.88"},{"1":"5","2":"207","3":"5","4":"No","5":"0.85"},{"1":"5","2":"213","3":"6","4":"No","5":"0.85"},{"1":"5","2":"212","3":"7","4":"No","5":"0.85"},{"1":"5","2":"213","3":"8","4":"No","5":"0.85"},{"1":"6","2":"191","3":"5","4":"No","5":"0.90"},{"1":"6","2":"189","3":"6","4":"No","5":"0.90"},{"1":"6","2":"206","3":"7","4":"No","5":"0.90"},{"1":"6","2":"195","3":"8","4":"No","5":"0.90"},{"1":"7","2":"199","3":"5","4":"No","5":"0.97"},{"1":"7","2":"208","3":"6","4":"No","5":"0.97"},{"1":"7","2":"213","3":"7","4":"No","5":"0.97"},{"1":"7","2":"218","3":"8","4":"No","5":"0.97"},{"1":"8","2":"191","3":"5","4":"Yes","5":"0.97"},{"1":"8","2":"194","3":"6","4":"Yes","5":"0.97"},{"1":"8","2":"194","3":"7","4":"Yes","5":"0.97"},{"1":"8","2":"193","3":"8","4":"Yes","5":"0.97"},{"1":"9","2":"149","3":"5","4":"Yes","5":"0.97"},{"1":"9","2":"154","3":"6","4":"Yes","5":"0.97"},{"1":"9","2":"174","3":"7","4":"Yes","5":"0.97"},{"1":"9","2":"177","3":"8","4":"Yes","5":"0.97"},{"1":"10","2":"200","3":"5","4":"No","5":"0.96"},{"1":"10","2":"212","3":"6","4":"No","5":"0.96"},{"1":"10","2":"213","3":"7","4":"No","5":"0.96"},{"1":"10","2":"215","3":"8","4":"No","5":"0.96"},{"1":"11","2":"218","3":"5","4":"No","5":"0.98"},{"1":"11","2":"231","3":"6","4":"No","5":"0.98"},{"1":"11","2":"233","3":"7","4":"No","5":"0.98"},{"1":"11","2":"239","3":"8","4":"No","5":"0.98"},{"1":"12","2":"228","3":"5","4":"Yes","5":"0.96"},{"1":"12","2":"232","3":"6","4":"Yes","5":"0.96"},{"1":"12","2":"248","3":"7","4":"Yes","5":"0.96"},{"1":"12","2":"246","3":"8","4":"Yes","5":"0.96"},{"1":"13","2":"228","3":"5","4":"No","5":"0.99"},{"1":"13","2":"236","3":"6","4":"No","5":"0.99"},{"1":"13","2":"228","3":"7","4":"No","5":"0.99"},{"1":"13","2":"239","3":"8","4":"No","5":"0.99"},{"1":"14","2":"199","3":"5","4":"No","5":"0.99"},{"1":"14","2":"210","3":"6","4":"No","5":"0.99"},{"1":"14","2":"225","3":"7","4":"No","5":"0.99"},{"1":"14","2":"235","3":"8","4":"No","5":"0.99"},{"1":"15","2":"218","3":"5","4":"No","5":"1.00"},{"1":"15","2":"223","3":"6","4":"No","5":"1.00"},{"1":"15","2":"236","3":"7","4":"No","5":"1.00"},{"1":"15","2":"227","3":"8","4":"No","5":"1.00"},{"1":"16","2":"228","3":"5","4":"No","5":"0.97"},{"1":"16","2":"226","3":"6","4":"No","5":"0.97"},{"1":"16","2":"234","3":"7","4":"No","5":"0.97"},{"1":"16","2":"227","3":"8","4":"No","5":"0.97"},{"1":"17","2":"201","3":"5","4":"No","5":"0.98"},{"1":"17","2":"210","3":"6","4":"No","5":"0.98"},{"1":"17","2":"208","3":"7","4":"No","5":"0.98"},{"1":"17","2":"219","3":"8","4":"No","5":"0.98"},{"1":"18","2":"218","3":"5","4":"No","5":"1.00"},{"1":"18","2":"220","3":"6","4":"No","5":"1.00"},{"1":"18","2":"217","3":"7","4":"No","5":"1.00"},{"1":"18","2":"221","3":"8","4":"No","5":"1.00"},{"1":"19","2":"215","3":"5","4":"No","5":"0.96"},{"1":"19","2":"216","3":"6","4":"No","5":"0.96"},{"1":"19","2":"221","3":"7","4":"No","5":"0.96"},{"1":"19","2":"224","3":"8","4":"No","5":"0.96"},{"1":"20","2":"204","3":"5","4":"No","5":"0.95"},{"1":"20","2":"215","3":"6","4":"No","5":"0.95"},{"1":"20","2":"219","3":"7","4":"No","5":"0.95"},{"1":"20","2":"214","3":"8","4":"No","5":"0.95"},{"1":"21","2":"237","3":"5","4":"No","5":"0.98"},{"1":"21","2":"241","3":"6","4":"No","5":"0.98"},{"1":"21","2":"243","3":"7","4":"No","5":"0.98"},{"1":"21","2":"243","3":"8","4":"No","5":"0.98"},{"1":"22","2":"219","3":"5","4":"No","5":"0.96"},{"1":"22","2":"233","3":"6","4":"No","5":"0.96"},{"1":"22","2":"236","3":"7","4":"No","5":"0.96"},{"1":"22","2":"243","3":"8","4":"No","5":"0.96"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>To illustrate some the concepts in this set of notes, we will consider the following three models:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Model~1:~~}\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \\
+&amp;~~\beta_2(\mathrm{Special~Education}_j)+ \epsilon_{ij}\\[2em]
+\mathbf{Model~2:~~}\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\ &amp;~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}\\[2em]
+\mathbf{Model~3:~~}\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\ &amp;~~\beta_2(\mathrm{Special~Education}_j) + \\
+&amp;~~\beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>where,</p>
+<ul>
+<li><span class="math inline">\(\mathrm{Reading~Score}_{ij}\)</span> is the reading score for Student <em>j</em> at time point <em>i</em>;</li>
+<li><span class="math inline">\(\beta_0\)</span> is the fixed-effect of intercept;</li>
+<li><span class="math inline">\(b_{0j}\)</span> is the random-effect of intercept for Student <em>j</em>;</li>
+<li><span class="math inline">\(\beta_1\)</span> is the fixed-effect of grade-level;</li>
+<li><span class="math inline">\(b_{1j}\)</span> is the random-effect of grade-level for Student <em>j</em>;</li>
+<li><span class="math inline">\(\beta_2\)</span> is the fixed-effect of special education status;</li>
+<li><span class="math inline">\(\beta_3\)</span> is the interaction-effect (fixed-effect) between special education status grade-level; and</li>
+<li><span class="math inline">\(\epsilon_{ij}\)</span> is the error for Student <em>j</em> at time point <em>i</em>.</li>
+</ul>
+<p><br></p>
+<div class="fyi">
+<p>This representation of the models is referred to as the <strong>composite model</strong> or the <strong>mixed-effects model</strong> since they include both the fixed- and random-effects in the same equation.</p>
+</div>
+<p><br></p>
+<section id="writing-the-statistical-model-as-a-set-of-multilevel-equations" class="level1">
+<h1>Writing the Statistical Model as a Set of Multilevel Equations</h1>
+<p>Another way we can express the model is by separating the mixed-effects model equation into multiple equations; one for each level of variation. For example, each of the mixed-effects models listed above could be separated into two equations: a Level-1 equation that includes effects and residuals that explain the within-student variation and a set of Level-2 equations that include the effects and residuals that explain the between-student variation. As an example, take the equation for Model 1:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \beta_1(\mathrm{Grade}_{ij}-5) + \\
+&amp;~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>We initially write the Level-1 equation which includes the effect for the intercept, an effect for each of the within-student predictors, and the within-student error term from the mixed-effects model. When writing the Level-1 model, we add a <em>j</em> subscript to the intercept and predictor effects to indicate that the particular effect may be unique to a particular student. The Level-1 equation for Model 1 is:</p>
+<p><span class="math display">\[
+\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}
+\]</span></p>
+<p>The Level-1 equation describes the within-student variation in reading scores. It says that this variation is decomposed into that which is explained by differences in grade-level and unexplained random error. Remember, the <em>j</em> subscript indicates that the term may vary across students. So from this equation we can see that the intercept and effect of grade-level may vary across students. (We won’t know for sure whether they vary or not until we see the level-2 equations.)</p>
+<p>After writing the Level-1 equation, we can write out the Level-2 equation(s). <em>There will be a Level-2 equation for each of the effects in the Level-1 model.</em> In our example, since we have two effects in the Level-1 model (<span class="math inline">\(\beta_{0j}\)</span> and <span class="math inline">\(\beta_{1j}\)</span>), there will be two Level-2 equations. In each Level-2 equations, the outcome is one of the effects from the Level-1 equation. These equations describe how the student-specific intercept and slopes differ across students. As such, they include the random-effects and any student-level effects from the mixed-effects representation. For example, we can write the Level-2 equations for Model 2 as:</p>
+<p><span class="math display">\[
+\begin{split}
+\beta_{0j} &amp;= \beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j} \\
+\beta_{1j} &amp;= \beta_1\\
+\end{split}
+\]</span></p>
+<p>These equations indicate that the student-specific intercepts are a function of some part common to all schools (<span class="math inline">\(\beta_0\)</span>), an effect of special education status (<span class="math inline">\(\beta_2\)</span>), and student-to-student error (<span class="math inline">\(b_{0j}\)</span>). The random-effect is the reason that students can have different intercepts. The student-specific slope (<span class="math inline">\(\beta_{1j}\)</span>), on the other hand, does not vary across students; it is the same for each student. This is because there is no random-effect for slope in Model 1.</p>
+<p>Together these equations are referred to as the set of multilevel equations:</p>
+<p><span class="math display">\[
+\begin{split}
+&amp;\mathbf{Level\mbox{-}1:}\\
+&amp;\qquad\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}\\
+&amp;\mathbf{Level\mbox{-}2:}\\
+&amp;\qquad\beta_{0j} = \beta_0 + \beta_2(\mathrm{Special~Education}_j) b_{0j}\\
+&amp;\qquad\beta_{1j} = \beta_1\\
+\end{split}
+\]</span></p>
+<p><br></p>
+<section id="multilevel-equation-for-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="multilevel-equation-for-model-2">Multilevel Equation for Model 2</h2>
+<p>As a second example, consider the composite (mixed-effects) model for Model 2:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) +\\
+&amp;~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>The Level-1 equation is again:</p>
+<p><span class="math display">\[
+\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}
+\]</span></p>
+<p>The Level-2 equations are:</p>
+<p><span class="math display">\[
+\begin{split}
+\beta_{0j} &amp;= \beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j} \\
+\beta_{1j} &amp;= \beta_1 + b_{1j}\\
+\end{split}
+\]</span></p>
+<p>The Level-2 intercept equation hasn’t changed from that for Model 1. However, the equation for the effect of grade-level now includes the random-effect of slope. This means that student’s growth rate is allowed to vary from the average.</p>
+<p><br></p>
+</section>
+<section id="going-from-multilevel-equations-to-the-mixed-effects-model" class="level2">
+<h2 class="anchored" data-anchor-id="going-from-multilevel-equations-to-the-mixed-effects-model">Going from Multilevel Equations to the Mixed-Effects Model</h2>
+<p>If we have the multilevel equations, we can substitute the Level-2 equation(s) into the Level-1 equation to get the composite equation or mixed-effects equation. For example, for Model 2, substituting <span class="math inline">\(\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\)</span> into <span class="math inline">\(\beta_{0j}\)</span> and <span class="math inline">\(\beta_1 + b_{1j}\)</span> into <span class="math inline">\(\beta_{1j}\)</span> gives us:</p>
+<p><span class="math display">\[
+\mathrm{Reading~Score}_{ij} = \bigg[\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\bigg] + \bigg[\beta_1 + b_{1j}\bigg](\mathrm{Grade~Level}_{ij}) + \epsilon_{ij}
+\]</span></p>
+<p>Re-arranging this:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\bigg[\beta_0 + b_{0j}\bigg] + \bigg[\beta_1 + b_{1j}\bigg](\mathrm{Grade~Level}_{ij}) + \\
+&amp;~~\beta_2(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+</section>
+</section>
+<section id="model-3-interaction-effect-with-time-predictor" class="level1">
+<h1>Model 3: Interaction Effect with Time Predictor</h1>
+<p>Recall the composite (a.k.a., mixed-effects) expression of Model 3 was:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\big[\beta_0 + b_{0j}\big] + \big[\beta_1 + b_{1j}\big](\mathrm{Grade}_{ij}-5) + \\
+&amp;~~\beta_2(\mathrm{Special~Education}_j) + \\
+&amp;~~\beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>This model includes an interaction effect between the time predictor (grade-level) and the special education status predictor. Let’s dRe-express this model by distributing the time predictor across the fixed- and random-effects of slope, and move all the terms with a time predictor so they are together in the equation, and all the terms without a time predictor together. (I will use large square brackets to show this grouping.) The within-student residual will stay at the end of the equation.</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\bigg[\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\bigg] + \\
+&amp;\bigg[\beta_1(\mathrm{Grade}_{ij}-5) + \beta_3(\mathrm{Grade}_{ij}-5)(\mathrm{Special~Education}_j) + b_{1j}(\mathrm{Grade}_{ij}-5)\bigg] + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>Extracting the time predictor from the second group:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathrm{Reading~Score}_{ij} = &amp;\bigg[\underbrace{\beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}}_{\beta_{0j}}\bigg] + \\
+&amp;\bigg[\underbrace{\beta_1 +\beta_3(\mathrm{Special~Education}_j) + b_{1j}}_{\beta_{1j}}\bigg](\mathrm{Grade}_{ij}-5) + \epsilon_{ij}
+\end{split}
+\]</span></p>
+<p>This helps us write the multilevel equations:</p>
+<p><span class="math display">\[
+\begin{split}
+&amp;\mathbf{Level\mbox{-}1:}\\
+&amp;\qquad\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}\\
+&amp;\mathbf{Level\mbox{-}2:}\\
+&amp;\qquad\beta_{0j} = \beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\\
+&amp;\qquad\beta_{1j} = \beta_1 + \beta_3(\mathrm{Special~Education}_j) + b_{1j}\
+\end{split}
+\]</span></p>
+<p>You can substitute the Level-2 equations back into the Level-1 equation and that should give you the initial composite equation.</p>
+<div class="fyi">
+<p>Notice that between-student predictors that are main-effects appear in the Level-2 intercept equation, and between-student predictors that are included in an interaction-effect with a within-student predictor appear in the Level-2 slope equation. Because we need to include the main-effects of any predictor that is also a part of an interaction term, any predictors included in the Level-2 slope equation also need to be included in the Level-2 intercept equation.</p>
+</div>
+<p><br></p>
+<section id="guidelines-for-writing-the-multilevel-equations" class="level2">
+<h2 class="anchored" data-anchor-id="guidelines-for-writing-the-multilevel-equations">Guidelines for Writing the Multilevel Equations</h2>
+<p>Here are some guidelines in helping you think about writing multilevel equations.</p>
+<ul>
+<li>Write the Level-1 equation first. This will be an equation that expresses the outcome’s relationship to a series of within-student parameters, and a within-student residual.</li>
+<li>The number of within-student parameters in the Level-1 equation (aside from the residual) dictate the number of Level-2 equations you will have.</li>
+<li>The within-student parameters from the Level-1 equation will be the outcomes in the Level-2 equations.</li>
+<li>Random-effects are the residuals in the Level-2 equations, and therefore are in the Level-2 equations; one per equation.</li>
+<li>Variables from the data go to their appropriate level. For example within-student variables (i.e., having an <em>ij</em> subscript) will be put in the Level-1 equation, and between-student predictors (i.e., having only a <em>j</em> subscript) will be put in one or more of the Level-2 equations.</li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="multilevel-equations-for-fixed-effects-models" class="level1">
+<h1>Multilevel Equations for Fixed-Effects Models</h1>
+<p>Our conventional fixed-effects regression models (LM) can also be expressed as a multilevel model. For example, consider the fixed-effect model that includes an intercept and effect of grade-level:</p>
+<p><span class="math display">\[
+\mathrm{Reading~Score}_{i} = \beta_{0} + \beta_{1}(\mathrm{Grade}_{i}-5) + \epsilon_{i}
+\]</span></p>
+<p>The multilevel model would specify that the Level-2 equations would only include fixed-effects (no random-effects). Thus when we substitute them back into the Level-1 model we only have fixed-effects in the model:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Level\mbox{-}1:}\\
+&amp;~ \mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}\\
+\mathbf{Level\mbox{-}2:}\\
+&amp;~ \beta_{0j} = \beta_{0}\\
+&amp;~ \beta_{1j} = \beta_{1}
+\end{split}
+\]</span></p>
+<p><br></p>
+</section>
+<section id="why-are-multilevel-expressions-helpful" class="level1">
+<h1>Why are Multilevel Expressions Helpful?</h1>
+<p>Expressing the model as a set of multilevel equations can be helpful for readers. First, it explicitly separates the sources of variation and the predictors of these sources of variation into different levels. In our example there are two sources of variation: within-student variation and between-student variation. The Level-1 model attempts to describe the within-student variation and, hence, only includes within-student predictors. The Level-2 models attempts to describe the between-student variation and only includes between-student predictors.</p>
+<p>Secondly, the multilevel expression of the model helps us think about what the predictors at each level are actually doing. Level-1 predictors explain variation in the outcome. In our example, they are explaining variation in students’ reading scores. The Level-2 predictors are explaining variation in the student-specific intercepts and slopes—they explain Level-2 variation.</p>
+<p>Thirdly, the multilevel expression of the model helps us see that the random-effects are residuals; they are residuals of the Level-2 models. This helps us think about the more general statistical model. For example, the general statistical model for a model that includes fixed-effects of two predictors and a random-effect of intercept is:</p>
+<p><span class="math display">\[
+\begin{split}
+\mathbf{Level\mbox{-}1:}\\
+&amp;~ Y_{ij} = \beta_{0j} + \beta_{1j}(X_{1ij}) + \beta_{2j}(X_{2ij})  + \epsilon_{ij}\\
+\mathbf{Level\mbox{-}2:}\\
+&amp;~ \beta_{0j} = \beta_{0} + b_{0j}\\
+&amp;~ \beta_{1j} = \beta_{1} \\
+&amp;~ \beta_{2j} = \beta_{2}
+\end{split}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\begin{split}
+\epsilon_{ij} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{\epsilon}\bigg)\\[1em]
+b_{0j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{0}\bigg)
+\end{split}
+\]</span></p>
+<p>In the mixed-effects model we put distributional assumptions on both the Level-1 residuals and the Level-2 residuals.</p>
+<p><br></p>
+</section>
+<section id="evaluating-the-assumptions-an-example" class="level1">
+<h1>Evaluating the Assumptions: An Example</h1>
+<p>Evaluating the assumptions in a mixed-effects model is a bit more complicated than it is in a fixed-effects model since the mixed-effects model includes multiple residuals; Level-1 residuals and the Level-2 residuals. There are also potential assumptions bout the covariances between the Level-2 residuals, depending on the model that was fitted. To simplify things, in this course, we will evaluate the distributional assumptions placed on the Level-1 residuals, and we will also evaluate the normality assumption on the random-effects.</p>
+<p>To illustrate assumption checking in practice, we will evaluate the assumptions for fitting Model 2. Recall that the multilevel expression of Model 2 was:</p>
+<p><span class="math display">\[
+\begin{split}
+&amp;\mathbf{Level\mbox{-}1:}\\
+&amp;\qquad\mathrm{Reading~Score}_{ij} = \beta_{0j} + \beta_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}\\[2ex]
+&amp;\mathbf{Level\mbox{-}2:}\\
+&amp;\qquad\beta_{0j} = \beta_0 + \beta_2(\mathrm{Special~Education}_j) + b_{0j}\\
+&amp;\qquad\beta_{1j} = \beta_1 + b_{1j}\\
+\end{split}
+\]</span></p>
+<p>where,</p>
+<p><span class="math display">\[
+\begin{split}
+\epsilon_{ij} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{\epsilon}\bigg)\\[1em]
+b_{0j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{0}\bigg) \\[1em]
+b_{1j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{1}\bigg)
+\end{split}
+\]</span></p>
+<p>The assumptions are based on the Level-1 residuals (<span class="math inline">\(\epsilon_{ij}\)</span>) and the Level-2 residuals, or random-effects (<span class="math inline">\(b_{0j}\)</span> and <span class="math inline">\(b_{1j}\)</span>). So we need to examine the distributions of those three components. To begin, we will fit the mixed-effects model, which is:</p>
+<p><span class="math display">\[
+\mathrm{Reading~Score}_{ij} = \beta_0 +  \beta_1(\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + b_{0j} + b_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit Model 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lmer<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">lmer</span>(reading_score <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">I</span>(grade<span class="dv">-5</span>) <span class="sc">+</span> special_ed <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">I</span>(grade<span class="dv">-5</span>) <span class="sc">|</span> student_id),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> mpls, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<section id="evaluate-assumptions-about-the-level-1-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="evaluate-assumptions-about-the-level-1-residuals">Evaluate Assumptions about the Level-1 Residuals</h2>
+<p>We will evaluate the Level-1 residuals in the exact same way we evalauted the residuals from a fixed-effects (LM) analysis. The <code>augment()</code> function from the <code>{broom.mixed}</code> package produces the Level-1 residuals and fitted values.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Augment the model to get the Level-1 residuals and fitted values</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>out_2 <span class="ot">=</span> <span class="fu">augment</span>(lmer<span class="fl">.2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>out_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["reading_score"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["I(grade - 5)"],"name":[2],"type":["I<dbl>"],"align":["right"]},{"label":["special_ed"],"name":[3],"type":["fct"],"align":["left"]},{"label":["student_id"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".fitted"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".resid"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".hat"],"name":[7],"type":["dbl"],"align":["right"]},{"label":[".cooksd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":[".fixed"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[".mu"],"name":[10],"type":["dbl"],"align":["right"]},{"label":[".offset"],"name":[11],"type":["dbl"],"align":["right"]},{"label":[".sqrtXwt"],"name":[12],"type":["dbl"],"align":["right"]},{"label":[".sqrtrwt"],"name":[13],"type":["dbl"],"align":["right"]},{"label":[".weights"],"name":[14],"type":["dbl"],"align":["right"]},{"label":[".wtres"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"172","2":"0","3":"No","4":"1","5":"174.5164","6":"-2.516350005","7":"0.5605108","8":"0.348284363300","9":"208.2419","10":"174.5164","11":"0","12":"1","13":"1","14":"1","15":"-2.516350005"},{"1":"185","2":"1","3":"No","4":"1","5":"180.1367","6":"4.863283832","7":"0.2822666","8":"0.245638703592","9":"212.6056","10":"180.1367","11":"0","12":"1","13":"1","14":"1","15":"4.863283832"},{"1":"179","2":"2","3":"No","4":"1","5":"185.7571","6":"-6.757082331","7":"0.2800404","8":"0.467549167660","9":"216.9692","10":"185.7571","11":"0","12":"1","13":"1","14":"1","15":"-6.757082331"},{"1":"194","2":"3","3":"No","4":"1","5":"191.3774","6":"2.622551506","7":"0.5538322","8":"0.362688892902","9":"221.3328","10":"191.3774","11":"0","12":"1","13":"1","14":"1","15":"2.622551506"},{"1":"200","2":"0","3":"No","4":"2","5":"202.2491","6":"-2.249105477","7":"0.5605108","8":"0.278234850530","9":"208.2419","10":"202.2491","11":"0","12":"1","13":"1","14":"1","15":"-2.249105477"},{"1":"210","2":"1","3":"No","4":"2","5":"205.6598","6":"4.340185065","7":"0.2822666","8":"0.195638380723","9":"212.6056","10":"205.6598","11":"0","12":"1","13":"1","14":"1","15":"4.340185065"},{"1":"209","2":"2","3":"No","4":"2","5":"209.0705","6":"-0.070524394","7":"0.2800404","8":"0.000050931632","9":"216.9692","10":"209.0705","11":"0","12":"1","13":"1","14":"1","15":"-0.070524394"},{"1":"210","2":"3","3":"No","4":"2","5":"212.4812","6":"-2.481233852","7":"0.5538322","8":"0.324654628340","9":"221.3328","10":"212.4812","11":"0","12":"1","13":"1","14":"1","15":"-2.481233852"},{"1":"191","2":"0","3":"No","4":"3","5":"192.2481","6":"-1.248057007","7":"0.5605108","8":"0.085676304686","9":"208.2419","10":"192.2481","11":"0","12":"1","13":"1","14":"1","15":"-1.248057007"},{"1":"199","2":"1","3":"No","4":"3","5":"198.8572","6":"0.142788518","7":"0.2822666","8":"0.000211750348","9":"212.6056","10":"198.8572","11":"0","12":"1","13":"1","14":"1","15":"0.142788518"},{"1":"203","2":"2","3":"No","4":"3","5":"205.4664","6":"-2.466365957","7":"0.2800404","8":"0.062290799008","9":"216.9692","10":"205.4664","11":"0","12":"1","13":"1","14":"1","15":"-2.466365957"},{"1":"215","2":"3","3":"No","4":"3","5":"212.0755","6":"2.924479568","7":"0.5538322","8":"0.451007107552","9":"221.3328","10":"212.0755","11":"0","12":"1","13":"1","14":"1","15":"2.924479568"},{"1":"200","2":"0","3":"No","4":"4","5":"195.6634","6":"4.336626206","7":"0.5605108","8":"1.034417503058","9":"208.2419","10":"195.6634","11":"0","12":"1","13":"1","14":"1","15":"4.336626206"},{"1":"195","2":"1","3":"No","4":"4","5":"196.0882","6":"-1.088237717","7":"0.2822666","8":"0.012299433569","9":"212.6056","10":"196.0882","11":"0","12":"1","13":"1","14":"1","15":"-1.088237717"},{"1":"194","2":"2","3":"No","4":"4","5":"196.5131","6":"-2.513101640","7":"0.2800404","8":"0.064673888600","9":"216.9692","10":"196.5131","11":"0","12":"1","13":"1","14":"1","15":"-2.513101640"},{"1":"195","2":"3","3":"No","4":"4","5":"196.9380","6":"-1.937965563","7":"0.5538322","8":"0.198051581400","9":"221.3328","10":"196.9380","11":"0","12":"1","13":"1","14":"1","15":"-1.937965563"},{"1":"207","2":"0","3":"No","4":"5","5":"207.4433","6":"-0.443284207","7":"0.5605108","8":"0.010808275301","9":"208.2419","10":"207.4433","11":"0","12":"1","13":"1","14":"1","15":"-0.443284207"},{"1":"213","2":"1","3":"No","4":"5","5":"210.0249","6":"2.975129849","7":"0.2822666","8":"0.091928339100","9":"212.6056","10":"210.0249","11":"0","12":"1","13":"1","14":"1","15":"2.975129849"},{"1":"212","2":"2","3":"No","4":"5","5":"212.6065","6":"-0.606456095","7":"0.2800404","8":"0.003766236581","9":"216.9692","10":"212.6065","11":"0","12":"1","13":"1","14":"1","15":"-0.606456095"},{"1":"213","2":"3","3":"No","4":"5","5":"215.1880","6":"-2.188042039","7":"0.5538322","8":"0.252462877011","9":"221.3328","10":"215.1880","11":"0","12":"1","13":"1","14":"1","15":"-2.188042039"},{"1":"191","2":"0","3":"No","4":"6","5":"190.3342","6":"0.665821115","7":"0.5605108","8":"0.024384115584","9":"208.2419","10":"190.3342","11":"0","12":"1","13":"1","14":"1","15":"0.665821115"},{"1":"189","2":"1","3":"No","4":"6","5":"193.8013","6":"-4.801284980","7":"0.2822666","8":"0.239415647832","9":"212.6056","10":"193.8013","11":"0","12":"1","13":"1","14":"1","15":"-4.801284980"},{"1":"206","2":"2","3":"No","4":"6","5":"197.2684","6":"8.731608925","7":"0.2800404","8":"0.780723800643","9":"216.9692","10":"197.2684","11":"0","12":"1","13":"1","14":"1","15":"8.731608925"},{"1":"195","2":"3","3":"No","4":"6","5":"200.7355","6":"-5.735497171","7":"0.5538322","8":"1.734715835415","9":"221.3328","10":"200.7355","11":"0","12":"1","13":"1","14":"1","15":"-5.735497171"},{"1":"199","2":"0","3":"No","4":"7","5":"201.1212","6":"-2.121178749","7":"0.5605108","8":"0.247483594685","9":"208.2419","10":"201.1212","11":"0","12":"1","13":"1","14":"1","15":"-2.121178749"},{"1":"208","2":"1","3":"No","4":"7","5":"206.7497","6":"1.250293416","7":"0.2822666","8":"0.016235342367","9":"212.6056","10":"206.7497","11":"0","12":"1","13":"1","14":"1","15":"1.250293416"},{"1":"213","2":"2","3":"No","4":"7","5":"212.3782","6":"0.621765580","7":"0.2800404","8":"0.003958787767","9":"216.9692","10":"212.3782","11":"0","12":"1","13":"1","14":"1","15":"0.621765580"},{"1":"218","2":"3","3":"No","4":"7","5":"218.0068","6":"-0.006762256","7":"0.5538322","8":"0.000002411401","9":"221.3328","10":"218.0068","11":"0","12":"1","13":"1","14":"1","15":"-0.006762256"},{"1":"191","2":"0","3":"Yes","4":"8","5":"190.3315","6":"0.668504932","7":"0.5607602","8":"0.024619968989","9":"192.4678","10":"190.3315","11":"0","12":"1","13":"1","14":"1","15":"0.668504932"},{"1":"194","2":"1","3":"Yes","4":"8","5":"192.1819","6":"1.818080797","7":"0.2829564","8":"0.034479358453","9":"196.8314","10":"192.1819","11":"0","12":"1","13":"1","14":"1","15":"1.818080797"},{"1":"194","2":"2","3":"Yes","4":"8","5":"194.0323","6":"-0.032343337","7":"0.2813899","8":"0.000010804278","9":"201.1950","10":"194.0323","11":"0","12":"1","13":"1","14":"1","15":"-0.032343337"},{"1":"193","2":"3","3":"Yes","4":"8","5":"195.8828","6":"-2.882767471","7":"0.5560605","8":"0.444424608633","9":"205.5587","10":"195.8828","11":"0","12":"1","13":"1","14":"1","15":"-2.882767471"},{"1":"149","2":"0","3":"Yes","4":"9","5":"151.0566","6":"-2.056585514","7":"0.5607602","8":"0.233008527506","9":"192.4678","10":"151.0566","11":"0","12":"1","13":"1","14":"1","15":"-2.056585514"},{"1":"154","2":"1","3":"Yes","4":"9","5":"159.6633","6":"-5.663302568","7":"0.2829564","8":"0.334558714446","9":"196.8314","10":"159.6633","11":"0","12":"1","13":"1","14":"1","15":"-5.663302568"},{"1":"174","2":"2","3":"Yes","4":"9","5":"168.2700","6":"5.729980377","7":"0.2813899","8":"0.339103570376","9":"201.1950","10":"168.2700","11":"0","12":"1","13":"1","14":"1","15":"5.729980377"},{"1":"177","2":"3","3":"Yes","4":"9","5":"176.8767","6":"0.123263322","7":"0.5560605","8":"0.000812543478","9":"205.5587","10":"176.8767","11":"0","12":"1","13":"1","14":"1","15":"0.123263322"},{"1":"200","2":"0","3":"No","4":"10","5":"203.2477","6":"-3.247682733","7":"0.5605108","8":"0.580148365933","9":"208.2419","10":"203.2477","11":"0","12":"1","13":"1","14":"1","15":"-3.247682733"},{"1":"212","2":"1","3":"No","4":"10","5":"207.7934","6":"4.206572138","7":"0.2822666","8":"0.183778306477","9":"212.6056","10":"207.7934","11":"0","12":"1","13":"1","14":"1","15":"4.206572138"},{"1":"213","2":"2","3":"No","4":"10","5":"212.3392","6":"0.660827009","7":"0.2800404","8":"0.004471821263","9":"216.9692","10":"212.3392","11":"0","12":"1","13":"1","14":"1","15":"0.660827009"},{"1":"215","2":"3","3":"No","4":"10","5":"216.8849","6":"-1.884918120","7":"0.5538322","8":"0.187357542862","9":"221.3328","10":"216.8849","11":"0","12":"1","13":"1","14":"1","15":"-1.884918120"},{"1":"218","2":"0","3":"No","4":"11","5":"221.4184","6":"-3.418438515","7":"0.5605108","8":"0.642757904863","9":"208.2419","10":"221.4184","11":"0","12":"1","13":"1","14":"1","15":"-3.418438515"},{"1":"231","2":"1","3":"No","4":"11","5":"227.1520","6":"3.847971676","7":"0.2822666","8":"0.153780509854","9":"212.6056","10":"227.1520","11":"0","12":"1","13":"1","14":"1","15":"3.847971676"},{"1":"233","2":"2","3":"No","4":"11","5":"232.8856","6":"0.114381866","7":"0.2800404","8":"0.000133974831","9":"216.9692","10":"232.8856","11":"0","12":"1","13":"1","14":"1","15":"0.114381866"},{"1":"239","2":"3","3":"No","4":"11","5":"238.6192","6":"0.380792056","7":"0.5538322","8":"0.007646487136","9":"221.3328","10":"238.6192","11":"0","12":"1","13":"1","14":"1","15":"0.380792056"},{"1":"228","2":"0","3":"Yes","4":"12","5":"228.9887","6":"-0.988730224","7":"0.5607602","8":"0.053855974731","9":"192.4678","10":"228.9887","11":"0","12":"1","13":"1","14":"1","15":"-0.988730224"},{"1":"232","2":"1","3":"Yes","4":"12","5":"234.9470","6":"-2.947048497","7":"0.2829564","8":"0.090595657740","9":"196.8314","10":"234.9470","11":"0","12":"1","13":"1","14":"1","15":"-2.947048497"},{"1":"248","2":"2","3":"Yes","4":"12","5":"240.9054","6":"7.094633229","7":"0.2813899","8":"0.519859506784","9":"201.1950","10":"240.9054","11":"0","12":"1","13":"1","14":"1","15":"7.094633229"},{"1":"246","2":"3","3":"Yes","4":"12","5":"246.8637","6":"-0.863685045","7":"0.5560605","8":"0.039892354744","9":"205.5587","10":"246.8637","11":"0","12":"1","13":"1","14":"1","15":"-0.863685045"},{"1":"228","2":"0","3":"No","4":"13","5":"227.9758","6":"0.024163337","7":"0.5605108","8":"0.000032114836","9":"208.2419","10":"227.9758","11":"0","12":"1","13":"1","14":"1","15":"0.024163337"},{"1":"236","2":"1","3":"No","4":"13","5":"230.9966","6":"5.003404944","7":"0.2822666","8":"0.259997319180","9":"212.6056","10":"230.9966","11":"0","12":"1","13":"1","14":"1","15":"5.003404944"},{"1":"228","2":"2","3":"No","4":"13","5":"234.0174","6":"-6.017353449","7":"0.2800404","8":"0.370783082731","9":"216.9692","10":"234.0174","11":"0","12":"1","13":"1","14":"1","15":"-6.017353449"},{"1":"239","2":"3","3":"No","4":"13","5":"237.0381","6":"1.961888158","7":"0.5538322","8":"0.202971328775","9":"221.3328","10":"237.0381","11":"0","12":"1","13":"1","14":"1","15":"1.961888158"},{"1":"199","2":"0","3":"No","4":"14","5":"202.6017","6":"-3.601674799","7":"0.5605108","8":"0.713511331886","9":"208.2419","10":"202.6017","11":"0","12":"1","13":"1","14":"1","15":"-3.601674799"},{"1":"210","2":"1","3":"No","4":"14","5":"212.3129","6":"-2.312930036","7":"0.2822666","8":"0.055560040708","9":"212.6056","10":"212.3129","11":"0","12":"1","13":"1","14":"1","15":"-2.312930036"},{"1":"225","2":"2","3":"No","4":"14","5":"222.0242","6":"2.975814727","7":"0.2800404","8":"0.090681906962","9":"216.9692","10":"222.0242","11":"0","12":"1","13":"1","14":"1","15":"2.975814727"},{"1":"235","2":"3","3":"No","4":"14","5":"231.7354","6":"3.264559490","7":"0.5538322","8":"0.561998786098","9":"221.3328","10":"231.7354","11":"0","12":"1","13":"1","14":"1","15":"3.264559490"},{"1":"218","2":"0","3":"No","4":"15","5":"219.7455","6":"-1.745519789","7":"0.5605108","8":"0.167587427424","9":"208.2419","10":"219.7455","11":"0","12":"1","13":"1","14":"1","15":"-1.745519789"},{"1":"223","2":"1","3":"No","4":"15","5":"223.8109","6":"-0.810907085","7":"0.2822666","8":"0.006829356007","9":"212.6056","10":"223.8109","11":"0","12":"1","13":"1","14":"1","15":"-0.810907085"},{"1":"236","2":"2","3":"No","4":"15","5":"227.8763","6":"8.123705620","7":"0.2800404","8":"0.675798497483","9":"216.9692","10":"227.8763","11":"0","12":"1","13":"1","14":"1","15":"8.123705620"},{"1":"227","2":"3","3":"No","4":"15","5":"231.9417","6":"-4.941681675","7":"0.5538322","8":"1.287762386600","9":"221.3328","10":"231.9417","11":"0","12":"1","13":"1","14":"1","15":"-4.941681675"},{"1":"228","2":"0","3":"No","4":"16","5":"226.0418","6":"1.958244647","7":"0.5605108","8":"0.210923892149","9":"208.2419","10":"226.0418","11":"0","12":"1","13":"1","14":"1","15":"1.958244647"},{"1":"226","2":"1","3":"No","4":"16","5":"227.7308","6":"-1.730771566","7":"0.2822666","8":"0.031111221792","9":"212.6056","10":"227.7308","11":"0","12":"1","13":"1","14":"1","15":"-1.730771566"},{"1":"234","2":"2","3":"No","4":"16","5":"229.4198","6":"4.580212221","7":"0.2800404","8":"0.214822649855","9":"216.9692","10":"229.4198","11":"0","12":"1","13":"1","14":"1","15":"4.580212221"},{"1":"227","2":"3","3":"No","4":"16","5":"231.1088","6":"-4.108803993","7":"0.5538322","8":"0.890260391000","9":"221.3328","10":"231.1088","11":"0","12":"1","13":"1","14":"1","15":"-4.108803993"},{"1":"201","2":"0","3":"No","4":"17","5":"202.1400","6":"-1.139959192","7":"0.5605108","8":"0.071477687039","9":"208.2419","10":"202.1400","11":"0","12":"1","13":"1","14":"1","15":"-1.139959192"},{"1":"210","2":"1","3":"No","4":"17","5":"207.0932","6":"2.906783501","7":"0.2822666","8":"0.087753194719","9":"212.6056","10":"207.0932","11":"0","12":"1","13":"1","14":"1","15":"2.906783501"},{"1":"208","2":"2","3":"No","4":"17","5":"212.0465","6":"-4.046473805","7":"0.2800404","8":"0.167672690718","9":"216.9692","10":"212.0465","11":"0","12":"1","13":"1","14":"1","15":"-4.046473805"},{"1":"219","2":"3","3":"No","4":"17","5":"216.9997","6":"2.000268888","7":"0.5538322","8":"0.210990530175","9":"221.3328","10":"216.9997","11":"0","12":"1","13":"1","14":"1","15":"2.000268888"},{"1":"218","2":"0","3":"No","4":"18","5":"216.2590","6":"1.741000547","7":"0.5605108","8":"0.166720765627","9":"208.2419","10":"216.2590","11":"0","12":"1","13":"1","14":"1","15":"1.741000547"},{"1":"220","2":"1","3":"No","4":"18","5":"218.0614","6":"1.938635014","7":"0.2822666","8":"0.039032796543","9":"212.6056","10":"218.0614","11":"0","12":"1","13":"1","14":"1","15":"1.938635014"},{"1":"217","2":"2","3":"No","4":"18","5":"219.8637","6":"-2.863730520","7":"0.2800404","8":"0.083979476482","9":"216.9692","10":"219.8637","11":"0","12":"1","13":"1","14":"1","15":"-2.863730520"},{"1":"221","2":"3","3":"No","4":"18","5":"221.6661","6":"-0.666096054","7":"0.5538322","8":"0.023396986498","9":"221.3328","10":"221.6661","11":"0","12":"1","13":"1","14":"1","15":"-0.666096054"},{"1":"215","2":"0","3":"No","4":"19","5":"213.6102","6":"1.389829701","7":"0.5605108","8":"0.106246604054","9":"208.2419","10":"213.6102","11":"0","12":"1","13":"1","14":"1","15":"1.389829701"},{"1":"216","2":"1","3":"No","4":"19","5":"217.1682","6":"-1.168239209","7":"0.2822666","8":"0.014174283650","9":"212.6056","10":"217.1682","11":"0","12":"1","13":"1","14":"1","15":"-1.168239209"},{"1":"221","2":"2","3":"No","4":"19","5":"220.7263","6":"0.273691881","7":"0.2800404","8":"0.000767065934","9":"216.9692","10":"220.7263","11":"0","12":"1","13":"1","14":"1","15":"0.273691881"},{"1":"224","2":"3","3":"No","4":"19","5":"224.2844","6":"-0.284377029","7":"0.5538322","8":"0.004264569814","9":"221.3328","10":"224.2844","11":"0","12":"1","13":"1","14":"1","15":"-0.284377029"},{"1":"204","2":"0","3":"No","4":"20","5":"207.4490","6":"-3.448950914","7":"0.5605108","8":"0.654283408613","9":"208.2419","10":"207.4490","11":"0","12":"1","13":"1","14":"1","15":"-3.448950914"},{"1":"215","2":"1","3":"No","4":"20","5":"211.1703","6":"3.829727752","7":"0.2822666","8":"0.152325764690","9":"212.6056","10":"211.1703","11":"0","12":"1","13":"1","14":"1","15":"3.829727752"},{"1":"219","2":"2","3":"No","4":"20","5":"214.8916","6":"4.108406417","7":"0.2800404","8":"0.172844539876","9":"216.9692","10":"214.8916","11":"0","12":"1","13":"1","14":"1","15":"4.108406417"},{"1":"214","2":"3","3":"No","4":"20","5":"218.6129","6":"-4.612914917","7":"0.5538322","8":"1.122114287066","9":"221.3328","10":"218.6129","11":"0","12":"1","13":"1","14":"1","15":"-4.612914917"},{"1":"237","2":"0","3":"No","4":"21","5":"236.6767","6":"0.323261083","7":"0.5605108","8":"0.005747761353","9":"208.2419","10":"236.6767","11":"0","12":"1","13":"1","14":"1","15":"0.323261083"},{"1":"241","2":"1","3":"No","4":"21","5":"239.3211","6":"1.678910643","7":"0.2822666","8":"0.029274718490","9":"212.6056","10":"239.3211","11":"0","12":"1","13":"1","14":"1","15":"1.678910643"},{"1":"243","2":"2","3":"No","4":"21","5":"241.9654","6":"1.034560202","7":"0.2800404","8":"0.010960248545","9":"216.9692","10":"241.9654","11":"0","12":"1","13":"1","14":"1","15":"1.034560202"},{"1":"243","2":"3","3":"No","4":"21","5":"244.6098","6":"-1.609790238","7":"0.5538322","8":"0.136654765787","9":"221.3328","10":"244.6098","11":"0","12":"1","13":"1","14":"1","15":"-1.609790238"},{"1":"219","2":"0","3":"No","4":"22","5":"222.8819","6":"-3.881934444","7":"0.5605108","8":"0.828873537533","9":"208.2419","10":"222.8819","11":"0","12":"1","13":"1","14":"1","15":"-3.881934444"},{"1":"233","2":"1","3":"No","4":"22","5":"229.2790","6":"3.720954516","7":"0.2822666","8":"0.143795828025","9":"212.6056","10":"229.2790","11":"0","12":"1","13":"1","14":"1","15":"3.720954516"},{"1":"236","2":"2","3":"No","4":"22","5":"235.6762","6":"0.323843476","7":"0.2800404","8":"0.001073937907","9":"216.9692","10":"235.6762","11":"0","12":"1","13":"1","14":"1","15":"0.323843476"},{"1":"243","2":"3","3":"No","4":"22","5":"242.0733","6":"0.926732436","7":"0.5538322","8":"0.045289229378","9":"221.3328","10":"242.0733","11":"0","12":"1","13":"1","14":"1","15":"0.926732436"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The Level-1 residuals are found in the <code>.resid</code> column, and the <code>.fitted</code> column contains the <span class="math inline">\(\hat{Y}\)</span> values. As with LM residual analysis, we want to examine the normality of the residuals in a density plot (or some other plot that allows you to evaluate this), and the other assumptions by plotting the residuals against the fitted values in a scatterplot.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the level-1 residuals</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_2, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Level-1 residuals"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of the Level-1 residuals versus the fitted values</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_2, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Level-1 residuals"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot side-by-side</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuals-level-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="16-lmer-alt-representations-and-assumptions_files/figure-html/fig-residuals-level-1-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Plots to evaluate the level-1 residuals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Based on the plots, the distributional assumptions for the Level-1 residuals seem reasonably satisfied. The density plot suggests that the normality assumption is tenable. The scatterplot shows symmetry around the <span class="math inline">\(Y=0\)</span> line (average residual is 0), and that the data are consistent with the assumption of homoskedasticity.</p>
+<p><br></p>
+</section>
+<section id="assumptions-about-the-random-effects" class="level2">
+<h2 class="anchored" data-anchor-id="assumptions-about-the-random-effects">Assumptions about the Random-Effects</h2>
+<p>We also need to examine the assumptions for any random-effects included in the model. For this course, we will examine the normality assumption. In our example that means we need to examine the normality assumption about the intercept and grade-level random-effects. To do this we need to extract the random-effects from the model into a data frame so we can use <strong>ggplot2</strong> functions to evaluate normality.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a data frame of the random-effects</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>level_2 <span class="ot">=</span> <span class="fu">tidy</span>(lmer<span class="fl">.2</span>, <span class="at">effects =</span> <span class="st">"ran_vals"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View random-effects</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>level_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["group"],"name":[2],"type":["chr"],"align":["left"]},{"label":["level"],"name":[3],"type":["chr"],"align":["left"]},{"label":["term"],"name":[4],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"ran_vals","2":"student_id","3":"1","4":"(Intercept)","5":"-33.7255804","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"2","4":"(Intercept)","5":"-5.9928249","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"3","4":"(Intercept)","5":"-15.9938734","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"4","4":"(Intercept)","5":"-12.5785566","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"5","4":"(Intercept)","5":"-0.7986462","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"6","4":"(Intercept)","5":"-17.9077515","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"7","4":"(Intercept)","5":"-7.1207516","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"8","4":"(Intercept)","5":"-2.1362792","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"9","4":"(Intercept)","5":"-41.4111888","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"10","4":"(Intercept)","5":"-4.9942476","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"11","4":"(Intercept)","5":"13.1765081","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"12","4":"(Intercept)","5":"36.5209559","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"13","4":"(Intercept)","5":"19.7339063","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"14","4":"(Intercept)","5":"-5.6402556","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"15","4":"(Intercept)","5":"11.5035894","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"16","4":"(Intercept)","5":"17.7998250","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"17","4":"(Intercept)","5":"-6.1019712","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"18","4":"(Intercept)","5":"8.0170691","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"19","4":"(Intercept)","5":"5.3682399","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"20","4":"(Intercept)","5":"-0.7929795","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"21","4":"(Intercept)","5":"28.4348085","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"22","4":"(Intercept)","5":"14.6400041","6":"3.120958"},{"1":"ran_vals","2":"student_id","3":"1","4":"I(grade - 5)","5":"1.2567298","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"2","4":"I(grade - 5)","5":"-0.9529269","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"3","4":"I(grade - 5)","5":"2.2455181","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"4","4":"I(grade - 5)","5":"-3.9387724","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"5","4":"I(grade - 5)","5":"-1.7820504","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"6","4":"I(grade - 5)","5":"-0.8965303","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"7","4":"I(grade - 5)","5":"1.2648915","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"8","4":"I(grade - 5)","5":"-2.5132122","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"9","4":"I(grade - 5)","5":"4.2430807","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"10","4":"I(grade - 5)","5":"0.1821088","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"11","4":"I(grade - 5)","5":"1.3699534","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"12","4":"I(grade - 5)","5":"1.5946819","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"13","4":"I(grade - 5)","5":"-1.3428780","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"14","4":"I(grade - 5)","5":"5.3476189","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"15","4":"I(grade - 5)","5":"-0.2982491","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"16","4":"I(grade - 5)","5":"-2.6746202","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"17","4":"I(grade - 5)","5":"0.5896209","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"18","4":"I(grade - 5)","5":"-2.5612708","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"19","4":"I(grade - 5)","5":"-0.8055675","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"20","4":"I(grade - 5)","5":"-0.6423150","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"21","4":"I(grade - 5)","5":"-1.7192859","6":"1.541137"},{"1":"ran_vals","2":"student_id","3":"22","4":"I(grade - 5)","5":"2.0334747","6":"1.541137"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Recall that this tibble includes both the intercept and the grade-level random-effects. We will <code>facet_wrap()</code> on the <code>term</code> column to plot each of these distributions separately.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the RE for intercept</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> level_2, <span class="fu">aes</span>(<span class="at">x =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Level-2 residuals"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuals-level-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="16-lmer-alt-representations-and-assumptions_files/figure-html/fig-residuals-level-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Density plot of the estimated random-effects for intercept (left) and grade-level (right). The confidence envelope is based on the expected variation in a normal distribution.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Neither distribution of random-effects seem consistent with the assumption of normality.</p>
+<p><br></p>
+</section>
+</section>
+<section id="fixing-the-model-to-better-meet-the-assumptions" class="level1">
+<h1>Fixing the Model to Better Meet the Assumptions</h1>
+<p>Given the incredibly small amount of variation in the random-effects of grade-level, we will only include a random-effect for intercept in the model. Examination of the assumptions for this model (not shown) results in good fit to the Level-1 residual assumptions and some slight mis-fit to the normality assumption of the Level-2 residuals, with the resulting distribution being slightly right-skewed.</p>
+<div class="fyi">
+<p>Note that, in practice, the violation of the normality assumption would not be a deal breaker since the remaining assumptions were met in this model. However, to facilitate understanding of log-transformations in these models, we will fit and interpret a log-transformed model.</p>
+</div>
+<p>Similar to fixed-effects models, we can apply transformations to the outcome or any of the continuous predictors. Here the log-transform can be applied to the outcome to help alleviate the non-normality we observed in the Level-2 residuals. (There are no 0 values or negative values in the outcome, so we can directly apply the log-transformation.)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lmer<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">lmer</span>(<span class="fu">log</span>(reading_score) <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">I</span>(grade<span class="dv">-5</span>) <span class="sc">+</span> special_ed <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                (<span class="dv">1</span>  <span class="sc">|</span> student_id), <span class="at">data =</span> mpls, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Augment model</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>out_3 <span class="ot">=</span> <span class="fu">augment</span>(lmer<span class="fl">.3</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain a data frame of the random-effects</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>level_2 <span class="ot">=</span> <span class="fu">tidy</span>(lmer<span class="fl">.3</span>, <span class="at">effects =</span> <span class="st">"ran_vals"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the level-1 residuals</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_3, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Level-1 residuals"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of the Level-1 residuals versus the fitted values</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> out_3, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Level-1 residuals"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot of the level-2 residuals (RE of intercept)</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> level_2, <span class="fu">aes</span>(<span class="at">x =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_confidence</span>(<span class="at">model =</span> <span class="st">"normal"</span>) <span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>(<span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Level-2 residuals"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot side-by-side</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuals-log-model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="16-lmer-alt-representations-and-assumptions_files/figure-html/fig-residuals-log-model-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Plots to evaluate the level-1 and level-2 residuals.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plots suggest that all the distributional assumptions for the Level-1 residuals are tenable. The density plot of the level-2 residuals also shows consistency with the assumption of normality.</p>
+<p><br></p>
+<section id="interpreting-the-output-from-the-log-transformed-model" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-output-from-the-log-transformed-model">Interpreting the Output from the Log-Transformed Model</h2>
+<p>We interpret fixed-effect coefficients from the LMER similar to those from the LM. We now just apply the same interpretational changes that we did when previously log-transformed the outcomes.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lmer<span class="fl">.3</span>, <span class="at">effects =</span> <span class="st">"fixed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["effect"],"name":[1],"type":["chr"],"align":["left"]},{"label":["term"],"name":[2],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"fixed","2":"(Intercept)","3":"5.33580710","4":"0.020084164","5":"265.672348"},{"1":"fixed","2":"I(grade - 5)","3":"0.02102883","4":"0.002619295","5":"8.028430"},{"1":"fixed","2":"special_edYes","3":"-0.09054809","4":"0.053337340","5":"-1.697649"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<ul>
+<li>The intercept is the average log-transformed reading score for non-special education students in the 5th grade. Back-transforming this, we find the average reading score for these students is <span class="math inline">\(e^{5.34} = 208.52\)</span>.</li>
+<li>Back-transforming the grade-level effect, we find that each one grade difference is associated with a 2% (<span class="math inline">\(e^{0.021} = 1.02\)</span>) increase in reading scores, on average, after controlling for differences in special education status.</li>
+<li>Back-transforming the special education status effect, we find that special education students have reading scores that are <span class="math inline">\(e^{-0.0905} = 0.91\)</span> times those for non-special education students, on average, after controlling for differences in grade-level.</li>
+</ul>
+<p>We can also plot the average growth trajectory and any individual students’ growth trajectories for the back-transformed models to aid in the interpretation.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpls, <span class="fu">aes</span>(<span class="at">x =</span> (grade<span class="dv">-5</span>), <span class="at">y =</span> reading_score)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x){<span class="fu">exp</span>(<span class="fl">5.34</span> <span class="sc">-</span> <span class="fl">0.0905</span> <span class="sc">+</span> <span class="fl">0.0210</span><span class="sc">*</span>x)}, <span class="at">color =</span> <span class="st">"#0072B2"</span>) <span class="sc">+</span> <span class="co">#SpEd (Avg)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x){<span class="fu">exp</span>(<span class="fl">5.34</span> <span class="sc">+</span> <span class="fl">0.0210</span><span class="sc">*</span>x)}, <span class="at">color =</span> <span class="st">"#E69F00"</span>) <span class="sc">+</span> <span class="co">#Non-SpEd (Avg)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x){<span class="fu">exp</span>(<span class="fl">5.34</span> <span class="sc">-</span> <span class="fl">0.157</span> <span class="sc">+</span> <span class="fl">0.0210</span><span class="sc">*</span>x)}, <span class="at">color =</span> <span class="st">"#E69F00"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> <span class="co">#Student 1; non-SpEd</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Grade"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"5th"</span>, <span class="st">"6th"</span>, <span class="st">"7th"</span>, <span class="st">"8th"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Reading Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fitted-log-model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="16-lmer-alt-representations-and-assumptions_files/figure-html/fig-fitted-log-model-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Change in reading scores over time for the average special education (solid, blue line) and non-special education student (solid, orange line). Student 1’s growth trajectory (dashed line) is also displayed.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The almost linear rate-of-change is further indication that the log-transformation is probably not necessary.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
