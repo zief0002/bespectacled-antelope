@@ -315,7 +315,7 @@ b_{1j} &\sim \mathcal{N}\bigg(0,\sigma^2_{1}\bigg)
 \end{split}
 $$
 
-The assumptions are based on the Level-1 residuals ($\epsilon_{ij}$) and the Level-2 residuals, or random-effects ($b_{0j}$ and $b_{1j}$). So we need to examine the distributions of those three components. To begin, we will fit the mixed-effects model, which is:
+The assumptions are based on the Level-1 residuals ($\epsilon_{ij}$) and the Level-2 residuals, or random-effects ($b_{0j}$ and $b_{1j}$).^[Technically, there is also a covariance between $b_{0j}$ and $b_{1j}$, but this term does not play into the assumptions.] So we need to examine the distributions of those three components. To begin, we will fit the mixed-effects model, which is:
 
 $$
 \mathrm{Reading~Score}_{ij} = \beta_0 +  \beta_1(\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + b_{0j} + b_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}

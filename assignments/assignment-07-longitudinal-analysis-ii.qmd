@@ -70,7 +70,6 @@ Use maximum likelihood estimation to fit all the models.
 4. Create and report a table of regression results. In this table Include the following information for each of the five candidate models **(5pts)**:
     - Estimated fixed-effect coefficients and standard errors;
     - Estimated variance components;
-    - Pseudo $R^2$ measures based on the reduction in the variance components;
     - Model-level deviance and AICc measures; and
     - Any notes necessary to help the reader
 

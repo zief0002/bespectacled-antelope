@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-03-05">
+<meta name="dcterms.date" content="2023-03-06">
 
 <title>EPsy 8252 - Linear Mixed-Effects Models: Alternative Representations and Assumptions</title>
 <style>
@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 5, 2023</p>
+      <p class="date">March 6, 2023</p>
     </div>
   </div>
   
@@ -510,7 +510,7 @@ b_{0j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{0}\bigg) \\[1em]
 b_{1j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{1}\bigg)
 \end{split}
 \]</span></p>
-<p>The assumptions are based on the Level-1 residuals (<span class="math inline">\(\epsilon_{ij}\)</span>) and the Level-2 residuals, or random-effects (<span class="math inline">\(b_{0j}\)</span> and <span class="math inline">\(b_{1j}\)</span>). So we need to examine the distributions of those three components. To begin, we will fit the mixed-effects model, which is:</p>
+<p>The assumptions are based on the Level-1 residuals (<span class="math inline">\(\epsilon_{ij}\)</span>) and the Level-2 residuals, or random-effects (<span class="math inline">\(b_{0j}\)</span> and <span class="math inline">\(b_{1j}\)</span>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> So we need to examine the distributions of those three components. To begin, we will fit the mixed-effects model, which is:</p>
 <p><span class="math display">\[
 \mathrm{Reading~Score}_{ij} = \beta_0 +  \beta_1(\mathrm{Grade}_{ij}-5) + \beta_2(\mathrm{Special~Education}_j) + b_{0j} + b_{1j}(\mathrm{Grade}_{ij}-5) + \epsilon_{ij}
 \]</span></p>
@@ -711,7 +711,13 @@ b_{1j} &amp;\sim \mathcal{N}\bigg(0,\sigma^2_{1}\bigg)
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Technically, there is also a covariance between <span class="math inline">\(b_{0j}\)</span> and <span class="math inline">\(b_{1j}\)</span>, but this term does not play into the assumptions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
