@@ -406,7 +406,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Mar. 23</td>
+<td>Mar. 28</td>
 <td>Mar. 27</td>
 <td align="center" style="vertical-align:middle;" >
   [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/11-logistic-regression.html)
@@ -426,7 +426,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Mar. 28</td>
+<td>Mar. 30</td>
 <td>Mar. 29</td>
 <td align="center" style="vertical-align:middle;" >
   <span class="fa fa-book" style="color: #f1f1f1; font-size: 17px;"></span>
@@ -455,7 +455,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Mar. 30</td>
+<td>Apr. 04</td>
 <td>Apr. 03</td>
 <td align="center" style="vertical-align:middle;" rowspan="2">
   [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/13-introduction-to-mixed-effects-models.html)
@@ -475,14 +475,14 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 04</td>
+<td>Apr. 06</td>
 <td>Apr. 05</td>
 </tr>
 
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 06</td>
+<td>Apr. 11</td>
 <td>Apr. 10</td>
 <td align="center" style="vertical-align:middle;" rowspan="2">
   <span class="fa fa-book" style="color: #f1f1f1; font-size: 17px;"></span>
@@ -502,7 +502,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 11</td>
+<td>Apr. 13</td>
 <td>Apr. 12</td>
 </tr>
 
@@ -510,7 +510,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 13</td>
+<td>Apr. 18</td>
 <td>Apr. 17</td>
 <td align="center" style="vertical-align:middle;" rowspan="2">
   [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/15-lmer-other-random-effects-and-covariates.html)
@@ -530,14 +530,14 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 18</td>
+<td>Apr. 20</td>
 <td>Apr. 19</td>
 </tr>
 
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 20</td>
+<td>Apr. 25</td>
 <td>Apr. 24</td>
 <td align="center" style="vertical-align:middle;" rowspan="3">
   [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/16-lmer-alt-representations-and-assumptions.html)
@@ -557,13 +557,13 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 25</td>
+<td>Apr. 27</td>
 <td>Apr. 26</td>
 </tr>
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 27</td>
+<td>&nbsp;</td>
 <td>May 01</td>
 </tr>
 

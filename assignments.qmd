@@ -79,7 +79,7 @@ Below are the due dates for the assignments, as well as links to each assignment
 <tr>
 <td>Assignment \#5: *Logistic Regression*</td>
 <!-- <br /><span style="margin-left:5px; color:#5a067d;font-size:12px;">*[Updated: 03-24-2022]*</span> -->
-<td>Apr. 06</td>
+<td>Apr. 11</td>
 <td>Apr. 10</td>
 <td align="center" style="vertical-align:middle;">
 [<span class="fab fa-markdown" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/assignments/assignment-05-logistic-regression.qmd)
@@ -92,7 +92,7 @@ Below are the due dates for the assignments, as well as links to each assignment
 
 <tr>
 <td>Assignment \#6: *LMER: Unconditional Longitudinal Models*</td>
-<td>Apr. 20</td>
+<td>Apr. 25</td>
 <td>Apr. 24</td>
 <td align="center" style="vertical-align:middle;">
 [<span class="fab fa-markdown" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/assignments/assignment-06-lmer-unconditional-longitudinal-models.qmd)

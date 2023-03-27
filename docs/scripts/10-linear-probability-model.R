@@ -15,7 +15,7 @@ library(tidyverse)
 ### Read in data
 ##################################################
 
-grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/epsy-8252/master/data/graduation.csv")
+grad = read_csv(file = "https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/graduation.csv")
 grad
 
 

@@ -119,8 +119,8 @@ exp(coef(lm.2))
 ##################################################
 
 ggplot(data = carbon, aes(x = wealth, y = co2)) +
-  geom_point(alpha = 0) +
-  geom_function(fun = function(x) {exp(2.20) * exp(0.824*x)} ) +
+  geom_point(alpha = .4) +
+  geom_function(fun = function(x) {exp(-2.20) * exp(0.824*x)} ) +
   theme_bw() +
   xlab("Wealth") +
   ylab("Predicted CO2 emissions (in metric tones per person)")
@@ -236,6 +236,8 @@ aictab(
   modnames = c("Wealth, Wealth^2", "Wealth, Wealth^2, Urbanization")
 )
 
+residual_plots(lm.3)
+
 
 glance(lm.3) |> # Model-level output
   print(width = Inf)
@@ -278,6 +280,19 @@ lm.4 = lm(log(co2) ~ 1 + wealth + I(wealth^2) + urbanization +
           data = carbon)
 
 
+lm.4 = lm(log(co2) ~ 1 + wealth + I(wealth^2) + urbanization + 
+            region, 
+          data = carbon)
+
+
+aictab(
+  cand.set = list(lm.3, lm.4),
+  modnames = c("No world region", "Main effect of region")
+)
+
+
+
+
 # Fit model
 lm.5 = lm(log(co2) ~ 1 + wealth + I(wealth^2) + urbanization + 
             asia + africa + americas + europe +
@@ -318,6 +333,7 @@ ggplot(data = carbon, aes(x = wealth, y = co2)) +
   geom_function(fun = function(x) {.053 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#d30c7b") + #Americas
   geom_function(fun = function(x) {.047 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#adcad6") + #Europe
   geom_function(fun = function(x) {.096 * exp(1.28*x) * exp(-0.07*x^2)}, color = "#bc69aa") + #Oceania
+  #annotate(geom = "text", x = 6.5, y = 21, label = "Oceania", color = "#bc69aa", hjust = 0) +
   theme_bw() +
   xlab("Wealth") +
   ylab("Predicted CO2 (in metric tons per person)") +
