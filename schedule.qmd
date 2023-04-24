@@ -473,6 +473,7 @@ The calendar below lists the tentative course topics. The dates listed are subje
 </tr>
 
 
+
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
 <td>Apr. 06</td>
@@ -537,20 +538,20 @@ The calendar below lists the tentative course topics. The dates listed are subje
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
-<td>Apr. 25</td>
 <td>Apr. 24</td>
-<td align="center" style="vertical-align:middle;" rowspan="3">
-  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/16-lmer-alt-representations-and-assumptions.html)
+<td>Apr. 25</td>
+<td align="center" style="vertical-align:middle;" >
+  <span class="fa fa-book" style="color: #f1f1f1; font-size: 17px;"></span>
 </td>
-<td style="vertical-align:middle;" rowspan="3">LMER: Alternative Representations and Assumptions</td>
-<td align="center" style="vertical-align:middle;" rowspan="3">
-  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/16-lmer-alt-representations-and-assumptions.html)
+<td style="vertical-align:middle;">Q&amp;A and Future Coursework</td>
+<td align="center" style="vertical-align:middle;">
+   [<span class="fas fa-link" style="font-size: 17px;"></span>](files/qme-course-map-2023-04-10.pdf)
 </td>
-<td align="center" style="vertical-align:middle;" rowspan="3">
-  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/notes/16-lmer-alt-representations-and-assumptions.qmd)
+<td align="center" style="vertical-align:middle;">
+  <span class="fab fa-markdown" style="font-size: 17px; color: #f1f1f1;"></span>
 </td>
-<td align="center" style="vertical-align:middle;" rowspan="3">
-  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/16-lmer-alt-representations-and-assumptions.R)
+<td align="center" style="vertical-align:middle;">
+  <span class="fa fa-code" style="font-size: 17px; color: #f1f1f1;"></span>
 </td>
 </tr>
 
@@ -559,7 +560,21 @@ The calendar below lists the tentative course topics. The dates listed are subje
 <td align="center" style="vertical-align:middle;">&nbsp;</td>
 <td>Apr. 27</td>
 <td>Apr. 26</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-book" style="font-size: 17px;"></span>](readings/16-lmer-alt-representations-and-assumptions.html)
+</td>
+<td style="vertical-align:middle;" rowspan="2">NO CLASS --- Optional: LMER: Alternative Representations and Assumptions</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fas fa-link" style="font-size: 17px;"></span>](https://zief0002.github.io/bespectacled-antelope/notes/16-lmer-alt-representations-and-assumptions.html)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fab fa-markdown" style="font-size: 17px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/notes/16-lmer-alt-representations-and-assumptions.qmd)
+</td>
+<td align="center" style="vertical-align:middle;" rowspan="2">
+  [<span class="fa fa-code" style="font-size: 17px;"></span>](https://github.com/zief0002/bespectacled-antelope/raw/main/scripts/16-lmer-alt-representations-and-assumptions.R)
+</td>
 </tr>
+
 
 <tr>
 <td align="center" style="vertical-align:middle;">&nbsp;</td>

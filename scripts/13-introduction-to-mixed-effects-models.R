@@ -109,7 +109,8 @@ student_models
 ##################################################
 
 # Fit mixed-effects regression model
-lmer.1 = lmer(reading_score ~ 1 + grade + (1 | student_id), data = mpls)
+lmer.1 = lmer(reading_score ~ 1 + grade + 
+                (1 | student_id), data = mpls)
 
 
 # Display fixed-effects
@@ -126,8 +127,8 @@ tidy(lmer.1, effects = "ran_vals")
 ##################################################
 
 # Fit mixed-effects regression model
-lmer.2 = lmer(reading_score ~ 1 + grade + (1 + grade | student_id), 
-              data = mpls)
+lmer.2 = lmer(reading_score ~ 1 + grade + 
+                (1 + grade | student_id), data = mpls)
 
 
 # Display fixed-effects

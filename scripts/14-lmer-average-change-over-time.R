@@ -29,8 +29,13 @@ vocabulary
 
 # Convert from wide to long structured data
 vocabulary_long = vocabulary |>
-  pivot_longer(cols = vocab_08:vocab_11, names_to = "grade", values_to = "vocab_score") |>
-  arrange(id, grade)
+  pivot_longer(
+    cols = vocab_08:vocab_11, 
+    names_to = "grade",
+    values_to = "vocab_score"
+    ) |>
+  arrange(id, grade) |>
+  select(id, grade, vocab_score, female)
 
 # View data
 vocabulary_long
@@ -56,13 +61,23 @@ ggplot(data = vocabulary_long, aes(x = grade, y = vocab_score)) +
   ylab("Vocabulary score")
 
 
+vocabulary_long |>
+  group_by(grade) |>
+  summarize(
+    M = mean(vocab_score),
+    V = var(vocab_score)
+  )
+
+
+
 
 ##################################################
 ### Unconditional random intercepts model
 ##################################################
 
 # Fit unconditional random intercepts model
-lmer.0 = lmer(vocab_score ~ 1 + (1|id), data = vocabulary_long, REML = FALSE)
+lmer.0 = lmer(vocab_score ~ 1 + (1|id), 
+              data = vocabulary_long, REML = FALSE)
 
 
 # Coefficient-level output
@@ -95,7 +110,7 @@ tidy(lmer.0, effects = "ran_pars")
 2.96 + 1.82
 
 
-# Proportion of unexplaind variance
+# Proportion of unexplained variance
 1.8225 / (1.8225 + 2.9584) # Within-student unexplained variance
 2.9584 / (1.8225 + 2.9584) # Between-student unexplained variance
 

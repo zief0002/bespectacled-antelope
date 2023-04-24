@@ -104,7 +104,7 @@ Below are the due dates for the assignments, as well as links to each assignment
 
 
 <tr>
-<td>Assignment \#7: *LMER: More Longitudinal Models*</td>
+<td>Assignment \#7: OPTIONAL --- *LMER: More Longitudinal Models*</td>
 <td>May 06</td>
 <td>May 06</td>
 <td align="center" style="vertical-align:middle;">
