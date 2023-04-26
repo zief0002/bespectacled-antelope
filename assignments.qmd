@@ -111,7 +111,7 @@ Below are the due dates for the assignments, as well as links to each assignment
 [<span class="fab fa-markdown" style="font-size: 20px;"></span>](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/assignments/assignment-07-lmer-more-longitudinal-models.qmd)
 </td>
 <td align="center" style="vertical-align:middle;">
-[<span class="fas fa-link" style="font-size: 20px;"></span>](assignments/assignment-07-lmer-more-longitudinal-models.html)
+[<span class="fas fa-link" style="font-size: 20px;"></span>](assignments/assignment-07-longitudinal-analysis-ii.html)
 </td>
 </tr>
 
